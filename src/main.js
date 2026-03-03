@@ -316,7 +316,9 @@ const state = {
   voteTally: {},
   votedPlayer: null,
   roundNumber: 0,
-  roundPhase: "debate"
+  roundPhase: "debate",
+  eliminatedPlayers: [],
+  gameActive: false
 };
 
 function loadSavedNames() {
@@ -711,9 +713,13 @@ async function createRound() {
   if (whiteCount < 0 || whiteCount > 2) throw new Error("Fantasma entre 0 y 2.");
   if (impostorCount + whiteCount >= playerCount) throw new Error("Impostores + fantasmas debe ser menor que jugadores.");
 
+  const activePlayers = playerCount - state.eliminatedPlayers.length;
+  if (activePlayers < 3) throw new Error("No quedan suficientes jugadores activos (m\u00ednimo 3).");
+
   const pack = getLocalPack(theme, state.includeAdultTheme);
-  const roles = buildRoles(playerCount, impostorCount, whiteCount, pack.secretWord, pack.decoyWord);
-  return { createdAt: new Date().toISOString(), theme, ...pack, roles };
+  const allRoles = buildRoles(playerCount, impostorCount, whiteCount, pack.secretWord, pack.decoyWord);
+  const roles = allRoles.filter(r => !state.eliminatedPlayers.includes(r.player));
+  return { createdAt: new Date().toISOString(), theme, ...pack, roles, allRoles };
 }
 
 // ============= DEAL / REVEAL FLOW =============
@@ -861,6 +867,9 @@ function goNextPlayer() {
 function buildVoteUI() {
   if (!state.round) return;
   voteList.innerHTML = "";
+  // Remove old eliminated badge
+  const oldBadge = document.querySelector(".eliminated-badge");
+  if (oldBadge) oldBadge.remove();
   voteResult.classList.add("hidden");
   voteResult.innerHTML = "";
   state.voteTally = {};
@@ -868,6 +877,14 @@ function buildVoteUI() {
 
   const avatarColors = ["#6c5ce7","#00cec9","#e17055","#fdcb6e","#74b9ff","#a29bfe","#55efc4","#ff7675","#fab1a0","#81ecec"];
   const avatarEmojis = ["\ud83d\ude0e","\ud83e\udd29","\ud83d\ude08","\ud83e\udd14","\ud83d\ude0f","\ud83e\uddd0","\ud83d\ude0d","\ud83e\udd2b","\ud83d\ude1c","\ud83d\ude44"];
+
+  // Show eliminated count if any
+  if (state.eliminatedPlayers.length > 0) {
+    const badge = document.createElement("div");
+    badge.className = "eliminated-badge";
+    badge.innerHTML = `\ud83d\udea8 <strong>${state.eliminatedPlayers.length}</strong> eliminado${state.eliminatedPlayers.length > 1 ? "s" : ""} \u2022 ${state.round.roles.length} jugadores restantes`;
+    voteList.parentElement.insertBefore(badge, voteList);
+  }
 
   for (let i = 0; i < state.round.roles.length; i++) {
     const role = state.round.roles[i];
@@ -905,6 +922,7 @@ function selectPlayerToEliminate(selectedRole, selectedCard) {
 
   state.votedPlayer = selectedRole.player;
   state.voteTally[selectedRole.player] = 1;
+  state.eliminatedPlayers.push(selectedRole.player);
   SFX.click();
 
   // Mark all cards
@@ -1141,6 +1159,8 @@ function resetRound() {
   state.voteTally = {};
   state.votedPlayer = null;
   state.roundPhase = "debate";
+  state.eliminatedPlayers = [];
+  state.gameActive = false;
   exitGameMode();
   finalResult.classList.add("hidden");
   voteList.innerHTML = "";
@@ -1175,6 +1195,7 @@ startBtn.addEventListener("click", async () => {
     state.round = await createRound();
     state.revealIndex = 0;
     state.roundNumber += 1;
+    state.gameActive = true;
     if (roundNumberEl) roundNumberEl.textContent = state.roundNumber;
     finalResult.classList.add("hidden");
     await playSorteoAnimation(state.round.roles);
@@ -1224,18 +1245,41 @@ backToDebateBtn.addEventListener("click", () => {
 });
 
 quitGameBtn.addEventListener("click", () => {
-  if (state.round && !confirm("\u00bfSeguro que quieres salir?")) return;
+  if (state.gameActive && !confirm("\u00bfSeguro que quieres salir? Se perder\u00e1 el progreso de la partida.")) return;
   resetRound();
 });
 
 newRoundBtn.addEventListener("click", () => {
+  // Keep eliminated players for next round (same game session)
+  const eliminated = [...state.eliminatedPlayers];
+  const roundNum = state.roundNumber;
+  stopTimer();
+  state.round = null;
+  state.revealIndex = 0;
+  state.roleIsVisible = false;
+  state.timerSeconds = state.timerTotalSeconds;
+  state.voteTally = {};
+  state.votedPlayer = null;
+  state.roundPhase = "debate";
+  state.eliminatedPlayers = eliminated;
+  state.roundNumber = roundNum;
   exitGameMode();
   finalResult.classList.add("hidden");
+  voteList.innerHTML = "";
+  voteResult.classList.add("hidden");
+  voteResult.textContent = "";
   if (shareResultBtn) shareResultBtn.classList.add("hidden");
+  timerDisplay.classList.remove("timer-urgent", "timer-finished");
+  setRoundStatus("");
+  setRoundPhase("debate");
+  renderTimer();
   showMainView("play");
 });
 
-backHomeBtn.addEventListener("click", resetRound);
+backHomeBtn.addEventListener("click", () => {
+  if (state.gameActive && !confirm("\u00bfVolver al inicio? Se perder\u00e1 la partida actual.")) return;
+  resetRound();
+});
 startTimerBtn.addEventListener("click", startTimer);
 pauseTimerBtn.addEventListener("click", pauseTimer);
 resetTimerBtn.addEventListener("click", resetTimer);

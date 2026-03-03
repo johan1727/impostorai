@@ -1601,6 +1601,21 @@ button {
   display: none;
 }
 
+/* ============= ELIMINATED BADGE ============= */
+.eliminated-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 71, 87, 0.1);
+  border: 1px solid rgba(255, 71, 87, 0.25);
+  color: var(--red);
+  font-size: 0.82rem;
+  margin-bottom: 10px;
+  animation: phaseIn 0.3s ease;
+}
+
 /* ============= VOTE CARD GRID ============= */
 .vote-card-grid {
   display: grid;
