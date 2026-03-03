@@ -279,8 +279,14 @@ const pauseTimerBtn = document.getElementById("pauseTimerBtn");
 const resetTimerBtn = document.getElementById("resetTimerBtn");
 const timerPresetButtons = document.querySelectorAll(".timer-preset");
 const voteList = document.getElementById("voteList");
-const calculateVotesBtn = document.getElementById("calculateVotesBtn");
 const voteResult = document.getElementById("voteResult");
+const roundNumberEl = document.getElementById("roundNumber");
+const debatePhase = document.getElementById("debatePhase");
+const votePhase = document.getElementById("votePhase");
+const resultPhase = document.getElementById("resultPhase");
+const goToVoteBtn = document.getElementById("goToVoteBtn");
+const backToDebateBtn = document.getElementById("backToDebateBtn");
+const roundSteps = document.querySelectorAll(".round-step");
 
 // ============= STATE =============
 const NAMES_KEY = "impostorNamesV1";
@@ -308,7 +314,9 @@ const state = {
   playerNames: loadSavedNames(),
   showNames: false,
   voteTally: {},
-  votedPlayer: null
+  votedPlayer: null,
+  roundNumber: 0,
+  roundPhase: "debate"
 };
 
 function loadSavedNames() {
@@ -842,6 +850,7 @@ function goNextPlayer() {
     setGamePhase("debate");
     gameProgressBar.style.width = "100%";
     buildVoteUI();
+    setRoundPhase("debate");
     resetTimer();
     return;
   }
@@ -936,12 +945,32 @@ function selectPlayerToEliminate(selectedRole, selectedCard) {
           <p class="vote-reveal-subtitle">El impostor sigue libre... \ud83d\udd75\ufe0f</p>
         </div>`;
     }
+
+    // After voting, transition to result phase
+    setTimeout(() => setRoundPhase("result"), 1500);
   }, 600);
 }
 
 function calculateVotes() {
   // Legacy compatibility — no longer needed with card-based voting
   return;
+}
+
+// ============= ROUND PHASE NAVIGATION =============
+function setRoundPhase(phase) {
+  state.roundPhase = phase;
+  if (debatePhase) debatePhase.classList.toggle("hidden", phase !== "debate");
+  if (votePhase) votePhase.classList.toggle("hidden", phase !== "vote");
+  if (resultPhase) resultPhase.classList.toggle("hidden", phase !== "result");
+
+  // Update step indicators
+  const steps = ["debate", "vote", "result"];
+  const activeIdx = steps.indexOf(phase);
+  roundSteps.forEach((step, i) => {
+    step.classList.remove("active", "done");
+    if (i === activeIdx) step.classList.add("active");
+    else if (i < activeIdx) step.classList.add("done");
+  });
 }
 
 // ============= REVEAL FINAL =============
@@ -1111,6 +1140,7 @@ function resetRound() {
   state.timerSeconds = state.timerTotalSeconds;
   state.voteTally = {};
   state.votedPlayer = null;
+  state.roundPhase = "debate";
   exitGameMode();
   finalResult.classList.add("hidden");
   voteList.innerHTML = "";
@@ -1119,6 +1149,7 @@ function resetRound() {
   if (shareResultBtn) shareResultBtn.classList.add("hidden");
   timerDisplay.classList.remove("timer-urgent", "timer-finished");
   setRoundStatus("");
+  setRoundPhase("debate");
   renderTimer();
   showMainView("home");
 }
@@ -1143,6 +1174,8 @@ startBtn.addEventListener("click", async () => {
     startBtn.disabled = true;
     state.round = await createRound();
     state.revealIndex = 0;
+    state.roundNumber += 1;
+    if (roundNumberEl) roundNumberEl.textContent = state.roundNumber;
     finalResult.classList.add("hidden");
     await playSorteoAnimation(state.round.roles);
     enterGameMode();
@@ -1179,6 +1212,17 @@ window.addEventListener("pointercancel", () => { if (state.swipeDragging) resetO
 revealAllBtn.addEventListener("click", revealFinal);
 resetBtn.addEventListener("click", resetRound);
 
+goToVoteBtn.addEventListener("click", () => {
+  setRoundPhase("vote");
+  SFX.click();
+});
+
+backToDebateBtn.addEventListener("click", () => {
+  if (state.votedPlayer !== null) return;
+  setRoundPhase("debate");
+  SFX.click();
+});
+
 quitGameBtn.addEventListener("click", () => {
   if (state.round && !confirm("\u00bfSeguro que quieres salir?")) return;
   resetRound();
@@ -1195,7 +1239,6 @@ backHomeBtn.addEventListener("click", resetRound);
 startTimerBtn.addEventListener("click", startTimer);
 pauseTimerBtn.addEventListener("click", pauseTimer);
 resetTimerBtn.addEventListener("click", resetTimer);
-calculateVotesBtn.addEventListener("click", calculateVotes);
 fullscreenBtn.addEventListener("click", toggleFullscreen);
 
 if (soundToggleBtn) {

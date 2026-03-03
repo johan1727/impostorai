@@ -1067,33 +1067,7 @@ button {
   font-weight: 700;
 }
 
-.vote-list {
-  display: grid;
-  gap: 6px;
-  max-height: 210px;
-  overflow: auto;
-  margin-bottom: 8px;
-}
-
-.vote-row {
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  padding: 8px;
-  background: rgba(8, 14, 48, 0.6);
-}
-
-.vote-row label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 0.74rem;
-}
-
-.vote-result {
-  margin: 6px 0 0;
-  font-size: 0.8rem;
-  font-weight: 800;
-  color: var(--text);
-}
+/* legacy vote styles removed - now using card grid */
 
 .instructions-box {
   border: 1px solid var(--border);

@@ -243,11 +243,34 @@
       <section id="roundSection" class="game-panel hidden">
         <div class="game-panel-title">
           <span>💬</span>
-          <h2>Discusión y voto</h2>
+          <h2>Ronda <span id="roundNumber">1</span></h2>
         </div>
-        <div class="round-tools">
+
+        <!-- STEP INDICATOR -->
+        <div class="round-steps">
+          <div class="round-step active" data-step="debate">
+            <span class="step-num">1</span>
+            <span class="step-label">Debate</span>
+          </div>
+          <div class="round-step-line"></div>
+          <div class="round-step" data-step="vote">
+            <span class="step-num">2</span>
+            <span class="step-label">Voto</span>
+          </div>
+          <div class="round-step-line"></div>
+          <div class="round-step" data-step="result">
+            <span class="step-num">3</span>
+            <span class="step-label">Resultado</span>
+          </div>
+        </div>
+
+        <!-- PHASE 1: DEBATE -->
+        <div id="debatePhase" class="round-phase">
           <section class="tool-card">
-            <h3>Temporizador</h3>
+            <div class="tool-card-header">
+              <span class="tool-icon">⏱</span>
+              <h3>Temporizador</h3>
+            </div>
             <div class="timer-presets" role="group" aria-label="Minutos de discusión">
               <button class="timer-preset" data-minutes="2" type="button">2 min</button>
               <button class="timer-preset" data-minutes="3" type="button">3 min</button>
@@ -266,30 +289,45 @@
             <p id="roundStatus" class="round-status" aria-live="polite"></p>
           </section>
 
+          <div class="round-tip">
+            <span>💡</span>
+            <p>Cada jugador da una pista sobre su palabra. Escuchen contradicciones y comportamientos raros.</p>
+          </div>
+
+          <button id="goToVoteBtn" type="button" class="primary-action go-vote-btn">
+            🗳️ Pasar a votación
+          </button>
+        </div>
+
+        <!-- PHASE 2: VOTE -->
+        <div id="votePhase" class="round-phase hidden">
           <section class="tool-card">
-            <h3>🗳️ ¿Quién es el impostor?</h3>
-            <p class="help-text">Después de discutir, elijan al sospechoso tocando su tarjeta.</p>
+            <div class="tool-card-header">
+              <span class="tool-icon">🗳️</span>
+              <h3>¿Quién es el impostor?</h3>
+            </div>
+            <p class="help-text">Toca la tarjeta del jugador que quieren eliminar.</p>
             <div id="voteList" class="vote-card-grid" aria-live="polite"></div>
             <div id="voteResult" class="vote-result-reveal hidden"></div>
           </section>
-        </div>
 
-        <div class="instructions-box">
-          <h3>Reglas de la ronda</h3>
-          <ol>
-            <li><strong>Pista:</strong> Da una pista corta sin decir la palabra literal.</li>
-            <li><strong>Debate:</strong> Escucha contradicciones y comportamientos raros.</li>
-            <li><strong>Vota:</strong> Elige al jugador más sospechoso.</li>
-          </ol>
-        </div>
-        <div class="round-actions">
-          <button id="revealAllBtn" class="reveal-final-btn">
-            <span>🔓 Revelar resultado final</span>
+          <button id="backToDebateBtn" type="button" class="secondary" style="margin-top:8px">
+            ← Volver al debate
           </button>
         </div>
-        <div id="finalResult" class="final-result hidden"></div>
 
-        <div class="round-actions" style="margin-top:10px">
+        <!-- PHASE 3: RESULT -->
+        <div id="resultPhase" class="round-phase hidden">
+          <div class="round-actions">
+            <button id="revealAllBtn" class="reveal-final-btn">
+              <span>🔓 Revelar todos los roles</span>
+            </button>
+          </div>
+          <div id="finalResult" class="final-result hidden"></div>
+        </div>
+
+        <!-- ALWAYS VISIBLE BOTTOM ACTIONS -->
+        <div class="round-bottom-actions">
           <button id="newRoundBtn" class="secondary" type="button">🔄 Nueva ronda</button>
           <button id="backHomeBtn" class="secondary" type="button">🏠 Volver al inicio</button>
         </div>
