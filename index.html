@@ -253,6 +253,10 @@
               <button class="timer-preset" data-minutes="3" type="button">3 min</button>
               <button class="timer-preset" data-minutes="5" type="button">5 min</button>
             </div>
+            <div class="custom-timer-input">
+              <input id="customTimerInput" type="number" min="1" max="30" placeholder="Min" />
+              <button id="setCustomTimerBtn" type="button" class="secondary">OK</button>
+            </div>
             <p id="timerDisplay" class="timer-display">02:00</p>
             <div class="timer-actions">
               <button id="startTimerBtn" type="button">Iniciar</button>
@@ -264,7 +268,7 @@
 
           <section class="tool-card">
             <h3>Votación</h3>
-            <p class="help-text">Marca al sospechoso de cada jugador y calcula al más votado.</p>
+            <p class="help-text">Una persona cuenta los votos con +/− para cada jugador.</p>
             <div id="voteList" class="vote-list" aria-live="polite"></div>
             <button id="calculateVotesBtn" type="button" class="primary-action">Calcular resultado</button>
             <p id="voteResult" class="vote-result hidden"></p>
@@ -301,7 +305,7 @@
       </footer>
     </main>
 
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
-    <div id="toastContainer" class="toast-container" aria-live="polite"></div>

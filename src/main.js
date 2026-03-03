@@ -1,5 +1,5 @@
-import { inject } from "@vercel/analytics";
-inject();
+﻿import { inject } from "@vercel/analytics";
+try { inject(); } catch {}
 
 // ============= PARTICLE BACKGROUND =============
 (function initParticles() {
@@ -39,249 +39,165 @@ inject();
   function init() {
     resize();
     particles.length = 0;
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      particles.push(createParticle());
-    }
+    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(createParticle());
   }
 
   function animate() {
     ctx.clearRect(0, 0, width, height);
-
     for (const p of particles) {
-      p.x += p.speedX;
-      p.y += p.speedY;
-      p.pulse += p.pulseSpeed;
-
-      // Wrap around
+      p.x += p.speedX; p.y += p.speedY; p.pulse += p.pulseSpeed;
       if (p.x < -10) p.x = width + 10;
       if (p.x > width + 10) p.x = -10;
       if (p.y < -10) p.y = height + 10;
       if (p.y > height + 10) p.y = -10;
-
-      const currentOpacity = p.opacity * (0.6 + 0.4 * Math.sin(p.pulse));
-      const currentSize = p.size * (0.8 + 0.2 * Math.sin(p.pulse));
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, currentSize, 0, Math.PI * 2);
-      ctx.fillStyle = p.color.replace(/[\d.]+\)$/, `${currentOpacity})`);
-      ctx.fill();
-
-      // Glow effect
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, currentSize * 3, 0, Math.PI * 2);
-      ctx.fillStyle = p.color.replace(/[\d.]+\)$/, `${currentOpacity * 0.15})`);
-      ctx.fill();
+      const co = p.opacity * (0.6 + 0.4 * Math.sin(p.pulse));
+      const cs = p.size * (0.8 + 0.2 * Math.sin(p.pulse));
+      ctx.beginPath(); ctx.arc(p.x, p.y, cs, 0, Math.PI * 2);
+      ctx.fillStyle = p.color.replace(/[\d.]+\)$/, `${co})`); ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x, p.y, cs * 3, 0, Math.PI * 2);
+      ctx.fillStyle = p.color.replace(/[\d.]+\)$/, `${co * 0.15})`); ctx.fill();
     }
-
-    // Draw connections between nearby particles
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-
         if (dist < 120) {
-          const lineOpacity = (1 - dist / 120) * 0.08;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(107, 138, 255, ${lineOpacity})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
+          ctx.strokeStyle = `rgba(107, 138, 255, ${(1 - dist / 120) * 0.08})`;
+          ctx.lineWidth = 0.5; ctx.stroke();
         }
       }
     }
-
     requestAnimationFrame(animate);
   }
-
   window.addEventListener("resize", resize);
-  init();
-  animate();
+  init(); animate();
 })();
 
+// ============= WORD POOLS (~400 pares = 800+ palabras) =============
 const localWords = {
   aleatorio: [
-    ["volcán", "montaña"],
-    ["wifi", "bluetooth"],
-    ["mango", "papaya"],
-    ["biblioteca", "museo"],
-    ["satélite", "cohete"],
-    ["espejo", "ventana"],
-    ["semáforo", "señal de tránsito"],
-    ["meteorito", "cometa"],
-    ["brújula", "mapa"],
-    ["submarino", "barco"],
-    ["castillo", "fortaleza"],
-    ["diamante", "rubí"]
+    ["volc\u00e1n","monta\u00f1a"],["wifi","bluetooth"],["mango","papaya"],["biblioteca","museo"],
+    ["sat\u00e9lite","cohete"],["espejo","ventana"],["almohada","coj\u00edn"],["sem\u00e1foro","se\u00f1al"],
+    ["anillo","pulsera"],["helado","paleta"],["mochila","maleta"],["l\u00e1piz","bol\u00edgrafo"],
+    ["tijeras","cuchillo"],["planeta","estrella"],["alfombra","tapete"],["bicicleta","patineta"],
+    ["martillo","destornillador"],["c\u00e1mara","telescopio"],["bater\u00eda","cargador"],["cereza","fresa"],
+    ["diamante","rub\u00ed"],["casco","sombrero"],["dado","moneda"],["cortina","persiana"],
+    ["chicle","caramelo"],["atardecer","amanecer"],["cable","enchufe"],["grifo","manguera"]
   ],
   comida: [
-    ["pizza", "lasaña"],
-    ["taco", "burrito"],
-    ["café", "té"],
-    ["sushi", "ramen"],
-    ["hamburguesa", "hot dog"],
-    ["helado", "paleta"],
-    ["croissant", "donut"],
-    ["paella", "risotto"],
-    ["empanada", "arepa"],
-    ["chocolate", "caramelo"],
-    ["pancake", "waffle"],
-    ["ceviche", "sashimi"]
+    ["pizza","lasa\u00f1a"],["taco","burrito"],["caf\u00e9","t\u00e9"],["sushi","ramen"],
+    ["hamburguesa","hot dog"],["paella","risotto"],["empanada","arepa"],["croissant","donut"],
+    ["ceviche","carpaccio"],["brownie","galleta"],["waffle","panqueque"],["helado","sorbete"],
+    ["nachos","quesadilla"],["curry","guiso"],["salm\u00f3n","at\u00fan"],["ensalada","caldo"],
+    ["flan","gelatina"],["churros","bu\u00f1uelos"],["guacamole","hummus"],["mole","salsa"],
+    ["papas fritas","tostones"],["pasta","fideos"],["pan","tortilla"],["queso","mantequilla"],
+    ["pastel","pie"],["tocino","jam\u00f3n"],["arroz","cusc\u00fas"],["yogur","pud\u00edn"]
   ],
   lugares: [
-    ["aeropuerto", "terminal"],
-    ["hospital", "clínica"],
-    ["playa", "isla"],
-    ["escuela", "universidad"],
-    ["parque", "jardín"],
-    ["estadio", "arena"],
-    ["iglesia", "catedral"],
-    ["supermercado", "tienda"],
-    ["cine", "teatro"],
-    ["gimnasio", "spa"],
-    ["zoológico", "acuario"],
-    ["metro", "estación de tren"]
+    ["aeropuerto","terminal"],["hospital","cl\u00ednica"],["playa","isla"],["escuela","universidad"],
+    ["cine","teatro"],["parque","jard\u00edn"],["estadio","coliseo"],["castillo","palacio"],
+    ["supermercado","tienda"],["restaurante","cafeter\u00eda"],["iglesia","catedral"],["banco","oficina"],
+    ["estaci\u00f3n","parada"],["zool\u00f3gico","acuario"],["monta\u00f1a","colina"],["r\u00edo","lago"],
+    ["cueva","t\u00fanel"],["faro","torre"],["cementerio","cripta"],["granja","rancho"],
+    ["lobby","recepci\u00f3n"],["balc\u00f3n","terraza"],["metro","tranv\u00eda"],["desierto","sabana"],
+    ["volc\u00e1n","cr\u00e1ter"],["cascada","manantial"],["puente","muelle"],["frontera","aduana"]
   ],
   objetos: [
-    ["teclado", "ratón"],
-    ["paraguas", "impermeable"],
-    ["linterna", "vela"],
-    ["reloj", "cronómetro"],
-    ["mochila", "maleta"],
-    ["tijeras", "cuchillo"],
-    ["lentes", "lupa"],
-    ["almohada", "cobija"],
-    ["cargador", "batería"],
-    ["cámara", "telescopio"],
-    ["candado", "llave"],
-    ["cepillo", "peine"]
+    ["teclado","rat\u00f3n"],["paraguas","impermeable"],["linterna","vela"],["reloj","cron\u00f3metro"],
+    ["espada","escudo"],["llave","candado"],["gafas","lupa"],["br\u00fajula","mapa"],
+    ["guitarra","ukulele"],["silla","banco"],["cuchara","tenedor"],["pincel","rodillo"],
+    ["aguja","alfiler"],["cadena","cuerda"],["antena","radar"],["campana","silbato"],
+    ["corona","tiara"],["dado","ficha"],["escalera","rampa"],["guante","manopla"],
+    ["im\u00e1n","br\u00fajula"],["jarr\u00f3n","maceta"],["l\u00e1mpara","foco"],["mapa","globo"],
+    ["pa\u00f1uelo","toalla"],["escoba","trapeador"],["botella","jarra"],["sobre","carpeta"]
   ],
   tecnologia: [
-    ["nube", "servidor"],
-    ["robot", "drone"],
-    ["python", "javascript"],
-    ["token", "contraseña"],
-    ["bluetooth", "wifi"],
-    ["pixel", "vector"],
-    ["laptop", "tablet"],
-    ["algoritmo", "código"],
-    ["VPN", "firewall"],
-    ["GPS", "radar"],
-    ["USB", "HDMI"],
-    ["inteligencia artificial", "machine learning"]
+    ["nube","servidor"],["robot","drone"],["python","javascript"],["token","contrase\u00f1a"],
+    ["pixel","v\u00f3xel"],["wifi","ethernet"],["app","programa"],["USB","HDMI"],
+    ["laptop","tablet"],["RAM","disco duro"],["GPS","br\u00fajula"],["firewall","antivirus"],
+    ["podcast","blog"],["streaming","descarga"],["emoji","sticker"],["VPN","proxy"],
+    ["cookie","cach\u00e9"],["router","modem"],["backup","snapshot"],["c\u00f3digo QR","c\u00f3digo de barras"],
+    ["realidad virtual","realidad aumentada"],["inteligencia artificial","machine learning"],
+    ["front-end","back-end"],["Linux","Windows"],["dark mode","light mode"],
+    ["bluetooth","NFC"],["algoritmo","funci\u00f3n"],["base de datos","hoja de c\u00e1lculo"]
   ],
   deportes: [
-    ["fútbol", "rugby"],
-    ["natación", "waterpolo"],
-    ["tenis", "bádminton"],
-    ["boxeo", "karate"],
-    ["baloncesto", "voleibol"],
-    ["ciclismo", "patinaje"],
-    ["golf", "billar"],
-    ["surf", "kayak"],
-    ["esgrima", "arco"],
-    ["maratón", "triatlón"],
-    ["skateboard", "snowboard"],
-    ["polo", "equitación"]
+    ["f\u00fatbol","rugby"],["nataci\u00f3n","waterpolo"],["tenis","b\u00e1dminton"],["boxeo","karate"],
+    ["basketball","volleyball"],["golf","cricket"],["surf","windsurf"],["esqu\u00ed","snowboard"],
+    ["atletismo","marat\u00f3n"],["ciclismo","motocross"],["escalada","rappel"],["esgrima","kendo"],
+    ["hockey","lacrosse"],["judo","taekwondo"],["patinaje","skateboard"],["polo","equitaci\u00f3n"],
+    ["b\u00e9isbol","softball"],["ajedrez","damas"],["ping pong","squash"],["triatl\u00f3n","pentatl\u00f3n"],
+    ["arquer\u00eda","tiro"],["lucha libre","sumo"],["remo","kayak"],["parkour","calistenia"],
+    ["buceo","snorkel"],["boliche","billar"],["CrossFit","yoga"],["boxeo","MMA"]
   ],
   animales: [
-    ["gato", "león"],
-    ["águila", "halcón"],
-    ["delfín", "tiburón"],
-    ["abeja", "avispa"],
-    ["lobo", "zorro"],
-    ["tortuga", "cocodrilo"],
-    ["pingüino", "foca"],
-    ["caballo", "cebra"],
-    ["oso", "panda"],
-    ["serpiente", "lagarto"],
-    ["búho", "murciélago"],
-    ["hormiga", "araña"]
+    ["gato","le\u00f3n"],["aguila","halc\u00f3n"],["delf\u00edn","tibur\u00f3n"],["abeja","avispa"],
+    ["perro","lobo"],["caballo","cebra"],["oso","panda"],["serpiente","lagarto"],
+    ["conejo","liebre"],["loro","guacamaya"],["rana","sapo"],["hormiga","termita"],
+    ["vaca","b\u00fafalo"],["ping\u00fcino","foca"],["murci\u00e9lago","b\u00faho"],["mariposa","polilla"],
+    ["camale\u00f3n","iguana"],["cuervo","paloma"],["pulpo","calamar"],["tortuga","cocodrilo"],
+    ["zorro","coyote"],["ballena","orca"],["medusa","an\u00e9mona"],["cangrejo","langosta"],
+    ["gorila","chimpanc\u00e9"],["jirafa","avestruz"],["pavo real","flamenco"],["rata","h\u00e1mster"]
   ],
   profesiones: [
-    ["doctor", "enfermero"],
-    ["abogado", "juez"],
-    ["chef", "pastelero"],
-    ["piloto", "astronauta"],
-    ["bombero", "policía"],
-    ["profesor", "tutor"],
-    ["arquitecto", "ingeniero"],
-    ["fotógrafo", "camarógrafo"],
-    ["dentista", "cirujano"],
-    ["periodista", "reportero"],
-    ["programador", "diseñador"],
-    ["detective", "espía"]
+    ["doctor","enfermero"],["abogado","juez"],["chef","pastelero"],["piloto","astronauta"],
+    ["bombero","polic\u00eda"],["profesor","tutor"],["arquitecto","ingeniero"],["periodista","editor"],
+    ["m\u00fasico","cantante"],["fot\u00f3grafo","camar\u00f3grafo"],["dise\u00f1ador","ilustrador"],["veterinario","bi\u00f3logo"],
+    ["electricista","plomero"],["psic\u00f3logo","psiquiatra"],["programador","hacker"],["detective","esp\u00eda"],
+    ["carpintero","alba\u00f1il"],["dentista","ortodoncista"],["farmac\u00e9utico","qu\u00edmico"],["actor","comediante"],
+    ["escultor","pintor"],["soldado","marinero"],["mec\u00e1nico","t\u00e9cnico"],["narrador","escritor"],
+    ["cirujano","anestesi\u00f3logo"],["mesero","bartender"],["cartero","mensajero"],["jardinero","agricultor"]
   ],
   peliculas: [
-    ["terror", "suspenso"],
-    ["comedia", "parodia"],
-    ["marvel", "dc"],
-    ["pixar", "dreamworks"],
-    ["ciencia ficción", "fantasía"],
-    ["documental", "biografía"],
-    ["anime", "cartoon"],
-    ["star wars", "star trek"],
-    ["harry potter", "señor de los anillos"],
-    ["batman", "spiderman"],
-    ["netflix", "disney+"],
-    ["acción", "aventura"]
+    ["terror","suspenso"],["comedia","parodia"],["marvel","dc"],["pixar","dreamworks"],
+    ["ciencia ficci\u00f3n","fantas\u00eda"],["drama","romance"],["acci\u00f3n","aventura"],["anime","cartoon"],
+    ["documental","biopic"],["western","noir"],["zombie","vampiro"],["precuela","secuela"],
+    ["director","productor"],["actor","doble"],["guion","storyboard"],["taquilla","streaming"],
+    ["palomitas","nachos"],["subt\u00edtulos","doblaje"],["trailer","teaser"],["IMAX","3D"],
+    ["Oscar","Golden Globe"],["remake","reboot"],["Star Wars","Star Trek"],
+    ["Harry Potter","Se\u00f1or de los Anillos"],["Batman","Superman"],["Avengers","Justice League"],
+    ["Netflix","Disney Plus"],["thriller","misterio"]
   ],
   musica: [
-    ["guitarra", "bajo"],
-    ["reggaetón", "trap"],
-    ["piano", "órgano"],
-    ["rock", "punk"],
-    ["salsa", "cumbia"],
-    ["ópera", "musical"],
-    ["DJ", "productor"],
-    ["batería", "bongó"],
-    ["rap", "hip hop"],
-    ["violín", "chelo"],
-    ["jazz", "blues"],
-    ["spotify", "apple music"]
+    ["guitarra","bajo"],["reggaet\u00f3n","trap"],["piano","\u00f3rgano"],["rock","punk"],
+    ["rap","hip hop"],["salsa","cumbia"],["viol\u00edn","viola"],["jazz","blues"],
+    ["electr\u00f3nica","techno"],["\u00f3pera","musical"],["bater\u00eda","percusi\u00f3n"],["flauta","clarinete"],
+    ["arpa","c\u00edtara"],["acorde\u00f3n","bandone\u00f3n"],["disco","funk"],["metal","grunge"],
+    ["mariachi","ranchera"],["reggae","ska"],["K-pop","J-pop"],["coral","a cappella"],
+    ["DJ","productor"],["vinilo","casete"],["concierto","festival"],["single","\u00e1lbum"],
+    ["estribillo","verso"],["ballad","power ballad"],["pop","indie"],["country","folk"]
   ],
   historia: [
-    ["egipto", "roma"],
-    ["revolución", "independencia"],
-    ["medieval", "renacimiento"],
-    ["samurái", "ninja"],
-    ["vikingo", "pirata"],
-    ["azteca", "maya"],
-    ["napoleón", "alejandro magno"],
-    ["guerra fría", "guerra mundial"],
-    ["colonia", "imperio"],
-    ["momia", "fósil"],
-    ["gladiador", "caballero"],
-    ["faraón", "emperador"]
+    ["egipto","roma"],["revoluci\u00f3n","independencia"],["medieval","renacimiento"],["samur\u00e1i","ninja"],
+    ["vikingo","pirata"],["colonia","imperio"],["fara\u00f3n","emperador"],["gladiador","espartano"],
+    ["cruzada","conquista"],["monarqu\u00eda","rep\u00fablica"],["feudo","castillo"],["pergamino","papiro"],
+    ["caballero","templario"],["azteca","maya"],["inca","olmeca"],["muralla china","pir\u00e1mide"],
+    ["espada","catapulta"],["bronce","hierro"],["Napole\u00f3n","Julio C\u00e9sar"],["democracia","dictadura"],
+    ["prehistoria","antig\u00fcedad"],["guerra fr\u00eda","guerra mundial"],["esclavitud","abolici\u00f3n"],
+    ["invenci\u00f3n","descubrimiento"],["filosof\u00eda","mitolog\u00eda"],["Cleopatra","Nefertiti"],
+    ["tratado","alianza"],["armadura","escudo"]
   ],
   naturaleza: [
-    ["volcán", "géiser"],
-    ["tsunami", "huracán"],
-    ["bosque", "selva"],
-    ["río", "cascada"],
-    ["aurora boreal", "arcoíris"],
-    ["terremoto", "avalancha"],
-    ["desierto", "sabana"],
-    ["glaciar", "iceberg"],
-    ["luna", "sol"],
-    ["coral", "alga"],
-    ["cueva", "cañón"],
-    ["nieve", "granizo"]
+    ["volc\u00e1n","g\u00e9iser"],["tsunami","hurac\u00e1n"],["bosque","selva"],["r\u00edo","cascada"],
+    ["aurora boreal","arco\u00edris"],["terremoto","avalancha"],["coral","alga"],["monta\u00f1a","acantilado"],
+    ["desierto","tundra"],["manglar","pantano"],["rayo","trueno"],["tornado","tif\u00f3n"],
+    ["glaciar","iceberg"],["cueva","gruta"],["estalagmita","estalactita"],["oasis","manantial"],
+    ["luna","sol"],["cometa","asteroide"],["f\u00f3sil","\u00e1mbar"],["cristal","mineral"],
+    ["arena","grava"],["musgo","liquen"],["miel","cera"],["polen","n\u00e9ctar"],
+    ["ra\u00edz","tronco"],["hoja","p\u00e9talo"],["semilla","brote"],["marea","corriente"]
   ],
   adulto: [
-    ["tequila", "mezcal"],
-    ["reggaetón", "perreo"],
-    ["resaca", "cruda"],
-    ["strip poker", "verdad o reto"],
-    ["ligue", "cita"],
-    ["after party", "peda"],
-    ["shot", "chupito"],
-    ["karaoke", "antro"],
-    ["cerveza", "michelada"],
-    ["brindis", "celebración"],
-    ["vodka", "ginebra"],
-    ["botella", "hookah"]
+    ["resaca","cruda"],["tinder","bumble"],["ghostear","ignorar"],["friendzone","situationship"],
+    ["hookup","encuentro"],["peda","fiesta"],["pololo","pareja"],["chamuyar","flirtear"],
+    ["vibes","rollo"],["crush","obsesión"],["sexting","mensajes"],["infidelidad","engaño"],
+    ["tórrido","ardiente"],["pecaminoso","prohibido"],["transgresión","aventura"],["lujuria","pasión"],
+    ["morbo","deseo"],["embrague","besuqueo"],["conquista","seducción"],["onda","talante"],
+    ["trago","shot"],["after","madrugada"],["drama","crisis"],["celos","posesividad"],
+    ["ex","trauma"],["adrenalina","éxtasis"],["secreto","tabú"],["inhibición","liberación"],
+    ["arrepentimiento","vergüenza"],["rebeldía","locura"],["desinhibición","sinceridad"],["vicio","hábito"]
   ]
 };
 
@@ -290,17 +206,18 @@ const themes = [
   { key: "comida", label: "Comida" },
   { key: "lugares", label: "Lugares" },
   { key: "objetos", label: "Objetos" },
-  { key: "tecnologia", label: "Tecnología" },
+  { key: "tecnologia", label: "Tecnolog\u00eda" },
   { key: "deportes", label: "Deportes" },
   { key: "animales", label: "Animales" },
   { key: "profesiones", label: "Profesiones" },
-  { key: "peliculas", label: "Películas" },
-  { key: "musica", label: "Música" },
+  { key: "peliculas", label: "Pel\u00edculas" },
+  { key: "musica", label: "M\u00fasica" },
   { key: "historia", label: "Historia" },
   { key: "naturaleza", label: "Naturaleza" },
-  { key: "adulto", label: "+18 🔥", adult: true }
+  { key: "adulto", label: "+18 \ud83d\udd25", adult: true }
 ];
 
+// ============= DOM REFS =============
 const playersInput = document.getElementById("players");
 const impostorsInput = document.getElementById("impostors");
 const whitesInput = document.getElementById("whites");
@@ -313,9 +230,11 @@ const statusEl = document.getElementById("status");
 const menuSection = document.getElementById("menuSection");
 const controlsSection = document.getElementById("controlsSection");
 const helpSection = document.getElementById("helpSection");
+const statsSection = document.getElementById("statsSection");
 const menuHomeBtn = document.getElementById("menuHomeBtn");
 const menuPlayBtn = document.getElementById("menuPlayBtn");
 const menuHelpBtn = document.getElementById("menuHelpBtn");
+const menuStatsBtn = document.getElementById("menuStatsBtn");
 const menuStartBtn = document.getElementById("menuStartBtn");
 const menuHowToBtn = document.getElementById("menuHowToBtn");
 const toggleNamesBtn = document.getElementById("toggleNamesBtn");
@@ -330,11 +249,15 @@ const dealCounter = document.getElementById("dealCounter");
 const newRoundBtn = document.getElementById("newRoundBtn");
 const backHomeBtn = document.getElementById("backHomeBtn");
 const appEl = document.querySelector(".app");
-
 const startBtn = document.getElementById("startBtn");
 const resetBtn = document.getElementById("resetBtn");
 const fullscreenBtn = document.getElementById("fullscreenBtn");
-
+const soundToggleBtn = document.getElementById("soundToggleBtn");
+const themeToggleBtn = document.getElementById("themeToggleBtn");
+const shareResultBtn = document.getElementById("shareResultBtn");
+const toggleCustomPacksBtn = document.getElementById("toggleCustomPacksBtn");
+const customPacksPanel = document.getElementById("customPacksPanel");
+const addCustomPackBtn = document.getElementById("addCustomPackBtn");
 const dealSection = document.getElementById("dealSection");
 const roundSection = document.getElementById("roundSection");
 const handoffScreen = document.getElementById("handoffScreen");
@@ -347,20 +270,22 @@ const roleCard = document.getElementById("roleCard");
 const swipeTrack = document.getElementById("swipeTrack");
 const revealOverlay = document.getElementById("revealOverlay");
 const swipeLevelButtons = document.querySelectorAll(".swipe-level");
-
 const revealAllBtn = document.getElementById("revealAllBtn");
 const finalResult = document.getElementById("finalResult");
-
 const timerDisplay = document.getElementById("timerDisplay");
 const roundStatus = document.getElementById("roundStatus");
 const startTimerBtn = document.getElementById("startTimerBtn");
 const pauseTimerBtn = document.getElementById("pauseTimerBtn");
 const resetTimerBtn = document.getElementById("resetTimerBtn");
 const timerPresetButtons = document.querySelectorAll(".timer-preset");
-
 const voteList = document.getElementById("voteList");
 const calculateVotesBtn = document.getElementById("calculateVotesBtn");
 const voteResult = document.getElementById("voteResult");
+
+// ============= STATE =============
+const NAMES_KEY = "impostorNamesV1";
+const STATS_KEY = "impostorStatsV1";
+const CUSTOM_PACKS_KEY = "impostorCustomPacksV1";
 
 const state = {
   round: null,
@@ -380,155 +305,390 @@ const state = {
   swipeVerticalGesture: false,
   swipeOffset: 0,
   swipeSensitivity: "suave",
-  playerNames: [],
-  showNames: false
+  playerNames: loadSavedNames(),
+  showNames: false,
+  voteTally: {}
 };
 
-function setStatus(text, type = "success") {
-  statusBox.classList.remove("hidden", "error", "loading", "success");
-  statusBox.classList.add(type === "error" ? "error" : type === "loading" ? "loading" : "success");
-  statusEl.textContent = text;
+function loadSavedNames() {
+  try { return JSON.parse(localStorage.getItem(NAMES_KEY)) || []; } catch { return []; }
+}
+function saveNames() {
+  localStorage.setItem(NAMES_KEY, JSON.stringify(state.playerNames));
 }
 
-function setRoundStatus(text) {
-  roundStatus.textContent = text || "";
+// ============= SOUND EFFECTS (Web Audio API) =============
+const SFX = (() => {
+  let ctx;
+  let enabled = localStorage.getItem("impostorSound") !== "off";
+  function getCtx() {
+    if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+    return ctx;
+  }
+  function tone(freq, type, dur, vol = 0.3) {
+    if (!enabled) return;
+    try {
+      const c = getCtx();
+      const o = c.createOscillator();
+      const g = c.createGain();
+      o.type = type; o.frequency.value = freq;
+      g.gain.value = vol;
+      g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + dur);
+      o.connect(g); g.connect(c.destination);
+      o.start(c.currentTime); o.stop(c.currentTime + dur);
+    } catch {}
+  }
+  return {
+    get enabled() { return enabled; },
+    toggle() {
+      enabled = !enabled;
+      localStorage.setItem("impostorSound", enabled ? "on" : "off");
+      return enabled;
+    },
+    reveal() { tone(880, "sine", 0.15); setTimeout(() => tone(1100, "sine", 0.2), 100); },
+    cardFlip() { tone(600, "sine", 0.08, 0.2); },
+    tick() { tone(800, "sine", 0.03, 0.12); },
+    alarm() { for (let i = 0; i < 3; i++) setTimeout(() => tone(900, "square", 0.15, 0.2), i * 200); },
+    success() { tone(523, "sine", 0.12); setTimeout(() => tone(659, "sine", 0.12), 100); setTimeout(() => tone(784, "sine", 0.2), 200); },
+    fanfare() { [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => tone(f, "sine", 0.3, 0.22), i * 150)); },
+    click() { tone(1200, "sine", 0.04, 0.1); }
+  };
+})();
+
+// ============= TOAST =============
+let _toastTimer = null;
+function showToast(msg, type = "success") {
+  const c = document.getElementById("toastContainer");
+  if (!c) return;
+  const old = c.querySelector(".toast");
+  if (old) old.remove();
+  if (_toastTimer) clearTimeout(_toastTimer);
+  const icons = { error: "\u274c", loading: "\u23f3", success: "\u2705" };
+  const t = document.createElement("div");
+  t.className = `toast toast-${type}`;
+  t.innerHTML = `<span>${icons[type] || "\u2705"}</span><span>${escapeHtml(msg)}</span>`;
+  c.appendChild(t);
+  requestAnimationFrame(() => t.classList.add("toast-show"));
+  if (type !== "loading") {
+    _toastTimer = setTimeout(() => {
+      t.classList.remove("toast-show");
+      setTimeout(() => t.remove(), 300);
+    }, 3000);
+  }
+}
+
+// ============= CONFETTI =============
+function launchConfetti() {
+  const cv = document.getElementById("confettiCanvas");
+  if (!cv) return;
+  const ctx = cv.getContext("2d");
+  cv.width = window.innerWidth; cv.height = window.innerHeight;
+  cv.style.display = "block";
+  const cols = ["#ff4757","#6b8aff","#2ed573","#ffa502","#8b5cf6","#ff6b81","#70a1ff","#ffdd59"];
+  const ps = [];
+  for (let i = 0; i < 120; i++) {
+    ps.push({
+      x: cv.width * 0.5 + (Math.random() - 0.5) * 300, y: cv.height * 0.5,
+      vx: (Math.random() - 0.5) * 14, vy: Math.random() * -16 - 4,
+      w: Math.random() * 8 + 3, h: Math.random() * 5 + 2,
+      c: cols[Math.floor(Math.random() * cols.length)],
+      r: Math.random() * 360, rs: (Math.random() - 0.5) * 12,
+      g: 0.28 + Math.random() * 0.12, o: 1
+    });
+  }
+  let f = 0;
+  (function draw() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    let alive = false;
+    for (const p of ps) {
+      p.x += p.vx; p.vy += p.g; p.y += p.vy;
+      p.r += p.rs; p.vx *= 0.99;
+      if (f > 50) p.o -= 0.018;
+      if (p.o <= 0) continue;
+      alive = true;
+      ctx.save(); ctx.translate(p.x, p.y);
+      ctx.rotate(p.r * Math.PI / 180);
+      ctx.globalAlpha = Math.max(0, p.o);
+      ctx.fillStyle = p.c;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    }
+    f++;
+    if (alive && f < 180) requestAnimationFrame(draw);
+    else { ctx.clearRect(0, 0, cv.width, cv.height); cv.style.display = "none"; }
+  })();
+}
+
+// ============= STATS / HISTORY =============
+function loadStats() {
+  try { return JSON.parse(localStorage.getItem(STATS_KEY)) || { gamesPlayed: 0, rounds: [] }; }
+  catch { return { gamesPlayed: 0, rounds: [] }; }
+}
+function saveStats(s) { localStorage.setItem(STATS_KEY, JSON.stringify(s)); }
+function recordRound(round) {
+  const s = loadStats();
+  s.gamesPlayed += 1;
+  s.rounds.push({
+    date: new Date().toISOString(),
+    theme: round.theme,
+    playerCount: round.roles.length,
+    impostors: round.roles.filter(r => r.role === "impostor").map(r => r.name),
+    secretWord: round.secretWord,
+    decoyWord: round.decoyWord,
+    source: round.source
+  });
+  if (s.rounds.length > 50) s.rounds = s.rounds.slice(-50);
+  saveStats(s);
+}
+function renderStats() {
+  const el = document.getElementById("statsContent");
+  if (!el) return;
+  const s = loadStats();
+  if (s.gamesPlayed === 0) {
+    el.innerHTML = '<p class="help-text" style="text-align:center;padding:20px">\ud83c\udfae A\u00fan no hay partidas. \u00a1Juega tu primera ronda!</p>';
+    return;
+  }
+  const tc = {};
+  for (const r of s.rounds) tc[r.theme] = (tc[r.theme] || 0) + 1;
+  const top = Object.entries(tc).sort((a, b) => b[1] - a[1])[0];
+  const topLabel = themes.find(t => t.key === top[0])?.label || top[0];
+  const avg = Math.round(s.rounds.reduce((a, r) => a + r.playerCount, 0) / s.rounds.length);
+  const recent = s.rounds.slice(-5).reverse();
+  el.innerHTML = `
+    <div class="stats-grid">
+      <div class="stat-card"><span class="stat-value">${s.gamesPlayed}</span><span class="stat-label">Partidas</span></div>
+      <div class="stat-card"><span class="stat-value">${avg}</span><span class="stat-label">Jugadores prom.</span></div>
+      <div class="stat-card"><span class="stat-value">${escapeHtml(topLabel)}</span><span class="stat-label">Tema favorito</span></div>
+    </div>
+    <h3 class="subsection-title" style="margin-top:12px">\u00daltimas partidas</h3>
+    <div class="stats-history">${recent.map(r => `
+      <div class="stats-row">
+        <span>${escapeHtml(themes.find(t => t.key === r.theme)?.label || r.theme)}</span>
+        <span>${escapeHtml(r.secretWord)} / ${escapeHtml(r.decoyWord)}</span>
+        <span>${r.playerCount} jug.</span>
+      </div>`).join("")}
+    </div>
+    <button id="clearStatsBtn" type="button" class="link-btn" style="margin-top:8px;color:var(--red)">\ud83d\uddd1 Borrar historial</button>`;
+  document.getElementById("clearStatsBtn")?.addEventListener("click", () => {
+    if (confirm("\u00bfBorrar todo el historial?")) {
+      saveStats({ gamesPlayed: 0, rounds: [] });
+      renderStats();
+      showToast("Historial borrado");
+    }
+  });
+}
+
+// ============= CUSTOM PACKS =============
+function loadCustomPacks() {
+  try { return JSON.parse(localStorage.getItem(CUSTOM_PACKS_KEY)) || []; } catch { return []; }
+}
+function saveCustomPacks(p) { localStorage.setItem(CUSTOM_PACKS_KEY, JSON.stringify(p)); }
+function deleteCustomPack(i) {
+  const p = loadCustomPacks(); p.splice(i, 1); saveCustomPacks(p); refreshCustomThemes();
+}
+function refreshCustomThemes() {
+  while (themes.length > 13) themes.pop();
+  for (const k of Object.keys(localWords)) { if (k.startsWith("custom_")) delete localWords[k]; }
+  const packs = loadCustomPacks();
+  for (let i = 0; i < packs.length; i++) {
+    const key = `custom_${i}`;
+    localWords[key] = packs[i].pairs;
+    themes.push({ key, label: `\ud83d\udce6 ${packs[i].name}`, custom: true });
+  }
+  renderThemeChips();
+  renderCustomPacksList();
+}
+function renderCustomPacksList() {
+  const el = document.getElementById("customPacksList");
+  if (!el) return;
+  const packs = loadCustomPacks();
+  if (!packs.length) { el.innerHTML = '<p class="help-text">No hay packs personalizados.</p>'; return; }
+  el.innerHTML = packs.map((p, i) => `<div class="custom-pack-item"><span>\ud83d\udce6 ${escapeHtml(p.name)} (${p.pairs.length} pares)</span><button type="button" class="custom-pack-del" data-idx="${i}">\u2715</button></div>`).join("");
+  el.querySelectorAll(".custom-pack-del").forEach(b => b.addEventListener("click", () => {
+    deleteCustomPack(Number(b.dataset.idx));
+    showToast("Pack eliminado");
+  }));
+}
+function addCustomPackFromForm() {
+  const nameEl = document.getElementById("customPackName");
+  const pairsEl = document.getElementById("customPackPairs");
+  if (!nameEl || !pairsEl) return;
+  const name = nameEl.value.trim();
+  const raw = pairsEl.value.trim();
+  if (!name) { showToast("Escribe un nombre para el pack", "error"); return; }
+  const lines = raw.split("\n").filter(l => l.trim());
+  const pairs = [];
+  for (const line of lines) {
+    const parts = line.split(",").map(s => s.trim()).filter(Boolean);
+    if (parts.length >= 2) pairs.push([parts[0], parts[1]]);
+  }
+  if (pairs.length < 2) { showToast("Necesitas al menos 2 pares (palabra1, palabra2)", "error"); return; }
+  const packs = loadCustomPacks();
+  packs.push({ name, pairs, createdAt: new Date().toISOString() });
+  saveCustomPacks(packs);
+  refreshCustomThemes();
+  nameEl.value = ""; pairsEl.value = "";
+  showToast(`Pack "${name}" creado con ${pairs.length} pares`);
+  SFX.success();
+}
+
+// ============= SHARE =============
+async function shareResult() {
+  if (!state.round) return;
+  const tl = themes.find(t => t.key === state.round.theme)?.label || state.round.theme;
+  const imps = state.round.roles.filter(r => r.role === "impostor").map(r => r.name).join(", ");
+  const text = `\ud83d\udd75\ufe0f IMPOSTOR \u2014 Resultado\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udcdd Tema: ${tl}\n\ud83d\udc65 Jugadores: ${state.round.roles.length}\n\ud83c\udfad Impostor: ${imps}\n\ud83d\udd11 Civiles: ${state.round.secretWord}\n\ud83d\udd00 Se\u00f1uelo: ${state.round.decoyWord}\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501`;
+  if (navigator.share) {
+    try { await navigator.share({ title: "Impostor", text }); } catch {}
+  } else {
+    try { await navigator.clipboard.writeText(text); showToast("Copiado al portapapeles"); }
+    catch { showToast("No se pudo copiar", "error"); }
+  }
+}
+
+// ============= VISUAL THEME =============
+function applyVisualTheme(t) {
+  document.documentElement.setAttribute("data-theme", t);
+  if (themeToggleBtn) {
+    themeToggleBtn.textContent = t === "light" ? "\ud83c\udf19" : "\u2600\ufe0f";
+    themeToggleBtn.setAttribute("aria-label", t === "light" ? "Modo oscuro" : "Modo claro");
+  }
+}
+function toggleVisualTheme() {
+  const curr = document.documentElement.getAttribute("data-theme") || "dark";
+  const next = curr === "dark" ? "light" : "dark";
+  applyVisualTheme(next);
+  localStorage.setItem("impostorTheme", next);
+  SFX.click();
+}
+
+// ============= SERVICE WORKER =============
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js").catch(() => {});
+  });
+}
+
+// ============= UTILITY FUNCTIONS =============
+function escapeHtml(text) {
+  return String(text).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
 }
 
 function pickRandom(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-function formatTime(totalSeconds) {
-  const safeSeconds = Math.max(0, totalSeconds);
-  const minutes = String(Math.floor(safeSeconds / 60)).padStart(2, "0");
-  const seconds = String(safeSeconds % 60).padStart(2, "0");
-  return `${minutes}:${seconds}`;
+function shuffle(array) {
+  const copy = [...array];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
 }
 
+function formatTime(totalSeconds) {
+  const s = Math.max(0, totalSeconds);
+  return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+}
+
+function setStatus(text, type = "success") {
+  statusBox.classList.remove("hidden", "error", "loading", "success");
+  statusBox.classList.add(type === "error" ? "error" : type === "loading" ? "loading" : "success");
+  statusEl.textContent = text;
+  showToast(text, type);
+}
+
+function setRoundStatus(text) {
+  if (roundStatus) roundStatus.textContent = text || "";
+}
+
+// ============= TIMER =============
 function renderTimer() {
   timerDisplay.textContent = formatTime(state.timerSeconds);
+  if (state.timerSeconds <= 10 && state.timerSeconds > 0 && state.timerHandle) {
+    timerDisplay.classList.add("timer-urgent");
+    SFX.tick();
+  } else if (state.timerSeconds > 10) {
+    timerDisplay.classList.remove("timer-urgent");
+  }
 }
 
 function stopTimer() {
-  if (state.timerHandle) {
-    clearInterval(state.timerHandle);
-    state.timerHandle = null;
-  }
+  if (state.timerHandle) { clearInterval(state.timerHandle); state.timerHandle = null; }
 }
 
 function setTimerMinutes(minutes) {
   stopTimer();
   state.timerTotalSeconds = minutes * 60;
   state.timerSeconds = state.timerTotalSeconds;
+  timerDisplay.classList.remove("timer-urgent", "timer-finished");
   renderTimer();
   setRoundStatus("Tiempo configurado.");
+  SFX.click();
 }
 
 function startTimer() {
   if (state.timerHandle || state.timerSeconds <= 0) return;
+  SFX.click();
   state.timerHandle = setInterval(() => {
     state.timerSeconds -= 1;
     renderTimer();
-
     if (state.timerSeconds <= 0) {
       stopTimer();
-      setRoundStatus("⏰ Tiempo terminado. Pasen a votación.");
+      timerDisplay.classList.add("timer-finished");
+      setRoundStatus("\u23f0 \u00a1Tiempo terminado! Pasen a votaci\u00f3n.");
+      SFX.alarm();
+      setTimeout(() => timerDisplay.classList.remove("timer-finished"), 3000);
     }
   }, 1000);
 }
 
-function pauseTimer() {
-  stopTimer();
-  setRoundStatus("Temporizador pausado.");
-}
+function pauseTimer() { stopTimer(); setRoundStatus("Pausado."); }
 
 function resetTimer() {
   stopTimer();
   state.timerSeconds = state.timerTotalSeconds;
+  timerDisplay.classList.remove("timer-urgent", "timer-finished");
   renderTimer();
   setRoundStatus("");
 }
 
-function shuffle(array) {
-  const copy = [...array];
-  for (let index = copy.length - 1; index > 0; index -= 1) {
-    const swapIndex = Math.floor(Math.random() * (index + 1));
-    [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
-  }
-  return copy;
-}
-
-function escapeHtml(text) {
-  return String(text)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
+// ============= GAME CORE =============
+function getPlayerName(playerNumber) {
+  if (state.showNames && state.playerNames[playerNumber - 1]) return state.playerNames[playerNumber - 1];
+  return `Jugador ${playerNumber}`;
 }
 
 function buildRoles(playerCount, impostorCount, whiteCount, secretWord, decoyWord) {
   const roles = [];
-
-  for (let player = 1; player <= playerCount; player += 1) {
-    const name = getPlayerName(player);
-    roles.push({
-      player,
-      name,
-      role: "civil",
-      word: secretWord,
-      tip: "Da una pista específica, sin decir la palabra literal."
-    });
+  for (let p = 1; p <= playerCount; p += 1) {
+    roles.push({ player: p, name: getPlayerName(p), role: "civil", word: secretWord, tip: "Da una pista espec\u00edfica, sin decir la palabra literal." });
   }
-
   const order = shuffle([...Array(playerCount).keys()]);
-
-  for (let index = 0; index < impostorCount; index += 1) {
-    const playerIndex = order[index];
-    roles[playerIndex] = {
-      ...roles[playerIndex],
-      role: "impostor",
-      word: decoyWord,
-      tip: "Disimula y detecta qué palabra están describiendo los demás."
-    };
+  for (let i = 0; i < impostorCount; i += 1) {
+    const idx = order[i];
+    roles[idx] = { ...roles[idx], role: "impostor", word: decoyWord, tip: "Disimula y detecta qu\u00e9 palabra describen los dem\u00e1s." };
   }
-
-  if (whiteCount > 0) {
-    for (let index = impostorCount; index < impostorCount + whiteCount; index += 1) {
-      const playerIndex = order[index];
-      roles[playerIndex] = {
-        ...roles[playerIndex],
-        role: "agente fantasma",
-        word: "(sin palabra)",
-        tip: "Improvisa pistas vagas para sobrevivir a la votación."
-      };
-    }
+  for (let i = impostorCount; i < impostorCount + whiteCount; i += 1) {
+    const idx = order[i];
+    roles[idx] = { ...roles[idx], role: "agente fantasma", word: "(sin palabra)", tip: "Improvisa pistas vagas para sobrevivir." };
   }
-
   return roles;
 }
 
 function getThemePool(themeKey, includeAdult) {
   if (themeKey === "aleatorio") {
-    const keys = Object.keys(localWords).filter(key => key !== "aleatorio" && (includeAdult || key !== "adulto"));
-    return keys.flatMap(key => localWords[key]);
+    return Object.keys(localWords).filter(k => k !== "aleatorio" && (includeAdult || k !== "adulto")).flatMap(k => localWords[k]);
   }
-
-  if (themeKey === "adulto" && !includeAdult) {
-    return getThemePool("aleatorio", false);
-  }
-
+  if (themeKey === "adulto" && !includeAdult) return getThemePool("aleatorio", false);
   return localWords[themeKey] ?? localWords.aleatorio;
 }
 
 function getLocalPack(themeKey, includeAdult) {
   const pool = getThemePool(themeKey, includeAdult);
   const pair = pickRandom(pool);
-  return {
-    secretWord: pair[0],
-    decoyWord: pair[1],
-    source: "local"
-  };
+  return { secretWord: pair[0], decoyWord: pair[1], source: "local" };
 }
 
 async function createRound() {
@@ -537,54 +697,34 @@ async function createRound() {
   const whiteCount = state.showAdvanced ? Number(whitesInput.value) : 0;
   const theme = state.selectedTheme;
 
-  if (playerCount < 3 || playerCount > 24) {
-    throw new Error("Jugadores fuera de rango (3-24).");
-  }
-
-  if (impostorCount < 1 || impostorCount > 3) {
-    throw new Error("Configura entre 1 y 3 impostores.");
-  }
-
-  if (whiteCount < 0 || whiteCount > 2) {
-    throw new Error("Fantasma debe estar entre 0 y 2.");
-  }
-
-  if (impostorCount + whiteCount >= playerCount) {
-    throw new Error("Impostores + fantasmas debe ser menor que jugadores.");
-  }
+  if (playerCount < 3 || playerCount > 24) throw new Error("Jugadores fuera de rango (3-24).");
+  if (impostorCount < 1 || impostorCount > 3) throw new Error("Configura entre 1 y 3 impostores.");
+  if (whiteCount < 0 || whiteCount > 2) throw new Error("Fantasma entre 0 y 2.");
+  if (impostorCount + whiteCount >= playerCount) throw new Error("Impostores + fantasmas debe ser menor que jugadores.");
 
   const pack = getLocalPack(theme, state.includeAdultTheme);
-  setStatus("✅ Ronda creada.", "success");
-
   const roles = buildRoles(playerCount, impostorCount, whiteCount, pack.secretWord, pack.decoyWord);
-
-  return {
-    createdAt: new Date().toISOString(),
-    theme,
-    ...pack,
-    roles
-  };
+  return { createdAt: new Date().toISOString(), theme, ...pack, roles };
 }
 
+// ============= DEAL / REVEAL FLOW =============
 function getRoleEmoji(role) {
-  return role === "impostor" ? "🕵️" : role === "agente fantasma" ? "👻" : "👤";
+  return role === "impostor" ? "\ud83d\udd75\ufe0f" : role === "agente fantasma" ? "\ud83d\udc7b" : "\ud83d\udc64";
 }
 
 function showCurrentPlayerPrompt() {
-  const current = state.revealIndex + 1;
-  const total = state.round.roles.length;
-  const name = state.round.roles[state.revealIndex].name;
-  dealHint.textContent = `Pasa el celular a ${name} (${current} de ${total}).`;
+  const cur = state.revealIndex + 1;
+  const tot = state.round.roles.length;
+  dealHint.textContent = `Pasa el celular a ${state.round.roles[state.revealIndex].name} (${cur} de ${tot}).`;
   updateDealProgress();
 }
 
 function renderRoleCard() {
   const item = state.round.roles[state.revealIndex];
   const roleName = item.role === "agente fantasma" ? "Fantasma" : item.role;
-
   roleCard.innerHTML = `
     <span class="role-emoji">${getRoleEmoji(item.role)}</span>
-    <h3 class="role-name">${escapeHtml(item.name)} · ${escapeHtml(roleName)}</h3>
+    <h3 class="role-name">${escapeHtml(item.name)} \u00b7 ${escapeHtml(roleName)}</h3>
     <p class="role-word">${escapeHtml(item.word)}</p>
     <p class="role-tip">${escapeHtml(item.tip)}</p>
   `;
@@ -596,16 +736,14 @@ function showHandoffScreen() {
   nextBtn.classList.add("hidden");
   coverBtn.classList.add("hidden");
   state.roleIsVisible = false;
-  // Clear role card to prevent DOM inspection leak
   roleCard.innerHTML = "";
   resetOverlayPosition();
   showCurrentPlayerPrompt();
 }
 
 function showSwipeScreen() {
-  // Don't render role card yet — defer until swipe reveals it
-  // This prevents DOM inspection from leaking the role
-  roleCard.innerHTML = `<p style="opacity:.35;font-size:.95rem">Desliza para ver tu rol</p>`;
+  // Don't render role yet — defer until swipe to prevent DOM inspection leak
+  roleCard.innerHTML = '<p style="opacity:.35;font-size:.95rem">Desliza para ver tu rol</p>';
   handoffScreen.classList.add("hidden");
   swipeScreen.classList.remove("hidden");
   nextBtn.classList.add("hidden");
@@ -615,21 +753,18 @@ function showSwipeScreen() {
 }
 
 function revealRoleFully() {
-  // Render role card content NOW, right before the visual reveal
+  // Render role content NOW, right before revealing
   renderRoleCard();
-
-  const height = swipeTrack.getBoundingClientRect().height;
+  const h = swipeTrack.getBoundingClientRect().height;
   revealOverlay.style.transition = "transform 0.2s ease";
-  revealOverlay.style.transform = `translateY(-${height}px)`;
+  revealOverlay.style.transform = `translateY(-${h}px)`;
   revealOverlay.style.opacity = "0";
-  state.swipeOffset = height;
+  state.swipeOffset = h;
   state.roleIsVisible = true;
   nextBtn.classList.remove("hidden");
   coverBtn.classList.remove("hidden");
-
-  if (navigator.vibrate) {
-    navigator.vibrate(20);
-  }
+  SFX.reveal();
+  if (navigator.vibrate) navigator.vibrate(20);
 }
 
 function resetOverlayPosition() {
@@ -651,80 +786,55 @@ function coverRoleAgain() {
 }
 
 function getSwipeThreshold() {
-  const height = swipeTrack.getBoundingClientRect().height;
-  const base = Math.max(120, Math.min(220, Math.floor(height * 0.42)));
-  const multiplier = state.swipeSensitivity === "estricto"
-    ? 1.2
-    : state.swipeSensitivity === "normal"
-      ? 1
-      : 0.78;
-  return Math.round(base * multiplier);
+  const h = swipeTrack.getBoundingClientRect().height;
+  const base = Math.max(120, Math.min(220, Math.floor(h * 0.42)));
+  const mult = state.swipeSensitivity === "estricto" ? 1.2 : state.swipeSensitivity === "normal" ? 1 : 0.78;
+  return Math.round(base * mult);
 }
 
 function setSwipeSensitivity(level) {
   state.swipeSensitivity = level;
-  for (const button of swipeLevelButtons) {
-    button.classList.toggle("active", button.dataset.swipeLevel === level);
-  }
+  for (const b of swipeLevelButtons) b.classList.toggle("active", b.dataset.swipeLevel === level);
 }
 
 function onSwipeStart(clientX, clientY, pointerId = null) {
   if (state.roleIsVisible) return;
-  state.swipeStartX = clientX;
-  state.swipeStartY = clientY;
-  state.swipeDragging = true;
-  state.swipePointerId = pointerId;
-  state.swipeAxisLocked = false;
-  state.swipeVerticalGesture = false;
+  state.swipeStartX = clientX; state.swipeStartY = clientY;
+  state.swipeDragging = true; state.swipePointerId = pointerId;
+  state.swipeAxisLocked = false; state.swipeVerticalGesture = false;
   revealOverlay.style.transition = "none";
 }
 
 function onSwipeMove(clientX, clientY) {
   if (!state.swipeDragging || state.roleIsVisible) return;
-
-  const deltaY = state.swipeStartY - clientY;
-  const deltaX = Math.abs(state.swipeStartX - clientX);
-
+  const dY = state.swipeStartY - clientY;
+  const dX = Math.abs(state.swipeStartX - clientX);
   if (!state.swipeAxisLocked) {
-    const activationDistance = 10;
-    if (Math.abs(deltaY) < activationDistance && deltaX < activationDistance) {
-      return;
-    }
+    if (Math.abs(dY) < 10 && dX < 10) return;
     state.swipeAxisLocked = true;
-    state.swipeVerticalGesture = Math.abs(deltaY) > deltaX;
+    state.swipeVerticalGesture = Math.abs(dY) > dX;
   }
-
-  if (!state.swipeVerticalGesture) {
-    return;
-  }
-
+  if (!state.swipeVerticalGesture) return;
   const delta = Math.max(0, state.swipeStartY - clientY);
-  const maxHeight = swipeTrack.getBoundingClientRect().height;
-  const offset = Math.min(delta, maxHeight);
+  const maxH = swipeTrack.getBoundingClientRect().height;
+  const offset = Math.min(delta, maxH);
   state.swipeOffset = offset;
   revealOverlay.style.transform = `translateY(-${offset}px)`;
-  const progress = Math.min(1, offset / maxHeight);
-  revealOverlay.style.opacity = String(1 - progress * 0.85);
+  revealOverlay.style.opacity = String(1 - Math.min(1, offset / maxH) * 0.85);
 }
 
 function onSwipeEnd() {
   if (!state.swipeDragging || state.roleIsVisible) return;
   state.swipeDragging = false;
-  const threshold = getSwipeThreshold();
-
-  if (state.swipeVerticalGesture && state.swipeOffset >= threshold) {
-    revealRoleFully();
-  } else {
-    resetOverlayPosition();
-  }
+  if (state.swipeVerticalGesture && state.swipeOffset >= getSwipeThreshold()) revealRoleFully();
+  else resetOverlayPosition();
 }
 
 function goNextPlayer() {
   if (!state.round || !state.roleIsVisible) return;
-
+  SFX.cardFlip();
   state.revealIndex += 1;
   state.roleIsVisible = false;
-
   if (state.revealIndex >= state.round.roles.length) {
     dealSection.classList.add("hidden");
     roundSection.classList.remove("hidden");
@@ -734,120 +844,134 @@ function goNextPlayer() {
     resetTimer();
     return;
   }
-
   showHandoffScreen();
 }
 
+// ============= VOTING (tally \u2014 one person counts votes for all) =============
 function buildVoteUI() {
   if (!state.round) return;
-
   voteList.innerHTML = "";
   voteResult.classList.add("hidden");
   voteResult.textContent = "";
+  state.voteTally = {};
 
-  const players = state.round.roles.map(item => item.player);
-
-  for (const player of players) {
+  for (const role of state.round.roles) {
+    state.voteTally[role.player] = 0;
     const row = document.createElement("div");
-    row.className = "vote-row";
+    row.className = "vote-row vote-tally-row";
 
-    const name = state.round.roles.find(r => r.player === player)?.name || `Jugador ${player}`;
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "vote-player-name";
+    nameSpan.textContent = role.name;
 
-    const label = document.createElement("label");
-    label.setAttribute("for", `vote-${player}`);
-    label.textContent = `${name} vota`;
+    const controls = document.createElement("div");
+    controls.className = "vote-controls";
 
-    const select = document.createElement("select");
-    select.id = `vote-${player}`;
+    const minusBtn = document.createElement("button");
+    minusBtn.type = "button";
+    minusBtn.className = "vote-btn vote-minus";
+    minusBtn.textContent = "\u2212";
+    minusBtn.addEventListener("click", () => {
+      if (state.voteTally[role.player] > 0) {
+        state.voteTally[role.player] -= 1;
+        countSpan.textContent = state.voteTally[role.player];
+        SFX.click();
+      }
+    });
 
-    const defaultOption = document.createElement("option");
-    defaultOption.value = "";
-    defaultOption.textContent = "Selecciona sospechoso";
-    select.appendChild(defaultOption);
+    const countSpan = document.createElement("span");
+    countSpan.className = "vote-count";
+    countSpan.textContent = "0";
 
-    for (const suspect of players) {
-      if (suspect === player) continue;
-      const suspectName = state.round.roles.find(r => r.player === suspect)?.name || `Jugador ${suspect}`;
-      const option = document.createElement("option");
-      option.value = String(suspect);
-      option.textContent = suspectName;
-      select.appendChild(option);
-    }
+    const plusBtn = document.createElement("button");
+    plusBtn.type = "button";
+    plusBtn.className = "vote-btn vote-plus";
+    plusBtn.textContent = "+";
+    plusBtn.addEventListener("click", () => {
+      state.voteTally[role.player] += 1;
+      countSpan.textContent = state.voteTally[role.player];
+      SFX.click();
+    });
 
-    row.appendChild(label);
-    row.appendChild(select);
+    controls.appendChild(minusBtn);
+    controls.appendChild(countSpan);
+    controls.appendChild(plusBtn);
+    row.appendChild(nameSpan);
+    row.appendChild(controls);
     voteList.appendChild(row);
   }
 }
 
 function calculateVotes() {
   if (!state.round) return;
-
-  const voteSelects = Array.from(voteList.querySelectorAll("select"));
-  const tally = new Map();
-
-  for (const select of voteSelects) {
-    const vote = Number(select.value);
-    if (!vote) continue;
-    tally.set(vote, (tally.get(vote) || 0) + 1);
-  }
-
+  const entries = Object.entries(state.voteTally).map(([p, v]) => [Number(p), v]);
+  const totalVotes = entries.reduce((s, [, v]) => s + v, 0);
   voteResult.classList.remove("hidden");
 
-  if (tally.size === 0) {
-    voteResult.textContent = "Aún no hay votos registrados.";
+  if (totalVotes === 0) {
+    voteResult.textContent = "A\u00fan no hay votos registrados.";
     return;
   }
 
-  const entries = [...tally.entries()].sort((a, b) => b[1] - a[1]);
-  const maxVotes = entries[0][1];
-  const winners = entries.filter(([, count]) => count === maxVotes).map(([player]) => {
-    return state.round.roles.find(r => r.player === player)?.name || `Jugador ${player}`;
+  const sorted = entries.sort((a, b) => b[1] - a[1]);
+  const maxVotes = sorted[0][1];
+  const winners = sorted.filter(([, v]) => v === maxVotes).map(([p]) => {
+    return state.round.roles.find(r => r.player === p)?.name || `Jugador ${p}`;
   });
 
-  voteResult.textContent = winners.length > 1
-    ? `Empate entre ${winners.join(", ")} con ${maxVotes} votos.`
-    : `${winners[0]} es el más votado con ${maxVotes} votos.`;
+  SFX.success();
+  voteResult.innerHTML = winners.length > 1
+    ? `\u26a0\ufe0f <strong>Empate</strong> entre ${winners.join(", ")} con ${maxVotes} votos.`
+    : `\ud83c\udfaf <strong>${winners[0]}</strong> es el m\u00e1s votado con ${maxVotes} votos.`;
 }
 
+// ============= REVEAL FINAL =============
 function revealFinal() {
   if (!state.round) return;
-
-  // Prevent accidental reveal
   if (!finalResult.classList.contains("hidden")) return;
-  if (!confirm("¿Seguro? Esto revelará quién es el impostor a todos.")) return;
+  if (!confirm("\u00bfSeguro? Esto revelar\u00e1 qui\u00e9n es el impostor a todos.")) return;
 
-  const themeLabel = themes.find(item => item.key === state.round.theme)?.label || state.round.theme;
-  const rows = state.round.roles
-    .map(item => {
-      const cssRole = item.role === "agente fantasma" ? "fantasma" : item.role;
-      const visibleRole = item.role === "agente fantasma" ? "Fantasma" : item.role;
-      return `
-        <div class="result-row">
-          <span>${escapeHtml(item.name)}</span>
-          <span><span class="badge ${cssRole}">${escapeHtml(visibleRole)}</span></span>
-          <span>${escapeHtml(item.word)}</span>
-        </div>
-      `;
-    })
-    .join("");
+  const themeLabel = themes.find(t => t.key === state.round.theme)?.label || state.round.theme;
+  const entries = Object.entries(state.voteTally).map(([p, v]) => [Number(p), v]);
+  const totalVotes = entries.reduce((s, [, v]) => s + v, 0);
+  const sorted = totalVotes > 0 ? entries.sort((a, b) => b[1] - a[1]) : [];
+  const topPlayer = sorted.length > 0 ? sorted[0][0] : null;
+  const topRole = topPlayer ? state.round.roles.find(r => r.player === topPlayer) : null;
+  const civilsWin = topRole?.role === "impostor";
+
+  let banner = "";
+  if (totalVotes > 0) {
+    banner = civilsWin
+      ? `<div class="winner-banner winner-civils">\ud83c\udf89 \u00a1Los civiles ganaron! Descubrieron al impostor.</div>`
+      : `<div class="winner-banner winner-impostor">\ud83d\udd75\ufe0f \u00a1El impostor sobrevivi\u00f3! Los civiles fallaron.</div>`;
+  }
+
+  const rows = state.round.roles.map(item => {
+    const cssRole = item.role === "agente fantasma" ? "fantasma" : item.role;
+    const visibleRole = item.role === "agente fantasma" ? "Fantasma" : item.role;
+    const votes = state.voteTally[item.player] || 0;
+    return `<div class="result-row"><span>${escapeHtml(item.name)}</span><span><span class="badge ${cssRole}">${escapeHtml(visibleRole)}</span></span><span>${escapeHtml(item.word)}</span><span>${votes} \ud83d\uddf3</span></div>`;
+  }).join("");
 
   finalResult.innerHTML = `
+    ${banner}
     <div class="result-header">
       <span>Tema: ${escapeHtml(themeLabel)}</span>
       <span>Civiles: ${escapeHtml(state.round.secretWord)}</span>
       <span>Impostor: ${escapeHtml(state.round.decoyWord)}</span>
+      <span>Votos</span>
     </div>
     ${rows}
   `;
 
   finalResult.classList.remove("hidden");
+  if (shareResultBtn) shareResultBtn.classList.remove("hidden");
+  recordRound(state.round);
+  SFX.fanfare();
+  if (civilsWin) launchConfetti();
 }
 
-function updateModeIndicator() {
-  // No-op: AI mode removed
-}
-
+// ============= GAME SCREEN MANAGEMENT =============
 function enterGameMode() {
   appEl.classList.add("in-game");
   gameScreen.classList.remove("hidden");
@@ -867,22 +991,15 @@ function setGamePhase(phase) {
 
 function updateDealProgress() {
   if (!state.round) return;
-  const current = state.revealIndex + 1;
-  const total = state.round.roles.length;
-  const pct = Math.round((state.revealIndex / total) * 100);
-  gameProgressBar.style.width = `${pct}%`;
-  dealCounter.textContent = `${current} / ${total}`;
+  const cur = state.revealIndex + 1;
+  const tot = state.round.roles.length;
+  gameProgressBar.style.width = `${Math.round((state.revealIndex / tot) * 100)}%`;
+  dealCounter.textContent = `${cur} / ${tot}`;
 }
 
 function setActiveMenuTab(tab) {
-  const pairs = [
-    [menuHomeBtn, tab === "home"],
-    [menuPlayBtn, tab === "play"],
-    [menuHelpBtn, tab === "help"]
-  ];
-
-  for (const [button, active] of pairs) {
-    button.classList.toggle("active", active);
+  for (const [btn, key] of [[menuHomeBtn, "home"], [menuPlayBtn, "play"], [menuStatsBtn, "stats"], [menuHelpBtn, "help"]]) {
+    if (btn) btn.classList.toggle("active", tab === key);
   }
 }
 
@@ -890,48 +1007,39 @@ function showMainView(view) {
   menuSection.classList.toggle("hidden", view !== "home");
   controlsSection.classList.toggle("hidden", view !== "play");
   helpSection.classList.toggle("hidden", view !== "help");
+  if (statsSection) statsSection.classList.toggle("hidden", view !== "stats");
   setActiveMenuTab(view);
-}
-
-function getPlayerName(playerNumber) {
-  if (state.showNames && state.playerNames[playerNumber - 1]) {
-    return state.playerNames[playerNumber - 1];
-  }
-  return `Jugador ${playerNumber}`;
+  if (view === "stats") renderStats();
 }
 
 function renderPlayerNameInputs() {
   const count = Number(playersInput.value) || 6;
   playerNamesContainer.innerHTML = "";
-
   for (let i = 1; i <= count; i += 1) {
     const wrapper = document.createElement("div");
     wrapper.className = "player-name-input";
-
     const num = document.createElement("span");
     num.className = "pn-number";
     num.textContent = i;
-
     const input = document.createElement("input");
-    input.type = "text";
-    input.maxLength = 16;
+    input.type = "text"; input.maxLength = 16;
     input.placeholder = `Jugador ${i}`;
     input.value = state.playerNames[i - 1] || "";
     input.addEventListener("input", () => {
       state.playerNames[i - 1] = input.value.trim();
+      saveNames();
     });
-
     wrapper.appendChild(num);
     wrapper.appendChild(input);
     playerNamesContainer.appendChild(wrapper);
   }
 }
 
+// ============= SORTEO ANIMATION =============
 function playSorteoAnimation(roles) {
   return new Promise(resolve => {
     sorteoSection.classList.remove("hidden");
     sorteoCards.innerHTML = "";
-
     const cards = [];
     for (let i = 0; i < roles.length; i += 1) {
       const card = document.createElement("div");
@@ -941,109 +1049,93 @@ function playSorteoAnimation(roles) {
       sorteoCards.appendChild(card);
       cards.push(card);
     }
-
     let revealed = 0;
     const revealInterval = setInterval(() => {
       if (revealed >= cards.length) {
         clearInterval(revealInterval);
-        setTimeout(() => {
-          sorteoSection.classList.add("hidden");
-          resolve();
-        }, 600);
+        setTimeout(() => { sorteoSection.classList.add("hidden"); resolve(); }, 600);
         return;
       }
-
-      const card = cards[revealed];
-
-      // Show identical checkmarks for ALL players to prevent role leak
-      card.classList.add("sorted");
-      card.textContent = "✓";
-
+      cards[revealed].classList.add("sorted");
+      cards[revealed].textContent = "\u2713";
+      SFX.cardFlip();
       if (navigator.vibrate) navigator.vibrate(10);
       revealed += 1;
     }, 180);
   });
 }
 
+// ============= THEME CHIPS =============
 function renderThemeChips() {
   themeChips.innerHTML = "";
-
-  const visibleThemes = themes.filter(theme => !theme.adult || state.includeAdultTheme);
-
-  for (const theme of visibleThemes) {
+  const visible = themes.filter(t => !t.adult || state.includeAdultTheme);
+  for (const t of visible) {
     const chip = document.createElement("button");
     chip.type = "button";
-    chip.className = `theme-chip${theme.adult ? " adult" : ""}${theme.key === state.selectedTheme ? " active" : ""}`;
-    chip.textContent = theme.label;
+    chip.className = `theme-chip${t.adult ? " adult" : ""}${t.key === state.selectedTheme ? " active" : ""}`;
+    chip.textContent = t.label;
     chip.setAttribute("role", "radio");
-    chip.setAttribute("aria-checked", String(theme.key === state.selectedTheme));
-    chip.addEventListener("click", () => {
-      state.selectedTheme = theme.key;
-      renderThemeChips();
-    });
+    chip.setAttribute("aria-checked", String(t.key === state.selectedTheme));
+    chip.addEventListener("click", () => { state.selectedTheme = t.key; renderThemeChips(); SFX.click(); });
     themeChips.appendChild(chip);
   }
-
-  if (!visibleThemes.some(theme => theme.key === state.selectedTheme)) {
+  if (!visible.some(t => t.key === state.selectedTheme)) {
     state.selectedTheme = "aleatorio";
     renderThemeChips();
   }
 }
 
+// ============= RESET =============
 function resetRound() {
   stopTimer();
   state.round = null;
   state.revealIndex = 0;
   state.roleIsVisible = false;
   state.timerSeconds = state.timerTotalSeconds;
-
+  state.voteTally = {};
   exitGameMode();
   finalResult.classList.add("hidden");
   voteList.innerHTML = "";
   voteResult.classList.add("hidden");
   voteResult.textContent = "";
+  if (shareResultBtn) shareResultBtn.classList.add("hidden");
+  timerDisplay.classList.remove("timer-urgent", "timer-finished");
   setRoundStatus("");
   renderTimer();
   showMainView("home");
-  updateModeIndicator();
 }
 
 async function toggleFullscreen() {
   try {
     if (!document.fullscreenElement) {
       await document.documentElement.requestFullscreen();
-      fullscreenBtn.textContent = "✕";
-      fullscreenBtn.setAttribute("aria-label", "Salir de pantalla completa");
+      if (fullscreenBtn) fullscreenBtn.textContent = "\u2715";
     } else {
       await document.exitFullscreen();
-      fullscreenBtn.textContent = "⛶";
-      fullscreenBtn.setAttribute("aria-label", "Pantalla completa");
+      if (fullscreenBtn) fullscreenBtn.textContent = "\u26f6";
     }
   } catch {
-    setStatus("Tu navegador no soporta pantalla completa aquí.", "error");
+    showToast("Pantalla completa no soportada", "error");
   }
 }
 
+// ============= EVENT LISTENERS =============
 startBtn.addEventListener("click", async () => {
   try {
     startBtn.disabled = true;
     state.round = await createRound();
     state.revealIndex = 0;
     finalResult.classList.add("hidden");
-
     await playSorteoAnimation(state.round.roles);
-
     enterGameMode();
     dealSection.classList.remove("hidden");
     roundSection.classList.add("hidden");
     gameProgressBar.style.width = "0%";
-
     showHandoffScreen();
-
-    setStatus("✅ Ronda creada. ¡A jugar!", "success");
+    showToast("\u00a1Ronda creada! A jugar");
   } catch (error) {
     console.error(error);
-    setStatus(error.message || "No se pudo crear la ronda.", "error");
+    showToast(error.message || "No se pudo crear la ronda.", "error");
   } finally {
     startBtn.disabled = false;
   }
@@ -1053,54 +1145,65 @@ readyBtn.addEventListener("click", showSwipeScreen);
 nextBtn.addEventListener("click", goNextPlayer);
 coverBtn.addEventListener("click", coverRoleAgain);
 
-revealOverlay.addEventListener("pointerdown", event => {
-  onSwipeStart(event.clientX, event.clientY, event.pointerId);
-});
-
-window.addEventListener("pointermove", event => {
+revealOverlay.addEventListener("pointerdown", e => onSwipeStart(e.clientX, e.clientY, e.pointerId));
+window.addEventListener("pointermove", e => {
   if (!state.swipeDragging) return;
-  if (state.swipePointerId !== null && event.pointerId !== state.swipePointerId) return;
-  onSwipeMove(event.clientX, event.clientY);
+  if (state.swipePointerId !== null && e.pointerId !== state.swipePointerId) return;
+  onSwipeMove(e.clientX, e.clientY);
 });
-
-window.addEventListener("pointerup", event => {
+window.addEventListener("pointerup", e => {
   if (!state.swipeDragging) return;
-  if (state.swipePointerId !== null && event.pointerId !== state.swipePointerId) return;
+  if (state.swipePointerId !== null && e.pointerId !== state.swipePointerId) return;
   onSwipeEnd();
 });
-
-window.addEventListener("pointercancel", () => {
-  if (!state.swipeDragging) return;
-  resetOverlayPosition();
-});
+window.addEventListener("pointercancel", () => { if (state.swipeDragging) resetOverlayPosition(); });
 
 revealAllBtn.addEventListener("click", revealFinal);
 resetBtn.addEventListener("click", resetRound);
 
 quitGameBtn.addEventListener("click", () => {
-  if (state.round && !confirm("¿Seguro que quieres salir de la partida?")) return;
+  if (state.round && !confirm("\u00bfSeguro que quieres salir?")) return;
   resetRound();
 });
 
 newRoundBtn.addEventListener("click", () => {
   exitGameMode();
+  finalResult.classList.add("hidden");
+  if (shareResultBtn) shareResultBtn.classList.add("hidden");
   showMainView("play");
 });
 
-backHomeBtn.addEventListener("click", () => {
-  resetRound();
-});
-
+backHomeBtn.addEventListener("click", resetRound);
 startTimerBtn.addEventListener("click", startTimer);
 pauseTimerBtn.addEventListener("click", pauseTimer);
 resetTimerBtn.addEventListener("click", resetTimer);
 calculateVotesBtn.addEventListener("click", calculateVotes);
 fullscreenBtn.addEventListener("click", toggleFullscreen);
 
-for (const button of timerPresetButtons) {
-  button.addEventListener("click", () => {
-    const minutes = Number(button.dataset.minutes || 2);
-    setTimerMinutes(minutes);
+if (soundToggleBtn) {
+  soundToggleBtn.addEventListener("click", () => {
+    const on = SFX.toggle();
+    soundToggleBtn.textContent = on ? "\ud83d\udd0a" : "\ud83d\udd07";
+    showToast(on ? "Sonido activado" : "Sonido desactivado");
+  });
+  soundToggleBtn.textContent = SFX.enabled ? "\ud83d\udd0a" : "\ud83d\udd07";
+}
+
+if (themeToggleBtn) themeToggleBtn.addEventListener("click", toggleVisualTheme);
+if (shareResultBtn) shareResultBtn.addEventListener("click", shareResult);
+
+for (const b of timerPresetButtons) {
+  b.addEventListener("click", () => setTimerMinutes(Number(b.dataset.minutes || 2)));
+}
+
+// Custom timer input
+const customTimerInput = document.getElementById("customTimerInput");
+const setCustomTimerBtn = document.getElementById("setCustomTimerBtn");
+if (customTimerInput && setCustomTimerBtn) {
+  setCustomTimerBtn.addEventListener("click", () => {
+    const mins = Number(customTimerInput.value);
+    if (mins >= 1 && mins <= 30) setTimerMinutes(mins);
+    else showToast("Ingresa entre 1 y 30 minutos", "error");
   });
 }
 
@@ -1109,53 +1212,44 @@ toggleAdvancedBtn.addEventListener("click", () => {
   advancedOptions.classList.toggle("hidden", !state.showAdvanced);
 });
 
-menuHomeBtn.addEventListener("click", () => {
-  showMainView("home");
-});
-
-menuPlayBtn.addEventListener("click", () => {
-  showMainView("play");
-});
-
-menuHelpBtn.addEventListener("click", () => {
-  showMainView("help");
-});
-
-menuStartBtn.addEventListener("click", () => {
-  showMainView("play");
-});
-
-menuHowToBtn.addEventListener("click", () => {
-  showMainView("help");
-});
+menuHomeBtn.addEventListener("click", () => showMainView("home"));
+menuPlayBtn.addEventListener("click", () => showMainView("play"));
+menuHelpBtn.addEventListener("click", () => showMainView("help"));
+if (menuStatsBtn) menuStatsBtn.addEventListener("click", () => showMainView("stats"));
+menuStartBtn.addEventListener("click", () => showMainView("play"));
+menuHowToBtn.addEventListener("click", () => showMainView("help"));
 
 toggleNamesBtn.addEventListener("click", () => {
   state.showNames = !state.showNames;
   playerNamesContainer.classList.toggle("hidden", !state.showNames);
-  toggleNamesBtn.textContent = state.showNames ? "✕ Ocultar nombres" : "✏️ Personalizar nombres";
+  toggleNamesBtn.textContent = state.showNames ? "\u2715 Ocultar nombres" : "\u270f\ufe0f Personalizar nombres";
   if (state.showNames) renderPlayerNameInputs();
 });
 
-playersInput.addEventListener("change", () => {
-  if (state.showNames) renderPlayerNameInputs();
-});
+playersInput.addEventListener("change", () => { if (state.showNames) renderPlayerNameInputs(); });
 
 adultThemesToggle.addEventListener("change", () => {
   state.includeAdultTheme = adultThemesToggle.checked;
-  if (!state.includeAdultTheme && state.selectedTheme === "adulto") {
-    state.selectedTheme = "aleatorio";
-  }
+  if (!state.includeAdultTheme && state.selectedTheme === "adulto") state.selectedTheme = "aleatorio";
   renderThemeChips();
 });
 
-for (const button of swipeLevelButtons) {
-  button.addEventListener("click", () => {
-    const level = button.dataset.swipeLevel || "normal";
-    setSwipeSensitivity(level);
-  });
+for (const b of swipeLevelButtons) {
+  b.addEventListener("click", () => setSwipeSensitivity(b.dataset.swipeLevel || "normal"));
 }
 
+if (toggleCustomPacksBtn && customPacksPanel) {
+  toggleCustomPacksBtn.addEventListener("click", () => {
+    customPacksPanel.classList.toggle("hidden");
+    renderCustomPacksList();
+  });
+}
+if (addCustomPackBtn) addCustomPackBtn.addEventListener("click", addCustomPackFromForm);
+
+// ============= INIT =============
+applyVisualTheme(localStorage.getItem("impostorTheme") || "dark");
 renderThemeChips();
+refreshCustomThemes();
 setSwipeSensitivity("suave");
 renderPlayerNameInputs();
 resetRound();

@@ -93,7 +93,7 @@ async function generateWithGemini(theme, count) {
       ],
       generationConfig: {
         temperature: 0.7,
-        maxOutputTokens: 150,
+        maxOutputTokens: 600,
         topP: 0.9
       },
       safetySettings: [
