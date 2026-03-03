@@ -307,7 +307,8 @@ const state = {
   swipeSensitivity: "suave",
   playerNames: loadSavedNames(),
   showNames: false,
-  voteTally: {}
+  voteTally: {},
+  votedPlayer: null
 };
 
 function loadSavedNames() {
@@ -847,82 +848,100 @@ function goNextPlayer() {
   showHandoffScreen();
 }
 
-// ============= VOTING (tally \u2014 one person counts votes for all) =============
+// ============= VOTING (card-based — tap to eliminate) =============
 function buildVoteUI() {
   if (!state.round) return;
   voteList.innerHTML = "";
   voteResult.classList.add("hidden");
-  voteResult.textContent = "";
+  voteResult.innerHTML = "";
   state.voteTally = {};
+  state.votedPlayer = null;
 
-  for (const role of state.round.roles) {
+  const avatarColors = ["#6c5ce7","#00cec9","#e17055","#fdcb6e","#74b9ff","#a29bfe","#55efc4","#ff7675","#fab1a0","#81ecec"];
+  const avatarEmojis = ["\ud83d\ude0e","\ud83e\udd29","\ud83d\ude08","\ud83e\udd14","\ud83d\ude0f","\ud83e\uddd0","\ud83d\ude0d","\ud83e\udd2b","\ud83d\ude1c","\ud83d\ude44"];
+
+  for (let i = 0; i < state.round.roles.length; i++) {
+    const role = state.round.roles[i];
     state.voteTally[role.player] = 0;
-    const row = document.createElement("div");
-    row.className = "vote-row vote-tally-row";
 
-    const nameSpan = document.createElement("span");
-    nameSpan.className = "vote-player-name";
-    nameSpan.textContent = role.name;
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "vote-player-card";
+    card.dataset.player = role.player;
 
-    const controls = document.createElement("div");
-    controls.className = "vote-controls";
+    const avatar = document.createElement("div");
+    avatar.className = "vote-avatar";
+    avatar.style.background = avatarColors[i % avatarColors.length];
+    avatar.textContent = avatarEmojis[i % avatarEmojis.length];
 
-    const minusBtn = document.createElement("button");
-    minusBtn.type = "button";
-    minusBtn.className = "vote-btn vote-minus";
-    minusBtn.textContent = "\u2212";
-    minusBtn.addEventListener("click", () => {
-      if (state.voteTally[role.player] > 0) {
-        state.voteTally[role.player] -= 1;
-        countSpan.textContent = state.voteTally[role.player];
-        SFX.click();
-      }
+    const name = document.createElement("span");
+    name.className = "vote-card-name";
+    name.textContent = role.name;
+
+    card.appendChild(avatar);
+    card.appendChild(name);
+
+    card.addEventListener("click", () => {
+      if (state.votedPlayer !== null) return;
+      selectPlayerToEliminate(role, card);
     });
 
-    const countSpan = document.createElement("span");
-    countSpan.className = "vote-count";
-    countSpan.textContent = "0";
-
-    const plusBtn = document.createElement("button");
-    plusBtn.type = "button";
-    plusBtn.className = "vote-btn vote-plus";
-    plusBtn.textContent = "+";
-    plusBtn.addEventListener("click", () => {
-      state.voteTally[role.player] += 1;
-      countSpan.textContent = state.voteTally[role.player];
-      SFX.click();
-    });
-
-    controls.appendChild(minusBtn);
-    controls.appendChild(countSpan);
-    controls.appendChild(plusBtn);
-    row.appendChild(nameSpan);
-    row.appendChild(controls);
-    voteList.appendChild(row);
+    voteList.appendChild(card);
   }
 }
 
-function calculateVotes() {
+function selectPlayerToEliminate(selectedRole, selectedCard) {
   if (!state.round) return;
-  const entries = Object.entries(state.voteTally).map(([p, v]) => [Number(p), v]);
-  const totalVotes = entries.reduce((s, [, v]) => s + v, 0);
-  voteResult.classList.remove("hidden");
+  if (!confirm(`\u00bfEliminar a ${selectedRole.name}? Esta acci\u00f3n es definitiva.`)) return;
 
-  if (totalVotes === 0) {
-    voteResult.textContent = "A\u00fan no hay votos registrados.";
-    return;
-  }
+  state.votedPlayer = selectedRole.player;
+  state.voteTally[selectedRole.player] = 1;
+  SFX.click();
 
-  const sorted = entries.sort((a, b) => b[1] - a[1]);
-  const maxVotes = sorted[0][1];
-  const winners = sorted.filter(([, v]) => v === maxVotes).map(([p]) => {
-    return state.round.roles.find(r => r.player === p)?.name || `Jugador ${p}`;
+  // Mark all cards
+  const allCards = voteList.querySelectorAll(".vote-player-card");
+  allCards.forEach(c => {
+    c.classList.add("vote-disabled");
+    if (c.dataset.player === String(selectedRole.player)) {
+      c.classList.add("vote-selected");
+    }
   });
 
-  SFX.success();
-  voteResult.innerHTML = winners.length > 1
-    ? `\u26a0\ufe0f <strong>Empate</strong> entre ${winners.join(", ")} con ${maxVotes} votos.`
-    : `\ud83c\udfaf <strong>${winners[0]}</strong> es el m\u00e1s votado con ${maxVotes} votos.`;
+  // Show result after short delay
+  setTimeout(() => {
+    const isImpostor = selectedRole.role === "impostor";
+    voteResult.classList.remove("hidden");
+
+    if (isImpostor) {
+      SFX.fanfare();
+      launchConfetti();
+      voteResult.innerHTML = `
+        <div class="vote-reveal-card vote-reveal-success">
+          <div class="vote-reveal-emoji">\ud83c\udf89</div>
+          <h3>\u00a1Correcto!</h3>
+          <p><strong>${escapeHtml(selectedRole.name)}</strong> ERA el impostor</p>
+          <div class="vote-reveal-words">
+            <span class="vote-word-civil">\ud83d\udfe2 Civiles: <strong>${escapeHtml(state.round.secretWord)}</strong></span>
+            <span class="vote-word-imp">\ud83d\udd34 Impostor: <strong>${escapeHtml(state.round.decoyWord)}</strong></span>
+          </div>
+          <p class="vote-reveal-subtitle">Los civiles ganan \ud83c\udfc6</p>
+        </div>`;
+    } else {
+      SFX.click();
+      voteResult.innerHTML = `
+        <div class="vote-reveal-card vote-reveal-fail">
+          <div class="vote-reveal-emoji">\ud83d\ude31</div>
+          <h3>\u00a1Incorrecto!</h3>
+          <p><strong>${escapeHtml(selectedRole.name)}</strong> NO era el impostor</p>
+          <p class="vote-reveal-subtitle">El impostor sigue libre... \ud83d\udd75\ufe0f</p>
+        </div>`;
+    }
+  }, 600);
+}
+
+function calculateVotes() {
+  // Legacy compatibility — no longer needed with card-based voting
+  return;
 }
 
 // ============= REVEAL FINAL =============
@@ -932,15 +951,12 @@ function revealFinal() {
   if (!confirm("\u00bfSeguro? Esto revelar\u00e1 qui\u00e9n es el impostor a todos.")) return;
 
   const themeLabel = themes.find(t => t.key === state.round.theme)?.label || state.round.theme;
-  const entries = Object.entries(state.voteTally).map(([p, v]) => [Number(p), v]);
-  const totalVotes = entries.reduce((s, [, v]) => s + v, 0);
-  const sorted = totalVotes > 0 ? entries.sort((a, b) => b[1] - a[1]) : [];
-  const topPlayer = sorted.length > 0 ? sorted[0][0] : null;
-  const topRole = topPlayer ? state.round.roles.find(r => r.player === topPlayer) : null;
-  const civilsWin = topRole?.role === "impostor";
+  const votedP = state.votedPlayer;
+  const votedRole = votedP !== null ? state.round.roles.find(r => r.player === votedP) : null;
+  const civilsWin = votedRole?.role === "impostor";
 
   let banner = "";
-  if (totalVotes > 0) {
+  if (votedP !== null) {
     banner = civilsWin
       ? `<div class="winner-banner winner-civils">\ud83c\udf89 \u00a1Los civiles ganaron! Descubrieron al impostor.</div>`
       : `<div class="winner-banner winner-impostor">\ud83d\udd75\ufe0f \u00a1El impostor sobrevivi\u00f3! Los civiles fallaron.</div>`;
@@ -949,17 +965,18 @@ function revealFinal() {
   const rows = state.round.roles.map(item => {
     const cssRole = item.role === "agente fantasma" ? "fantasma" : item.role;
     const visibleRole = item.role === "agente fantasma" ? "Fantasma" : item.role;
-    const votes = state.voteTally[item.player] || 0;
-    return `<div class="result-row"><span>${escapeHtml(item.name)}</span><span><span class="badge ${cssRole}">${escapeHtml(visibleRole)}</span></span><span>${escapeHtml(item.word)}</span><span>${votes} \ud83d\uddf3</span></div>`;
+    const wasVoted = item.player === state.votedPlayer;
+    const voteIcon = wasVoted ? "\ud83d\uddf3\ufe0f Eliminado" : "";
+    return `<div class="result-row ${wasVoted ? 'result-voted' : ''}"><span>${escapeHtml(item.name)}</span><span><span class="badge ${cssRole}">${escapeHtml(visibleRole)}</span></span><span>${escapeHtml(item.word)}</span><span>${voteIcon}</span></div>`;
   }).join("");
 
   finalResult.innerHTML = `
     ${banner}
     <div class="result-header">
-      <span>Tema: ${escapeHtml(themeLabel)}</span>
-      <span>Civiles: ${escapeHtml(state.round.secretWord)}</span>
-      <span>Impostor: ${escapeHtml(state.round.decoyWord)}</span>
-      <span>Votos</span>
+      <span>Jugador</span>
+      <span>Rol</span>
+      <span>Palabra</span>
+      <span>Estado</span>
     </div>
     ${rows}
   `;
@@ -1093,6 +1110,7 @@ function resetRound() {
   state.roleIsVisible = false;
   state.timerSeconds = state.timerTotalSeconds;
   state.voteTally = {};
+  state.votedPlayer = null;
   exitGameMode();
   finalResult.classList.add("hidden");
   voteList.innerHTML = "";
