@@ -91,7 +91,8 @@
           <ol>
             <li><strong>Configura</strong> jugadores, impostores y tema.</li>
             <li><strong>Reparte</strong> roles pasando el cel por turnos.</li>
-            <li><strong>Debate</strong> y vota al sospechoso.</li>
+            <li><strong>Debate y vota</strong> al sospechoso cada ronda.</li>
+            <li><strong>Gana</strong> descubriendo al impostor antes de que sea tarde.</li>
           </ol>
           <button id="menuHowToBtn" class="link-btn" type="button">Ver reglas completas →</button>
         </div>
@@ -149,7 +150,7 @@
 
         <div class="actions">
           <button id="startBtn" class="primary-action">
-            <span>Iniciar ronda</span>
+            <span>🎮 Empezar partida</span>
           </button>
           <button id="resetBtn" class="secondary">Reiniciar</button>
         </div>
@@ -165,9 +166,11 @@
         <ol class="help-list">
           <li><strong>Configura:</strong> Elige jugadores, impostores y tema.</li>
           <li><strong>Reparte:</strong> Pasa el celular a cada jugador. Desliza para ver tu rol en privado.</li>
-          <li><strong>Pista:</strong> Cada jugador da una pista sobre su palabra, SIN decirla.</li>
-          <li><strong>Debate:</strong> Escuchen las pistas. ¿Alguien parece confundido o demasiado vago?</li>
-          <li><strong>Voten:</strong> Elijan al sospechoso. Si aciertan, ¡ganan los civiles!</li>
+          <li><strong>Pista:</strong> Cada jugador da una pista de UNA palabra sobre lo que le tocó, SIN decirla directamente.</li>
+          <li><strong>Debate:</strong> Escuchen las pistas. ¿Alguien parece confundido, demasiado vago o fuera de contexto?</li>
+          <li><strong>Voten:</strong> Elijan al sospechoso y elimínenlo.</li>
+          <li><strong>¿Acertaron?</strong> Si era el impostor, ¡bien hecho! Si no, el juego continúa con una nueva ronda de debate.</li>
+          <li><strong>Fin de partida:</strong> Los civiles ganan si descubren a todos los impostores. El impostor gana si logra igualar o superar en número a los civiles.</li>
         </ol>
         <div class="help-roles">
           <h3 class="subsection-title">Roles</h3>
@@ -176,7 +179,12 @@
           <div class="help-role"><span class="badge fantasma">Fantasma</span> No tiene palabra. Improvisa para sobrevivir.</div>
         </div>
         <div class="help-tip">
-          <strong>💡 Tip:</strong> El impostor no sabe cuál es la palabra de los civiles, así que sus pistas suelen ser más vagas o ligeramente fuera de contexto.
+          <strong>💡 Tips:</strong>
+          <ul style="margin:6px 0 0;padding-left:18px;">
+            <li>El impostor no sabe cuál es la palabra de los civiles, así que sus pistas suelen ser más vagas.</li>
+            <li>Los civiles deben dar pistas lo suficientemente claras para reconocerse entre sí, pero sin regalar la palabra al impostor.</li>
+            <li>Si eliminan a un civil, el impostor se fortalece — ¡piensen bien antes de votar!</li>
+          </ul>
         </div>
       </section>
 
@@ -293,6 +301,8 @@
             <span>💡</span>
             <p>Cada jugador da una pista sobre su palabra. Escuchen contradicciones y comportamientos raros.</p>
           </div>
+
+          <div id="aliveStatus" class="alive-status hidden"></div>
 
           <button id="goToVoteBtn" type="button" class="primary-action go-vote-btn">
             🗳️ Pasar a votación

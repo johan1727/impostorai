@@ -2053,6 +2053,66 @@ button {
   50% { box-shadow: 0 4px 28px rgba(0, 184, 148, 0.5); }
 }
 
+/* ============= NEXT ROUND BUTTON (inside vote result) ============= */
+.next-round-btn {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px 20px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(108, 92, 231, 0.3);
+  animation: fadeSlideUp 0.4s ease-out;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.next-round-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(108, 92, 231, 0.45);
+}
+.next-round-btn:active {
+  transform: translateY(0);
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============= ELIMINATED BADGE ============= */
+.eliminated-badge {
+  text-align: center;
+  padding: 8px 14px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: rgba(255, 71, 87, 0.1);
+  color: #ff6b81;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* ============= ALIVE STATUS (debate phase) ============= */
+.alive-status {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 10px 14px;
+  margin: 8px 0;
+  border-radius: 12px;
+  background: rgba(107, 138, 255, 0.08);
+  border: 1px solid rgba(107, 138, 255, 0.15);
+  font-size: 0.88rem;
+  color: var(--text-secondary, #a0aec0);
+}
+.alive-status span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 /* ============= CUSTOM TIMER INPUT ============= */
 .custom-timer-input {
   display: flex;

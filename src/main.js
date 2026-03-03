@@ -272,6 +272,7 @@ const revealOverlay = document.getElementById("revealOverlay");
 const swipeLevelButtons = document.querySelectorAll(".swipe-level");
 const revealAllBtn = document.getElementById("revealAllBtn");
 const finalResult = document.getElementById("finalResult");
+const aliveStatus = document.getElementById("aliveStatus");
 const timerDisplay = document.getElementById("timerDisplay");
 const roundStatus = document.getElementById("roundStatus");
 const startTimerBtn = document.getElementById("startTimerBtn");
@@ -885,11 +886,26 @@ function goNextPlayer() {
     setGamePhase("debate");
     gameProgressBar.style.width = "100%";
     buildVoteUI();
+    updateAliveStatus();
     setRoundPhase("debate");
     resetTimer();
     return;
   }
   showHandoffScreen();
+}
+
+// ============= ALIVE STATUS =============
+function updateAliveStatus() {
+  if (!aliveStatus) return;
+  if (!state.persistentRoles || state.eliminatedPlayers.length === 0) {
+    aliveStatus.classList.add("hidden");
+    return;
+  }
+  const total = state.persistentRoles.length;
+  const alive = total - state.eliminatedPlayers.length;
+  const eliminated = state.eliminatedPlayers.length;
+  aliveStatus.classList.remove("hidden");
+  aliveStatus.innerHTML = `<span>\ud83d\udc65 <strong>${alive}</strong> jugadores vivos</span><span>\u274c <strong>${eliminated}</strong> eliminado${eliminated > 1 ? "s" : ""}</span>`;
 }
 
 // ============= VOTING (card-based — tap to eliminate) =============
@@ -954,6 +970,9 @@ function selectPlayerToEliminate(selectedRole, selectedCard) {
   state.eliminatedPlayers.push(selectedRole.player);
   SFX.click();
 
+  // Hide "back to debate" after casting vote
+  if (backToDebateBtn) backToDebateBtn.classList.add("hidden");
+
   // Dramatic elimination animation
   const allCards = voteList.querySelectorAll(".vote-player-card");
   allCards.forEach(c => {
@@ -973,18 +992,25 @@ function selectPlayerToEliminate(selectedRole, selectedCard) {
     voteResult.classList.remove("hidden");
 
     if (isImpostor) {
+      // Check if more impostors remain
+      const remainingImps = state.persistentRoles
+        ? state.persistentRoles.filter(r => r.role === "impostor" && !state.eliminatedPlayers.includes(r.player)).length
+        : 0;
       SFX.fanfare();
       launchConfetti();
+      const subtitle = remainingImps > 0
+        ? `\u00a1Bien hecho! Pero quedan <strong>${remainingImps}</strong> impostor${remainingImps > 1 ? "es" : ""} m\u00e1s... \ud83d\udd75\ufe0f`
+        : "Los civiles ganan \ud83c\udfc6";
       voteResult.innerHTML = `
         <div class="vote-reveal-card vote-reveal-success">
           <div class="vote-reveal-emoji">\ud83c\udf89</div>
           <h3>\u00a1Correcto!</h3>
-          <p><strong>${escapeHtml(selectedRole.name)}</strong> ERA el impostor</p>
+          <p><strong>${escapeHtml(selectedRole.name)}</strong> ERA impostor</p>
           <div class="vote-reveal-words">
             <span class="vote-word-civil">\ud83d\udfe2 Civiles: <strong>${escapeHtml(state.round.secretWord)}</strong></span>
             <span class="vote-word-imp">\ud83d\udd34 Impostor: <strong>${escapeHtml(state.round.decoyWord)}</strong></span>
           </div>
-          <p class="vote-reveal-subtitle">Los civiles ganan \ud83c\udfc6</p>
+          <p class="vote-reveal-subtitle">${subtitle}</p>
         </div>`;
     } else {
       SFX.click();
@@ -1002,9 +1028,63 @@ function selectPlayerToEliminate(selectedRole, selectedCard) {
     if (gameOverResult) {
       setTimeout(() => showGameOver(gameOverResult), 1800);
     } else {
-      setTimeout(() => setRoundPhase("result"), 1500);
+      // Game continues — add "Siguiente ronda" button after a brief pause
+      setTimeout(() => {
+        const nextBtn = document.createElement("button");
+        nextBtn.type = "button";
+        nextBtn.className = "btn-primary next-round-btn";
+        nextBtn.innerHTML = "\u27a1\ufe0f Siguiente ronda";
+        nextBtn.addEventListener("click", () => startNextRound());
+        const card = voteResult.querySelector(".vote-reveal-card");
+        if (card) card.appendChild(nextBtn);
+      }, 1200);
     }
   }, 900);
+}
+
+// ============= NEXT ROUND (persistent game, no re-deal) =============
+function startNextRound() {
+  stopTimer();
+
+  // Reset vote state for next round
+  state.voteTally = {};
+  state.votedPlayer = null;
+  state.timerSeconds = state.timerTotalSeconds;
+  state.roundNumber += 1;
+
+  // Rebuild round with remaining players (same words/roles)
+  const allRoles = state.persistentRoles;
+  const roles = allRoles.filter(r => !state.eliminatedPlayers.includes(r.player));
+  state.round = {
+    createdAt: new Date().toISOString(),
+    theme: state.persistentTheme,
+    secretWord: state.persistentSecretWord,
+    decoyWord: state.persistentDecoyWord,
+    source: "local",
+    roles,
+    allRoles
+  };
+
+  // Update UI
+  if (roundNumberEl) roundNumberEl.textContent = state.roundNumber;
+  voteList.innerHTML = "";
+  voteResult.classList.add("hidden");
+  voteResult.innerHTML = "";
+  // Remove old eliminated badge
+  const oldBadge = document.querySelector(".eliminated-badge");
+  if (oldBadge) oldBadge.remove();
+  timerDisplay.classList.remove("timer-urgent", "timer-finished");
+  setRoundStatus("");
+  renderTimer();
+  buildVoteUI();
+  updateAliveStatus();
+  setRoundPhase("debate");
+
+  // Re-show "back to debate" button for next round
+  if (backToDebateBtn) backToDebateBtn.classList.remove("hidden");
+
+  SFX.click();
+  showToast(`Ronda ${state.roundNumber} \u2014 \u00a1A debatir!`);
 }
 
 // ============= ROUND HISTORY =============
@@ -1350,6 +1430,8 @@ startBtn.addEventListener("click", async () => {
       impostorsInput.disabled = true;
       whitesInput.disabled = true;
     }
+    // Hide "Nueva ronda" during active persistent game
+    if (newRoundBtn && state.persistentRoles) newRoundBtn.classList.add("hidden");
     if (roundNumberEl) roundNumberEl.textContent = state.roundNumber;
     finalResult.classList.add("hidden");
     await playSorteoAnimation(state.round.roles);
@@ -1406,11 +1488,13 @@ quitGameBtn.addEventListener("click", () => {
 
 newRoundBtn.addEventListener("click", () => {
   if (state.gameOver) return;
-  // Keep eliminated players, persistent roles, and history for next round (same game session)
-  const eliminated = [...state.eliminatedPlayers];
-  const roundNum = state.roundNumber;
-  const persistent = state.persistentRoles;
-  const history = [...state.roundHistory];
+  // In persistent mode, use seamless transition (no re-deal) — only after a vote
+  if (state.persistentRoles && state.votedPlayer !== null) {
+    startNextRound();
+    return;
+  }
+  if (state.persistentRoles) return; // Don't allow mid-round reset in persistent mode
+  // Non-persistent mode: go back to config
   stopTimer();
   state.round = null;
   state.revealIndex = 0;
@@ -1419,11 +1503,6 @@ newRoundBtn.addEventListener("click", () => {
   state.voteTally = {};
   state.votedPlayer = null;
   state.roundPhase = "debate";
-  state.eliminatedPlayers = eliminated;
-  state.roundNumber = roundNum;
-  state.persistentRoles = persistent;
-  state.roundHistory = history;
-  state.gameOver = false;
   exitGameMode();
   finalResult.classList.add("hidden");
   voteList.innerHTML = "";
