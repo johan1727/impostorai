@@ -2033,6 +2033,26 @@ button {
   background: rgba(255, 71, 87, 0.08);
 }
 
+.result-eliminated-prev {
+  opacity: 0.45;
+  text-decoration: line-through;
+  filter: grayscale(0.6);
+}
+
+.new-game-btn {
+  background: linear-gradient(135deg, #00b894 0%, #00cec9 100%) !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 18px rgba(0, 184, 148, 0.25);
+  animation: pulseGlow 1.8s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 4px 18px rgba(0, 184, 148, 0.25); }
+  50% { box-shadow: 0 4px 28px rgba(0, 184, 148, 0.5); }
+}
+
 /* ============= CUSTOM TIMER INPUT ============= */
 .custom-timer-input {
   display: flex;

@@ -324,6 +324,9 @@ const state = {
   eliminatedPlayers: [],
   gameActive: false,
   persistentRoles: null,
+  persistentSecretWord: "",
+  persistentDecoyWord: "",
+  persistentTheme: "",
   roundHistory: [],
   gameOver: false
 };
@@ -449,8 +452,8 @@ function recordRound(round) {
   s.rounds.push({
     date: new Date().toISOString(),
     theme: round.theme,
-    playerCount: round.roles.length,
-    impostors: round.roles.filter(r => r.role === "impostor").map(r => r.name),
+    playerCount: (round.allRoles || round.roles).length,
+    impostors: (round.allRoles || round.roles).filter(r => r.role === "impostor").map(r => r.name),
     secretWord: round.secretWord,
     decoyWord: round.decoyWord,
     source: round.source
@@ -554,8 +557,9 @@ function addCustomPackFromForm() {
 async function shareResult() {
   if (!state.round) return;
   const tl = themes.find(t => t.key === state.round.theme)?.label || state.round.theme;
-  const imps = state.round.roles.filter(r => r.role === "impostor").map(r => r.name).join(", ");
-  const text = `\ud83d\udd75\ufe0f IMPOSTOR \u2014 Resultado\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udcdd Tema: ${tl}\n\ud83d\udc65 Jugadores: ${state.round.roles.length}\n\ud83c\udfad Impostor: ${imps}\n\ud83d\udd11 Civiles: ${state.round.secretWord}\n\ud83d\udd00 Se\u00f1uelo: ${state.round.decoyWord}\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501`;
+  const allRoles = state.round.allRoles || state.round.roles;
+  const imps = allRoles.filter(r => r.role === "impostor").map(r => r.name).join(", ");
+  const text = `\ud83d\udd75\ufe0f IMPOSTOR \u2014 Resultado\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udcdd Tema: ${tl}\n\ud83d\udc65 Jugadores: ${allRoles.length}\n\ud83c\udfad Impostor: ${imps}\n\ud83d\udd11 Civiles: ${state.round.secretWord}\n\ud83d\udd00 Se\u00f1uelo: ${state.round.decoyWord}\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501`;
   if (navigator.share) {
     try { await navigator.share({ title: "Impostor", text }); } catch {}
   } else {
@@ -710,15 +714,7 @@ function getLocalPack(themeKey, includeAdult) {
 }
 
 async function createRound() {
-  const playerCount = Number(playersInput.value);
-  const impostorCount = Number(impostorsInput.value);
-  const whiteCount = state.showAdvanced ? Number(whitesInput.value) : 0;
   const theme = state.selectedTheme;
-
-  if (playerCount < 3 || playerCount > 24) throw new Error("Jugadores fuera de rango (3-24).");
-  if (impostorCount < 1 || impostorCount > 3) throw new Error("Configura entre 1 y 3 impostores.");
-  if (whiteCount < 0 || whiteCount > 2) throw new Error("Fantasma entre 0 y 2.");
-  if (impostorCount + whiteCount >= playerCount) throw new Error("Impostores + fantasmas debe ser menor que jugadores.");
 
   // If we have persistent roles from a previous round in the same game, reuse them
   if (state.persistentRoles) {
@@ -727,18 +723,30 @@ async function createRound() {
     if (roles.length < 3) throw new Error("No quedan suficientes jugadores activos (m\u00ednimo 3).");
     return {
       createdAt: new Date().toISOString(),
-      theme: state.round?.theme || theme,
-      secretWord: state.round?.secretWord || "",
-      decoyWord: state.round?.decoyWord || "",
+      theme: state.persistentTheme,
+      secretWord: state.persistentSecretWord,
+      decoyWord: state.persistentDecoyWord,
       source: "local",
       roles,
       allRoles
     };
   }
 
+  const playerCount = Number(playersInput.value);
+  const impostorCount = Number(impostorsInput.value);
+  const whiteCount = state.showAdvanced ? Number(whitesInput.value) : 0;
+
+  if (playerCount < 3 || playerCount > 24) throw new Error("Jugadores fuera de rango (3-24).");
+  if (impostorCount < 1 || impostorCount > 3) throw new Error("Configura entre 1 y 3 impostores.");
+  if (whiteCount < 0 || whiteCount > 2) throw new Error("Fantasma entre 0 y 2.");
+  if (impostorCount + whiteCount >= playerCount) throw new Error("Impostores + fantasmas debe ser menor que jugadores.");
+
   const pack = getLocalPack(theme, state.includeAdultTheme);
   const allRoles = buildRoles(playerCount, impostorCount, whiteCount, pack.secretWord, pack.decoyWord);
   state.persistentRoles = allRoles;
+  state.persistentSecretWord = pack.secretWord;
+  state.persistentDecoyWord = pack.decoyWord;
+  state.persistentTheme = theme;
   const roles = allRoles.filter(r => !state.eliminatedPlayers.includes(r.player));
   return { createdAt: new Date().toISOString(), theme, ...pack, roles, allRoles };
 }
@@ -1087,8 +1095,13 @@ function showGameOver(result) {
     }
   }
 
-  // Disable "Nueva ronda" when game is over
-  if (newRoundBtn) newRoundBtn.disabled = true;
+  // Disable "Nueva ronda" when game is over, show "Nueva partida" instead
+  if (newRoundBtn) newRoundBtn.classList.add("hidden");
+  // Change backHomeBtn text to "Nueva partida"
+  if (backHomeBtn) {
+    backHomeBtn.textContent = "\ud83c\udfae Nueva partida";
+    backHomeBtn.classList.add("new-game-btn");
+  }
 }
 
 // ============= ROUND PHASE NAVIGATION =============
@@ -1126,12 +1139,13 @@ function revealFinal() {
       : `<div class="winner-banner winner-impostor">\ud83d\udd75\ufe0f \u00a1El impostor sobrevivi\u00f3! Los civiles fallaron.</div>`;
   }
 
-  const rows = state.round.roles.map(item => {
+  const rows = (state.round.allRoles || state.round.roles).map(item => {
     const cssRole = item.role === "agente fantasma" ? "fantasma" : item.role;
     const visibleRole = item.role === "agente fantasma" ? "Fantasma" : item.role;
     const wasVoted = item.player === state.votedPlayer;
-    const voteIcon = wasVoted ? "\ud83d\uddf3\ufe0f Eliminado" : "";
-    return `<div class="result-row ${wasVoted ? 'result-voted' : ''}"><span>${escapeHtml(item.name)}</span><span><span class="badge ${cssRole}">${escapeHtml(visibleRole)}</span></span><span>${escapeHtml(item.word)}</span><span>${voteIcon}</span></div>`;
+    const wasEliminated = state.eliminatedPlayers.includes(item.player) && !wasVoted;
+    const statusText = wasVoted ? "\ud83d\uddf3\ufe0f Eliminado" : wasEliminated ? "\u274c Eliminado antes" : "";
+    return `<div class="result-row ${wasVoted ? 'result-voted' : ''} ${wasEliminated ? 'result-eliminated-prev' : ''}"><span>${escapeHtml(item.name)}</span><span><span class="badge ${cssRole}">${escapeHtml(visibleRole)}</span></span><span>${escapeHtml(item.word)}</span><span>${statusText}</span></div>`;
   }).join("");
 
   finalResult.innerHTML = `
@@ -1148,8 +1162,10 @@ function revealFinal() {
   finalResult.classList.remove("hidden");
   if (shareResultBtn) shareResultBtn.classList.remove("hidden");
   recordRound(state.round);
-  SFX.fanfare();
-  if (civilsWin) launchConfetti();
+  if (!state.gameOver) {
+    SFX.fanfare();
+    if (civilsWin) launchConfetti();
+  }
 }
 
 // ============= GAME SCREEN MANAGEMENT =============
@@ -1279,6 +1295,9 @@ function resetRound() {
   state.eliminatedPlayers = [];
   state.gameActive = false;
   state.persistentRoles = null;
+  state.persistentSecretWord = "";
+  state.persistentDecoyWord = "";
+  state.persistentTheme = "";
   state.roundHistory = [];
   state.gameOver = false;
   exitGameMode();
@@ -1290,7 +1309,12 @@ function resetRound() {
   if (gameOverPanel) gameOverPanel.classList.add("hidden");
   if (roundHistoryLog) roundHistoryLog.classList.add("hidden");
   if (roundHistoryList) roundHistoryList.innerHTML = "";
-  if (newRoundBtn) newRoundBtn.disabled = false;
+  if (newRoundBtn) { newRoundBtn.disabled = false; newRoundBtn.classList.remove("hidden"); }
+  if (backHomeBtn) { backHomeBtn.textContent = "\ud83c\udfe0 Volver al inicio"; backHomeBtn.classList.remove("new-game-btn"); }
+  // Re-enable config inputs
+  playersInput.disabled = false;
+  impostorsInput.disabled = false;
+  whitesInput.disabled = false;
   timerDisplay.classList.remove("timer-urgent", "timer-finished");
   setRoundStatus("");
   setRoundPhase("debate");
@@ -1320,6 +1344,12 @@ startBtn.addEventListener("click", async () => {
     state.revealIndex = 0;
     state.roundNumber += 1;
     state.gameActive = true;
+    // Lock config inputs once persistent game starts
+    if (state.persistentRoles) {
+      playersInput.disabled = true;
+      impostorsInput.disabled = true;
+      whitesInput.disabled = true;
+    }
     if (roundNumberEl) roundNumberEl.textContent = state.roundNumber;
     finalResult.classList.add("hidden");
     await playSorteoAnimation(state.round.roles);
