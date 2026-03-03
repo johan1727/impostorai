@@ -586,7 +586,7 @@ function toggleVisualTheme() {
 }
 
 // ============= SERVICE WORKER =============
-if ("serviceWorker" in navigator) {
+if (false && "serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("/sw.js").catch(() => {});
   });
@@ -1371,6 +1371,7 @@ function resetRound() {
   state.timerSeconds = state.timerTotalSeconds;
   state.voteTally = {};
   state.votedPlayer = null;
+  state.roundNumber = 0;
   state.roundPhase = "debate";
   state.eliminatedPlayers = [];
   state.gameActive = false;
@@ -1382,6 +1383,9 @@ function resetRound() {
   state.gameOver = false;
   exitGameMode();
   finalResult.classList.add("hidden");
+  // Clean up eliminated badge (lives as sibling of voteList)
+  const oldBadge = document.querySelector(".eliminated-badge");
+  if (oldBadge) oldBadge.remove();
   voteList.innerHTML = "";
   voteResult.classList.add("hidden");
   voteResult.textContent = "";
