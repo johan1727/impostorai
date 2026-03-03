@@ -287,6 +287,10 @@ const resultPhase = document.getElementById("resultPhase");
 const goToVoteBtn = document.getElementById("goToVoteBtn");
 const backToDebateBtn = document.getElementById("backToDebateBtn");
 const roundSteps = document.querySelectorAll(".round-step");
+const roundHistoryLog = document.getElementById("roundHistoryLog");
+const roundHistoryList = document.getElementById("roundHistoryList");
+const gameOverPanel = document.getElementById("gameOverPanel");
+const gameOverContent = document.getElementById("gameOverContent");
 
 // ============= STATE =============
 const NAMES_KEY = "impostorNamesV1";
@@ -318,7 +322,10 @@ const state = {
   roundNumber: 0,
   roundPhase: "debate",
   eliminatedPlayers: [],
-  gameActive: false
+  gameActive: false,
+  persistentRoles: null,
+  roundHistory: [],
+  gameOver: false
 };
 
 function loadSavedNames() {
@@ -713,11 +720,25 @@ async function createRound() {
   if (whiteCount < 0 || whiteCount > 2) throw new Error("Fantasma entre 0 y 2.");
   if (impostorCount + whiteCount >= playerCount) throw new Error("Impostores + fantasmas debe ser menor que jugadores.");
 
-  const activePlayers = playerCount - state.eliminatedPlayers.length;
-  if (activePlayers < 3) throw new Error("No quedan suficientes jugadores activos (m\u00ednimo 3).");
+  // If we have persistent roles from a previous round in the same game, reuse them
+  if (state.persistentRoles) {
+    const allRoles = state.persistentRoles;
+    const roles = allRoles.filter(r => !state.eliminatedPlayers.includes(r.player));
+    if (roles.length < 3) throw new Error("No quedan suficientes jugadores activos (m\u00ednimo 3).");
+    return {
+      createdAt: new Date().toISOString(),
+      theme: state.round?.theme || theme,
+      secretWord: state.round?.secretWord || "",
+      decoyWord: state.round?.decoyWord || "",
+      source: "local",
+      roles,
+      allRoles
+    };
+  }
 
   const pack = getLocalPack(theme, state.includeAdultTheme);
   const allRoles = buildRoles(playerCount, impostorCount, whiteCount, pack.secretWord, pack.decoyWord);
+  state.persistentRoles = allRoles;
   const roles = allRoles.filter(r => !state.eliminatedPlayers.includes(r.player));
   return { createdAt: new Date().toISOString(), theme, ...pack, roles, allRoles };
 }
@@ -925,18 +946,22 @@ function selectPlayerToEliminate(selectedRole, selectedCard) {
   state.eliminatedPlayers.push(selectedRole.player);
   SFX.click();
 
-  // Mark all cards
+  // Dramatic elimination animation
   const allCards = voteList.querySelectorAll(".vote-player-card");
   allCards.forEach(c => {
-    c.classList.add("vote-disabled");
     if (c.dataset.player === String(selectedRole.player)) {
-      c.classList.add("vote-selected");
+      c.classList.add("vote-eliminating");
+    } else {
+      c.classList.add("vote-others-fade");
     }
   });
 
-  // Show result after short delay
+  // Add to round history
+  const isImpostor = selectedRole.role === "impostor";
+  addRoundHistoryEntry(state.roundNumber, selectedRole.name, selectedRole.role, isImpostor);
+
+  // Show result after elimination animation completes
   setTimeout(() => {
-    const isImpostor = selectedRole.role === "impostor";
     voteResult.classList.remove("hidden");
 
     if (isImpostor) {
@@ -964,14 +989,106 @@ function selectPlayerToEliminate(selectedRole, selectedCard) {
         </div>`;
     }
 
-    // After voting, transition to result phase
-    setTimeout(() => setRoundPhase("result"), 1500);
-  }, 600);
+    // Check game-over condition
+    const gameOverResult = checkGameOver();
+    if (gameOverResult) {
+      setTimeout(() => showGameOver(gameOverResult), 1800);
+    } else {
+      setTimeout(() => setRoundPhase("result"), 1500);
+    }
+  }, 900);
 }
 
-function calculateVotes() {
-  // Legacy compatibility — no longer needed with card-based voting
-  return;
+// ============= ROUND HISTORY =============
+function addRoundHistoryEntry(roundNum, playerName, role, wasImpostor) {
+  const entry = { roundNum, playerName, role, wasImpostor };
+  state.roundHistory.push(entry);
+  renderRoundHistory();
+}
+
+function renderRoundHistory() {
+  if (!roundHistoryLog || !roundHistoryList) return;
+  if (state.roundHistory.length === 0) {
+    roundHistoryLog.classList.add("hidden");
+    return;
+  }
+  roundHistoryLog.classList.remove("hidden");
+  roundHistoryList.innerHTML = state.roundHistory.map(e => {
+    const cls = e.wasImpostor ? "log-success" : "log-fail";
+    const icon = e.wasImpostor ? "\ud83c\udf89" : "\ud83d\udeab";
+    const roleLabel = e.role === "impostor" ? "impostor" : e.role === "agente fantasma" ? "fantasma" : "civil";
+    return `<div class="history-log-entry ${cls}"><span class="history-log-round">Ronda ${e.roundNum}</span><span>${icon} Eliminaron a <strong>${escapeHtml(e.playerName)}</strong> (${roleLabel})</span></div>`;
+  }).join("");
+}
+
+// ============= GAME OVER DETECTION =============
+function checkGameOver() {
+  if (!state.persistentRoles) return null;
+  const alive = state.persistentRoles.filter(r => !state.eliminatedPlayers.includes(r.player));
+  const aliveImpostors = alive.filter(r => r.role === "impostor");
+  const aliveCivils = alive.filter(r => r.role !== "impostor");
+
+  if (aliveImpostors.length === 0) {
+    return { winner: "civils", rounds: state.roundNumber, eliminated: state.eliminatedPlayers.length, totalPlayers: state.persistentRoles.length };
+  }
+  if (aliveImpostors.length >= aliveCivils.length) {
+    return { winner: "impostor", rounds: state.roundNumber, eliminated: state.eliminatedPlayers.length, totalPlayers: state.persistentRoles.length };
+  }
+  if (alive.length < 3) {
+    return aliveImpostors.length > 0
+      ? { winner: "impostor", rounds: state.roundNumber, eliminated: state.eliminatedPlayers.length, totalPlayers: state.persistentRoles.length }
+      : { winner: "civils", rounds: state.roundNumber, eliminated: state.eliminatedPlayers.length, totalPlayers: state.persistentRoles.length };
+  }
+  return null;
+}
+
+function showGameOver(result) {
+  state.gameOver = true;
+  setRoundPhase("result");
+
+  // Add game-over entry to history
+  const histEntry = document.createElement("div");
+  histEntry.className = "history-log-entry log-gameover";
+  histEntry.innerHTML = result.winner === "civils"
+    ? `<span>\ud83c\udfc6 \u00a1Partida terminada! Los civiles ganaron en ${result.rounds} rondas</span>`
+    : `<span>\ud83d\udd75\ufe0f \u00a1Partida terminada! El impostor sobrevivi\u00f3 tras ${result.rounds} rondas</span>`;
+  if (roundHistoryList) roundHistoryList.appendChild(histEntry);
+
+  // Show game-over panel
+  if (gameOverPanel && gameOverContent) {
+    gameOverPanel.classList.remove("hidden");
+    const cls = result.winner === "civils" ? "civils-win" : "impostor-win";
+    gameOverContent.className = `game-over-content ${cls}`;
+
+    if (result.winner === "civils") {
+      SFX.fanfare();
+      launchConfetti();
+      setTimeout(() => launchConfetti(), 800);
+      gameOverContent.innerHTML = `
+        <div class="game-over-emoji">\ud83c\udfc6</div>
+        <h2 class="game-over-title">\u00a1Civiles ganan!</h2>
+        <p class="game-over-subtitle">Todos los impostores fueron descubiertos</p>
+        <div class="game-over-stats">
+          <div class="game-over-stat"><span class="game-over-stat-value">${result.rounds}</span><span class="game-over-stat-label">Rondas</span></div>
+          <div class="game-over-stat"><span class="game-over-stat-value">${result.eliminated}</span><span class="game-over-stat-label">Eliminados</span></div>
+          <div class="game-over-stat"><span class="game-over-stat-value">${result.totalPlayers}</span><span class="game-over-stat-label">Jugadores</span></div>
+        </div>`;
+    } else {
+      SFX.alarm();
+      gameOverContent.innerHTML = `
+        <div class="game-over-emoji">\ud83d\udd75\ufe0f</div>
+        <h2 class="game-over-title">\u00a1El impostor gana!</h2>
+        <p class="game-over-subtitle">Los impostores superaron a los civiles</p>
+        <div class="game-over-stats">
+          <div class="game-over-stat"><span class="game-over-stat-value">${result.rounds}</span><span class="game-over-stat-label">Rondas</span></div>
+          <div class="game-over-stat"><span class="game-over-stat-value">${result.eliminated}</span><span class="game-over-stat-label">Eliminados</span></div>
+          <div class="game-over-stat"><span class="game-over-stat-value">${result.totalPlayers}</span><span class="game-over-stat-label">Jugadores</span></div>
+        </div>`;
+    }
+  }
+
+  // Disable "Nueva ronda" when game is over
+  if (newRoundBtn) newRoundBtn.disabled = true;
 }
 
 // ============= ROUND PHASE NAVIGATION =============
@@ -1161,12 +1278,19 @@ function resetRound() {
   state.roundPhase = "debate";
   state.eliminatedPlayers = [];
   state.gameActive = false;
+  state.persistentRoles = null;
+  state.roundHistory = [];
+  state.gameOver = false;
   exitGameMode();
   finalResult.classList.add("hidden");
   voteList.innerHTML = "";
   voteResult.classList.add("hidden");
   voteResult.textContent = "";
   if (shareResultBtn) shareResultBtn.classList.add("hidden");
+  if (gameOverPanel) gameOverPanel.classList.add("hidden");
+  if (roundHistoryLog) roundHistoryLog.classList.add("hidden");
+  if (roundHistoryList) roundHistoryList.innerHTML = "";
+  if (newRoundBtn) newRoundBtn.disabled = false;
   timerDisplay.classList.remove("timer-urgent", "timer-finished");
   setRoundStatus("");
   setRoundPhase("debate");
@@ -1234,6 +1358,7 @@ revealAllBtn.addEventListener("click", revealFinal);
 resetBtn.addEventListener("click", resetRound);
 
 goToVoteBtn.addEventListener("click", () => {
+  stopTimer();
   setRoundPhase("vote");
   SFX.click();
 });
@@ -1250,9 +1375,12 @@ quitGameBtn.addEventListener("click", () => {
 });
 
 newRoundBtn.addEventListener("click", () => {
-  // Keep eliminated players for next round (same game session)
+  if (state.gameOver) return;
+  // Keep eliminated players, persistent roles, and history for next round (same game session)
   const eliminated = [...state.eliminatedPlayers];
   const roundNum = state.roundNumber;
+  const persistent = state.persistentRoles;
+  const history = [...state.roundHistory];
   stopTimer();
   state.round = null;
   state.revealIndex = 0;
@@ -1263,12 +1391,16 @@ newRoundBtn.addEventListener("click", () => {
   state.roundPhase = "debate";
   state.eliminatedPlayers = eliminated;
   state.roundNumber = roundNum;
+  state.persistentRoles = persistent;
+  state.roundHistory = history;
+  state.gameOver = false;
   exitGameMode();
   finalResult.classList.add("hidden");
   voteList.innerHTML = "";
   voteResult.classList.add("hidden");
   voteResult.textContent = "";
   if (shareResultBtn) shareResultBtn.classList.add("hidden");
+  if (gameOverPanel) gameOverPanel.classList.add("hidden");
   timerDisplay.classList.remove("timer-urgent", "timer-finished");
   setRoundStatus("");
   setRoundPhase("debate");
