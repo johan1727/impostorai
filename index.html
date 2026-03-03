@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Juego de deducción social tipo Impostor. Pasa el celular, revela tu rol y descubre al traidor. 13 temas, modo IA y 800+ palabras." />
+    <meta name="theme-color" content="#060b2e" />
+    <meta property="og:title" content="Impostor - Juego de Palabras Secretas" />
+    <meta property="og:description" content="Party game local de deducción social. Descubre al impostor entre tus amigos." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕵️</text></svg>" />
+    <title>Impostor — Juego de Palabras Secretas</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div class="bg-orbs" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <canvas id="particleCanvas" class="particle-canvas" aria-hidden="true"></canvas>
+    <main class="app">
+      <header class="header">
+        <div class="header-left">
+          <h1 class="logo">IMPOSTOR</h1>
+          <span class="logo-badge">LOCAL</span>
+        </div>
+        <button id="fullscreenBtn" type="button" class="icon-btn" aria-label="Pantalla completa">⛶</button>
+      </header>
+
+      <nav class="nav-bar" aria-label="Menú principal">
+        <button id="menuHomeBtn" class="nav-tab active" type="button">
+          <span class="nav-icon">🏠</span> Inicio
+        </button>
+        <button id="menuPlayBtn" class="nav-tab" type="button">
+          <span class="nav-icon">🎮</span> Jugar
+        </button>
+        <button id="menuHelpBtn" class="nav-tab" type="button">
+          <span class="nav-icon">❓</span> Ayuda
+        </button>
+      </nav>
+
+      <section id="menuSection" class="home-screen">
+        <div class="play-hero">
+          <div class="play-hero-icon">🕵️</div>
+          <div class="play-hero-text">
+            <h2>Juego de palabras secretas</h2>
+            <p>Pasa el celular, revela tu rol y descubre al impostor.</p>
+          </div>
+          <button id="menuStartBtn" class="play-btn" type="button">
+            ▶ Nueva partida
+          </button>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="feature-icon">🎲</span>
+            <strong>800+</strong>
+            <span>Palabras gratis</span>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🤖</span>
+            <strong>IA</strong>
+            <span>Genera packs nuevos</span>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">📱</span>
+            <strong>Local</strong>
+            <span>Sin internet</span>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🎭</span>
+            <strong>13</strong>
+            <span>Temas disponibles</span>
+          </div>
+        </div>
+
+        <div class="quick-how">
+          <h3>⚡ Rápido: ¿cómo se juega?</h3>
+          <ol>
+            <li><strong>Configura</strong> jugadores, impostores y tema.</li>
+            <li><strong>Reparte</strong> roles pasando el cel por turnos.</li>
+            <li><strong>Debate</strong> y vota al sospechoso.</li>
+          </ol>
+          <button id="menuHowToBtn" class="link-btn" type="button">Ver reglas completas →</button>
+        </div>
+      </section>
+
+      <section id="controlsSection" class="card controls hidden">
+        <h2 class="section-title">⚙ Configuración</h2>
+        <p class="random-note">🌀 El impostor y fantasma se reparten aleatoriamente en cada ronda.</p>
+
+        <div class="grid">
+          <label>
+            Jugadores (3-24)
+            <input id="players" type="number" min="3" max="24" value="6" />
+          </label>
+
+          <label>
+            Impostores
+            <input id="impostors" type="number" min="1" max="3" value="1" />
+          </label>
+        </div>
+
+        <div class="player-names-section">
+          <button id="toggleNamesBtn" type="button" class="link-btn">✏️ Personalizar nombres</button>
+          <div id="playerNamesContainer" class="player-names hidden"></div>
+        </div>
+
+        <button id="toggleAdvancedBtn" type="button" class="link-btn">⚙ Opciones avanzadas</button>
+
+        <div id="advancedOptions" class="advanced-options hidden">
+          <label>
+            Fantasma (sin palabra)
+            <input id="whites" type="number" min="0" max="2" value="0" />
+            <span class="help-text">Modo avanzado: jugador sin información que debe improvisar.</span>
+          </label>
+        </div>
+
+        <h3 class="subsection-title">Tema</h3>
+        <div id="themeChips" class="theme-chips" role="radiogroup" aria-label="Tema de la ronda"></div>
+        <label class="check-line">
+          <input id="adultThemesToggle" type="checkbox" />
+          <span>Incluir tema +18 🔥</span>
+        </label>
+
+        <div class="ai-box">
+          <h3 class="subsection-title">Modo de juego</h3>
+          <div class="mode-switch" role="radiogroup" aria-label="Modo de juego">
+            <label class="mode-pill">
+              <input id="modeLocal" type="radio" name="gameMode" value="local" checked />
+              <span>Sin IA</span>
+            </label>
+            <label class="mode-pill">
+              <input id="modeAi" type="radio" name="gameMode" value="ai" />
+              <span>Con IA</span>
+            </label>
+          </div>
+          <p id="ai-description" class="help-text">Con IA genera packs nuevos y los cachea para reducir costo.</p>
+
+          <div id="aiIndicator" class="mode-indicator" aria-live="polite">
+            <span class="indicator-dot"></span>
+            <span id="aiIndicatorText">Modo: Local</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="startBtn" class="primary-action">
+            <span>Iniciar ronda</span>
+          </button>
+          <button id="resetBtn" class="secondary">Reiniciar</button>
+        </div>
+
+        <div id="statusBox" class="status-box hidden" role="status" aria-live="polite">
+          <span id="statusIcon" class="status-icon"></span>
+          <p id="status" class="status"></p>
+        </div>
+      </section>
+
+      <section id="helpSection" class="card hidden">
+        <h2 class="section-title">❓ Cómo se juega</h2>
+        <ol class="help-list">
+          <li>Configura jugadores, impostores y tema.</li>
+          <li>Inicia ronda y pasa el celular al Jugador 1.</li>
+          <li>Cada jugador revela su rol con swipe y vuelve a taparlo.</li>
+          <li>Debatan, voten y revela resultado final.</li>
+        </ol>
+      </section>
+
+      <section id="sorteoSection" class="sorteo-overlay hidden">
+        <div class="sorteo-content">
+          <div class="sorteo-icon">🎰</div>
+          <h2 class="sorteo-title">Asignando roles...</h2>
+          <div class="sorteo-cards" id="sorteoCards"></div>
+          <p class="sorteo-sub">Mezclando aleatoriamente</p>
+        </div>
+      </section>
+
+      <div id="gameScreen" class="game-screen hidden">
+        <div class="game-header">
+          <button id="quitGameBtn" type="button" class="game-back-btn">← Salir</button>
+          <div class="game-header-info">
+            <span id="gamePhaseLabel" class="game-phase">Reparto</span>
+          </div>
+          <div id="gameProgress" class="game-progress">
+            <div id="gameProgressBar" class="game-progress-bar" style="width:0%"></div>
+          </div>
+        </div>
+
+        <section id="dealSection" class="game-panel">
+          <div class="game-panel-title">
+            <span>🕶</span>
+            <h2>Reparto privado</h2>
+            <span id="dealCounter" class="deal-counter"></span>
+          </div>
+
+        <div id="handoffScreen" class="handoff-screen">
+          <p id="dealHint" class="deal-hint"></p>
+          <button id="readyBtn" class="primary-action" type="button">Estoy listo</button>
+        </div>
+
+        <div id="swipeScreen" class="swipe-screen hidden">
+          <div class="swipe-sensitivity" role="group" aria-label="Sensibilidad de swipe">
+            <span>Sensibilidad:</span>
+            <button class="swipe-level active" data-swipe-level="suave" type="button">Suave</button>
+            <button class="swipe-level" data-swipe-level="normal" type="button">Normal</button>
+            <button class="swipe-level" data-swipe-level="estricto" type="button">Estricto</button>
+          </div>
+          <div id="swipeTrack" class="swipe-track" aria-label="Desliza para revelar">
+            <div id="roleCard" class="role-card" role="region" aria-label="Información del rol"></div>
+            <div id="revealOverlay" class="reveal-overlay">
+              <p>Desliza hacia arriba para ver tu rol</p>
+              <span>↑</span>
+            </div>
+          </div>
+          <button id="nextBtn" class="primary-action hidden" type="button">Entendido ✓</button>
+          <button id="coverBtn" class="secondary hidden" type="button">Tapar rol</button>
+        </div>
+
+        <div class="deal-privacy-note">
+          <p>Solo juego local: no hay online. Mantén el teléfono inclinado hacia ti al revelar.</p>
+        </div>
+      </section>
+
+      <section id="roundSection" class="game-panel hidden">
+        <div class="game-panel-title">
+          <span>💬</span>
+          <h2>Discusión y voto</h2>
+        </div>
+        <div class="round-tools">
+          <section class="tool-card">
+            <h3>Temporizador</h3>
+            <div class="timer-presets" role="group" aria-label="Minutos de discusión">
+              <button class="timer-preset" data-minutes="2" type="button">2 min</button>
+              <button class="timer-preset" data-minutes="3" type="button">3 min</button>
+              <button class="timer-preset" data-minutes="5" type="button">5 min</button>
+            </div>
+            <p id="timerDisplay" class="timer-display">02:00</p>
+            <div class="timer-actions">
+              <button id="startTimerBtn" type="button">Iniciar</button>
+              <button id="pauseTimerBtn" type="button" class="secondary">Pausar</button>
+              <button id="resetTimerBtn" type="button" class="secondary">Reset</button>
+            </div>
+            <p id="roundStatus" class="round-status" aria-live="polite"></p>
+          </section>
+
+          <section class="tool-card">
+            <h3>Votación</h3>
+            <p class="help-text">Marca al sospechoso de cada jugador y calcula al más votado.</p>
+            <div id="voteList" class="vote-list" aria-live="polite"></div>
+            <button id="calculateVotesBtn" type="button" class="primary-action">Calcular resultado</button>
+            <p id="voteResult" class="vote-result hidden"></p>
+          </section>
+        </div>
+
+        <div class="instructions-box">
+          <h3>Reglas de la ronda</h3>
+          <ol>
+            <li><strong>Pista:</strong> Da una pista corta sin decir la palabra literal.</li>
+            <li><strong>Debate:</strong> Escucha contradicciones y comportamientos raros.</li>
+            <li><strong>Vota:</strong> Elige al jugador más sospechoso.</li>
+          </ol>
+        </div>
+        <div class="round-actions">
+          <button id="revealAllBtn" class="primary-action">
+            <span>Revelar resultado final</span>
+          </button>
+        </div>
+        <div id="finalResult" class="final-result hidden"></div>
+
+        <div class="round-actions" style="margin-top:10px">
+          <button id="newRoundBtn" class="secondary" type="button">🔄 Nueva ronda</button>
+          <button id="backHomeBtn" class="secondary" type="button">🏠 Volver al inicio</button>
+        </div>
+      </section>
+      </div><!-- /gameScreen -->
+
+      <footer class="app-footer">
+        <span>Impostor v0.1.0</span>
+        <span class="footer-dot">·</span>
+        <span>Party game local</span>
+      </footer>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
