@@ -742,73 +742,6 @@ input:focus, select:focus, button:focus-visible {
 
 .check-line input { width: 16px; height: 16px; }
 
-/* ============= MODE SWITCH ============= */
-.ai-box {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border);
-  display: grid;
-  gap: 6px;
-}
-
-.mode-switch {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 5px;
-}
-
-.mode-pill { position: relative; }
-
-.mode-pill input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.mode-pill span {
-  display: block;
-  text-align: center;
-  border: 1px solid var(--border);
-  border-radius: var(--r-pill);
-  background: rgba(12, 20, 64, 0.85);
-  color: var(--text3);
-  font-size: 0.76rem;
-  font-weight: 700;
-  padding: 8px;
-  cursor: pointer;
-  transition: all 0.12s;
-}
-
-.mode-pill input:checked + span {
-  border-color: var(--accent);
-  color: #fff;
-  background: rgba(91, 127, 255, 0.2);
-}
-
-.mode-indicator {
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  background: rgba(8, 14, 48, 0.6);
-  padding: 7px 10px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: var(--text2);
-}
-
-.indicator-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green);
-}
-
-.mode-indicator.ai-active .indicator-dot {
-  background: var(--accent);
-}
-
 /* ============= BUTTONS ============= */
 button {
   border: 0;
@@ -1017,7 +950,7 @@ button {
   100% { text-shadow: 0 2px 20px var(--accent-glow), 0 0 60px rgba(107, 138, 255, 0.25); }
 }
 
-.role-tip, .role-context {
+.role-tip {
   margin: 0;
   color: var(--text2);
   font-size: 0.78rem;
@@ -1314,29 +1247,13 @@ button {
 .sorteo-card.sorted {
   animation: cardReveal 0.35s ease forwards;
   border-color: var(--accent);
+  background: rgba(91, 127, 255, 0.1);
+  color: #a0b8ff;
 }
 
 @keyframes cardReveal {
   0% { transform: scale(0.8) rotateY(90deg); opacity: 0.4; }
   100% { transform: scale(1) rotateY(0deg); opacity: 1; }
-}
-
-.sorteo-card.sorted.impostor-card {
-  border-color: var(--red);
-  background: rgba(255, 71, 87, 0.12);
-  color: #ffa3a9;
-}
-
-.sorteo-card.sorted.ghost-card {
-  border-color: #8b5cf6;
-  background: rgba(139, 92, 246, 0.12);
-  color: #c4a8ff;
-}
-
-.sorteo-card.sorted.civil-card {
-  border-color: var(--green);
-  background: rgba(46, 213, 115, 0.1);
-  color: #7ee8a8;
 }
 
 .sorteo-sub {
@@ -1570,6 +1487,72 @@ button {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(107, 138, 255, 0.35);
+}
+
+/* ============= REVEAL FINAL BUTTON ============= */
+.reveal-final-btn {
+  background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+  color: #fff;
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: var(--r-sm);
+  border: 1px solid rgba(255, 71, 87, 0.4);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.82rem;
+}
+
+.reveal-final-btn:hover {
+  background: linear-gradient(135deg, #ff6b81 0%, #ff4757 100%);
+  box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3);
+  transform: translateY(-1px);
+}
+
+.reveal-final-btn:active {
+  transform: translateY(0);
+}
+
+/* ============= HELP ROLES ============= */
+.help-roles {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.help-role {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--surface-glass);
+  backdrop-filter: blur(8px);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text2);
+}
+
+.help-role span:first-child {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.help-role strong {
+  color: var(--text1);
+}
+
+.help-tip {
+  margin-top: 8px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--accent);
+  background: rgba(91, 127, 255, 0.06);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-size: 0.78rem;
+  color: var(--text2);
+  line-height: 1.4;
 }
 
 /* ============= SELECTION ============= */

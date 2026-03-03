@@ -106,80 +106,182 @@ const localWords = {
     ["wifi", "bluetooth"],
     ["mango", "papaya"],
     ["biblioteca", "museo"],
-    ["satélite", "cohete"]
+    ["satélite", "cohete"],
+    ["espejo", "ventana"],
+    ["semáforo", "señal de tránsito"],
+    ["meteorito", "cometa"],
+    ["brújula", "mapa"],
+    ["submarino", "barco"],
+    ["castillo", "fortaleza"],
+    ["diamante", "rubí"]
   ],
   comida: [
     ["pizza", "lasaña"],
     ["taco", "burrito"],
     ["café", "té"],
-    ["sushi", "ramen"]
+    ["sushi", "ramen"],
+    ["hamburguesa", "hot dog"],
+    ["helado", "paleta"],
+    ["croissant", "donut"],
+    ["paella", "risotto"],
+    ["empanada", "arepa"],
+    ["chocolate", "caramelo"],
+    ["pancake", "waffle"],
+    ["ceviche", "sashimi"]
   ],
   lugares: [
     ["aeropuerto", "terminal"],
     ["hospital", "clínica"],
     ["playa", "isla"],
-    ["escuela", "universidad"]
+    ["escuela", "universidad"],
+    ["parque", "jardín"],
+    ["estadio", "arena"],
+    ["iglesia", "catedral"],
+    ["supermercado", "tienda"],
+    ["cine", "teatro"],
+    ["gimnasio", "spa"],
+    ["zoológico", "acuario"],
+    ["metro", "estación de tren"]
   ],
   objetos: [
     ["teclado", "ratón"],
     ["paraguas", "impermeable"],
     ["linterna", "vela"],
-    ["reloj", "cronómetro"]
+    ["reloj", "cronómetro"],
+    ["mochila", "maleta"],
+    ["tijeras", "cuchillo"],
+    ["lentes", "lupa"],
+    ["almohada", "cobija"],
+    ["cargador", "batería"],
+    ["cámara", "telescopio"],
+    ["candado", "llave"],
+    ["cepillo", "peine"]
   ],
   tecnologia: [
     ["nube", "servidor"],
     ["robot", "drone"],
     ["python", "javascript"],
-    ["token", "contraseña"]
+    ["token", "contraseña"],
+    ["bluetooth", "wifi"],
+    ["pixel", "vector"],
+    ["laptop", "tablet"],
+    ["algoritmo", "código"],
+    ["VPN", "firewall"],
+    ["GPS", "radar"],
+    ["USB", "HDMI"],
+    ["inteligencia artificial", "machine learning"]
   ],
   deportes: [
     ["fútbol", "rugby"],
     ["natación", "waterpolo"],
     ["tenis", "bádminton"],
-    ["boxeo", "karate"]
+    ["boxeo", "karate"],
+    ["baloncesto", "voleibol"],
+    ["ciclismo", "patinaje"],
+    ["golf", "billar"],
+    ["surf", "kayak"],
+    ["esgrima", "arco"],
+    ["maratón", "triatlón"],
+    ["skateboard", "snowboard"],
+    ["polo", "equitación"]
   ],
   animales: [
     ["gato", "león"],
     ["águila", "halcón"],
     ["delfín", "tiburón"],
-    ["abeja", "avispa"]
+    ["abeja", "avispa"],
+    ["lobo", "zorro"],
+    ["tortuga", "cocodrilo"],
+    ["pingüino", "foca"],
+    ["caballo", "cebra"],
+    ["oso", "panda"],
+    ["serpiente", "lagarto"],
+    ["búho", "murciélago"],
+    ["hormiga", "araña"]
   ],
   profesiones: [
     ["doctor", "enfermero"],
     ["abogado", "juez"],
     ["chef", "pastelero"],
-    ["piloto", "astronauta"]
+    ["piloto", "astronauta"],
+    ["bombero", "policía"],
+    ["profesor", "tutor"],
+    ["arquitecto", "ingeniero"],
+    ["fotógrafo", "camarógrafo"],
+    ["dentista", "cirujano"],
+    ["periodista", "reportero"],
+    ["programador", "diseñador"],
+    ["detective", "espía"]
   ],
   peliculas: [
     ["terror", "suspenso"],
     ["comedia", "parodia"],
     ["marvel", "dc"],
-    ["pixar", "dreamworks"]
+    ["pixar", "dreamworks"],
+    ["ciencia ficción", "fantasía"],
+    ["documental", "biografía"],
+    ["anime", "cartoon"],
+    ["star wars", "star trek"],
+    ["harry potter", "señor de los anillos"],
+    ["batman", "spiderman"],
+    ["netflix", "disney+"],
+    ["acción", "aventura"]
   ],
   musica: [
     ["guitarra", "bajo"],
     ["reggaetón", "trap"],
     ["piano", "órgano"],
-    ["rock", "punk"]
+    ["rock", "punk"],
+    ["salsa", "cumbia"],
+    ["ópera", "musical"],
+    ["DJ", "productor"],
+    ["batería", "bongó"],
+    ["rap", "hip hop"],
+    ["violín", "chelo"],
+    ["jazz", "blues"],
+    ["spotify", "apple music"]
   ],
   historia: [
     ["egipto", "roma"],
     ["revolución", "independencia"],
     ["medieval", "renacimiento"],
-    ["samurái", "ninja"]
+    ["samurái", "ninja"],
+    ["vikingo", "pirata"],
+    ["azteca", "maya"],
+    ["napoleón", "alejandro magno"],
+    ["guerra fría", "guerra mundial"],
+    ["colonia", "imperio"],
+    ["momia", "fósil"],
+    ["gladiador", "caballero"],
+    ["faraón", "emperador"]
   ],
   naturaleza: [
     ["volcán", "géiser"],
     ["tsunami", "huracán"],
     ["bosque", "selva"],
-    ["río", "cascada"]
+    ["río", "cascada"],
+    ["aurora boreal", "arcoíris"],
+    ["terremoto", "avalancha"],
+    ["desierto", "sabana"],
+    ["glaciar", "iceberg"],
+    ["luna", "sol"],
+    ["coral", "alga"],
+    ["cueva", "cañón"],
+    ["nieve", "granizo"]
   ],
   adulto: [
     ["tequila", "mezcal"],
     ["reggaetón", "perreo"],
     ["resaca", "cruda"],
     ["strip poker", "verdad o reto"],
-    ["ligue", "cita"]
+    ["ligue", "cita"],
+    ["after party", "peda"],
+    ["shot", "chupito"],
+    ["karaoke", "antro"],
+    ["cerveza", "michelada"],
+    ["brindis", "celebración"],
+    ["vodka", "ginebra"],
+    ["botella", "hookah"]
   ]
 };
 
@@ -199,8 +301,6 @@ const themes = [
   { key: "adulto", label: "+18 🔥", adult: true }
 ];
 
-const AI_CACHE_KEY = "impostorAiCacheV1";
-
 const playersInput = document.getElementById("players");
 const impostorsInput = document.getElementById("impostors");
 const whitesInput = document.getElementById("whites");
@@ -208,12 +308,8 @@ const toggleAdvancedBtn = document.getElementById("toggleAdvancedBtn");
 const advancedOptions = document.getElementById("advancedOptions");
 const themeChips = document.getElementById("themeChips");
 const adultThemesToggle = document.getElementById("adultThemesToggle");
-const modeLocalInput = document.getElementById("modeLocal");
-const modeAiInput = document.getElementById("modeAi");
 const statusBox = document.getElementById("statusBox");
 const statusEl = document.getElementById("status");
-const aiIndicator = document.getElementById("aiIndicator");
-const aiIndicatorText = document.getElementById("aiIndicatorText");
 const menuSection = document.getElementById("menuSection");
 const controlsSection = document.getElementById("controlsSection");
 const helpSection = document.getElementById("helpSection");
@@ -270,7 +366,6 @@ const state = {
   round: null,
   revealIndex: 0,
   roleIsVisible: false,
-  modeIsAi: false,
   selectedTheme: "aleatorio",
   includeAdultTheme: false,
   showAdvanced: false,
@@ -286,8 +381,7 @@ const state = {
   swipeOffset: 0,
   swipeSensitivity: "suave",
   playerNames: [],
-  showNames: false,
-  aiCache: loadAiCache()
+  showNames: false
 };
 
 function setStatus(text, type = "success") {
@@ -433,79 +527,8 @@ function getLocalPack(themeKey, includeAdult) {
   return {
     secretWord: pair[0],
     decoyWord: pair[1],
-    aiContext: "",
     source: "local"
   };
-}
-
-function loadAiCache() {
-  try {
-    const raw = sessionStorage.getItem(AI_CACHE_KEY);
-    if (!raw) return new Map();
-    const parsed = JSON.parse(raw);
-    return new Map(Object.entries(parsed));
-  } catch {
-    return new Map();
-  }
-}
-
-function saveAiCache() {
-  const plain = Object.fromEntries(state.aiCache.entries());
-  sessionStorage.setItem(AI_CACHE_KEY, JSON.stringify(plain));
-}
-
-function getCacheKey(themeKey, includeAdult) {
-  return `${themeKey}|adult:${includeAdult ? "1" : "0"}`;
-}
-
-function pullFromCache(cacheKey) {
-  const current = state.aiCache.get(cacheKey);
-  if (!Array.isArray(current) || current.length === 0) return null;
-  const picked = current.shift();
-  state.aiCache.set(cacheKey, current);
-  saveAiCache();
-  return picked;
-}
-
-async function fetchAiBatch({ theme, includeAdult, count = 5 }) {
-  const response = await fetch("/api/word-pack", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ theme, includeAdult, count })
-  });
-
-  if (!response.ok) {
-    throw new Error(`Backend respondió ${response.status}`);
-  }
-
-  const data = await response.json();
-  if (!Array.isArray(data.packs) || data.packs.length === 0) {
-    throw new Error("El backend no devolvió packs válidos.");
-  }
-
-  return data.packs.map(item => ({
-    secretWord: String(item.secretWord || "").trim(),
-    decoyWord: String(item.decoyWord || "").trim(),
-    aiContext: String(item.aiContext || "Contexto generado por IA.").trim(),
-    source: "ai"
-  })).filter(item => item.secretWord && item.decoyWord);
-}
-
-async function getAiPack({ theme, includeAdult }) {
-  const cacheKey = getCacheKey(theme, includeAdult);
-  const cached = pullFromCache(cacheKey);
-
-  if (cached) {
-    return cached;
-  }
-
-  const batch = await fetchAiBatch({ theme, includeAdult, count: 5 });
-  const [first, ...rest] = batch;
-
-  state.aiCache.set(cacheKey, rest);
-  saveAiCache();
-
-  return first;
 }
 
 async function createRound() {
@@ -513,7 +536,6 @@ async function createRound() {
   const impostorCount = Number(impostorsInput.value);
   const whiteCount = state.showAdvanced ? Number(whitesInput.value) : 0;
   const theme = state.selectedTheme;
-  const useAi = modeAiInput.checked;
 
   if (playerCount < 3 || playerCount > 24) {
     throw new Error("Jugadores fuera de rango (3-24).");
@@ -531,32 +553,14 @@ async function createRound() {
     throw new Error("Impostores + fantasmas debe ser menor que jugadores.");
   }
 
-  let pack;
-  state.modeIsAi = useAi;
-
-  if (useAi) {
-    setStatus("Generando pack con IA...", "loading");
-    try {
-      pack = await getAiPack({ theme, includeAdult: state.includeAdultTheme });
-    } catch (error) {
-      console.warn("IA no disponible, usando local:", error.message);
-      pack = {
-        ...getLocalPack(theme, state.includeAdultTheme),
-        aiContext: "IA no disponible. Se usó pack local.",
-        source: "fallback"
-      };
-    }
-  } else {
-    pack = getLocalPack(theme, state.includeAdultTheme);
-    setStatus("Ronda creada con palabras locales.", "success");
-  }
+  const pack = getLocalPack(theme, state.includeAdultTheme);
+  setStatus("✅ Ronda creada.", "success");
 
   const roles = buildRoles(playerCount, impostorCount, whiteCount, pack.secretWord, pack.decoyWord);
 
   return {
     createdAt: new Date().toISOString(),
     theme,
-    includeAdultTheme: state.includeAdultTheme,
     ...pack,
     roles
   };
@@ -577,16 +581,12 @@ function showCurrentPlayerPrompt() {
 function renderRoleCard() {
   const item = state.round.roles[state.revealIndex];
   const roleName = item.role === "agente fantasma" ? "Fantasma" : item.role;
-  const maybeContext = state.round.source !== "local" && state.round.aiContext
-    ? `<p class="role-context">${escapeHtml(state.round.aiContext)}</p>`
-    : "";
 
   roleCard.innerHTML = `
     <span class="role-emoji">${getRoleEmoji(item.role)}</span>
     <h3 class="role-name">${escapeHtml(item.name)} · ${escapeHtml(roleName)}</h3>
     <p class="role-word">${escapeHtml(item.word)}</p>
     <p class="role-tip">${escapeHtml(item.tip)}</p>
-    ${maybeContext}
   `;
 }
 
@@ -596,12 +596,16 @@ function showHandoffScreen() {
   nextBtn.classList.add("hidden");
   coverBtn.classList.add("hidden");
   state.roleIsVisible = false;
+  // Clear role card to prevent DOM inspection leak
+  roleCard.innerHTML = "";
   resetOverlayPosition();
   showCurrentPlayerPrompt();
 }
 
 function showSwipeScreen() {
-  renderRoleCard();
+  // Don't render role card yet — defer until swipe reveals it
+  // This prevents DOM inspection from leaking the role
+  roleCard.innerHTML = `<p style="opacity:.35;font-size:.95rem">Desliza para ver tu rol</p>`;
   handoffScreen.classList.add("hidden");
   swipeScreen.classList.remove("hidden");
   nextBtn.classList.add("hidden");
@@ -611,6 +615,9 @@ function showSwipeScreen() {
 }
 
 function revealRoleFully() {
+  // Render role card content NOW, right before the visual reveal
+  renderRoleCard();
+
   const height = swipeTrack.getBoundingClientRect().height;
   revealOverlay.style.transition = "transform 0.2s ease";
   revealOverlay.style.transform = `translateY(-${height}px)`;
@@ -806,6 +813,10 @@ function calculateVotes() {
 function revealFinal() {
   if (!state.round) return;
 
+  // Prevent accidental reveal
+  if (!finalResult.classList.contains("hidden")) return;
+  if (!confirm("¿Seguro? Esto revelará quién es el impostor a todos.")) return;
+
   const themeLabel = themes.find(item => item.key === state.round.theme)?.label || state.round.theme;
   const rows = state.round.roles
     .map(item => {
@@ -834,9 +845,7 @@ function revealFinal() {
 }
 
 function updateModeIndicator() {
-  const isAiEnabled = modeAiInput.checked;
-  aiIndicatorText.textContent = isAiEnabled ? "Modo: IA (Gemini)" : "Modo: Local";
-  aiIndicator.classList.toggle("ai-active", isAiEnabled);
+  // No-op: AI mode removed
 }
 
 function enterGameMode() {
@@ -944,16 +953,11 @@ function playSorteoAnimation(roles) {
         return;
       }
 
-      const role = roles[revealed];
       const card = cards[revealed];
-      const roleClass = role.role === "impostor"
-        ? "impostor-card"
-        : role.role === "agente fantasma"
-          ? "ghost-card"
-          : "civil-card";
 
-      card.classList.add("sorted", roleClass);
-      card.textContent = role.role === "impostor" ? "🕵️" : role.role === "agente fantasma" ? "👻" : "✓";
+      // Show identical checkmarks for ALL players to prevent role leak
+      card.classList.add("sorted");
+      card.textContent = "✓";
 
       if (navigator.vibrate) navigator.vibrate(10);
       revealed += 1;
@@ -1036,13 +1040,7 @@ startBtn.addEventListener("click", async () => {
 
     showHandoffScreen();
 
-    if (state.round.source === "ai") {
-      setStatus("✅ Ronda creada con IA (cache activa).", "success");
-    } else if (state.round.source === "fallback") {
-      setStatus("⚠️ IA no respondió. Se creó ronda local.", "error");
-    } else {
-      setStatus("✅ Ronda creada en modo local.", "success");
-    }
+    setStatus("✅ Ronda creada. ¡A jugar!", "success");
   } catch (error) {
     console.error(error);
     setStatus(error.message || "No se pudo crear la ronda.", "error");
@@ -1093,8 +1091,6 @@ backHomeBtn.addEventListener("click", () => {
   resetRound();
 });
 
-modeLocalInput.addEventListener("change", updateModeIndicator);
-modeAiInput.addEventListener("change", updateModeIndicator);
 startTimerBtn.addEventListener("click", startTimer);
 pauseTimerBtn.addEventListener("click", pauseTimer);
 resetTimerBtn.addEventListener("click", resetTimer);

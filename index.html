@@ -3,37 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Juego de deducción social tipo Impostor. Pasa el celular, revela tu rol y descubre al traidor. 13 temas, modo IA y 800+ palabras." />
+    <meta name="description" content="Juego de deducción social tipo Impostor. Pasa el celular, revela tu rol y descubre al traidor. 13 temas y 800+ palabras." />
     <meta name="theme-color" content="#060b2e" />
     <meta property="og:title" content="Impostor - Juego de Palabras Secretas" />
     <meta property="og:description" content="Party game local de deducción social. Descubre al impostor entre tus amigos." />
     <meta property="og:type" content="website" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕵️</text></svg>" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
     <title>Impostor — Juego de Palabras Secretas</title>
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
+    <a href="#menuSection" class="skip-link">Saltar al contenido</a>
     <div class="bg-orbs" aria-hidden="true">
       <div class="orb orb-1"></div>
       <div class="orb orb-2"></div>
       <div class="orb orb-3"></div>
     </div>
     <canvas id="particleCanvas" class="particle-canvas" aria-hidden="true"></canvas>
+    <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
     <main class="app">
       <header class="header">
         <div class="header-left">
           <h1 class="logo">IMPOSTOR</h1>
           <span class="logo-badge">LOCAL</span>
         </div>
-        <button id="fullscreenBtn" type="button" class="icon-btn" aria-label="Pantalla completa">⛶</button>
+        <div class="header-actions">
+          <button id="soundToggleBtn" type="button" class="icon-btn" aria-label="Sonido">🔊</button>
+          <button id="themeToggleBtn" type="button" class="icon-btn" aria-label="Modo claro">☀️</button>
+          <button id="fullscreenBtn" type="button" class="icon-btn" aria-label="Pantalla completa">⛶</button>
+        </div>
       </header>
 
-      <nav class="nav-bar" aria-label="Menú principal">
+      <nav class="nav-bar nav-4" aria-label="Menú principal">
         <button id="menuHomeBtn" class="nav-tab active" type="button">
           <span class="nav-icon">🏠</span> Inicio
         </button>
         <button id="menuPlayBtn" class="nav-tab" type="button">
           <span class="nav-icon">🎮</span> Jugar
+        </button>
+        <button id="menuStatsBtn" class="nav-tab" type="button">
+          <span class="nav-icon">📊</span> Stats
         </button>
         <button id="menuHelpBtn" class="nav-tab" type="button">
           <span class="nav-icon">❓</span> Ayuda
@@ -56,22 +67,22 @@
           <div class="feature-card">
             <span class="feature-icon">🎲</span>
             <strong>800+</strong>
-            <span>Palabras gratis</span>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🤖</span>
-            <strong>IA</strong>
-            <span>Genera packs nuevos</span>
+            <span>Palabras</span>
           </div>
           <div class="feature-card">
             <span class="feature-icon">📱</span>
             <strong>Local</strong>
-            <span>Sin internet</span>
+            <span>1 solo celular</span>
           </div>
           <div class="feature-card">
             <span class="feature-icon">🎭</span>
             <strong>13</strong>
-            <span>Temas disponibles</span>
+            <span>Temas</span>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🔒</span>
+            <strong>Privado</strong>
+            <span>Sin registro</span>
           </div>
         </div>
 
@@ -124,23 +135,15 @@
           <span>Incluir tema +18 🔥</span>
         </label>
 
-        <div class="ai-box">
-          <h3 class="subsection-title">Modo de juego</h3>
-          <div class="mode-switch" role="radiogroup" aria-label="Modo de juego">
-            <label class="mode-pill">
-              <input id="modeLocal" type="radio" name="gameMode" value="local" checked />
-              <span>Sin IA</span>
-            </label>
-            <label class="mode-pill">
-              <input id="modeAi" type="radio" name="gameMode" value="ai" />
-              <span>Con IA</span>
-            </label>
-          </div>
-          <p id="ai-description" class="help-text">Con IA genera packs nuevos y los cachea para reducir costo.</p>
-
-          <div id="aiIndicator" class="mode-indicator" aria-live="polite">
-            <span class="indicator-dot"></span>
-            <span id="aiIndicatorText">Modo: Local</span>
+        <div class="custom-packs-section">
+          <button id="toggleCustomPacksBtn" type="button" class="link-btn">📦 Packs personalizados</button>
+          <div id="customPacksPanel" class="custom-packs-panel hidden">
+            <div id="customPacksList" class="custom-packs-list"></div>
+            <div class="custom-pack-form">
+              <input id="customPackName" type="text" placeholder="Nombre del pack" maxlength="20" />
+              <textarea id="customPackPairs" placeholder="Un par por línea: palabra1, palabra2&#10;pizza, hamburguesa&#10;gato, perro" rows="4"></textarea>
+              <button id="addCustomPackBtn" type="button" class="secondary">➕ Crear pack</button>
+            </div>
           </div>
         </div>
 
@@ -160,11 +163,21 @@
       <section id="helpSection" class="card hidden">
         <h2 class="section-title">❓ Cómo se juega</h2>
         <ol class="help-list">
-          <li>Configura jugadores, impostores y tema.</li>
-          <li>Inicia ronda y pasa el celular al Jugador 1.</li>
-          <li>Cada jugador revela su rol con swipe y vuelve a taparlo.</li>
-          <li>Debatan, voten y revela resultado final.</li>
+          <li><strong>Configura:</strong> Elige jugadores, impostores y tema.</li>
+          <li><strong>Reparte:</strong> Pasa el celular a cada jugador. Desliza para ver tu rol en privado.</li>
+          <li><strong>Pista:</strong> Cada jugador da una pista sobre su palabra, SIN decirla.</li>
+          <li><strong>Debate:</strong> Escuchen las pistas. ¿Alguien parece confundido o demasiado vago?</li>
+          <li><strong>Voten:</strong> Elijan al sospechoso. Si aciertan, ¡ganan los civiles!</li>
         </ol>
+        <div class="help-roles">
+          <h3 class="subsection-title">Roles</h3>
+          <div class="help-role"><span class="badge civil">Civil</span> Conoce la palabra secreta. Da pistas claras sin revelarla.</div>
+          <div class="help-role"><span class="badge impostor">Impostor</span> Tiene una palabra DIFERENTE pero parecida. Debe disimular.</div>
+          <div class="help-role"><span class="badge fantasma">Fantasma</span> No tiene palabra. Improvisa para sobrevivir.</div>
+        </div>
+        <div class="help-tip">
+          <strong>💡 Tip:</strong> El impostor no sabe cuál es la palabra de los civiles, así que sus pistas suelen ser más vagas o ligeramente fuera de contexto.
+        </div>
       </section>
 
       <section id="sorteoSection" class="sorteo-overlay hidden">
@@ -176,6 +189,11 @@
         </div>
       </section>
 
+
+      <section id="statsSection" class="card hidden">
+        <h2 class="section-title">📊 Estadísticas</h2>
+        <div id="statsContent"></div>
+      </section>
       <div id="gameScreen" class="game-screen hidden">
         <div class="game-header">
           <button id="quitGameBtn" type="button" class="game-back-btn">← Salir</button>
@@ -262,8 +280,8 @@
           </ol>
         </div>
         <div class="round-actions">
-          <button id="revealAllBtn" class="primary-action">
-            <span>Revelar resultado final</span>
+          <button id="revealAllBtn" class="reveal-final-btn">
+            <span>🔓 Revelar resultado final</span>
           </button>
         </div>
         <div id="finalResult" class="final-result hidden"></div>
@@ -277,6 +295,7 @@
 
       <footer class="app-footer">
         <span>Impostor v0.1.0</span>
+        <button id="shareResultBtn" class="secondary share-btn hidden" type="button">📤 Compartir resultado</button>
         <span class="footer-dot">·</span>
         <span>Party game local</span>
       </footer>
@@ -285,3 +304,4 @@
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
