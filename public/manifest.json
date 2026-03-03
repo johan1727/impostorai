@@ -1,18 +1,27 @@
 {
   "name": "Impostor — Juego de Palabras Secretas",
   "short_name": "Impostor",
-  "description": "Party game local de deducción social. Descubre al impostor entre tus amigos.",
+  "description": "Party game local de deducción social. Pasa el celular, revela tu rol y descubre al impostor. 13 temas, 800+ palabras. Sin internet.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#050a1e",
   "theme_color": "#050a1e",
   "orientation": "portrait",
+  "lang": "es",
+  "categories": ["games", "entertainment"],
   "icons": [
     {
       "src": "/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     }
   ]
 }

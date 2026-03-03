@@ -586,11 +586,74 @@ function toggleVisualTheme() {
 }
 
 // ============= SERVICE WORKER =============
-if (false && "serviceWorker" in navigator) {
+if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js").catch(() => {});
+    navigator.serviceWorker.register("/sw.js").then((reg) => {
+      // Check for updates every 30 min
+      setInterval(() => reg.update(), 30 * 60 * 1000);
+    }).catch((err) => console.warn("SW registration failed:", err));
   });
 }
+
+// ============= PWA INSTALL PROMPT =============
+let deferredInstallPrompt = null;
+const installBanner = document.getElementById("installBanner");
+const installBtn = document.getElementById("installBtn");
+const installDismissBtn = document.getElementById("installDismissBtn");
+const INSTALL_DISMISSED_KEY = "impostorInstallDismissed";
+
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+}
+function isInStandaloneMode() {
+  return window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+}
+
+// Android / Chrome: capture beforeinstallprompt
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  if (!localStorage.getItem(INSTALL_DISMISSED_KEY) && installBanner) {
+    installBanner.classList.remove("hidden");
+    installBanner.classList.add("install-android");
+  }
+});
+
+window.addEventListener("appinstalled", () => {
+  if (installBanner) installBanner.classList.add("hidden");
+  deferredInstallPrompt = null;
+  showToast("\u00a1App instalada! \ud83c\udf89");
+});
+
+// Show iOS install instructions if applicable
+function showIOSInstallHint() {
+  if (!isIOS() || isInStandaloneMode()) return;
+  if (localStorage.getItem(INSTALL_DISMISSED_KEY)) return;
+  if (!installBanner) return;
+  installBanner.classList.remove("hidden");
+  installBanner.classList.add("install-ios");
+}
+
+if (installBtn) {
+  installBtn.addEventListener("click", async () => {
+    if (deferredInstallPrompt) {
+      deferredInstallPrompt.prompt();
+      const { outcome } = await deferredInstallPrompt.userChoice;
+      if (outcome === "accepted") showToast("\u00a1Instalando app!");
+      deferredInstallPrompt = null;
+      if (installBanner) installBanner.classList.add("hidden");
+    }
+  });
+}
+if (installDismissBtn) {
+  installDismissBtn.addEventListener("click", () => {
+    if (installBanner) installBanner.classList.add("hidden");
+    localStorage.setItem(INSTALL_DISMISSED_KEY, "1");
+  });
+}
+
+// Show iOS hint after short delay on first visit
+setTimeout(() => showIOSInstallHint(), 3000);
 
 // ============= UTILITY FUNCTIONS =============
 function escapeHtml(text) {
