@@ -1999,6 +1999,18 @@ button {
   margin: 12px 0;
 }
 
+.vote-words-hidden {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: var(--r-sm);
+  padding: 10px 16px;
+}
+.vote-words-hidden span {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+}
+
 .vote-word-civil, .vote-word-imp {
   padding: 6px 12px;
   border-radius: var(--r-sm);

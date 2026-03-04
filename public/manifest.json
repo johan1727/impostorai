@@ -1,7 +1,7 @@
 {
   "name": "Impostor — Juego de Palabras Secretas",
   "short_name": "Impostor",
-  "description": "Party game local de deducción social. Pasa el celular, revela tu rol y descubre al impostor. 13 temas, 800+ palabras. Sin internet.",
+  "description": "Party game local de deducción social. Pasa el celular, revela tu rol y descubre al impostor. 13 temas, 1000+ palabras. Sin internet.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

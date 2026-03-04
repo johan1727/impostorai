@@ -76,128 +76,154 @@ try { inject(); } catch {}
   init(); animate();
 })();
 
-// ============= WORD POOLS (~400 pares = 800+ palabras) =============
+// ============= WORD POOLS (~500 pares = 1000+ palabras MX) =============
 const localWords = {
   aleatorio: [
-    ["volc\u00e1n","monta\u00f1a"],["wifi","bluetooth"],["mango","papaya"],["biblioteca","museo"],
-    ["sat\u00e9lite","cohete"],["espejo","ventana"],["almohada","coj\u00edn"],["sem\u00e1foro","se\u00f1al"],
-    ["anillo","pulsera"],["helado","paleta"],["mochila","maleta"],["l\u00e1piz","bol\u00edgrafo"],
-    ["tijeras","cuchillo"],["planeta","estrella"],["alfombra","tapete"],["bicicleta","patineta"],
-    ["martillo","destornillador"],["c\u00e1mara","telescopio"],["bater\u00eda","cargador"],["cereza","fresa"],
-    ["diamante","rub\u00ed"],["casco","sombrero"],["dado","moneda"],["cortina","persiana"],
-    ["chicle","caramelo"],["atardecer","amanecer"],["cable","enchufe"],["grifo","manguera"]
+    ["volcán","montaña"],["wifi","bluetooth"],["mango","papaya"],["biblioteca","museo"],
+    ["satélite","cohete"],["espejo","ventana"],["almohada","cojín"],["semáforo","señal"],
+    ["anillo","pulsera"],["helado","paleta"],["mochila","maleta"],["lápiz","pluma"],
+    ["tijeras","cuchillo"],["planeta","estrella"],["tapete","alfombra"],["bicicleta","patineta"],
+    ["martillo","desarmador"],["cámara","telescopio"],["pila","cargador"],["cereza","fresa"],
+    ["diamante","rubí"],["casco","sombrero"],["dado","moneda"],["cortina","persiana"],
+    ["chicle","caramelo"],["atardecer","amanecer"],["cable","enchufe"],["llave","grifo"],
+    ["plátano","manzana"],["torta","sándwich"],["carro","camioneta"],["cobija","sábana"],
+    ["calcetín","zapato"],["cuchara","tenedor"],["banqueta","calle"],["nube","niebla"]
   ],
   comida: [
-    ["pizza","lasa\u00f1a"],["taco","burrito"],["caf\u00e9","t\u00e9"],["sushi","ramen"],
-    ["hamburguesa","hot dog"],["paella","risotto"],["empanada","arepa"],["croissant","donut"],
-    ["ceviche","carpaccio"],["brownie","galleta"],["waffle","panqueque"],["helado","sorbete"],
-    ["nachos","quesadilla"],["curry","guiso"],["salm\u00f3n","at\u00fan"],["ensalada","caldo"],
-    ["flan","gelatina"],["churros","bu\u00f1uelos"],["guacamole","hummus"],["mole","salsa"],
-    ["papas fritas","tostones"],["pasta","fideos"],["pan","tortilla"],["queso","mantequilla"],
-    ["pastel","pie"],["tocino","jam\u00f3n"],["arroz","cusc\u00fas"],["yogur","pud\u00edn"]
+    ["taco","burrito"],["torta","pambazo"],["café","chocolate"],["sushi","ramen"],
+    ["hamburguesa","hot dog"],["pozole","menudo"],["empanada","gordita"],["concha","dona"],
+    ["ceviche","aguachile"],["brownie","galleta"],["waffle","hot cake"],["helado","nieve"],
+    ["nachos","quesadilla"],["mole","pipián"],["salmón","atún"],["ensalada","caldo"],
+    ["flan","gelatina"],["churros","buñuelos"],["guacamole","hummus"],["salsa verde","salsa roja"],
+    ["papas fritas","chicharrón"],["pasta","fideos"],["pan","tortilla"],["queso","mantequilla"],
+    ["pastel","pay"],["tocino","jamón"],["arroz","frijoles"],["tamal","elote"],
+    ["chilaquiles","enchiladas"],["michelada","clamato"],["esquite","palomitas"],["chile relleno","chile en nogada"],
+    ["birria","barbacoa"],["tlayuda","huarache"],["agua de horchata","agua de jamaica"],["camote","jícama"]
   ],
   lugares: [
-    ["aeropuerto","terminal"],["hospital","cl\u00ednica"],["playa","isla"],["escuela","universidad"],
-    ["cine","teatro"],["parque","jard\u00edn"],["estadio","coliseo"],["castillo","palacio"],
-    ["supermercado","tienda"],["restaurante","cafeter\u00eda"],["iglesia","catedral"],["banco","oficina"],
-    ["estaci\u00f3n","parada"],["zool\u00f3gico","acuario"],["monta\u00f1a","colina"],["r\u00edo","lago"],
-    ["cueva","t\u00fanel"],["faro","torre"],["cementerio","cripta"],["granja","rancho"],
-    ["lobby","recepci\u00f3n"],["balc\u00f3n","terraza"],["metro","tranv\u00eda"],["desierto","sabana"],
-    ["volc\u00e1n","cr\u00e1ter"],["cascada","manantial"],["puente","muelle"],["frontera","aduana"]
+    ["aeropuerto","terminal"],["hospital","clínica"],["playa","isla"],["escuela","universidad"],
+    ["cine","teatro"],["parque","jardín"],["estadio","arena"],["castillo","palacio"],
+    ["súper","tiendita"],["restaurante","fonda"],["iglesia","catedral"],["banco","oficina"],
+    ["estación","parada"],["zoológico","acuario"],["montaña","cerro"],["río","lago"],
+    ["cueva","túnel"],["faro","torre"],["panteón","cripta"],["rancho","hacienda"],
+    ["lobby","recepción"],["balcón","terraza"],["metro","metrobús"],["desierto","selva"],
+    ["volcán","cráter"],["cascada","manantial"],["puente","muelle"],["frontera","aduana"],
+    ["mercado","tianguis"],["cantina","bar"],["plaza","zócalo"],["gasolinera","taller"],
+    ["oxxo","farmacia"],["taquería","puesto"],["cenote","balneario"],["antro","salón de fiestas"]
   ],
   objetos: [
-    ["teclado","rat\u00f3n"],["paraguas","impermeable"],["linterna","vela"],["reloj","cron\u00f3metro"],
-    ["espada","escudo"],["llave","candado"],["gafas","lupa"],["br\u00fajula","mapa"],
-    ["guitarra","ukulele"],["silla","banco"],["cuchara","tenedor"],["pincel","rodillo"],
+    ["teclado","mouse"],["paraguas","impermeable"],["linterna","vela"],["reloj","cronómetro"],
+    ["espada","escudo"],["llave","candado"],["lentes","lupa"],["brújula","mapa"],
+    ["guitarra","ukulele"],["silla","banco"],["cuchara","tenedor"],["pincel","brocha"],
     ["aguja","alfiler"],["cadena","cuerda"],["antena","radar"],["campana","silbato"],
     ["corona","tiara"],["dado","ficha"],["escalera","rampa"],["guante","manopla"],
-    ["im\u00e1n","br\u00fajula"],["jarr\u00f3n","maceta"],["l\u00e1mpara","foco"],["mapa","globo"],
-    ["pa\u00f1uelo","toalla"],["escoba","trapeador"],["botella","jarra"],["sobre","carpeta"]
+    ["imán","brújula"],["maceta","jarrón"],["lámpara","foco"],["mapa","globo terráqueo"],
+    ["pañuelo","toalla"],["escoba","trapeador"],["botella","jarra"],["sobre","carpeta"],
+    ["control remoto","pilas"],["cinturón","tirantes"],["encendedor","cerillos"],["cartera","monedero"],
+    ["manguera","regadera"],["engrapadora","clips"],["cinta adhesiva","pegamento"],["chamarra","suéter"]
   ],
   tecnologia: [
-    ["nube","servidor"],["robot","drone"],["python","javascript"],["token","contrase\u00f1a"],
-    ["pixel","v\u00f3xel"],["wifi","ethernet"],["app","programa"],["USB","HDMI"],
-    ["laptop","tablet"],["RAM","disco duro"],["GPS","br\u00fajula"],["firewall","antivirus"],
+    ["nube","servidor"],["robot","dron"],["python","javascript"],["contraseña","pin"],
+    ["pixel","resolución"],["wifi","datos móviles"],["app","programa"],["USB","HDMI"],
+    ["laptop","tablet"],["RAM","disco duro"],["GPS","brújula"],["firewall","antivirus"],
     ["podcast","blog"],["streaming","descarga"],["emoji","sticker"],["VPN","proxy"],
-    ["cookie","cach\u00e9"],["router","modem"],["backup","snapshot"],["c\u00f3digo QR","c\u00f3digo de barras"],
+    ["cookie","caché"],["router","módem"],["backup","respaldo"],["código QR","código de barras"],
     ["realidad virtual","realidad aumentada"],["inteligencia artificial","machine learning"],
-    ["front-end","back-end"],["Linux","Windows"],["dark mode","light mode"],
-    ["bluetooth","NFC"],["algoritmo","funci\u00f3n"],["base de datos","hoja de c\u00e1lculo"]
+    ["front-end","back-end"],["Linux","Windows"],["modo oscuro","modo claro"],
+    ["bluetooth","NFC"],["algoritmo","función"],["base de datos","hoja de cálculo"],
+    ["captura de pantalla","grabación"],["meme","gif"],["TikTok","YouTube"],["spam","phishing"],
+    ["hashtag","trending"],["notificación","alerta"],["nube","drive"],["lag","ping"]
   ],
   deportes: [
-    ["f\u00fatbol","rugby"],["nataci\u00f3n","waterpolo"],["tenis","b\u00e1dminton"],["boxeo","karate"],
-    ["basketball","volleyball"],["golf","cricket"],["surf","windsurf"],["esqu\u00ed","snowboard"],
-    ["atletismo","marat\u00f3n"],["ciclismo","motocross"],["escalada","rappel"],["esgrima","kendo"],
-    ["hockey","lacrosse"],["judo","taekwondo"],["patinaje","skateboard"],["polo","equitaci\u00f3n"],
-    ["b\u00e9isbol","softball"],["ajedrez","damas"],["ping pong","squash"],["triatl\u00f3n","pentatl\u00f3n"],
-    ["arquer\u00eda","tiro"],["lucha libre","sumo"],["remo","kayak"],["parkour","calistenia"],
-    ["buceo","snorkel"],["boliche","billar"],["CrossFit","yoga"],["boxeo","MMA"]
+    ["futbol","rugby"],["natación","waterpolo"],["tenis","bádminton"],["boxeo","karate"],
+    ["basquetbol","voleibol"],["golf","cricket"],["surf","windsurf"],["esquí","snowboard"],
+    ["atletismo","maratón"],["ciclismo","motocross"],["escalada","rappel"],["esgrima","kendo"],
+    ["hockey","lacrosse"],["judo","taekwondo"],["patinaje","skateboard"],["charrería","equitación"],
+    ["béisbol","softbol"],["ajedrez","damas"],["ping pong","squash"],["triatlón","pentatlón"],
+    ["tiro con arco","tiro"],["lucha libre","sumo"],["remo","kayak"],["parkour","calistenia"],
+    ["buceo","snorkel"],["boliche","billar"],["CrossFit","yoga"],["boxeo","MMA"],
+    ["frontón","raquetbol"],["clavados","nado sincronizado"],["fútbol americano","flag football"],
+    ["corrida","jaripeo"],["penal","tiro libre"],["cascarita","reta"],["gol","touchdown"],["porra","barra"]
   ],
   animales: [
-    ["gato","le\u00f3n"],["aguila","halc\u00f3n"],["delf\u00edn","tibur\u00f3n"],["abeja","avispa"],
-    ["perro","lobo"],["caballo","cebra"],["oso","panda"],["serpiente","lagarto"],
+    ["gato","león"],["águila","halcón"],["delfín","tiburón"],["abeja","avispa"],
+    ["perro","lobo"],["caballo","cebra"],["oso","panda"],["serpiente","lagartija"],
     ["conejo","liebre"],["loro","guacamaya"],["rana","sapo"],["hormiga","termita"],
-    ["vaca","b\u00fafalo"],["ping\u00fcino","foca"],["murci\u00e9lago","b\u00faho"],["mariposa","polilla"],
-    ["camale\u00f3n","iguana"],["cuervo","paloma"],["pulpo","calamar"],["tortuga","cocodrilo"],
-    ["zorro","coyote"],["ballena","orca"],["medusa","an\u00e9mona"],["cangrejo","langosta"],
-    ["gorila","chimpanc\u00e9"],["jirafa","avestruz"],["pavo real","flamenco"],["rata","h\u00e1mster"]
+    ["vaca","búfalo"],["pingüino","foca"],["murciélago","búho"],["mariposa","polilla"],
+    ["camaleón","iguana"],["cuervo","paloma"],["pulpo","calamar"],["tortuga","cocodrilo"],
+    ["zorro","coyote"],["ballena","orca"],["medusa","anémona"],["cangrejo","langosta"],
+    ["gorila","chimpancé"],["jirafa","avestruz"],["pavo real","flamenco"],["rata","hámster"],
+    ["tlacuache","mapache"],["ajolote","salamandra"],["colibrí","golondrina"],["armadillo","puercoespín"],
+    ["chapulín","grillo"],["guajolote","gallina"],["xoloitzcuintle","chihuahua"],["quetzal","tucán"]
   ],
   profesiones: [
     ["doctor","enfermero"],["abogado","juez"],["chef","pastelero"],["piloto","astronauta"],
-    ["bombero","polic\u00eda"],["profesor","tutor"],["arquitecto","ingeniero"],["periodista","editor"],
-    ["m\u00fasico","cantante"],["fot\u00f3grafo","camar\u00f3grafo"],["dise\u00f1ador","ilustrador"],["veterinario","bi\u00f3logo"],
-    ["electricista","plomero"],["psic\u00f3logo","psiquiatra"],["programador","hacker"],["detective","esp\u00eda"],
-    ["carpintero","alba\u00f1il"],["dentista","ortodoncista"],["farmac\u00e9utico","qu\u00edmico"],["actor","comediante"],
-    ["escultor","pintor"],["soldado","marinero"],["mec\u00e1nico","t\u00e9cnico"],["narrador","escritor"],
-    ["cirujano","anestesi\u00f3logo"],["mesero","bartender"],["cartero","mensajero"],["jardinero","agricultor"]
+    ["bombero","policía"],["profe","tutor"],["arquitecto","ingeniero"],["periodista","editor"],
+    ["músico","cantante"],["fotógrafo","camarógrafo"],["diseñador","ilustrador"],["veterinario","biólogo"],
+    ["electricista","plomero"],["psicólogo","psiquiatra"],["programador","hacker"],["detective","espía"],
+    ["carpintero","albañil"],["dentista","ortodoncista"],["farmacéutico","químico"],["actor","comediante"],
+    ["escultor","pintor"],["soldado","marinero"],["mecánico","técnico"],["narrador","escritor"],
+    ["cirujano","anestesiólogo"],["mesero","bartender"],["cartero","mensajero"],["jardinero","agricultor"],
+    ["influencer","youtuber"],["locutor","conductor de TV"],["chofer","taxista"],["estilista","barbero"],
+    ["taquero","panadero"],["herrero","soldador"],["partera","doula"],["chamán","curandero"]
   ],
   peliculas: [
-    ["terror","suspenso"],["comedia","parodia"],["marvel","dc"],["pixar","dreamworks"],
-    ["ciencia ficci\u00f3n","fantas\u00eda"],["drama","romance"],["acci\u00f3n","aventura"],["anime","cartoon"],
+    ["terror","suspenso"],["comedia","parodia"],["Marvel","DC"],["Pixar","DreamWorks"],
+    ["ciencia ficción","fantasía"],["drama","romance"],["acción","aventura"],["anime","caricatura"],
     ["documental","biopic"],["western","noir"],["zombie","vampiro"],["precuela","secuela"],
     ["director","productor"],["actor","doble"],["guion","storyboard"],["taquilla","streaming"],
-    ["palomitas","nachos"],["subt\u00edtulos","doblaje"],["trailer","teaser"],["IMAX","3D"],
-    ["Oscar","Golden Globe"],["remake","reboot"],["Star Wars","Star Trek"],
-    ["Harry Potter","Se\u00f1or de los Anillos"],["Batman","Superman"],["Avengers","Justice League"],
-    ["Netflix","Disney Plus"],["thriller","misterio"]
+    ["palomitas","nachos"],["subtítulos","doblaje"],["tráiler","teaser"],["IMAX","3D"],
+    ["Óscar","Golden Globe"],["remake","reboot"],["Star Wars","Star Trek"],
+    ["Harry Potter","Señor de los Anillos"],["Batman","Superman"],["Avengers","Justice League"],
+    ["Netflix","Disney Plus"],["thriller","misterio"],["villano","héroe"],["saga","trilogía"],
+    ["serie","telenovela"],["trama","spoiler"],["cámara lenta","time lapse"],["CGI","efectos prácticos"]
   ],
   musica: [
-    ["guitarra","bajo"],["reggaet\u00f3n","trap"],["piano","\u00f3rgano"],["rock","punk"],
-    ["rap","hip hop"],["salsa","cumbia"],["viol\u00edn","viola"],["jazz","blues"],
-    ["electr\u00f3nica","techno"],["\u00f3pera","musical"],["bater\u00eda","percusi\u00f3n"],["flauta","clarinete"],
-    ["arpa","c\u00edtara"],["acorde\u00f3n","bandone\u00f3n"],["disco","funk"],["metal","grunge"],
-    ["mariachi","ranchera"],["reggae","ska"],["K-pop","J-pop"],["coral","a cappella"],
-    ["DJ","productor"],["vinilo","casete"],["concierto","festival"],["single","\u00e1lbum"],
-    ["estribillo","verso"],["ballad","power ballad"],["pop","indie"],["country","folk"]
+    ["guitarra","bajo"],["reggaetón","trap"],["piano","órgano"],["rock","punk"],
+    ["rap","hip hop"],["salsa","cumbia"],["violín","viola"],["jazz","blues"],
+    ["electrónica","techno"],["ópera","musical"],["batería","percusión"],["flauta","clarinete"],
+    ["arpa","cítara"],["acordeón","bandoneón"],["disco","funk"],["metal","grunge"],
+    ["mariachi","norteña"],["reggae","ska"],["K-pop","J-pop"],["coro","a cappella"],
+    ["DJ","productor"],["vinilo","casete"],["concierto","festival"],["single","álbum"],
+    ["estribillo","verso"],["balada","bolero"],["pop","indie"],["country","folk"],
+    ["corrido","banda"],["son jarocho","huapango"],["ranchera","sierreña"],["perreo","dembow"],
+    ["chilena","son cubano"],["vals","danzón"],["karaoke","dueto"],["mashup","remix"]
   ],
   historia: [
-    ["egipto","roma"],["revoluci\u00f3n","independencia"],["medieval","renacimiento"],["samur\u00e1i","ninja"],
-    ["vikingo","pirata"],["colonia","imperio"],["fara\u00f3n","emperador"],["gladiador","espartano"],
-    ["cruzada","conquista"],["monarqu\u00eda","rep\u00fablica"],["feudo","castillo"],["pergamino","papiro"],
-    ["caballero","templario"],["azteca","maya"],["inca","olmeca"],["muralla china","pir\u00e1mide"],
-    ["espada","catapulta"],["bronce","hierro"],["Napole\u00f3n","Julio C\u00e9sar"],["democracia","dictadura"],
-    ["prehistoria","antig\u00fcedad"],["guerra fr\u00eda","guerra mundial"],["esclavitud","abolici\u00f3n"],
-    ["invenci\u00f3n","descubrimiento"],["filosof\u00eda","mitolog\u00eda"],["Cleopatra","Nefertiti"],
-    ["tratado","alianza"],["armadura","escudo"]
+    ["Egipto","Roma"],["revolución","independencia"],["medieval","renacimiento"],["samurái","ninja"],
+    ["vikingo","pirata"],["colonia","imperio"],["faraón","emperador"],["gladiador","espartano"],
+    ["cruzada","conquista"],["monarquía","república"],["feudo","castillo"],["pergamino","papiro"],
+    ["caballero","templario"],["azteca","maya"],["inca","olmeca"],["muralla china","pirámide"],
+    ["espada","catapulta"],["bronce","hierro"],["Napoleón","Julio César"],["democracia","dictadura"],
+    ["prehistoria","antigüedad"],["guerra fría","guerra mundial"],["esclavitud","abolición"],
+    ["invención","descubrimiento"],["filosofía","mitología"],["Cleopatra","Nefertiti"],
+    ["tratado","alianza"],["armadura","escudo"],["Zapata","Villa"],["águila","serpiente"],
+    ["Tenochtitlan","Tlatelolco"],["códice","jeroglífico"],["Moctezuma","Cuauhtémoc"],
+    ["virrey","caudillo"],["hacienda","encomienda"],["grito de Dolores","Plan de Iguala"]
   ],
   naturaleza: [
-    ["volc\u00e1n","g\u00e9iser"],["tsunami","hurac\u00e1n"],["bosque","selva"],["r\u00edo","cascada"],
-    ["aurora boreal","arco\u00edris"],["terremoto","avalancha"],["coral","alga"],["monta\u00f1a","acantilado"],
-    ["desierto","tundra"],["manglar","pantano"],["rayo","trueno"],["tornado","tif\u00f3n"],
+    ["volcán","géiser"],["tsunami","huracán"],["bosque","selva"],["río","cascada"],
+    ["aurora boreal","arcoíris"],["terremoto","avalancha"],["coral","alga"],["montaña","acantilado"],
+    ["desierto","tundra"],["manglar","pantano"],["rayo","trueno"],["tornado","tifón"],
     ["glaciar","iceberg"],["cueva","gruta"],["estalagmita","estalactita"],["oasis","manantial"],
-    ["luna","sol"],["cometa","asteroide"],["f\u00f3sil","\u00e1mbar"],["cristal","mineral"],
-    ["arena","grava"],["musgo","liquen"],["miel","cera"],["polen","n\u00e9ctar"],
-    ["ra\u00edz","tronco"],["hoja","p\u00e9talo"],["semilla","brote"],["marea","corriente"]
+    ["luna","sol"],["cometa","asteroide"],["fósil","ámbar"],["cristal","mineral"],
+    ["arena","grava"],["musgo","liquen"],["miel","cera"],["polen","néctar"],
+    ["raíz","tronco"],["hoja","pétalo"],["semilla","brote"],["marea","corriente"],
+    ["cenote","lago"],["nopal","maguey"],["ceiba","ahuehuete"],["jaguar","puma"],
+    ["chapulín","escarabajo"],["obsidiana","jade"],["cempasúchil","nochebuena"],["milpa","chinampa"]
   ],
   adulto: [
-    ["resaca","cruda"],["tinder","bumble"],["ghostear","ignorar"],["friendzone","situationship"],
-    ["hookup","encuentro"],["peda","fiesta"],["pololo","pareja"],["chamuyar","flirtear"],
-    ["vibes","rollo"],["crush","obsesión"],["sexting","mensajes"],["infidelidad","engaño"],
-    ["tórrido","ardiente"],["pecaminoso","prohibido"],["transgresión","aventura"],["lujuria","pasión"],
-    ["morbo","deseo"],["embrague","besuqueo"],["conquista","seducción"],["onda","talante"],
-    ["trago","shot"],["after","madrugada"],["drama","crisis"],["celos","posesividad"],
-    ["ex","trauma"],["adrenalina","éxtasis"],["secreto","tabú"],["inhibición","liberación"],
-    ["arrepentimiento","vergüenza"],["rebeldía","locura"],["desinhibición","sinceridad"],["vicio","hábito"]
+    ["cruda","resaca"],["Tinder","Bumble"],["ghostear","dejar en visto"],["friendzone","situationship"],
+    ["ligue","faje"],["peda","fiesta"],["novio","free"],["tirar rollo","chamuyar"],
+    ["vibra","rollo"],["crush","stalkear"],["sexting","nudes"],["cuernos","engaño"],
+    ["cachondo","caliente"],["pecado","prohibido"],["travesura","aventura"],["lujuria","pasión"],
+    ["morbo","antojo"],["faje","besuqueo"],["ligar","seducir"],["cotorreo","coqueteo"],
+    ["chela","shot"],["after","reventón"],["tóxico","drama"],["celos","posesivo"],
+    ["ex","rebote"],["adrenalina","éxtasis"],["secreto","tabú"],["desinhibido","lanzado"],
+    ["oso","vergüenza"],["desmadre","locura"],["calentura","maña"],["vicio","hábito"],
+    ["sugar daddy","mantenido"],["amigos con derechos","quedantes"],["stalkear","espiar"],["pack","candente"],
+    ["emborracharse","ponerse hasta atrás"],["bailar pegado","perrear"],["darks","emo"],["antro","table"],
+    ["resbalosa","atrevida"],["encuerado","desnudo"],["chisme","secreto"],["tusa","despecho"]
   ]
 };
 
@@ -765,15 +791,41 @@ function buildRoles(playerCount, impostorCount, whiteCount, secretWord, decoyWor
 
 function getThemePool(themeKey, includeAdult) {
   if (themeKey === "aleatorio") {
-    return Object.keys(localWords).filter(k => k !== "aleatorio" && (includeAdult || k !== "adulto")).flatMap(k => localWords[k]);
+    // Include all themed pools PLUS the general aleatorio pairs
+    return Object.keys(localWords).filter(k => !k.startsWith("custom_") && (includeAdult || k !== "adulto")).flatMap(k => localWords[k]);
   }
   if (themeKey === "adulto" && !includeAdult) return getThemePool("aleatorio", false);
   return localWords[themeKey] ?? localWords.aleatorio;
 }
 
+// --- Word history cache (sessionStorage, per-theme) to avoid repeating pairs ---
+const USED_WORDS_PREFIX = "impostor_used_";
+function getUsedPairs(themeTag) {
+  try { return JSON.parse(sessionStorage.getItem(USED_WORDS_PREFIX + themeTag)) || []; } catch { return []; }
+}
+function markPairUsed(themeTag, pair) {
+  const used = getUsedPairs(themeTag);
+  used.push(pair[0] + "|" + pair[1]);
+  sessionStorage.setItem(USED_WORDS_PREFIX + themeTag, JSON.stringify(used));
+}
+function resetUsedPairsForTheme(themeTag) {
+  sessionStorage.removeItem(USED_WORDS_PREFIX + themeTag);
+}
+
 function getLocalPack(themeKey, includeAdult) {
   const pool = getThemePool(themeKey, includeAdult);
-  const pair = pickRandom(pool);
+  // Build a cache tag: theme + adult flag so "aleatorio" with/without adult are tracked separately
+  const themeTag = themeKey + (themeKey === "aleatorio" ? (includeAdult ? "_a" : "") : "");
+  const used = new Set(getUsedPairs(themeTag));
+  // Filter out already-used pairs
+  let available = pool.filter(p => !used.has(p[0] + "|" + p[1]));
+  // If all pairs exhausted for this theme, reset its history and use full pool
+  if (available.length === 0) {
+    resetUsedPairsForTheme(themeTag);
+    available = pool;
+  }
+  const pair = pickRandom(available);
+  markPairUsed(themeTag, pair);
   return { secretWord: pair[0], decoyWord: pair[1], source: "local" };
 }
 
@@ -1062,17 +1114,23 @@ function selectPlayerToEliminate(selectedRole, selectedCard) {
       SFX.fanfare();
       launchConfetti();
       const subtitle = remainingImps > 0
-        ? `\u00a1Bien hecho! Pero quedan <strong>${remainingImps}</strong> impostor${remainingImps > 1 ? "es" : ""} m\u00e1s... \ud83d\udd75\ufe0f`
-        : "Los civiles ganan \ud83c\udfc6";
+        ? `¡Bien hecho! Pero quedan <strong>${remainingImps}</strong> impostor${remainingImps > 1 ? "es" : ""} más... 🕵️`
+        : "Los civiles ganan 🏆";
+      // Only reveal words when ALL impostors are caught (no remaining)
+      const wordsHtml = remainingImps === 0
+        ? `<div class="vote-reveal-words">
+            <span class="vote-word-civil">🟢 Civiles: <strong>${escapeHtml(state.round.secretWord)}</strong></span>
+            <span class="vote-word-imp">🔴 Impostor: <strong>${escapeHtml(state.round.decoyWord)}</strong></span>
+          </div>`
+        : `<div class="vote-reveal-words vote-words-hidden">
+            <span>🔒 Las palabras se revelarán al atrapar a todos los impostores</span>
+          </div>`;
       voteResult.innerHTML = `
         <div class="vote-reveal-card vote-reveal-success">
-          <div class="vote-reveal-emoji">\ud83c\udf89</div>
-          <h3>\u00a1Correcto!</h3>
+          <div class="vote-reveal-emoji">🎉</div>
+          <h3>¡Correcto!</h3>
           <p><strong>${escapeHtml(selectedRole.name)}</strong> ERA impostor</p>
-          <div class="vote-reveal-words">
-            <span class="vote-word-civil">\ud83d\udfe2 Civiles: <strong>${escapeHtml(state.round.secretWord)}</strong></span>
-            <span class="vote-word-imp">\ud83d\udd34 Impostor: <strong>${escapeHtml(state.round.decoyWord)}</strong></span>
-          </div>
+          ${wordsHtml}
           <p class="vote-reveal-subtitle">${subtitle}</p>
         </div>`;
     } else {
