@@ -1,4 +1,4 @@
-const CACHE_NAME = "impostor-v5";
+const CACHE_NAME = "impostor-v6";
 const PRECACHE = ["/", "/index.html", "/manifest.json", "/icon.svg", "/icon-maskable.svg"];
 
 // Install: pre-cache shell

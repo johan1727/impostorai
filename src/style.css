@@ -26,6 +26,9 @@
   --r-md: 14px;
   --r-sm: 10px;
   --r-pill: 999px;
+  --text1: #fff7f2;
+  --card: rgba(38, 22, 72, 0.78);
+  --glass-border: rgba(255, 140, 90, 0.14);
   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.22);
   --shadow-glow: 0 0 48px rgba(255, 123, 84, 0.10);
 }
@@ -235,6 +238,12 @@ body::after {
   background: rgba(255, 123, 84, 0.12);
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .icon-btn {
   width: 32px;
   height: 32px;
@@ -260,6 +269,10 @@ body::after {
   border-radius: var(--r);
   padding: 4px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.nav-4 {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .nav-tab {
@@ -1113,7 +1126,7 @@ button {
 
 .result-header, .result-row {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-template-columns: 1.2fr 0.8fr 1fr 0.7fr;
 }
 
 .result-header {

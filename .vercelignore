@@ -5,5 +5,4 @@ node_modules
 *.local
 .DS_Store
 Thumbs.db
-api-dev-server.js
 RESEARCH.md
