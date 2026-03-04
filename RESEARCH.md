@@ -23,9 +23,12 @@
 - Imposter Game: Who Is
 - Otros clones del formato “find/who is the impostor”
 
-## Decisiones del fork con IA
+## Decisiones del fork
 - No se copian nombres, arte ni textos del producto original.
-- Se implementa producto nuevo: `Agente Fantasma IA`.
-- Diferenciador técnico:
-  - Modo local (offline)
-  - Modo IA (OpenAI) para generar `secretWord`, `decoyWord` y contexto de ronda.
+- Se implementa producto nuevo: **Impostor**.
+- Diferenciadores:
+  - 100% local (offline vía PWA, sin backend)
+  - Packs de palabras curados en español mexicano
+  - Packs +18 para adultos
+  - Sistema de votación con puntos y partida completa
+  - UI moderna, responsive, instalable como app
