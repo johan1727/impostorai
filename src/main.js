@@ -213,17 +213,41 @@ const localWords = {
     ["chapulín","escarabajo"],["obsidiana","jade"],["cempasúchil","nochebuena"],["milpa","chinampa"]
   ],
   adulto: [
-    ["cruda","resaca"],["Tinder","Bumble"],["ghostear","dejar en visto"],["friendzone","situationship"],
-    ["ligue","faje"],["peda","fiesta"],["novio","free"],["tirar rollo","chamuyar"],
-    ["vibra","rollo"],["crush","stalkear"],["sexting","nudes"],["cuernos","engaño"],
-    ["cachondo","caliente"],["pecado","prohibido"],["travesura","aventura"],["lujuria","pasión"],
-    ["morbo","antojo"],["faje","besuqueo"],["ligar","seducir"],["cotorreo","coqueteo"],
-    ["chela","shot"],["after","reventón"],["tóxico","drama"],["celos","posesivo"],
-    ["ex","rebote"],["adrenalina","éxtasis"],["secreto","tabú"],["desinhibido","lanzado"],
-    ["oso","vergüenza"],["desmadre","locura"],["calentura","maña"],["vicio","hábito"],
-    ["sugar daddy","mantenido"],["amigos con derechos","quedantes"],["stalkear","espiar"],["pack","candente"],
-    ["emborracharse","ponerse hasta atrás"],["bailar pegado","perrear"],["darks","emo"],["antro","table"],
-    ["resbalosa","atrevida"],["encuerado","desnudo"],["chisme","secreto"],["tusa","despecho"]
+    // — Apps y ligue digital —
+    ["Tinder","Bumble"],["ghostear","clavar el visto"],["friendzone","situationship"],
+    ["catfish","perfil falso"],["sexting","nudes"],["stalkear","espiar"],["match","swipe"],
+    ["sugar daddy","sugar mommy"],["sugar baby","mantenido"],["OnlyFans","Patreon"],
+    // — Ligue y faje —
+    ["ligue","faje"],["tirar rollo","chamuyar"],["crush","pretendiente"],
+    ["amigos con derechos","quedantes"],["free","one night stand"],["acostar","enrollarse"],
+    ["calentón","manoseo"],["besarse","fajarse"],["ligar","seducir"],["coqueteo","cotorreo"],
+    // — Peda y fiesta —
+    ["cruda","resaca"],["peda","reventón"],["chela","shot"],["mezcal","tequila"],
+    ["jarra","caguama"],["precopeo","after"],["pedote","hasta atrás"],
+    ["vomitar","cruzado"],["juego de shots","verdad o reto"],
+    // — Antro y perreo —
+    ["antro","table"],["perrear","sandunguear"],["reggaetón","dembow"],
+    ["stripper","pole dance"],["VIP","mesa de botellas"],["cadenero","bouncer"],
+    ["hora feliz","barra libre"],["darketo","emo"],
+    // — Relaciones y drama —
+    ["tóxico","posesivo"],["celos","inseguridad"],["ex","rebote"],["cuernos","engaño"],
+    ["tusa","despecho"],["novio","amante"],["relación abierta","poliamor"],
+    ["drama","escándalo"],["red flag","bandera roja"],
+    // — Cuerpo y atracción —
+    ["mamado","trabado"],["nalgón","culón"],["chichis","bubis"],
+    ["cachondo","caliente"],["piropo","acoso"],["encuerado","desnudo"],
+    ["pompis","retaguardia"],["abdomen","cuadritos"],
+    // — Picante y tabú —
+    ["pecado","prohibido"],["morbo","antojo"],["fetiche","fantasía"],
+    ["lujuria","pasión"],["travesura","aventura"],["vibrador","juguete"],
+    ["rol","disfraz"],["voyeur","exhibicionista"],["sumiso","dominante"],
+    // — Albures y doble sentido MX —
+    ["chile","picante"],["albur","doble sentido"],["fierro","macizo"],
+    ["panocha","papaya"],["elote","mazorca"],["chorizo","salchicha"],
+    // — Vergüenzas y desmadre —
+    ["oso","vergüenza"],["desmadre","locura"],["pack","candente"],
+    ["chisme","secreto"],["calentura","maña"],["desinhibido","lanzado"],
+    ["resbalosa","atrevida"],["infidelidad","desliz"]
   ]
 };
 
@@ -629,17 +653,24 @@ const installDismissBtn = document.getElementById("installDismissBtn");
 const INSTALL_DISMISSED_KEY = "impostorInstallDismissed";
 
 function isIOS() {
-  return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  return /iPad|iPhone|iPod/.test(navigator.userAgent)
+    || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+    || (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
 }
 function isInStandaloneMode() {
   return window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+}
+function isIOSSafari() {
+  // True only in real Safari, not Chrome/Firefox/in-app browsers on iOS
+  const ua = navigator.userAgent;
+  return isIOS() && /Safari/.test(ua) && !/CriOS|FxiOS|OPiOS|EdgiOS/.test(ua);
 }
 
 // Android / Chrome: capture beforeinstallprompt
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   deferredInstallPrompt = e;
-  if (!localStorage.getItem(INSTALL_DISMISSED_KEY) && installBanner) {
+  if (!sessionStorage.getItem(INSTALL_DISMISSED_KEY) && installBanner) {
     installBanner.classList.remove("hidden");
     installBanner.classList.add("install-android");
   }
@@ -654,8 +685,19 @@ window.addEventListener("appinstalled", () => {
 // Show iOS install instructions if applicable
 function showIOSInstallHint() {
   if (!isIOS() || isInStandaloneMode()) return;
-  if (localStorage.getItem(INSTALL_DISMISSED_KEY)) return;
+  if (sessionStorage.getItem(INSTALL_DISMISSED_KEY)) return;
   if (!installBanner) return;
+
+  // Update instructions text based on browser
+  const iosText = installBanner.querySelector(".install-ios-text");
+  if (iosText) {
+    if (isIOSSafari()) {
+      iosText.innerHTML = 'Toca <strong>Compartir</strong> <span class="ios-share-icon">\u{1F4E4}</span> y luego <strong>"Agregar a pantalla de inicio"</strong>.';
+    } else {
+      iosText.innerHTML = 'Abre en <strong>Safari</strong> para instalar: toca <span class="ios-share-icon">\u{1F4E4}</span> → <strong>"Agregar a pantalla de inicio"</strong>.';
+    }
+  }
+
   installBanner.classList.remove("hidden");
   installBanner.classList.add("install-ios");
 }
@@ -674,12 +716,12 @@ if (installBtn) {
 if (installDismissBtn) {
   installDismissBtn.addEventListener("click", () => {
     if (installBanner) installBanner.classList.add("hidden");
-    localStorage.setItem(INSTALL_DISMISSED_KEY, "1");
+    sessionStorage.setItem(INSTALL_DISMISSED_KEY, "1");
   });
 }
 
 // Show iOS hint after short delay on first visit
-setTimeout(() => showIOSInstallHint(), 3000);
+setTimeout(() => showIOSInstallHint(), 2500);
 
 // ============= UTILITY FUNCTIONS =============
 function escapeHtml(text) {
