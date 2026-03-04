@@ -10,11 +10,11 @@ try { inject(); } catch {}
   const particles = [];
   const PARTICLE_COUNT = 45;
   const COLORS = [
-    "rgba(107, 138, 255, 0.4)",
-    "rgba(139, 92, 246, 0.35)",
-    "rgba(59, 130, 246, 0.3)",
-    "rgba(46, 213, 115, 0.2)",
-    "rgba(168, 85, 247, 0.25)"
+    "rgba(255, 123, 84, 0.35)",
+    "rgba(224, 64, 251, 0.30)",
+    "rgba(255, 182, 72, 0.28)",
+    "rgba(0, 230, 118, 0.18)",
+    "rgba(255, 71, 87, 0.22)"
   ];
 
   function resize() {
@@ -65,7 +65,7 @@ try { inject(); } catch {}
         if (dist < 120) {
           ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(107, 138, 255, ${(1 - dist / 120) * 0.08})`;
+          ctx.strokeStyle = `rgba(255, 140, 90, ${(1 - dist / 120) * 0.08})`;
           ctx.lineWidth = 0.5; ctx.stroke();
         }
       }
@@ -386,7 +386,7 @@ function loadSavedNames() {
   try { return JSON.parse(localStorage.getItem(NAMES_KEY)) || []; } catch { return []; }
 }
 function saveNames() {
-  localStorage.setItem(NAMES_KEY, JSON.stringify(state.playerNames));
+  try { localStorage.setItem(NAMES_KEY, JSON.stringify(state.playerNames)); } catch {}
 }
 
 // ============= SOUND EFFECTS (Web Audio API) =============
@@ -456,7 +456,7 @@ function launchConfetti() {
   const ctx = cv.getContext("2d");
   cv.width = window.innerWidth; cv.height = window.innerHeight;
   cv.style.display = "block";
-  const cols = ["#ff4757","#6b8aff","#2ed573","#ffa502","#8b5cf6","#ff6b81","#70a1ff","#ffdd59"];
+  const cols = ["#ff4757","#ff7b54","#00e676","#ffd600","#e040fb","#ff6b81","#ffab40","#69f0ae"];
   const ps = [];
   for (let i = 0; i < 120; i++) {
     ps.push({
@@ -496,7 +496,7 @@ function loadStats() {
   try { return JSON.parse(localStorage.getItem(STATS_KEY)) || { gamesPlayed: 0, rounds: [] }; }
   catch { return { gamesPlayed: 0, rounds: [] }; }
 }
-function saveStats(s) { localStorage.setItem(STATS_KEY, JSON.stringify(s)); }
+function saveStats(s) { try { localStorage.setItem(STATS_KEY, JSON.stringify(s)); } catch {} }
 function recordRound(round) {
   const s = loadStats();
   s.gamesPlayed += 1;
@@ -554,7 +554,7 @@ function renderStats() {
 function loadCustomPacks() {
   try { return JSON.parse(localStorage.getItem(CUSTOM_PACKS_KEY)) || []; } catch { return []; }
 }
-function saveCustomPacks(p) { localStorage.setItem(CUSTOM_PACKS_KEY, JSON.stringify(p)); }
+function saveCustomPacks(p) { try { localStorage.setItem(CUSTOM_PACKS_KEY, JSON.stringify(p)); } catch {} }
 function deleteCustomPack(i) {
   const p = loadCustomPacks(); p.splice(i, 1); saveCustomPacks(p); refreshCustomThemes();
 }
@@ -631,7 +631,7 @@ function toggleVisualTheme() {
   const curr = document.documentElement.getAttribute("data-theme") || "dark";
   const next = curr === "dark" ? "light" : "dark";
   applyVisualTheme(next);
-  localStorage.setItem("impostorTheme", next);
+  try { localStorage.setItem("impostorTheme", next); } catch {}
   SFX.click();
 }
 
@@ -848,7 +848,7 @@ function getUsedPairs(themeTag) {
 function markPairUsed(themeTag, pair) {
   const used = getUsedPairs(themeTag);
   used.push(pair[0] + "|" + pair[1]);
-  sessionStorage.setItem(USED_WORDS_PREFIX + themeTag, JSON.stringify(used));
+  try { sessionStorage.setItem(USED_WORDS_PREFIX + themeTag, JSON.stringify(used)); } catch {}
 }
 function resetUsedPairsForTheme(themeTag) {
   sessionStorage.removeItem(USED_WORDS_PREFIX + themeTag);
@@ -898,6 +898,7 @@ async function createRound() {
   if (impostorCount < 1 || impostorCount > 3) throw new Error("Configura entre 1 y 3 impostores.");
   if (whiteCount < 0 || whiteCount > 2) throw new Error("Fantasma entre 0 y 2.");
   if (impostorCount + whiteCount >= playerCount) throw new Error("Impostores + fantasmas debe ser menor que jugadores.");
+  if (impostorCount >= playerCount - whiteCount - 1) throw new Error("Debe haber al menos 2 civiles para una partida justa.");
 
   const pack = getLocalPack(theme, state.includeAdultTheme);
   const allRoles = buildRoles(playerCount, impostorCount, whiteCount, pack.secretWord, pack.decoyWord);
@@ -1077,7 +1078,7 @@ function buildVoteUI() {
   state.voteTally = {};
   state.votedPlayer = null;
 
-  const avatarColors = ["#6c5ce7","#00cec9","#e17055","#fdcb6e","#74b9ff","#a29bfe","#55efc4","#ff7675","#fab1a0","#81ecec"];
+  const avatarColors = ["#ff7b54","#e040fb","#00e676","#ffd600","#ff4757","#f0a0ff","#69f0ae","#ff6b81","#ffab40","#ce93d8"];
   const avatarEmojis = ["\ud83d\ude0e","\ud83e\udd29","\ud83d\ude08","\ud83e\udd14","\ud83d\ude0f","\ud83e\uddd0","\ud83d\ude0d","\ud83e\udd2b","\ud83d\ude1c","\ud83d\ude44"];
 
   // Show eliminated count if any
