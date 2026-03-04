@@ -1233,7 +1233,7 @@ function startNextRound() {
   if (roundNumberEl) roundNumberEl.textContent = state.roundNumber;
   voteList.innerHTML = "";
   voteResult.classList.add("hidden");
-  voteResult.innerHTML = "";
+  voteResult.textContent = "";
   // Remove old eliminated badge
   const oldBadge = document.querySelector(".eliminated-badge");
   if (oldBadge) oldBadge.remove();
