@@ -1652,6 +1652,9 @@ function showMainView(view) {
 
   // Si entra al modo peda, auto-seleccionar ese tema y mostrar la misma pantalla de play
   if (view === "peda") {
+    // Forzar activación del toggle de temas adultos para que "peda" sea visible
+    state.includeAdultTheme = true;
+    if (adultThemesToggle) adultThemesToggle.checked = true;
     state.selectedTheme = "peda";
     renderThemeChips();
     // Podríamos mostrar un notice visual de las reglas de peda aquí
