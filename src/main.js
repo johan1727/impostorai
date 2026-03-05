@@ -1,5 +1,5 @@
 ﻿import { inject } from "@vercel/analytics";
-try { inject(); } catch {}
+try { inject(); } catch { }
 
 // ============= PARTICLE BACKGROUND =============
 (function initParticles() {
@@ -79,175 +79,187 @@ try { inject(); } catch {}
 // ============= WORD POOLS (~500 pares = 1000+ palabras MX) =============
 const localWords = {
   aleatorio: [
-    ["volcán","montaña"],["wifi","bluetooth"],["mango","papaya"],["biblioteca","museo"],
-    ["satélite","cohete"],["espejo","ventana"],["almohada","cojín"],["semáforo","señal"],
-    ["anillo","pulsera"],["helado","paleta"],["mochila","maleta"],["lápiz","pluma"],
-    ["tijeras","cuchillo"],["planeta","estrella"],["tapete","alfombra"],["bicicleta","patineta"],
-    ["martillo","desarmador"],["cámara","telescopio"],["pila","cargador"],["cereza","fresa"],
-    ["diamante","rubí"],["casco","sombrero"],["dado","moneda"],["cortina","persiana"],
-    ["chicle","caramelo"],["atardecer","amanecer"],["cable","enchufe"],["llave","grifo"],
-    ["plátano","manzana"],["torta","sándwich"],["carro","camioneta"],["cobija","sábana"],
-    ["calcetín","zapato"],["cuchara","tenedor"],["banqueta","calle"],["nube","niebla"]
+    ["volcán", "montaña"], ["wifi", "bluetooth"], ["mango", "papaya"], ["biblioteca", "museo"],
+    ["satélite", "cohete"], ["espejo", "ventana"], ["almohada", "cojín"], ["semáforo", "señal"],
+    ["anillo", "pulsera"], ["helado", "paleta"], ["mochila", "maleta"], ["lápiz", "pluma"],
+    ["tijeras", "cuchillo"], ["planeta", "estrella"], ["tapete", "alfombra"], ["bicicleta", "patineta"],
+    ["martillo", "desarmador"], ["cámara", "telescopio"], ["pila", "cargador"], ["cereza", "fresa"],
+    ["diamante", "rubí"], ["casco", "sombrero"], ["dado", "moneda"], ["cortina", "persiana"],
+    ["chicle", "caramelo"], ["atardecer", "amanecer"], ["cable", "enchufe"], ["llave", "grifo"],
+    ["plátano", "manzana"], ["torta", "sándwich"], ["carro", "camioneta"], ["cobija", "sábana"],
+    ["calcetín", "zapato"], ["cuchara", "tenedor"], ["banqueta", "calle"], ["nube", "niebla"]
   ],
   comida: [
-    ["taco","burrito"],["torta","pambazo"],["café","chocolate"],["sushi","ramen"],
-    ["hamburguesa","hot dog"],["pozole","menudo"],["empanada","gordita"],["concha","dona"],
-    ["ceviche","aguachile"],["brownie","galleta"],["waffle","hot cake"],["helado","nieve"],
-    ["nachos","quesadilla"],["mole","pipián"],["salmón","atún"],["ensalada","caldo"],
-    ["flan","gelatina"],["churros","buñuelos"],["guacamole","hummus"],["salsa verde","salsa roja"],
-    ["papas fritas","chicharrón"],["pasta","fideos"],["pan","tortilla"],["queso","mantequilla"],
-    ["pastel","pay"],["tocino","jamón"],["arroz","frijoles"],["tamal","elote"],
-    ["chilaquiles","enchiladas"],["michelada","clamato"],["esquite","palomitas"],["chile relleno","chile en nogada"],
-    ["birria","barbacoa"],["tlayuda","huarache"],["agua de horchata","agua de jamaica"],["camote","jícama"]
+    ["taco", "burrito"], ["torta", "pambazo"], ["café", "chocolate"], ["sushi", "ramen"],
+    ["hamburguesa", "hot dog"], ["pozole", "menudo"], ["empanada", "gordita"], ["concha", "dona"],
+    ["ceviche", "aguachile"], ["brownie", "galleta"], ["waffle", "hot cake"], ["helado", "nieve"],
+    ["nachos", "quesadilla"], ["mole", "pipián"], ["salmón", "atún"], ["ensalada", "caldo"],
+    ["flan", "gelatina"], ["churros", "buñuelos"], ["guacamole", "hummus"], ["salsa verde", "salsa roja"],
+    ["papas fritas", "chicharrón"], ["pasta", "fideos"], ["pan", "tortilla"], ["queso", "mantequilla"],
+    ["pastel", "pay"], ["tocino", "jamón"], ["arroz", "frijoles"], ["tamal", "elote"],
+    ["chilaquiles", "enchiladas"], ["michelada", "clamato"], ["esquite", "palomitas"], ["chile relleno", "chile en nogada"],
+    ["birria", "barbacoa"], ["tlayuda", "huarache"], ["agua de horchata", "agua de jamaica"], ["camote", "jícama"]
   ],
   lugares: [
-    ["aeropuerto","terminal"],["hospital","clínica"],["playa","isla"],["escuela","universidad"],
-    ["cine","teatro"],["parque","jardín"],["estadio","arena"],["castillo","palacio"],
-    ["súper","tiendita"],["restaurante","fonda"],["iglesia","catedral"],["banco","oficina"],
-    ["estación","parada"],["zoológico","acuario"],["montaña","cerro"],["río","lago"],
-    ["cueva","túnel"],["faro","torre"],["panteón","cripta"],["rancho","hacienda"],
-    ["lobby","recepción"],["balcón","terraza"],["metro","metrobús"],["desierto","selva"],
-    ["volcán","cráter"],["cascada","manantial"],["puente","muelle"],["frontera","aduana"],
-    ["mercado","tianguis"],["cantina","bar"],["plaza","zócalo"],["gasolinera","taller"],
-    ["oxxo","farmacia"],["taquería","puesto"],["cenote","balneario"],["antro","salón de fiestas"]
+    ["aeropuerto", "terminal"], ["hospital", "clínica"], ["playa", "isla"], ["escuela", "universidad"],
+    ["cine", "teatro"], ["parque", "jardín"], ["estadio", "arena"], ["castillo", "palacio"],
+    ["súper", "tiendita"], ["restaurante", "fonda"], ["iglesia", "catedral"], ["banco", "oficina"],
+    ["estación", "parada"], ["zoológico", "acuario"], ["montaña", "cerro"], ["río", "lago"],
+    ["cueva", "túnel"], ["faro", "torre"], ["panteón", "cripta"], ["rancho", "hacienda"],
+    ["lobby", "recepción"], ["balcón", "terraza"], ["metro", "metrobús"], ["desierto", "selva"],
+    ["volcán", "cráter"], ["cascada", "manantial"], ["puente", "muelle"], ["frontera", "aduana"],
+    ["mercado", "tianguis"], ["cantina", "bar"], ["plaza", "zócalo"], ["gasolinera", "taller"],
+    ["oxxo", "farmacia"], ["taquería", "puesto"], ["cenote", "balneario"], ["antro", "salón de fiestas"]
   ],
   objetos: [
-    ["teclado","mouse"],["paraguas","impermeable"],["linterna","vela"],["reloj","cronómetro"],
-    ["espada","escudo"],["llave","candado"],["lentes","lupa"],["brújula","mapa"],
-    ["guitarra","ukulele"],["silla","banco"],["cuchara","tenedor"],["pincel","brocha"],
-    ["aguja","alfiler"],["cadena","cuerda"],["antena","radar"],["campana","silbato"],
-    ["corona","tiara"],["dado","ficha"],["escalera","rampa"],["guante","manopla"],
-    ["imán","brújula"],["maceta","jarrón"],["lámpara","foco"],["mapa","globo terráqueo"],
-    ["pañuelo","toalla"],["escoba","trapeador"],["botella","jarra"],["sobre","carpeta"],
-    ["control remoto","pilas"],["cinturón","tirantes"],["encendedor","cerillos"],["cartera","monedero"],
-    ["manguera","regadera"],["engrapadora","clips"],["cinta adhesiva","pegamento"],["chamarra","suéter"]
+    ["teclado", "mouse"], ["paraguas", "impermeable"], ["linterna", "vela"], ["reloj", "cronómetro"],
+    ["espada", "escudo"], ["llave", "candado"], ["lentes", "lupa"], ["brújula", "mapa"],
+    ["guitarra", "ukulele"], ["silla", "banco"], ["cuchara", "tenedor"], ["pincel", "brocha"],
+    ["aguja", "alfiler"], ["cadena", "cuerda"], ["antena", "radar"], ["campana", "silbato"],
+    ["corona", "tiara"], ["dado", "ficha"], ["escalera", "rampa"], ["guante", "manopla"],
+    ["imán", "brújula"], ["maceta", "jarrón"], ["lámpara", "foco"], ["mapa", "globo terráqueo"],
+    ["pañuelo", "toalla"], ["escoba", "trapeador"], ["botella", "jarra"], ["sobre", "carpeta"],
+    ["control remoto", "pilas"], ["cinturón", "tirantes"], ["encendedor", "cerillos"], ["cartera", "monedero"],
+    ["manguera", "regadera"], ["engrapadora", "clips"], ["cinta adhesiva", "pegamento"], ["chamarra", "suéter"]
   ],
   tecnologia: [
-    ["nube","servidor"],["robot","dron"],["python","javascript"],["contraseña","pin"],
-    ["pixel","resolución"],["wifi","datos móviles"],["app","programa"],["USB","HDMI"],
-    ["laptop","tablet"],["RAM","disco duro"],["GPS","brújula"],["firewall","antivirus"],
-    ["podcast","blog"],["streaming","descarga"],["emoji","sticker"],["VPN","proxy"],
-    ["cookie","caché"],["router","módem"],["backup","respaldo"],["código QR","código de barras"],
-    ["realidad virtual","realidad aumentada"],["inteligencia artificial","machine learning"],
-    ["front-end","back-end"],["Linux","Windows"],["modo oscuro","modo claro"],
-    ["bluetooth","NFC"],["algoritmo","función"],["base de datos","hoja de cálculo"],
-    ["captura de pantalla","grabación"],["meme","gif"],["TikTok","YouTube"],["spam","phishing"],
-    ["hashtag","trending"],["notificación","alerta"],["nube","drive"],["lag","ping"]
+    ["nube", "servidor"], ["robot", "dron"], ["python", "javascript"], ["contraseña", "pin"],
+    ["pixel", "resolución"], ["wifi", "datos móviles"], ["app", "programa"], ["USB", "HDMI"],
+    ["laptop", "tablet"], ["RAM", "disco duro"], ["GPS", "brújula"], ["firewall", "antivirus"],
+    ["podcast", "blog"], ["streaming", "descarga"], ["emoji", "sticker"], ["VPN", "proxy"],
+    ["cookie", "caché"], ["router", "módem"], ["backup", "respaldo"], ["código QR", "código de barras"],
+    ["realidad virtual", "realidad aumentada"], ["inteligencia artificial", "machine learning"],
+    ["front-end", "back-end"], ["Linux", "Windows"], ["modo oscuro", "modo claro"],
+    ["bluetooth", "NFC"], ["algoritmo", "función"], ["base de datos", "hoja de cálculo"],
+    ["captura de pantalla", "grabación"], ["meme", "gif"], ["TikTok", "YouTube"], ["spam", "phishing"],
+    ["hashtag", "trending"], ["notificación", "alerta"], ["nube", "drive"], ["lag", "ping"]
   ],
   deportes: [
-    ["futbol","rugby"],["natación","waterpolo"],["tenis","bádminton"],["boxeo","karate"],
-    ["basquetbol","voleibol"],["golf","cricket"],["surf","windsurf"],["esquí","snowboard"],
-    ["atletismo","maratón"],["ciclismo","motocross"],["escalada","rappel"],["esgrima","kendo"],
-    ["hockey","lacrosse"],["judo","taekwondo"],["patinaje","skateboard"],["charrería","equitación"],
-    ["béisbol","softbol"],["ajedrez","damas"],["ping pong","squash"],["triatlón","pentatlón"],
-    ["tiro con arco","tiro"],["lucha libre","sumo"],["remo","kayak"],["parkour","calistenia"],
-    ["buceo","snorkel"],["boliche","billar"],["CrossFit","yoga"],["boxeo","MMA"],
-    ["frontón","raquetbol"],["clavados","nado sincronizado"],["fútbol americano","flag football"],
-    ["corrida","jaripeo"],["penal","tiro libre"],["cascarita","reta"],["gol","touchdown"],["porra","barra"]
+    ["futbol", "rugby"], ["natación", "waterpolo"], ["tenis", "bádminton"], ["boxeo", "karate"],
+    ["basquetbol", "voleibol"], ["golf", "cricket"], ["surf", "windsurf"], ["esquí", "snowboard"],
+    ["atletismo", "maratón"], ["ciclismo", "motocross"], ["escalada", "rappel"], ["esgrima", "kendo"],
+    ["hockey", "lacrosse"], ["judo", "taekwondo"], ["patinaje", "skateboard"], ["charrería", "equitación"],
+    ["béisbol", "softbol"], ["ajedrez", "damas"], ["ping pong", "squash"], ["triatlón", "pentatlón"],
+    ["tiro con arco", "tiro"], ["lucha libre", "sumo"], ["remo", "kayak"], ["parkour", "calistenia"],
+    ["buceo", "snorkel"], ["boliche", "billar"], ["CrossFit", "yoga"], ["boxeo", "MMA"],
+    ["frontón", "raquetbol"], ["clavados", "nado sincronizado"], ["fútbol americano", "flag football"],
+    ["corrida", "jaripeo"], ["penal", "tiro libre"], ["cascarita", "reta"], ["gol", "touchdown"], ["porra", "barra"]
   ],
   animales: [
-    ["gato","león"],["águila","halcón"],["delfín","tiburón"],["abeja","avispa"],
-    ["perro","lobo"],["caballo","cebra"],["oso","panda"],["serpiente","lagartija"],
-    ["conejo","liebre"],["loro","guacamaya"],["rana","sapo"],["hormiga","termita"],
-    ["vaca","búfalo"],["pingüino","foca"],["murciélago","búho"],["mariposa","polilla"],
-    ["camaleón","iguana"],["cuervo","paloma"],["pulpo","calamar"],["tortuga","cocodrilo"],
-    ["zorro","coyote"],["ballena","orca"],["medusa","anémona"],["cangrejo","langosta"],
-    ["gorila","chimpancé"],["jirafa","avestruz"],["pavo real","flamenco"],["rata","hámster"],
-    ["tlacuache","mapache"],["ajolote","salamandra"],["colibrí","golondrina"],["armadillo","puercoespín"],
-    ["chapulín","grillo"],["guajolote","gallina"],["xoloitzcuintle","chihuahua"],["quetzal","tucán"]
+    ["gato", "león"], ["águila", "halcón"], ["delfín", "tiburón"], ["abeja", "avispa"],
+    ["perro", "lobo"], ["caballo", "cebra"], ["oso", "panda"], ["serpiente", "lagartija"],
+    ["conejo", "liebre"], ["loro", "guacamaya"], ["rana", "sapo"], ["hormiga", "termita"],
+    ["vaca", "búfalo"], ["pingüino", "foca"], ["murciélago", "búho"], ["mariposa", "polilla"],
+    ["camaleón", "iguana"], ["cuervo", "paloma"], ["pulpo", "calamar"], ["tortuga", "cocodrilo"],
+    ["zorro", "coyote"], ["ballena", "orca"], ["medusa", "anémona"], ["cangrejo", "langosta"],
+    ["gorila", "chimpancé"], ["jirafa", "avestruz"], ["pavo real", "flamenco"], ["rata", "hámster"],
+    ["tlacuache", "mapache"], ["ajolote", "salamandra"], ["colibrí", "golondrina"], ["armadillo", "puercoespín"],
+    ["chapulín", "grillo"], ["guajolote", "gallina"], ["xoloitzcuintle", "chihuahua"], ["quetzal", "tucán"]
   ],
   profesiones: [
-    ["doctor","enfermero"],["abogado","juez"],["chef","pastelero"],["piloto","astronauta"],
-    ["bombero","policía"],["profe","tutor"],["arquitecto","ingeniero"],["periodista","editor"],
-    ["músico","cantante"],["fotógrafo","camarógrafo"],["diseñador","ilustrador"],["veterinario","biólogo"],
-    ["electricista","plomero"],["psicólogo","psiquiatra"],["programador","hacker"],["detective","espía"],
-    ["carpintero","albañil"],["dentista","ortodoncista"],["farmacéutico","químico"],["actor","comediante"],
-    ["escultor","pintor"],["soldado","marinero"],["mecánico","técnico"],["narrador","escritor"],
-    ["cirujano","anestesiólogo"],["mesero","bartender"],["cartero","mensajero"],["jardinero","agricultor"],
-    ["influencer","youtuber"],["locutor","conductor de TV"],["chofer","taxista"],["estilista","barbero"],
-    ["taquero","panadero"],["herrero","soldador"],["partera","doula"],["chamán","curandero"]
+    ["doctor", "enfermero"], ["abogado", "juez"], ["chef", "pastelero"], ["piloto", "astronauta"],
+    ["bombero", "policía"], ["profe", "tutor"], ["arquitecto", "ingeniero"], ["periodista", "editor"],
+    ["músico", "cantante"], ["fotógrafo", "camarógrafo"], ["diseñador", "ilustrador"], ["veterinario", "biólogo"],
+    ["electricista", "plomero"], ["psicólogo", "psiquiatra"], ["programador", "hacker"], ["detective", "espía"],
+    ["carpintero", "albañil"], ["dentista", "ortodoncista"], ["farmacéutico", "químico"], ["actor", "comediante"],
+    ["escultor", "pintor"], ["soldado", "marinero"], ["mecánico", "técnico"], ["narrador", "escritor"],
+    ["cirujano", "anestesiólogo"], ["mesero", "bartender"], ["cartero", "mensajero"], ["jardinero", "agricultor"],
+    ["influencer", "youtuber"], ["locutor", "conductor de TV"], ["chofer", "taxista"], ["estilista", "barbero"],
+    ["taquero", "panadero"], ["herrero", "soldador"], ["partera", "doula"], ["chamán", "curandero"]
   ],
   peliculas: [
-    ["terror","suspenso"],["comedia","parodia"],["Marvel","DC"],["Pixar","DreamWorks"],
-    ["ciencia ficción","fantasía"],["drama","romance"],["acción","aventura"],["anime","caricatura"],
-    ["documental","biopic"],["western","noir"],["zombie","vampiro"],["precuela","secuela"],
-    ["director","productor"],["actor","doble"],["guion","storyboard"],["taquilla","streaming"],
-    ["palomitas","nachos"],["subtítulos","doblaje"],["tráiler","teaser"],["IMAX","3D"],
-    ["Óscar","Golden Globe"],["remake","reboot"],["Star Wars","Star Trek"],
-    ["Harry Potter","Señor de los Anillos"],["Batman","Superman"],["Avengers","Justice League"],
-    ["Netflix","Disney Plus"],["thriller","misterio"],["villano","héroe"],["saga","trilogía"],
-    ["serie","telenovela"],["trama","spoiler"],["cámara lenta","time lapse"],["CGI","efectos prácticos"]
+    ["terror", "suspenso"], ["comedia", "parodia"], ["Marvel", "DC"], ["Pixar", "DreamWorks"],
+    ["ciencia ficción", "fantasía"], ["drama", "romance"], ["acción", "aventura"], ["anime", "caricatura"],
+    ["documental", "biopic"], ["western", "noir"], ["zombie", "vampiro"], ["precuela", "secuela"],
+    ["director", "productor"], ["actor", "doble"], ["guion", "storyboard"], ["taquilla", "streaming"],
+    ["palomitas", "nachos"], ["subtítulos", "doblaje"], ["tráiler", "teaser"], ["IMAX", "3D"],
+    ["Óscar", "Golden Globe"], ["remake", "reboot"], ["Star Wars", "Star Trek"],
+    ["Harry Potter", "Señor de los Anillos"], ["Batman", "Superman"], ["Avengers", "Justice League"],
+    ["Netflix", "Disney Plus"], ["thriller", "misterio"], ["villano", "héroe"], ["saga", "trilogía"],
+    ["serie", "telenovela"], ["trama", "spoiler"], ["cámara lenta", "time lapse"], ["CGI", "efectos prácticos"]
   ],
   musica: [
-    ["guitarra","bajo"],["reggaetón","trap"],["piano","órgano"],["rock","punk"],
-    ["rap","hip hop"],["salsa","cumbia"],["violín","viola"],["jazz","blues"],
-    ["electrónica","techno"],["ópera","musical"],["batería","percusión"],["flauta","clarinete"],
-    ["arpa","cítara"],["acordeón","bandoneón"],["disco","funk"],["metal","grunge"],
-    ["mariachi","norteña"],["reggae","ska"],["K-pop","J-pop"],["coro","a cappella"],
-    ["DJ","productor"],["vinilo","casete"],["concierto","festival"],["single","álbum"],
-    ["estribillo","verso"],["balada","bolero"],["pop","indie"],["country","folk"],
-    ["corrido","banda"],["son jarocho","huapango"],["ranchera","sierreña"],["perreo","dembow"],
-    ["chilena","son cubano"],["vals","danzón"],["karaoke","dueto"],["mashup","remix"]
+    ["guitarra", "bajo"], ["reggaetón", "trap"], ["piano", "órgano"], ["rock", "punk"],
+    ["rap", "hip hop"], ["salsa", "cumbia"], ["violín", "viola"], ["jazz", "blues"],
+    ["electrónica", "techno"], ["ópera", "musical"], ["batería", "percusión"], ["flauta", "clarinete"],
+    ["arpa", "cítara"], ["acordeón", "bandoneón"], ["disco", "funk"], ["metal", "grunge"],
+    ["mariachi", "norteña"], ["reggae", "ska"], ["K-pop", "J-pop"], ["coro", "a cappella"],
+    ["DJ", "productor"], ["vinilo", "casete"], ["concierto", "festival"], ["single", "álbum"],
+    ["estribillo", "verso"], ["balada", "bolero"], ["pop", "indie"], ["country", "folk"],
+    ["corrido", "banda"], ["son jarocho", "huapango"], ["ranchera", "sierreña"], ["perreo", "dembow"],
+    ["chilena", "son cubano"], ["vals", "danzón"], ["karaoke", "dueto"], ["mashup", "remix"]
   ],
   historia: [
-    ["Egipto","Roma"],["revolución","independencia"],["medieval","renacimiento"],["samurái","ninja"],
-    ["vikingo","pirata"],["colonia","imperio"],["faraón","emperador"],["gladiador","espartano"],
-    ["cruzada","conquista"],["monarquía","república"],["feudo","castillo"],["pergamino","papiro"],
-    ["caballero","templario"],["azteca","maya"],["inca","olmeca"],["muralla china","pirámide"],
-    ["espada","catapulta"],["bronce","hierro"],["Napoleón","Julio César"],["democracia","dictadura"],
-    ["prehistoria","antigüedad"],["guerra fría","guerra mundial"],["esclavitud","abolición"],
-    ["invención","descubrimiento"],["filosofía","mitología"],["Cleopatra","Nefertiti"],
-    ["tratado","alianza"],["armadura","escudo"],["Zapata","Villa"],["águila","serpiente"],
-    ["Tenochtitlan","Tlatelolco"],["códice","jeroglífico"],["Moctezuma","Cuauhtémoc"],
-    ["virrey","caudillo"],["hacienda","encomienda"],["grito de Dolores","Plan de Iguala"]
+    ["Egipto", "Roma"], ["revolución", "independencia"], ["medieval", "renacimiento"], ["samurái", "ninja"],
+    ["vikingo", "pirata"], ["colonia", "imperio"], ["faraón", "emperador"], ["gladiador", "espartano"],
+    ["cruzada", "conquista"], ["monarquía", "república"], ["feudo", "castillo"], ["pergamino", "papiro"],
+    ["caballero", "templario"], ["azteca", "maya"], ["inca", "olmeca"], ["muralla china", "pirámide"],
+    ["espada", "catapulta"], ["bronce", "hierro"], ["Napoleón", "Julio César"], ["democracia", "dictadura"],
+    ["prehistoria", "antigüedad"], ["guerra fría", "guerra mundial"], ["esclavitud", "abolición"],
+    ["invención", "descubrimiento"], ["filosofía", "mitología"], ["Cleopatra", "Nefertiti"],
+    ["tratado", "alianza"], ["armadura", "escudo"], ["Zapata", "Villa"], ["águila", "serpiente"],
+    ["Tenochtitlan", "Tlatelolco"], ["códice", "jeroglífico"], ["Moctezuma", "Cuauhtémoc"],
+    ["virrey", "caudillo"], ["hacienda", "encomienda"], ["grito de Dolores", "Plan de Iguala"]
   ],
   naturaleza: [
-    ["volcán","géiser"],["tsunami","huracán"],["bosque","selva"],["río","cascada"],
-    ["aurora boreal","arcoíris"],["terremoto","avalancha"],["coral","alga"],["montaña","acantilado"],
-    ["desierto","tundra"],["manglar","pantano"],["rayo","trueno"],["tornado","tifón"],
-    ["glaciar","iceberg"],["cueva","gruta"],["estalagmita","estalactita"],["oasis","manantial"],
-    ["luna","sol"],["cometa","asteroide"],["fósil","ámbar"],["cristal","mineral"],
-    ["arena","grava"],["musgo","liquen"],["miel","cera"],["polen","néctar"],
-    ["raíz","tronco"],["hoja","pétalo"],["semilla","brote"],["marea","corriente"],
-    ["cenote","lago"],["nopal","maguey"],["ceiba","ahuehuete"],["jaguar","puma"],
-    ["chapulín","escarabajo"],["obsidiana","jade"],["cempasúchil","nochebuena"],["milpa","chinampa"]
+    ["volcán", "géiser"], ["tsunami", "huracán"], ["bosque", "selva"], ["río", "cascada"],
+    ["aurora boreal", "arcoíris"], ["terremoto", "avalancha"], ["coral", "alga"], ["montaña", "acantilado"],
+    ["desierto", "tundra"], ["manglar", "pantano"], ["rayo", "trueno"], ["tornado", "tifón"],
+    ["glaciar", "iceberg"], ["cueva", "gruta"], ["estalagmita", "estalactita"], ["oasis", "manantial"],
+    ["luna", "sol"], ["cometa", "asteroide"], ["fósil", "ámbar"], ["cristal", "mineral"],
+    ["arena", "grava"], ["musgo", "liquen"], ["miel", "cera"], ["polen", "néctar"],
+    ["raíz", "tronco"], ["hoja", "pétalo"], ["semilla", "brote"], ["marea", "corriente"],
+    ["cenote", "lago"], ["nopal", "maguey"], ["ceiba", "ahuehuete"], ["jaguar", "puma"],
+    ["chapulín", "escarabajo"], ["obsidiana", "jade"], ["cempasúchil", "nochebuena"], ["milpa", "chinampa"]
   ],
   adulto: [
     // — Apps y ligue digital —
-    ["Tinder","Bumble"],["ghostear","clavar el visto"],["friendzone","situationship"],
-    ["catfish","perfil falso"],["sexting","nudes"],["stalkear","espiar"],["match","swipe"],
-    ["sugar daddy","sugar mommy"],["sugar baby","mantenido"],["OnlyFans","Patreon"],
+    ["Tinder", "Bumble"], ["ghostear", "clavar el visto"], ["friendzone", "situationship"],
+    ["catfish", "perfil falso"], ["sexting", "nudes"], ["stalkear", "espiar"], ["match", "swipe"],
+    ["sugar daddy", "sugar mommy"], ["sugar baby", "mantenido"], ["OnlyFans", "Patreon"],
     // — Ligue y faje —
-    ["ligue","faje"],["tirar rollo","chamuyar"],["crush","pretendiente"],
-    ["amigos con derechos","quedantes"],["free","one night stand"],["acostar","enrollarse"],
-    ["calentón","manoseo"],["besarse","fajarse"],["ligar","seducir"],["coqueteo","cotorreo"],
+    ["ligue", "faje"], ["tirar rollo", "chamuyar"], ["crush", "pretendiente"],
+    ["amigos con derechos", "quedantes"], ["free", "one night stand"], ["acostar", "enrollarse"],
+    ["calentón", "manoseo"], ["besarse", "fajarse"], ["ligar", "seducir"], ["coqueteo", "cotorreo"],
     // — Peda y fiesta —
-    ["cruda","resaca"],["peda","reventón"],["chela","shot"],["mezcal","tequila"],
-    ["jarra","caguama"],["precopeo","after"],["pedote","hasta atrás"],
-    ["vomitar","cruzado"],["juego de shots","verdad o reto"],
+    ["cruda", "resaca"], ["peda", "reventón"], ["chela", "shot"], ["mezcal", "tequila"],
+    ["jarra", "caguama"], ["precopeo", "after"], ["pedote", "hasta atrás"],
+    ["vomitar", "cruzado"], ["juego de shots", "verdad o reto"],
     // — Antro y perreo —
-    ["antro","table"],["perrear","sandunguear"],["reggaetón","dembow"],
-    ["stripper","pole dance"],["VIP","mesa de botellas"],["cadenero","bouncer"],
-    ["hora feliz","barra libre"],["darketo","emo"],
+    ["antro", "table"], ["perrear", "sandunguear"], ["reggaetón", "dembow"],
+    ["stripper", "pole dance"], ["VIP", "mesa de botellas"], ["cadenero", "bouncer"],
+    ["hora feliz", "barra libre"], ["darketo", "emo"],
     // — Relaciones y drama —
-    ["tóxico","posesivo"],["celos","inseguridad"],["ex","rebote"],["cuernos","engaño"],
-    ["tusa","despecho"],["novio","amante"],["relación abierta","poliamor"],
-    ["drama","escándalo"],["red flag","bandera roja"],
+    ["tóxico", "posesivo"], ["celos", "inseguridad"], ["ex", "rebote"], ["cuernos", "engaño"],
+    ["tusa", "despecho"], ["novio", "amante"], ["relación abierta", "poliamor"],
+    ["drama", "escándalo"], ["red flag", "bandera roja"],
     // — Cuerpo y atracción —
-    ["mamado","trabado"],["nalgón","culón"],["chichis","bubis"],
-    ["cachondo","caliente"],["piropo","acoso"],["encuerado","desnudo"],
-    ["pompis","retaguardia"],["abdomen","cuadritos"],
+    ["mamado", "trabado"], ["nalgón", "culón"], ["chichis", "bubis"],
+    ["cachondo", "caliente"], ["piropo", "acoso"], ["encuerado", "desnudo"],
+    ["pompis", "retaguardia"], ["abdomen", "cuadritos"],
     // — Picante y tabú —
-    ["pecado","prohibido"],["morbo","antojo"],["fetiche","fantasía"],
-    ["lujuria","pasión"],["travesura","aventura"],["vibrador","juguete"],
-    ["rol","disfraz"],["voyeur","exhibicionista"],["sumiso","dominante"],
+    ["pecado", "prohibido"], ["morbo", "antojo"], ["fetiche", "fantasía"],
+    ["lujuria", "pasión"], ["travesura", "aventura"], ["vibrador", "juguete"],
+    ["rol", "disfraz"], ["voyeur", "exhibicionista"], ["sumiso", "dominante"],
     // — Albures y doble sentido MX —
-    ["chile","picante"],["albur","doble sentido"],["fierro","macizo"],
-    ["panocha","papaya"],["elote","mazorca"],["chorizo","salchicha"],
+    ["chile", "picante"], ["albur", "doble sentido"], ["fierro", "macizo"],
+    ["panocha", "papaya"], ["elote", "mazorca"], ["chorizo", "salchicha"],
     // — Vergüenzas y desmadre —
-    ["oso","vergüenza"],["desmadre","locura"],["pack","candente"],
-    ["chisme","secreto"],["calentura","maña"],["desinhibido","lanzado"],
-    ["resbalosa","atrevida"],["infidelidad","desliz"]
+    ["oso", "vergüenza"], ["desmadre", "locura"], ["pack", "candente"],
+    ["chisme", "secreto"], ["calentura", "maña"], ["desinhibido", "lanzado"],
+    ["resbalosa", "atrevida"], ["infidelidad", "desliz"],
+    // — Agregados recientes (+18 MX) —
+    ["rapidín", "mañanero"], ["motel", "hotel de paso"], ["tanga", "hilo dental"],
+    ["cruda moral", "arrepentimiento"], ["beso de tres", "trío"],
+    ["arrimón", "faje en público"], ["condón", "preservativo"],
+    ["orgía", "fiesta swinger"], ["consolador", "vibrador"], ["juguete sexual", "lubricante"],
+    // — Más explícitos / argot (+18 MX) —
+    ["cariñosas", "prostis"], ["chaqueta", "puñeta"], ["mamada", "chupada"],
+    ["perrito", "de chivito"], ["el chiquito", "el nudo de globo"],
+    ["venirse", "terminar"], ["coger", "tirar"], ["erección", "palo"],
+    ["orgasmo", "clímax"], ["putero", "congal"], ["chupetón", "marca"],
+    ["madurita", "milf"], ["nalgada", "cachetada"], ["bajar por los chescos", "comer pancho"],
+    ["BDSM", "sado"]
   ]
 };
 
@@ -256,15 +268,15 @@ const themes = [
   { key: "comida", label: "Comida" },
   { key: "lugares", label: "Lugares" },
   { key: "objetos", label: "Objetos" },
-  { key: "tecnologia", label: "Tecnolog\u00eda" },
+  { key: "tecnologia", label: "Tecnología" },
   { key: "deportes", label: "Deportes" },
   { key: "animales", label: "Animales" },
   { key: "profesiones", label: "Profesiones" },
-  { key: "peliculas", label: "Pel\u00edculas" },
-  { key: "musica", label: "M\u00fasica" },
+  { key: "peliculas", label: "Películas" },
+  { key: "musica", label: "Música" },
   { key: "historia", label: "Historia" },
   { key: "naturaleza", label: "Naturaleza" },
-  { key: "adulto", label: "+18 \ud83d\udd25", adult: true }
+  { key: "adulto", label: "+18 🔥", adult: true }
 ];
 
 // ============= DOM REFS =============
@@ -275,6 +287,7 @@ const toggleAdvancedBtn = document.getElementById("toggleAdvancedBtn");
 const advancedOptions = document.getElementById("advancedOptions");
 const themeChips = document.getElementById("themeChips");
 const adultThemesToggle = document.getElementById("adultThemesToggle");
+const spanishOnlyToggle = document.getElementById("spanishOnlyToggle");
 const statusBox = document.getElementById("statusBox");
 const statusEl = document.getElementById("status");
 const menuSection = document.getElementById("menuSection");
@@ -354,6 +367,7 @@ const state = {
   roleIsVisible: false,
   selectedTheme: "aleatorio",
   includeAdultTheme: false,
+  spanishOnly: false,
   showAdvanced: false,
   timerSeconds: 120,
   timerTotalSeconds: 120,
@@ -386,7 +400,7 @@ function loadSavedNames() {
   try { return JSON.parse(localStorage.getItem(NAMES_KEY)) || []; } catch { return []; }
 }
 function saveNames() {
-  try { localStorage.setItem(NAMES_KEY, JSON.stringify(state.playerNames)); } catch {}
+  try { localStorage.setItem(NAMES_KEY, JSON.stringify(state.playerNames)); } catch { }
 }
 
 // ============= SOUND EFFECTS (Web Audio API) =============
@@ -408,7 +422,7 @@ const SFX = (() => {
       g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + dur);
       o.connect(g); g.connect(c.destination);
       o.start(c.currentTime); o.stop(c.currentTime + dur);
-    } catch {}
+    } catch { }
   }
   return {
     get enabled() { return enabled; },
@@ -427,6 +441,53 @@ const SFX = (() => {
   };
 })();
 
+// ============= CUSTOM CONFIRM MODAL =============
+function showConfirmModal(message, onAccept) {
+  SFX.alarm();
+  const overlay = document.createElement("div");
+  overlay.className = "confirm-modal-overlay";
+  overlay.innerHTML = `
+    <div class="confirm-modal">
+      <p>${escapeHtml(message)}</p>
+      <div class="confirm-actions">
+        <button type="button" class="secondary" id="confirmCancelBtn">Cancelar</button>
+        <button type="button" class="primary-action" id="confirmAcceptBtn">Aceptar</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  const cancelBtn = overlay.querySelector("#confirmCancelBtn");
+  const acceptBtn = overlay.querySelector("#confirmAcceptBtn");
+
+  const close = () => {
+    SFX.click();
+    overlay.remove();
+  };
+
+  cancelBtn.addEventListener("click", close);
+  acceptBtn.addEventListener("click", () => {
+    close();
+    onAccept();
+  });
+}
+
+// ============= SPANISH ONLY INIT =============
+(function initSpanishOnly() {
+  const lpSpan = localStorage.getItem("impostorSpanishOnly");
+  if (lpSpan === "true") {
+    state.spanishOnly = true;
+    if (spanishOnlyToggle) spanishOnlyToggle.checked = true;
+  }
+  if (spanishOnlyToggle) {
+    spanishOnlyToggle.addEventListener("change", (e) => {
+      state.spanishOnly = e.target.checked;
+      try { localStorage.setItem("impostorSpanishOnly", String(state.spanishOnly)); } catch { }
+      SFX.click();
+    });
+  }
+})();
+
 // ============= TOAST =============
 let _toastTimer = null;
 function showToast(msg, type = "success") {
@@ -435,10 +496,10 @@ function showToast(msg, type = "success") {
   const old = c.querySelector(".toast");
   if (old) old.remove();
   if (_toastTimer) clearTimeout(_toastTimer);
-  const icons = { error: "\u274c", loading: "\u23f3", success: "\u2705" };
+  const icons = { error: "❌", loading: "⏳", success: "✅" };
   const t = document.createElement("div");
   t.className = `toast toast-${type}`;
-  t.innerHTML = `<span>${icons[type] || "\u2705"}</span><span>${escapeHtml(msg)}</span>`;
+  t.innerHTML = `<span>${icons[type] || "✅"}</span><span>${escapeHtml(msg)}</span>`;
   c.appendChild(t);
   requestAnimationFrame(() => t.classList.add("toast-show"));
   if (type !== "loading") {
@@ -456,7 +517,7 @@ function launchConfetti() {
   const ctx = cv.getContext("2d");
   cv.width = window.innerWidth; cv.height = window.innerHeight;
   cv.style.display = "block";
-  const cols = ["#ff4757","#ff7b54","#00e676","#ffd600","#e040fb","#ff6b81","#ffab40","#69f0ae"];
+  const cols = ["#ff4757", "#ff7b54", "#00e676", "#ffd600", "#e040fb", "#ff6b81", "#ffab40", "#69f0ae"];
   const ps = [];
   for (let i = 0; i < 120; i++) {
     ps.push({
@@ -496,7 +557,7 @@ function loadStats() {
   try { return JSON.parse(localStorage.getItem(STATS_KEY)) || { gamesPlayed: 0, rounds: [] }; }
   catch { return { gamesPlayed: 0, rounds: [] }; }
 }
-function saveStats(s) { try { localStorage.setItem(STATS_KEY, JSON.stringify(s)); } catch {} }
+function saveStats(s) { try { localStorage.setItem(STATS_KEY, JSON.stringify(s)); } catch { } }
 function recordRound(round) {
   const s = loadStats();
   s.gamesPlayed += 1;
@@ -517,7 +578,7 @@ function renderStats() {
   if (!el) return;
   const s = loadStats();
   if (s.gamesPlayed === 0) {
-    el.innerHTML = '<p class="help-text" style="text-align:center;padding:20px">\ud83c\udfae A\u00fan no hay partidas. \u00a1Juega tu primera ronda!</p>';
+    el.innerHTML = '<p class="help-text" style="text-align:center;padding:20px">🎮 Aún no hay partidas. ¡Juega tu primera ronda!</p>';
     return;
   }
   const tc = {};
@@ -532,7 +593,7 @@ function renderStats() {
       <div class="stat-card"><span class="stat-value">${avg}</span><span class="stat-label">Jugadores prom.</span></div>
       <div class="stat-card"><span class="stat-value">${escapeHtml(topLabel)}</span><span class="stat-label">Tema favorito</span></div>
     </div>
-    <h3 class="subsection-title" style="margin-top:12px">\u00daltimas partidas</h3>
+    <h3 class="subsection-title" style="margin-top:12px">Últimas partidas</h3>
     <div class="stats-history">${recent.map(r => `
       <div class="stats-row">
         <span>${escapeHtml(themes.find(t => t.key === r.theme)?.label || r.theme)}</span>
@@ -540,9 +601,9 @@ function renderStats() {
         <span>${r.playerCount} jug.</span>
       </div>`).join("")}
     </div>
-    <button id="clearStatsBtn" type="button" class="link-btn" style="margin-top:8px;color:var(--red)">\ud83d\uddd1 Borrar historial</button>`;
+    <button id="clearStatsBtn" type="button" class="link-btn" style="margin-top:8px;color:var(--red)">🗑️ Borrar historial</button>`;
   document.getElementById("clearStatsBtn")?.addEventListener("click", () => {
-    if (confirm("\u00bfBorrar todo el historial?")) {
+    if (confirm("¿Borrar todo el historial?")) {
       saveStats({ gamesPlayed: 0, rounds: [] });
       renderStats();
       showToast("Historial borrado");
@@ -554,7 +615,7 @@ function renderStats() {
 function loadCustomPacks() {
   try { return JSON.parse(localStorage.getItem(CUSTOM_PACKS_KEY)) || []; } catch { return []; }
 }
-function saveCustomPacks(p) { try { localStorage.setItem(CUSTOM_PACKS_KEY, JSON.stringify(p)); } catch {} }
+function saveCustomPacks(p) { try { localStorage.setItem(CUSTOM_PACKS_KEY, JSON.stringify(p)); } catch { } }
 function deleteCustomPack(i) {
   const p = loadCustomPacks(); p.splice(i, 1); saveCustomPacks(p); refreshCustomThemes();
 }
@@ -565,7 +626,7 @@ function refreshCustomThemes() {
   for (let i = 0; i < packs.length; i++) {
     const key = `custom_${i}`;
     localWords[key] = packs[i].pairs;
-    themes.push({ key, label: `\ud83d\udce6 ${packs[i].name}`, custom: true });
+    themes.push({ key, label: `📦 ${packs[i].name}`, custom: true });
   }
   renderThemeChips();
   renderCustomPacksList();
@@ -575,7 +636,7 @@ function renderCustomPacksList() {
   if (!el) return;
   const packs = loadCustomPacks();
   if (!packs.length) { el.innerHTML = '<p class="help-text">No hay packs personalizados.</p>'; return; }
-  el.innerHTML = packs.map((p, i) => `<div class="custom-pack-item"><span>\ud83d\udce6 ${escapeHtml(p.name)} (${p.pairs.length} pares)</span><button type="button" class="custom-pack-del" data-idx="${i}">\u2715</button></div>`).join("");
+  el.innerHTML = packs.map((p, i) => `<div class="custom-pack-item"><span>📦 ${escapeHtml(p.name)} (${p.pairs.length} pares)</span><button type="button" class="custom-pack-del" data-idx="${i}">✕</button></div>`).join("");
   el.querySelectorAll(".custom-pack-del").forEach(b => b.addEventListener("click", () => {
     deleteCustomPack(Number(b.dataset.idx));
     showToast("Pack eliminado");
@@ -610,9 +671,9 @@ async function shareResult() {
   const tl = themes.find(t => t.key === state.round.theme)?.label || state.round.theme;
   const allRoles = state.round.allRoles || state.round.roles;
   const imps = allRoles.filter(r => r.role === "impostor").map(r => r.name).join(", ");
-  const text = `\ud83d\udd75\ufe0f IMPOSTOR \u2014 Resultado\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\ud83d\udcdd Tema: ${tl}\n\ud83d\udc65 Jugadores: ${allRoles.length}\n\ud83c\udfad Impostor: ${imps}\n\ud83d\udd11 Civiles: ${state.round.secretWord}\n\ud83d\udd00 Se\u00f1uelo: ${state.round.decoyWord}\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501`;
+  const text = `🕵️‍♂️ IMPOSTOR — Resultado\n━━━━━━━━━━━━━━\n📝 Tema: ${tl}\n👥 Jugadores: ${allRoles.length}\n🎭 Impostor: ${imps}\n🔑 Civiles: ${state.round.secretWord}\n🔀 Señuelo: ${state.round.decoyWord}\n━━━━━━━━━━━━━━`;
   if (navigator.share) {
-    try { await navigator.share({ title: "Impostor", text }); } catch {}
+    try { await navigator.share({ title: "Impostor", text }); } catch { }
   } else {
     try { await navigator.clipboard.writeText(text); showToast("Copiado al portapapeles"); }
     catch { showToast("No se pudo copiar", "error"); }
@@ -631,7 +692,7 @@ function toggleVisualTheme() {
   const curr = document.documentElement.getAttribute("data-theme") || "dark";
   const next = curr === "dark" ? "light" : "dark";
   applyVisualTheme(next);
-  try { localStorage.setItem("impostorTheme", next); } catch {}
+  try { localStorage.setItem("impostorTheme", next); } catch { }
   SFX.click();
 }
 
@@ -831,13 +892,45 @@ function buildRoles(playerCount, impostorCount, whiteCount, secretWord, decoyWor
   return roles;
 }
 
+const ENGLISH_WORDS = new Set([
+  "wifi", "bluetooth", "hot dog", "brownie", "waffle", "hot cake", "pay", "lobby", "mouse",
+  "dron", "javascript", "python", "pixel", "app", "usb", "hdmi", "laptop", "tablet", "ram", "gps",
+  "firewall", "podcast", "blog", "streaming", "emoji", "sticker", "vpn", "proxy", "cookie",
+  "router", "backup", "machine learning", "front-end", "back-end", "linux", "windows", "nfc",
+  "meme", "gif", "tiktok", "youtube", "spam", "phishing", "hashtag", "trending", "drive", "lag", "ping",
+  "rugby", "waterpolo", "cricket", "windsurf", "snowboard", "lacrosse", "skateboard", "softbol", "squash",
+  "parkour", "snorkel", "crossfit", "mma", "flag football", "touchdown", "chef", "hacker", "bartender",
+  "youtuber", "influencer", "doula", "marvel", "dc", "pixar", "dreamworks", "western", "noir",
+  "zombie", "storyboard", "streaming", "teaser", "imax", "3d", "remake", "reboot", "thriller",
+  "spoiler", "time lapse", "cgi", "trap", "punk", "rap", "hip hop", "jazz", "blues", "techno",
+  "ska", "k-pop", "j-pop", "dj", "single", "pop", "indie", "country", "folk", "remix", "mashup",
+  "tinder", "bumble", "ghostear", "friendzone", "situationship", "catfish", "sexting", "nudes", "stalkear",
+  "match", "swipe", "sugar daddy", "sugar mommy", "sugar baby", "onlyfans", "patreon", "crush", "free",
+  "one night stand", "after", "shot", "stripper", "pole dance", "vip", "red flag", "voyeur", "pack", "bdsm", "milf"
+]);
+
 function getThemePool(themeKey, includeAdult) {
+  let initialPool;
   if (themeKey === "aleatorio") {
     // Include all themed pools PLUS the general aleatorio pairs
-    return Object.keys(localWords).filter(k => !k.startsWith("custom_") && (includeAdult || k !== "adulto")).flatMap(k => localWords[k]);
+    initialPool = Object.keys(localWords).filter(k => !k.startsWith("custom_") && (includeAdult || k !== "adulto")).flatMap(k => localWords[k]);
+  } else if (themeKey === "adulto" && !includeAdult) {
+    initialPool = Object.keys(localWords).filter(k => !k.startsWith("custom_") && k !== "adulto").flatMap(k => localWords[k]);
+  } else {
+    initialPool = localWords[themeKey] ?? localWords.aleatorio;
   }
-  if (themeKey === "adulto" && !includeAdult) return getThemePool("aleatorio", false);
-  return localWords[themeKey] ?? localWords.aleatorio;
+
+  if (state.spanishOnly) {
+    const filtered = initialPool.filter(pair => {
+      const w1 = pair[0].toLowerCase();
+      const w2 = pair[1].toLowerCase();
+      return !ENGLISH_WORDS.has(w1) && !ENGLISH_WORDS.has(w2);
+    });
+    // Fallback in case filter removes everything (unlikely)
+    if (filtered.length >= 5) return filtered;
+  }
+
+  return initialPool;
 }
 
 // --- Word history cache (sessionStorage, per-theme) to avoid repeating pairs ---
@@ -848,7 +941,7 @@ function getUsedPairs(themeTag) {
 function markPairUsed(themeTag, pair) {
   const used = getUsedPairs(themeTag);
   used.push(pair[0] + "|" + pair[1]);
-  try { sessionStorage.setItem(USED_WORDS_PREFIX + themeTag, JSON.stringify(used)); } catch {}
+  try { sessionStorage.setItem(USED_WORDS_PREFIX + themeTag, JSON.stringify(used)); } catch { }
 }
 function resetUsedPairsForTheme(themeTag) {
   sessionStorage.removeItem(USED_WORDS_PREFIX + themeTag);
@@ -878,7 +971,7 @@ async function createRound() {
   if (state.persistentRoles) {
     const allRoles = state.persistentRoles;
     const roles = allRoles.filter(r => !state.eliminatedPlayers.includes(r.player));
-    if (roles.length < 3) throw new Error("No quedan suficientes jugadores activos (m\u00ednimo 3).");
+    if (roles.length < 3) throw new Error("No quedan suficientes jugadores activos (mínimo 3).");
     return {
       createdAt: new Date().toISOString(),
       theme: state.persistentTheme,
@@ -925,10 +1018,12 @@ function showCurrentPlayerPrompt() {
 function renderRoleCard() {
   const item = state.round.roles[state.revealIndex];
   const roleName = item.role === "agente fantasma" ? "Fantasma" : item.role;
+  const roleClass = item.role === "impostor" ? "role-name impostor-role" : "role-name";
+  const wordClass = item.role === "impostor" ? "role-word impostor-role-word" : "role-word";
   roleCard.innerHTML = `
     <span class="role-emoji">${getRoleEmoji(item.role)}</span>
-    <h3 class="role-name">${escapeHtml(item.name)} \u00b7 ${escapeHtml(roleName)}</h3>
-    <p class="role-word">${escapeHtml(item.word)}</p>
+    <h3 class="${roleClass}">${escapeHtml(item.name)} \u00b7 ${escapeHtml(roleName)}</h3>
+    <p class="${wordClass}">${escapeHtml(item.word)}</p>
     <p class="role-tip">${escapeHtml(item.tip)}</p>
   `;
 }
@@ -1047,6 +1142,33 @@ function goNextPlayer() {
     updateAliveStatus();
     setRoundPhase("debate");
     resetTimer();
+
+    // Pick random starter
+    const aliveCivilsAndImps = state.persistentRoles.filter(r => !state.eliminatedPlayers.includes(r.player) && r.role !== "agente fantasma");
+    const starters = aliveCivilsAndImps.length > 0 ? aliveCivilsAndImps : state.persistentRoles.filter(r => !state.eliminatedPlayers.includes(r.player));
+    const starter = pickRandom(starters);
+
+    // Show an overlay
+    const overlay = document.createElement("div");
+    overlay.className = "sorteo-overlay";
+    overlay.innerHTML = `
+      <div class="sorteo-content">
+        <div class="sorteo-icon">🎲</div>
+        <h2 class="sorteo-title">¡Empieza a hablar!</h2>
+        <div class="sorteo-cards">
+          <div class="sorteo-card sorted" style="width: auto; padding: 10px 20px; font-size: 1.2rem; color: #fff;">
+            ${escapeHtml(starter.name)}
+          </div>
+        </div>
+        <p class="sorteo-sub">Da la primera pista</p>
+        <button class="btn-primary" style="margin-top: 10px; width: 100%" onclick="this.parentElement.parentElement.remove(); SFX.click(); startTimer();">
+          ¡A jugar!
+        </button>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    SFX.fanfare();
+
     return;
   }
   showHandoffScreen();
@@ -1078,8 +1200,8 @@ function buildVoteUI() {
   state.voteTally = {};
   state.votedPlayer = null;
 
-  const avatarColors = ["#ff7b54","#e040fb","#00e676","#ffd600","#ff4757","#f0a0ff","#69f0ae","#ff6b81","#ffab40","#ce93d8"];
-  const avatarEmojis = ["\ud83d\ude0e","\ud83e\udd29","\ud83d\ude08","\ud83e\udd14","\ud83d\ude0f","\ud83e\uddd0","\ud83d\ude0d","\ud83e\udd2b","\ud83d\ude1c","\ud83d\ude44"];
+  const avatarColors = ["#ff7b54", "#e040fb", "#00e676", "#ffd600", "#ff4757", "#f0a0ff", "#69f0ae", "#ff6b81", "#ffab40", "#ce93d8"];
+  const avatarEmojis = ["\ud83d\ude0e", "\ud83e\udd29", "\ud83d\ude08", "\ud83e\udd14", "\ud83d\ude0f", "\ud83e\uddd0", "\ud83d\ude0d", "\ud83e\udd2b", "\ud83d\ude1c", "\ud83d\ude44"];
 
   // Show eliminated count if any
   if (state.eliminatedPlayers.length > 0) {
@@ -1121,89 +1243,88 @@ function buildVoteUI() {
 
 function selectPlayerToEliminate(selectedRole, selectedCard) {
   if (!state.round) return;
-  if (!confirm(`\u00bfEliminar a ${selectedRole.name}? Esta acci\u00f3n es definitiva.`)) return;
+  showConfirmModal(`¿Eliminar a ${selectedRole.name}? Esta acción es definitiva.`, () => {
+    state.votedPlayer = selectedRole.player;
+    state.voteTally[selectedRole.player] = 1;
+    state.eliminatedPlayers.push(selectedRole.player);
+    SFX.click();
 
-  state.votedPlayer = selectedRole.player;
-  state.voteTally[selectedRole.player] = 1;
-  state.eliminatedPlayers.push(selectedRole.player);
-  SFX.click();
+    // Hide "back to debate" after casting vote
+    if (backToDebateBtn) backToDebateBtn.classList.add("hidden");
 
-  // Hide "back to debate" after casting vote
-  if (backToDebateBtn) backToDebateBtn.classList.add("hidden");
+    // Dramatic elimination animation
+    const allCards = voteList.querySelectorAll(".vote-player-card");
+    allCards.forEach(c => {
+      if (c.dataset.player === String(selectedRole.player)) {
+        c.classList.add("vote-eliminating");
+      } else {
+        c.classList.add("vote-others-fade");
+      }
+    });
 
-  // Dramatic elimination animation
-  const allCards = voteList.querySelectorAll(".vote-player-card");
-  allCards.forEach(c => {
-    if (c.dataset.player === String(selectedRole.player)) {
-      c.classList.add("vote-eliminating");
-    } else {
-      c.classList.add("vote-others-fade");
-    }
-  });
+    // Add to round history
+    const isImpostor = selectedRole.role === "impostor";
+    addRoundHistoryEntry(state.roundNumber, selectedRole.name, selectedRole.role, isImpostor);
 
-  // Add to round history
-  const isImpostor = selectedRole.role === "impostor";
-  addRoundHistoryEntry(state.roundNumber, selectedRole.name, selectedRole.role, isImpostor);
+    // Show result after elimination animation completes
+    setTimeout(() => {
+      voteResult.classList.remove("hidden");
 
-  // Show result after elimination animation completes
-  setTimeout(() => {
-    voteResult.classList.remove("hidden");
+      if (isImpostor) {
+        // Check if more impostors remain
+        const remainingImps = state.persistentRoles
+          ? state.persistentRoles.filter(r => r.role === "impostor" && !state.eliminatedPlayers.includes(r.player)).length
+          : state.round.roles.filter(r => r.role === "impostor" && !state.eliminatedPlayers.includes(r.player)).length;
 
-    if (isImpostor) {
-      // Check if more impostors remain
-      const remainingImps = state.persistentRoles
-        ? state.persistentRoles.filter(r => r.role === "impostor" && !state.eliminatedPlayers.includes(r.player)).length
-        : 0;
-      SFX.fanfare();
-      launchConfetti();
-      const subtitle = remainingImps > 0
-        ? `¡Bien hecho! Pero quedan <strong>${remainingImps}</strong> impostor${remainingImps > 1 ? "es" : ""} más... 🕵️`
-        : "Los civiles ganan 🏆";
-      // Only reveal words when ALL impostors are caught (no remaining)
-      const wordsHtml = remainingImps === 0
-        ? `<div class="vote-reveal-words">
-            <span class="vote-word-civil">🟢 Civiles: <strong>${escapeHtml(state.round.secretWord)}</strong></span>
-            <span class="vote-word-imp">🔴 Impostor: <strong>${escapeHtml(state.round.decoyWord)}</strong></span>
-          </div>`
-        : `<div class="vote-reveal-words vote-words-hidden">
-            <span>🔒 Las palabras se revelarán al atrapar a todos los impostores</span>
+        const subtitle = remainingImps > 0
+          ? `Quedan ${remainingImps} impostores ocultos... \ud83d\udd75\ufe0f`
+          : "Los civiles ganan 🏆";
+        // Only reveal words when ALL impostors are caught (no remaining)
+        const wordsHtml = remainingImps === 0
+          ? `<div class="vote-reveal-words">
+              <span class="vote-word-civil">🟢 Civiles: <strong>${escapeHtml(state.round.secretWord)}</strong></span>
+              <span class="vote-word-imp">🔴 Impostor: <strong>${escapeHtml(state.round.decoyWord)}</strong></span>
+            </div>`
+          : `<div class="vote-reveal-words vote-words-hidden">
+              <span>🔒 Las palabras se revelarán al atrapar a todos los impostores</span>
+            </div>`;
+        voteResult.innerHTML = `
+          <div class="vote-reveal-card vote-reveal-success">
+            <div class="vote-reveal-emoji">🎉</div>
+            <h3>¡Correcto!</h3>
+            <p><strong>${escapeHtml(selectedRole.name)}</strong> ERA impostor</p>
+            ${wordsHtml}
+            <p class="vote-reveal-subtitle">${subtitle}</p>
           </div>`;
-      voteResult.innerHTML = `
-        <div class="vote-reveal-card vote-reveal-success">
-          <div class="vote-reveal-emoji">🎉</div>
-          <h3>¡Correcto!</h3>
-          <p><strong>${escapeHtml(selectedRole.name)}</strong> ERA impostor</p>
-          ${wordsHtml}
-          <p class="vote-reveal-subtitle">${subtitle}</p>
-        </div>`;
-    } else {
-      SFX.click();
-      voteResult.innerHTML = `
-        <div class="vote-reveal-card vote-reveal-fail">
-          <div class="vote-reveal-emoji">\ud83d\ude31</div>
-          <h3>\u00a1Incorrecto!</h3>
-          <p><strong>${escapeHtml(selectedRole.name)}</strong> NO era el impostor</p>
-          <p class="vote-reveal-subtitle">El impostor sigue libre... \ud83d\udd75\ufe0f</p>
-        </div>`;
-    }
+      } else {
+        SFX.click();
+        voteResult.innerHTML = `
+          <div class="vote-reveal-card vote-reveal-fail">
+            <div class="vote-reveal-emoji">\ud83d\ude31</div>
+            <h3>¡Incorrecto!</h3>
+            <p><strong>${escapeHtml(selectedRole.name)}</strong> NO era el impostor</p>
+            <p class="vote-reveal-subtitle">El impostor sigue libre... \ud83d\udd75\ufe0f</p>
+          </div>`;
+      }
 
-    // Check game-over condition
-    const gameOverResult = checkGameOver();
-    if (gameOverResult) {
-      setTimeout(() => showGameOver(gameOverResult), 1800);
-    } else {
-      // Game continues — add "Siguiente ronda" button after a brief pause
-      setTimeout(() => {
-        const nextBtn = document.createElement("button");
-        nextBtn.type = "button";
-        nextBtn.className = "btn-primary next-round-btn";
-        nextBtn.innerHTML = "\u27a1\ufe0f Siguiente ronda";
-        nextBtn.addEventListener("click", () => startNextRound());
-        const card = voteResult.querySelector(".vote-reveal-card");
-        if (card) card.appendChild(nextBtn);
-      }, 1200);
-    }
-  }, 900);
+      // Check game-over condition
+      const gameOverResult = checkGameOver();
+      if (gameOverResult) {
+        setTimeout(() => showGameOver(gameOverResult), 1800);
+      } else {
+        // Game continues — add "Siguiente ronda" button after a brief pause
+        setTimeout(() => {
+          const nextBtn = document.createElement("button");
+          nextBtn.type = "button";
+          nextBtn.className = "btn-primary next-round-btn";
+          nextBtn.innerHTML = "➡\ufe0f Siguiente ronda";
+          nextBtn.addEventListener("click", () => startNextRound());
+          const card = voteResult.querySelector(".vote-reveal-card");
+          if (card) card.appendChild(nextBtn);
+        }, 1200);
+      }
+    }, 900);
+  });
 }
 
 // ============= NEXT ROUND (persistent game, no re-deal) =============
@@ -1243,6 +1364,32 @@ function startNextRound() {
   buildVoteUI();
   updateAliveStatus();
   setRoundPhase("debate");
+
+  // Pick random starter for the new round
+  const aliveCivilsAndImps = state.persistentRoles.filter(r => !state.eliminatedPlayers.includes(r.player) && r.role !== "agente fantasma");
+  const starters = aliveCivilsAndImps.length > 0 ? aliveCivilsAndImps : state.persistentRoles.filter(r => !state.eliminatedPlayers.includes(r.player));
+  const starter = pickRandom(starters);
+
+  // Show an overlay
+  const overlay = document.createElement("div");
+  overlay.className = "sorteo-overlay";
+  overlay.innerHTML = `
+    <div class="sorteo-content">
+      <div class="sorteo-icon">🎲</div>
+      <h2 class="sorteo-title">¡Empieza a hablar!</h2>
+      <div class="sorteo-cards">
+        <div class="sorteo-card sorted" style="width: auto; padding: 10px 20px; font-size: 1.2rem; color: #fff;">
+          ${escapeHtml(starter.name)}
+        </div>
+      </div>
+      <p class="sorteo-sub">Da la primera pista de esta ronda</p>
+      <button class="btn-primary" style="margin-top: 10px; width: 100%" onclick="this.parentElement.parentElement.remove(); SFX.click(); startTimer();">
+        ¡A jugar!
+      </button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  SFX.fanfare();
 
   // Re-show "back to debate" button for next round
   if (backToDebateBtn) backToDebateBtn.classList.remove("hidden");
@@ -1343,7 +1490,7 @@ function showGameOver(result) {
   if (newRoundBtn) newRoundBtn.classList.add("hidden");
   // Change backHomeBtn text to "Nueva partida"
   if (backHomeBtn) {
-    backHomeBtn.textContent = "\ud83c\udfae Nueva partida";
+    backHomeBtn.textContent = "\ud83c\udfe0 Nueva partida";
     backHomeBtn.classList.add("new-game-btn");
   }
 }
@@ -1369,47 +1516,51 @@ function setRoundPhase(phase) {
 function revealFinal() {
   if (!state.round) return;
   if (!finalResult.classList.contains("hidden")) return;
-  if (!confirm("\u00bfSeguro? Esto revelar\u00e1 qui\u00e9n es el impostor a todos.")) return;
 
-  const themeLabel = themes.find(t => t.key === state.round.theme)?.label || state.round.theme;
-  const votedP = state.votedPlayer;
-  const votedRole = votedP !== null ? state.round.roles.find(r => r.player === votedP) : null;
-  const civilsWin = votedRole?.role === "impostor";
+  showConfirmModal("¿Seguro? Esto revelará quién es el impostor a todos.", () => {
+    const themeLabel = themes.find(t => t.key === state.round.theme)?.label || state.round.theme;
+    const votedP = state.votedPlayer;
+    const votedRole = votedP !== null ? state.round.roles.find(r => r.player === votedP) : null;
+    const civilsWin = votedRole?.role === "impostor";
 
-  let banner = "";
-  if (votedP !== null) {
-    banner = civilsWin
-      ? `<div class="winner-banner winner-civils">\ud83c\udf89 \u00a1Los civiles ganaron! Descubrieron al impostor.</div>`
-      : `<div class="winner-banner winner-impostor">\ud83d\udd75\ufe0f \u00a1El impostor sobrevivi\u00f3! Los civiles fallaron.</div>`;
-  }
+    let banner = "";
+    if (votedP !== null) {
+      banner = civilsWin
+        ? `<div class="winner-banner winner-civils">\ud83c\udf89 \u00a1Los civiles ganaron! Descubrieron al impostor.</div>`
+        : `<div class="winner-banner winner-impostor">\ud83d\udd75\ufe0f \u00a1El impostor sobrevivi\u00f3! Los civiles fallaron.</div>`;
+    }
 
-  const rows = (state.round.allRoles || state.round.roles).map(item => {
-    const cssRole = item.role === "agente fantasma" ? "fantasma" : item.role;
-    const visibleRole = item.role === "agente fantasma" ? "Fantasma" : item.role;
-    const wasVoted = item.player === state.votedPlayer;
-    const wasEliminated = state.eliminatedPlayers.includes(item.player) && !wasVoted;
-    const statusText = wasVoted ? "\ud83d\uddf3\ufe0f Eliminado" : wasEliminated ? "\u274c Eliminado antes" : "";
-    return `<div class="result-row ${wasVoted ? 'result-voted' : ''} ${wasEliminated ? 'result-eliminated-prev' : ''}"><span>${escapeHtml(item.name)}</span><span><span class="badge ${cssRole}">${escapeHtml(visibleRole)}</span></span><span>${escapeHtml(item.word)}</span><span>${statusText}</span></div>`;
-  }).join("");
+    const rows = (state.round.allRoles || state.round.roles).map(item => {
+      const cssRole = item.role === "agente fantasma" ? "fantasma" : item.role;
+      const visibleRole = item.role === "agente fantasma" ? "Fantasma" : item.role;
+      const wasVoted = item.player === state.votedPlayer;
+      const wasEliminated = state.eliminatedPlayers.includes(item.player) && !wasVoted;
+      const statusText = wasVoted ? "\ud83d\uddf3\ufe0f Eliminado" : wasEliminated ? "\u274c Eliminado antes" : "";
+      return `<div class="result-row ${wasVoted ? 'result-voted' : ''} ${wasEliminated ? 'result-eliminated-prev' : ''}"><span>${escapeHtml(item.name)}</span><span><span class="badge ${cssRole}">${escapeHtml(visibleRole)}</span></span><span>${escapeHtml(item.word)}</span><span>${statusText}</span></div>`;
+    }).join("");
 
-  finalResult.innerHTML = `
-    ${banner}
-    <div class="result-header">
-      <span>Jugador</span>
-      <span>Rol</span>
-      <span>Palabra</span>
-      <span>Estado</span>
-    </div>
-    ${rows}
-  `;
+    finalResult.innerHTML = `
+      ${banner}
+      <div class="result-header">
+        <span>Jugador</span>
+        <span>Rol</span>
+        <span>Palabra</span>
+        <span>Estado</span>
+      </div>
+      ${rows}
+    `;
 
-  finalResult.classList.remove("hidden");
-  if (shareResultBtn) shareResultBtn.classList.remove("hidden");
-  recordRound(state.round);
-  if (!state.gameOver) {
+    finalResult.classList.remove("hidden");
+    if (shareResultBtn) shareResultBtn.classList.remove("hidden");
+    recordRound(state.round);
+    if (!state.gameOver) {
+      // Allow new round directly from here if game not over yet (edge case)
+      if (newRoundBtn) newRoundBtn.classList.remove("hidden");
+    }
+
     SFX.fanfare();
     if (civilsWin) launchConfetti();
-  }
+  });
 }
 
 // ============= GAME SCREEN MANAGEMENT =============
@@ -1650,8 +1801,11 @@ backToDebateBtn.addEventListener("click", () => {
 });
 
 quitGameBtn.addEventListener("click", () => {
-  if (state.gameActive && !confirm("\u00bfSeguro que quieres salir? Se perder\u00e1 el progreso de la partida.")) return;
-  resetRound();
+  if (state.gameActive) {
+    showConfirmModal("¿Seguro que quieres salir? Se perderá el progreso de la partida.", () => resetRound());
+  } else {
+    resetRound();
+  }
 });
 
 newRoundBtn.addEventListener("click", () => {
@@ -1686,8 +1840,11 @@ newRoundBtn.addEventListener("click", () => {
 });
 
 backHomeBtn.addEventListener("click", () => {
-  if (state.gameActive && !confirm("\u00bfVolver al inicio? Se perder\u00e1 la partida actual.")) return;
-  resetRound();
+  if (state.gameActive) {
+    showConfirmModal("¿Volver al inicio? Se perderá la partida actual.", () => resetRound());
+  } else {
+    resetRound();
+  }
 });
 startTimerBtn.addEventListener("click", startTimer);
 pauseTimerBtn.addEventListener("click", pauseTimer);
