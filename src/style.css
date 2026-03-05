@@ -322,6 +322,10 @@ body::after {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.nav-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
 .nav-tab {
   display: flex;
   align-items: center;
@@ -621,6 +625,68 @@ body::after {
 
 .quick-how li strong {
   color: var(--text);
+}
+
+/* ============= FAQ SECTION ============= */
+.faq-section {
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 18px 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.faq-item {
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 140, 90, 0.1);
+  padding-bottom: 8px;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  list-style: none; /* remove default arrow */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding-right: 20px;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none; /* Safari */
+}
+
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-weight: 300;
+  transition: transform 0.2s;
+}
+
+.faq-item[open] summary::after {
+  content: "−";
+  transform: translateY(-2px);
+}
+
+.faq-item p {
+  margin: 10px 0 0;
+  color: var(--text2);
+  font-size: 0.8rem;
+  line-height: 1.5;
 }
 
 /* ============= SHARED CARD (glassmorphism) ============= */

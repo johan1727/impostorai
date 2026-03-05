@@ -1,244 +1,362 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Juego de deducción social tipo Impostor. Pasa el celular, revela tu rol y descubre al traidor. 13 temas y 1000+ palabras." />
-    <meta name="theme-color" content="#1a0e2e" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <meta property="og:title" content="Impostor - Juego de Palabras Secretas" />
-    <meta property="og:description" content="Party game local de deducción social. Descubre al impostor entre tus amigos." />
-    <meta property="og:type" content="website" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕵️</text></svg>" />
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/icon.svg" />
-    <title>Impostor — Juego de Palabras Secretas</title>
-    <link rel="stylesheet" href="/src/style.css" />
-  </head>
-  <body>
-    <a href="#menuSection" class="skip-link">Saltar al contenido</a>
-    <div class="bg-orbs" aria-hidden="true">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="orb orb-3"></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Impostor: party game social y de deducción sin internet. Pide roles, da pistas y descubre al impostor. El mejor juego de mesa gratis en tu celular con más de 1000 palabras misteriosas en español." />
+  <meta name="keywords"
+    content="juego de palabras, impostor, party game, juego de mesa, juego sin internet, juego social, palabras secretas, deducción, multijugador local" />
+  <meta name="theme-color" content="#1a0e2e" />
+
+  <!-- Geo / Lang -->
+  <meta name="language" content="Spanish" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://impostorai.vercel.app/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Open Graph Formats -->
+  <meta property="og:title" content="Impostor — El mejor party game de palabras secretas" />
+  <meta property="og:description"
+    content="Juego social de deducción para jugar en persona con un solo celular. Ideal para fiestas y reuniones. Sin descargas, sin internet." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://impostorai.vercel.app/" />
+  <meta property="og:image" content="https://impostorai.vercel.app/og-image.png" />
+  <meta property="og:site_name" content="Impostor Party Game" />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:locale:alternate" content="es_ES" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Impostor — El mejor party game de palabras secretas" />
+  <meta name="twitter:description" content="Pasa el cel y descubre al infiltrado. Party game gratis y sin WiFi." />
+  <meta name="twitter:image" content="https://impostorai.vercel.app/og-image.png" />
+
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕵️</text></svg>" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icon.svg" />
+  <title>Impostor — Juego de Palabras Secretas y Deducción Social</title>
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Impostor",
+      "url": "https://impostorai.vercel.app/",
+      "description": "Party game de deducción social. Los jugadores pasan un celular, revelan su rol y deben dar pistas para descubrir al impostor oculto.",
+      "applicationCategory": "GameApplication",
+      "genre": "Party Game, Social Deduction",
+      "operatingSystem": "All",
+      "inLanguage": "es",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+  <!-- Structured Data (FAQ) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "¿Cómo se juega al Impostor (Juego de Palabras)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es un party game estilo deducción social donde todos los jugadores (civiles) reciben la misma palabra secreta, excepto el impostor, que recibe una diferente pero relacionada. Por turnos, cada jugador dice una pista. Al final debaten y votan para adivinar quién es el impostor."
+        }
+      },{
+        "@type": "Question",
+        "name": "¿Se requiere internet para jugar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "¡No! Es un juego 100% local ('pass & play'). Solo necesitas un celular, instalas la app y puedes llevarla a la fiesta sin conexión Wi-Fi ni datos."
+        }
+      },{
+        "@type": "Question",
+        "name": "¿Qué es el 'Modo Peda'?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es una variante especial para tomar. Las palabras son picantes y de fiesta. Si se elimina a un civil, él toma. Si atrapan al impostor, él toma. Si gana el impostor engañando a todos, ¡todos los civiles toman!"
+        }
+      }]
+    }
+    </script>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body>
+  <a href="#menuSection" class="skip-link">Saltar al contenido</a>
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <canvas id="particleCanvas" class="particle-canvas" aria-hidden="true"></canvas>
+  <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+  <main class="app">
+    <header class="header">
+      <div class="header-left">
+        <h1 class="logo">IMPOSTOR</h1>
+        <span class="logo-badge">LOCAL</span>
+      </div>
+      <div class="header-actions">
+        <button id="soundToggleBtn" type="button" class="icon-btn" aria-label="Sonido">🔊</button>
+        <button id="themeToggleBtn" type="button" class="icon-btn" aria-label="Modo claro">☀️</button>
+        <button id="fullscreenBtn" type="button" class="icon-btn" aria-label="Pantalla completa">⛶</button>
+      </div>
+    </header>
+
+    <nav class="nav-bar nav-5" aria-label="Menú principal">
+      <button id="menuHomeBtn" class="nav-tab active" type="button">
+        <span class="nav-icon">🏠</span> Inicio
+      </button>
+      <button id="menuPlayBtn" class="nav-tab" type="button">
+        <span class="nav-icon">🎮</span> Jugar
+      </button>
+      <button id="menuPedaBtn" class="nav-tab" type="button">
+        <span class="nav-icon">🍻</span> Peda
+      </button>
+      <button id="menuStatsBtn" class="nav-tab" type="button">
+        <span class="nav-icon">📊</span> Stats
+      </button>
+      <button id="menuHelpBtn" class="nav-tab" type="button">
+        <span class="nav-icon">❓</span> Ayuda
+      </button>
+    </nav>
+
+    <!-- PWA Install Banner -->
+    <div id="installBanner" class="install-banner hidden">
+      <div class="install-banner-content">
+        <div class="install-banner-icon">📲</div>
+        <div class="install-banner-text">
+          <strong>Instalar Impostor</strong>
+          <p class="install-android-text">Juega offline directo desde tu pantalla de inicio.</p>
+          <p class="install-ios-text">Toca <strong>Compartir</strong> <span class="ios-share-icon">📤</span> y luego
+            <strong>"Agregar a pantalla de inicio"</strong>.
+          </p>
+        </div>
+        <button id="installBtn" class="install-btn" type="button">Instalar</button>
+        <button id="installDismissBtn" class="install-dismiss" type="button" aria-label="Cerrar">✕</button>
+      </div>
     </div>
-    <canvas id="particleCanvas" class="particle-canvas" aria-hidden="true"></canvas>
-    <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
-    <main class="app">
-      <header class="header">
-        <div class="header-left">
-          <h1 class="logo">IMPOSTOR</h1>
-          <span class="logo-badge">LOCAL</span>
-        </div>
-        <div class="header-actions">
-          <button id="soundToggleBtn" type="button" class="icon-btn" aria-label="Sonido">🔊</button>
-          <button id="themeToggleBtn" type="button" class="icon-btn" aria-label="Modo claro">☀️</button>
-          <button id="fullscreenBtn" type="button" class="icon-btn" aria-label="Pantalla completa">⛶</button>
-        </div>
-      </header>
 
-      <nav class="nav-bar nav-4" aria-label="Menú principal">
-        <button id="menuHomeBtn" class="nav-tab active" type="button">
-          <span class="nav-icon">🏠</span> Inicio
+    <section id="menuSection" class="home-screen">
+      <div class="play-hero">
+        <div class="play-hero-icon">🕵️</div>
+        <div class="play-hero-text">
+          <h2>Juego de palabras secretas</h2>
+          <p>Pasa el celular, revela tu rol y descubre al impostor.</p>
+        </div>
+        <button id="menuStartBtn" class="play-btn" type="button">
+          ▶ Nueva partida
         </button>
-        <button id="menuPlayBtn" class="nav-tab" type="button">
-          <span class="nav-icon">🎮</span> Jugar
-        </button>
-        <button id="menuStatsBtn" class="nav-tab" type="button">
-          <span class="nav-icon">📊</span> Stats
-        </button>
-        <button id="menuHelpBtn" class="nav-tab" type="button">
-          <span class="nav-icon">❓</span> Ayuda
-        </button>
-      </nav>
+      </div>
 
-      <!-- PWA Install Banner -->
-      <div id="installBanner" class="install-banner hidden">
-        <div class="install-banner-content">
-          <div class="install-banner-icon">📲</div>
-          <div class="install-banner-text">
-            <strong>Instalar Impostor</strong>
-            <p class="install-android-text">Juega offline directo desde tu pantalla de inicio.</p>
-            <p class="install-ios-text">Toca <strong>Compartir</strong> <span class="ios-share-icon">📤</span> y luego <strong>"Agregar a pantalla de inicio"</strong>.</p>
-          </div>
-          <button id="installBtn" class="install-btn" type="button">Instalar</button>
-          <button id="installDismissBtn" class="install-dismiss" type="button" aria-label="Cerrar">✕</button>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🎲</span>
+          <strong>1000+</strong>
+          <span>Palabras</span>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📱</span>
+          <strong>Local</strong>
+          <span>1 solo celular</span>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎭</span>
+          <strong>13</strong>
+          <span>Temas</span>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔒</span>
+          <strong>Privado</strong>
+          <span>Sin registro</span>
         </div>
       </div>
 
-      <section id="menuSection" class="home-screen">
-        <div class="play-hero">
-          <div class="play-hero-icon">🕵️</div>
-          <div class="play-hero-text">
-            <h2>Juego de palabras secretas</h2>
-            <p>Pasa el celular, revela tu rol y descubre al impostor.</p>
-          </div>
-          <button id="menuStartBtn" class="play-btn" type="button">
-            ▶ Nueva partida
-          </button>
-        </div>
-
-        <div class="feature-grid">
-          <div class="feature-card">
-            <span class="feature-icon">🎲</span>
-            <strong>1000+</strong>
-            <span>Palabras</span>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">📱</span>
-            <strong>Local</strong>
-            <span>1 solo celular</span>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🎭</span>
-            <strong>13</strong>
-            <span>Temas</span>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🔒</span>
-            <strong>Privado</strong>
-            <span>Sin registro</span>
-          </div>
-        </div>
-
-        <div class="quick-how">
-          <h3>⚡ Rápido: ¿cómo se juega?</h3>
-          <ol>
-            <li><strong>Configura</strong> jugadores, impostores y tema.</li>
-            <li><strong>Reparte</strong> roles pasando el cel por turnos.</li>
-            <li><strong>Debate y vota</strong> al sospechoso cada ronda.</li>
-            <li><strong>Gana</strong> descubriendo al impostor antes de que sea tarde.</li>
-          </ol>
-          <button id="menuHowToBtn" class="link-btn" type="button">Ver reglas completas →</button>
-        </div>
-      </section>
-
-      <section id="controlsSection" class="card controls hidden">
-        <h2 class="section-title">⚙ Configuración</h2>
-        <p class="random-note">🌀 El impostor y fantasma se reparten aleatoriamente en cada ronda.</p>
-
-        <div class="grid">
-          <label>
-            Jugadores (3-24)
-            <input id="players" type="number" min="3" max="24" value="6" />
-          </label>
-
-          <label>
-            Impostores
-            <input id="impostors" type="number" min="1" max="3" value="1" />
-          </label>
-        </div>
-
-        <div class="player-names-section">
-          <button id="toggleNamesBtn" type="button" class="link-btn">✏️ Personalizar nombres</button>
-          <div id="playerNamesContainer" class="player-names hidden"></div>
-        </div>
-
-        <button id="toggleAdvancedBtn" type="button" class="link-btn">⚙ Opciones avanzadas</button>
-
-        <div id="advancedOptions" class="advanced-options hidden">
-          <label>
-            Fantasma (sin palabra)
-            <input id="whites" type="number" min="0" max="2" value="0" />
-            <span class="help-text">Modo avanzado: jugador sin información que debe improvisar.</span>
-          </label>
-        </div>
-
-        <h3 class="subsection-title">Tema</h3>
-        <div id="themeChips" class="theme-chips" role="radiogroup" aria-label="Tema de la ronda"></div>
-        <label class="check-line">
-          <input id="adultThemesToggle" type="checkbox" />
-          <span>Incluir tema +18 🔥</span>
-        </label>
-        <label class="check-line">
-          <input id="spanishOnlyToggle" type="checkbox" />
-          <span>Solo español <span class="help-text" style="display:inline; margin-left:4px;">(Filtra palabras en inglés)</span></span>
-        </label>
-
-        <div class="custom-packs-section">
-          <button id="toggleCustomPacksBtn" type="button" class="link-btn">📦 Packs personalizados</button>
-          <div id="customPacksPanel" class="custom-packs-panel hidden">
-            <div id="customPacksList" class="custom-packs-list"></div>
-            <div class="custom-pack-form">
-              <input id="customPackName" type="text" placeholder="Nombre del pack" maxlength="20" />
-              <textarea id="customPackPairs" placeholder="Un par por línea: palabra1, palabra2&#10;pizza, hamburguesa&#10;gato, perro" rows="4"></textarea>
-              <button id="addCustomPackBtn" type="button" class="secondary">➕ Crear pack</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="actions">
-          <button id="startBtn" class="primary-action">
-            <span>🎮 Empezar partida</span>
-          </button>
-          <button id="resetBtn" class="secondary">Reiniciar</button>
-        </div>
-
-        <div id="statusBox" class="status-box hidden" role="status" aria-live="polite">
-          <span id="statusIcon" class="status-icon"></span>
-          <p id="status" class="status"></p>
-        </div>
-      </section>
-
-      <section id="helpSection" class="card hidden">
-        <h2 class="section-title">❓ Cómo se juega</h2>
-        <ol class="help-list">
-          <li><strong>Configura:</strong> Elige jugadores, impostores y tema.</li>
-          <li><strong>Reparte:</strong> Pasa el celular a cada jugador. Desliza para ver tu rol en privado.</li>
-          <li><strong>Pista:</strong> Cada jugador da una pista de UNA palabra sobre lo que le tocó, SIN decirla directamente.</li>
-          <li><strong>Debate:</strong> Escuchen las pistas. ¿Alguien parece confundido, demasiado vago o fuera de contexto?</li>
-          <li><strong>Voten:</strong> Elijan al sospechoso y elimínenlo.</li>
-          <li><strong>¿Acertaron?</strong> Si era el impostor, ¡bien hecho! Si no, el juego continúa con una nueva ronda de debate.</li>
-          <li><strong>Fin de partida:</strong> Los civiles ganan si descubren a todos los impostores. El impostor gana si logra igualar o superar en número a los civiles.</li>
+      <div class="quick-how">
+        <h3>⚡ Rápido: ¿cómo se juega?</h3>
+        <ol>
+          <li><strong>Configura</strong> jugadores, impostores y tema.</li>
+          <li><strong>Reparte</strong> roles pasando el cel por turnos.</li>
+          <li><strong>Debate y vota</strong> al sospechoso cada ronda.</li>
+          <li><strong>Gana</strong> descubriendo al impostor antes de que sea tarde.</li>
         </ol>
-        <div class="help-roles">
-          <h3 class="subsection-title">Roles</h3>
-          <div class="help-role"><span class="badge civil">Civil</span> Conoce la palabra secreta. Da pistas claras sin revelarla.</div>
-          <div class="help-role"><span class="badge impostor">Impostor</span> Tiene una palabra DIFERENTE pero parecida. Debe disimular.</div>
-          <div class="help-role"><span class="badge fantasma">Fantasma</span> No tiene palabra. Improvisa para sobrevivir.</div>
-        </div>
-        <div class="help-tip">
-          <strong>💡 Tips:</strong>
-          <ul style="margin:6px 0 0;padding-left:18px;">
-            <li>El impostor no sabe cuál es la palabra de los civiles, así que sus pistas suelen ser más vagas.</li>
-            <li>Los civiles deben dar pistas lo suficientemente claras para reconocerse entre sí, pero sin regalar la palabra al impostor.</li>
-            <li>Si eliminan a un civil, el impostor se fortalece — ¡piensen bien antes de votar!</li>
-          </ul>
-        </div>
-      </section>
+        <button id="menuHowToBtn" class="link-btn" type="button">Ver reglas completas →</button>
+      </div>
 
-      <section id="sorteoSection" class="sorteo-overlay hidden">
-        <div class="sorteo-content">
-          <div class="sorteo-icon">🎰</div>
-          <h2 class="sorteo-title">Asignando roles...</h2>
-          <div class="sorteo-cards" id="sorteoCards"></div>
-          <p class="sorteo-sub">Mezclando aleatoriamente</p>
-        </div>
-      </section>
+      <!-- SEO FREQUENTLY ASKED QUESTIONS -->
+      <article class="faq-section" style="margin-top:2rem;text-align:left;">
+        <h2 style="font-size:1.4rem;color:var(--text);margin-bottom:1rem;text-align:center;">Preguntas Frecuentes</h2>
+        <details class="faq-item">
+          <summary>¿Cómo se juega al Impostor (Juego de Palabras)?</summary>
+          <p>Es un party game estilo deducción social donde todos los jugadores (civiles) reciben la misma palabra
+            secreta, excepto el impostor, que recibe una diferente pero relacionada. Por turnos, cada jugador dice una
+            pista. Al final debaten y votan para adivinar quién es el impostor.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Se requiere internet para jugar?</summary>
+          <p>¡No! Es un juego 100% local ('pass & play'). Solo necesitas un celular, instalas la app (como PWA) desde tu
+            navegador y listo, puedes llevarla a la fiesta o de campamento sin conexión Wi-Fi ni datos.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué es el "Modo Peda"? 🍻</summary>
+          <p>Es una variante con reglas de tomar integradas. Las palabras secretas están enfocadas en la fiesta, alcohol
+            y temas picantes. Si eliminan a un civil inocente, toma. Si gana el impostor, todos toman.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cuántas personas pueden jugar?</summary>
+          <p>Soporta desde grupos pequeños de 3 personas hasta grupos enormes de 24 jugadores. Puedes personalizar el
+            número de impostores y si quieres incluir "Fantasmas" (actores ciegos sin palabra).</p>
+        </details>
+      </article>
+    </section>
 
+    <section id="controlsSection" class="card controls hidden">
+      <h2 class="section-title">⚙ Configuración</h2>
+      <p class="random-note">🌀 El impostor y fantasma se reparten aleatoriamente en cada ronda.</p>
 
-      <section id="statsSection" class="card hidden">
-        <h2 class="section-title">📊 Estadísticas</h2>
-        <div id="statsContent"></div>
-      </section>
-      <div id="gameScreen" class="game-screen hidden">
-        <div class="game-header">
-          <button id="quitGameBtn" type="button" class="game-back-btn">← Salir</button>
-          <div class="game-header-info">
-            <span id="gamePhaseLabel" class="game-phase">Reparto</span>
+      <div class="grid">
+        <label>
+          Jugadores (3-24)
+          <input id="players" type="number" min="3" max="24" value="6" />
+        </label>
+
+        <label>
+          Impostores
+          <input id="impostors" type="number" min="1" max="3" value="1" />
+        </label>
+      </div>
+
+      <div class="player-names-section">
+        <button id="toggleNamesBtn" type="button" class="link-btn">✏️ Personalizar nombres</button>
+        <div id="playerNamesContainer" class="player-names hidden"></div>
+      </div>
+
+      <button id="toggleAdvancedBtn" type="button" class="link-btn">⚙ Opciones avanzadas</button>
+
+      <div id="advancedOptions" class="advanced-options hidden">
+        <label>
+          Fantasma (sin palabra)
+          <input id="whites" type="number" min="0" max="2" value="0" />
+          <span class="help-text">Modo avanzado: jugador sin información que debe improvisar.</span>
+        </label>
+      </div>
+
+      <h3 class="subsection-title">Tema</h3>
+      <div id="themeChips" class="theme-chips" role="radiogroup" aria-label="Tema de la ronda"></div>
+      <label class="check-line">
+        <input id="adultThemesToggle" type="checkbox" />
+        <span>Incluir tema +18 🔥</span>
+      </label>
+      <label class="check-line">
+        <input id="spanishOnlyToggle" type="checkbox" />
+        <span>Solo español <span class="help-text" style="display:inline; margin-left:4px;">(Filtra palabras en
+            inglés)</span></span>
+      </label>
+
+      <div class="custom-packs-section">
+        <button id="toggleCustomPacksBtn" type="button" class="link-btn">📦 Packs personalizados</button>
+        <div id="customPacksPanel" class="custom-packs-panel hidden">
+          <div id="customPacksList" class="custom-packs-list"></div>
+          <div class="custom-pack-form">
+            <input id="customPackName" type="text" placeholder="Nombre del pack" maxlength="20" />
+            <textarea id="customPackPairs"
+              placeholder="Un par por línea: palabra1, palabra2&#10;pizza, hamburguesa&#10;gato, perro"
+              rows="4"></textarea>
+            <button id="addCustomPackBtn" type="button" class="secondary">➕ Crear pack</button>
           </div>
-          <div id="gameProgress" class="game-progress">
-            <div id="gameProgressBar" class="game-progress-bar" style="width:0%"></div>
-          </div>
         </div>
+      </div>
 
-        <section id="dealSection" class="game-panel">
-          <div class="game-panel-title">
-            <span>🕶</span>
-            <h2>Reparto privado</h2>
-            <span id="dealCounter" class="deal-counter"></span>
-          </div>
+      <div class="actions">
+        <button id="startBtn" class="primary-action">
+          <span>🎮 Empezar partida</span>
+        </button>
+        <button id="resetBtn" class="secondary">Reiniciar</button>
+      </div>
+
+      <div id="statusBox" class="status-box hidden" role="status" aria-live="polite">
+        <span id="statusIcon" class="status-icon"></span>
+        <p id="status" class="status"></p>
+      </div>
+    </section>
+
+    <section id="helpSection" class="card hidden">
+      <h2 class="section-title">❓ Cómo se juega</h2>
+      <ol class="help-list">
+        <li><strong>Configura:</strong> Elige jugadores, impostores y tema.</li>
+        <li><strong>Reparte:</strong> Pasa el celular a cada jugador. Desliza para ver tu rol en privado.</li>
+        <li><strong>Pista:</strong> Cada jugador da una pista de UNA palabra sobre lo que le tocó, SIN decirla
+          directamente.</li>
+        <li><strong>Debate:</strong> Escuchen las pistas. ¿Alguien parece confundido, demasiado vago o fuera de
+          contexto?</li>
+        <li><strong>Voten:</strong> Elijan al sospechoso y elimínenlo.</li>
+        <li><strong>¿Acertaron?</strong> Si era el impostor, ¡bien hecho! Si no, el juego continúa con una nueva ronda
+          de debate.</li>
+        <li><strong>Fin de partida:</strong> Los civiles ganan si descubren a todos los impostores. El impostor gana si
+          logra igualar o superar en número a los civiles.</li>
+      </ol>
+      <div class="help-roles">
+        <h3 class="subsection-title">Roles</h3>
+        <div class="help-role"><span class="badge civil">Civil</span> Conoce la palabra secreta. Da pistas claras sin
+          revelarla.</div>
+        <div class="help-role"><span class="badge impostor">Impostor</span> Tiene una palabra DIFERENTE pero parecida.
+          Debe disimular.</div>
+        <div class="help-role"><span class="badge fantasma">Fantasma</span> No tiene palabra. Improvisa para sobrevivir.
+        </div>
+      </div>
+      <div class="help-tip">
+        <strong>💡 Tips:</strong>
+        <ul style="margin:6px 0 0;padding-left:18px;">
+          <li>El impostor no sabe cuál es la palabra de los civiles, así que sus pistas suelen ser más vagas.</li>
+          <li>Los civiles deben dar pistas lo suficientemente claras para reconocerse entre sí, pero sin regalar la
+            palabra al impostor.</li>
+          <li>Si eliminan a un civil, el impostor se fortalece — ¡piensen bien antes de votar!</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="sorteoSection" class="sorteo-overlay hidden">
+      <div class="sorteo-content">
+        <div class="sorteo-icon">🎰</div>
+        <h2 class="sorteo-title">Asignando roles...</h2>
+        <div class="sorteo-cards" id="sorteoCards"></div>
+        <p class="sorteo-sub">Mezclando aleatoriamente</p>
+      </div>
+    </section>
+
+
+    <section id="statsSection" class="card hidden">
+      <h2 class="section-title">📊 Estadísticas</h2>
+      <div id="statsContent"></div>
+    </section>
+    <div id="gameScreen" class="game-screen hidden">
+      <div class="game-header">
+        <button id="quitGameBtn" type="button" class="game-back-btn">← Salir</button>
+        <div class="game-header-info">
+          <span id="gamePhaseLabel" class="game-phase">Reparto</span>
+        </div>
+        <div id="gameProgress" class="game-progress">
+          <div id="gameProgressBar" class="game-progress-bar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <section id="dealSection" class="game-panel">
+        <div class="game-panel-title">
+          <span>🕶</span>
+          <h2>Reparto privado</h2>
+          <span id="dealCounter" class="deal-counter"></span>
+        </div>
 
         <div id="handoffScreen" class="handoff-screen">
           <p id="dealHint" class="deal-hint"></p>
@@ -376,17 +494,18 @@
           <button id="backHomeBtn" class="secondary" type="button">🏠 Volver al inicio</button>
         </div>
       </section>
-      </div><!-- /gameScreen -->
+    </div><!-- /gameScreen -->
 
-      <footer class="app-footer">
-        <span>Impostor v0.1.0</span>
-        <button id="shareResultBtn" class="secondary share-btn hidden" type="button">📤 Compartir resultado</button>
-        <span class="footer-dot">·</span>
-        <span>Party game local</span>
-      </footer>
-    </main>
+    <footer class="app-footer">
+      <span>Impostor v0.1.0</span>
+      <button id="shareResultBtn" class="secondary share-btn hidden" type="button">📤 Compartir resultado</button>
+      <span class="footer-dot">·</span>
+      <span>Party game local</span>
+    </footer>
+  </main>
 
-    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>

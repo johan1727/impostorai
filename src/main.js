@@ -1,5 +1,10 @@
 ﻿import { inject } from "@vercel/analytics";
-try { inject(); } catch { }
+import { injectSpeedInsights } from "@vercel/speed-insights";
+
+try {
+  inject();
+  injectSpeedInsights();
+} catch { }
 
 // ============= PARTICLE BACKGROUND =============
 (function initParticles() {
@@ -260,6 +265,25 @@ const localWords = {
     ["orgasmo", "clímax"], ["putero", "congal"], ["chupetón", "marca"],
     ["madurita", "milf"], ["nalgada", "cachetada"], ["bajar por los chescos", "comer pancho"],
     ["BDSM", "sado"]
+  ],
+  peda: [
+    // Alcohol & Antro
+    ["Tequila", "Mezcal"], ["Cerveza", "Caguama"], ["Vodka", "Ron"], ["Shot", "Fondo"],
+    ["Borracho", "Crudo"], ["Cantina", "Antro"], ["Cocktail", "Michelada"], ["Azulito", "Gomichela"],
+    ["Precopeo", "After"], ["Cadenero", "Bouncer"], ["Brindis", "Salud"], ["Descorchar", "Destapar"],
+    ["Margarita", "Paloma"], ["Hielo", "Vaso"], ["Barman", "Mesero"], ["Six pack", "Cartón"],
+    // Juegos y Fiestas
+    ["Yo nunca nunca", "Verdad o Reto"], ["Botella", "Ruleta"], ["Castigo", "Prenda"], ["Shot de castigo", "Trago de cortesía"],
+    ["Beso de tres", "Trío"], ["Faje", "Arrimón"], ["Perreo", "Reguetón"], ["DJ", "Bocina"],
+    ["Karaoke", "Micrófono"], ["Piñata", "Pastel"], ["Botana", "Cacahuates"], ["Bailar", "Cantar"],
+    ["Vomitar", "Mala copa"], ["Cruda moral", "Arrepentimiento"], ["Borrachera", "Peda"], ["Jarana", "Reventón"],
+    // Salseo y Romance Picante
+    ["Ex", "Casio"], ["Tóxico", "Celoso"], ["Cuernos", "Infidelidad"], ["Friendzone", "Situationship"],
+    ["Amigos con derechos", "Quedantes"], ["Nudes", "Pack"], ["OnlyFans", "Sugar Daddy"], ["Motel", "Auto"],
+    ["Chupetón", "Mordida"], ["Ligue", "Crush"], ["Declaración", "Batear"], ["Beso", "Agarrón"],
+    ["Mensaje de ebrio", "Llamada a las 3 AM"], ["Visto", "Ghostear"], ["Tinder", "Cita a ciegas"],
+    ["Sugarmommy", "MILF"], ["Rapidín", "Mañanero"], ["Atrevido", "Lanzado"], ["Desnudo", "Encuerado"],
+    ["Infiel", "Amante"]
   ]
 };
 
@@ -276,7 +300,8 @@ const themes = [
   { key: "musica", label: "Música" },
   { key: "historia", label: "Historia" },
   { key: "naturaleza", label: "Naturaleza" },
-  { key: "adulto", label: "+18 🔥", adult: true }
+  { key: "adulto", label: "+18 🔥", adult: true },
+  { key: "peda", label: "🍻 Peda", adult: true }
 ];
 
 // ============= DOM REFS =============
@@ -298,6 +323,7 @@ const menuHomeBtn = document.getElementById("menuHomeBtn");
 const menuPlayBtn = document.getElementById("menuPlayBtn");
 const menuHelpBtn = document.getElementById("menuHelpBtn");
 const menuStatsBtn = document.getElementById("menuStatsBtn");
+const menuPedaBtn = document.getElementById("menuPedaBtn");
 const menuStartBtn = document.getElementById("menuStartBtn");
 const menuHowToBtn = document.getElementById("menuHowToBtn");
 const toggleNamesBtn = document.getElementById("toggleNamesBtn");
@@ -1525,9 +1551,19 @@ function revealFinal() {
 
     let banner = "";
     if (votedP !== null) {
-      banner = civilsWin
-        ? `<div class="winner-banner winner-civils">\ud83c\udf89 \u00a1Los civiles ganaron! Descubrieron al impostor.</div>`
-        : `<div class="winner-banner winner-impostor">\ud83d\udd75\ufe0f \u00a1El impostor sobrevivi\u00f3! Los civiles fallaron.</div>`;
+      if (civilsWin) {
+        if (state.round.theme === "peda") {
+          banner = `<div class="winner-banner winner-civils">🎉 ¡Atraparon al Impostor! <br><small>🔥 <b>Castigo:</b> El impostor (${escapeHtml(votedRole?.name)}) toma fondo o cumple un reto.</small></div>`;
+        } else {
+          banner = `<div class="winner-banner winner-civils">🎉 ¡Los civiles ganaron! Descubrieron al impostor.</div>`;
+        }
+      } else {
+        if (state.round.theme === "peda") {
+          banner = `<div class="winner-banner winner-impostor">🕵️ ¡El impostor se salvó! <br><small>🍻 <b>Castigo:</b> ¡TODOS LOS CIVILES TOMAN!</small></div>`;
+        } else {
+          banner = `<div class="winner-banner winner-impostor">🕵️ ¡El impostor sobrevivió! Los civiles fallaron.</div>`;
+        }
+      }
     }
 
     const rows = (state.round.allRoles || state.round.roles).map(item => {
@@ -1535,7 +1571,20 @@ function revealFinal() {
       const visibleRole = item.role === "agente fantasma" ? "Fantasma" : item.role;
       const wasVoted = item.player === state.votedPlayer;
       const wasEliminated = state.eliminatedPlayers.includes(item.player) && !wasVoted;
-      const statusText = wasVoted ? "\ud83d\uddf3\ufe0f Eliminado" : wasEliminated ? "\u274c Eliminado antes" : "";
+
+      let statusText = "";
+      if (wasVoted) {
+        statusText = "🗳️ Eliminado";
+        if (item.role === "civil" && state.round.theme === "peda") {
+          statusText += ` <span style="color:var(--orange);font-size:0.9em;display:block">🥃 Toma 1 trago</span>`;
+        }
+      } else if (wasEliminated) {
+        statusText = "❌ Eliminado antes";
+        if (item.role === "civil" && state.round.theme === "peda") {
+          statusText += ` <span style="color:var(--orange);font-size:0.9em;display:block">🥃 Toma 1 trago</span>`;
+        }
+      }
+
       return `<div class="result-row ${wasVoted ? 'result-voted' : ''} ${wasEliminated ? 'result-eliminated-prev' : ''}"><span>${escapeHtml(item.name)}</span><span><span class="badge ${cssRole}">${escapeHtml(visibleRole)}</span></span><span>${escapeHtml(item.word)}</span><span>${statusText}</span></div>`;
     }).join("");
 
@@ -1590,17 +1639,42 @@ function updateDealProgress() {
 }
 
 function setActiveMenuTab(tab) {
-  for (const [btn, key] of [[menuHomeBtn, "home"], [menuPlayBtn, "play"], [menuStatsBtn, "stats"], [menuHelpBtn, "help"]]) {
+  for (const [btn, key] of [[menuHomeBtn, "home"], [menuPlayBtn, "play"], [menuStatsBtn, "stats"], [menuHelpBtn, "help"], [menuPedaBtn, "peda"]]) {
     if (btn) btn.classList.toggle("active", tab === key);
   }
 }
 
 function showMainView(view) {
   menuSection.classList.toggle("hidden", view !== "home");
-  controlsSection.classList.toggle("hidden", view !== "play");
+  controlsSection.classList.toggle("hidden", view !== "play" && view !== "peda");
   helpSection.classList.toggle("hidden", view !== "help");
   if (statsSection) statsSection.classList.toggle("hidden", view !== "stats");
-  setActiveMenuTab(view);
+
+  // Si entra al modo peda, auto-seleccionar ese tema y mostrar la misma pantalla de play
+  if (view === "peda") {
+    state.selectedTheme = "peda";
+    renderThemeChips();
+    // Podríamos mostrar un notice visual de las reglas de peda aquí
+    const existingNotice = document.getElementById("pedaNotice");
+    if (!existingNotice) {
+      const notice = document.createElement("div");
+      notice.id = "pedaNotice";
+      notice.className = "help-tip";
+      notice.style.marginBottom = "16px";
+      notice.style.borderColor = "var(--orange)";
+      notice.innerHTML = `<strong>🍻 Modo Peda Activado:</strong><ul style="margin:6px 0 0;padding-left:18px;"><li>Palabras picantes y de fiesta.</li><li>Civil eliminado por error = 1 trago.</li><li>Ganan Civiles = Impostor fondo/doble.</li><li>Gana Impostor = ¡Todos los civiles toman!</li></ul>`;
+      controlsSection.insertBefore(notice, controlsSection.children[1]);
+    } else {
+      existingNotice.style.display = "block";
+    }
+    setActiveMenuTab("peda");
+  } else {
+    // Esconder notice de peda si salimos del modo peda (o si elegimos otro tema en "play" normal)
+    const existingNotice = document.getElementById("pedaNotice");
+    if (existingNotice && view !== "play") existingNotice.style.display = "none";
+    setActiveMenuTab(view);
+  }
+
   if (view === "stats") renderStats();
 }
 
@@ -1668,7 +1742,26 @@ function renderThemeChips() {
     chip.textContent = t.label;
     chip.setAttribute("role", "radio");
     chip.setAttribute("aria-checked", String(t.key === state.selectedTheme));
-    chip.addEventListener("click", () => { state.selectedTheme = t.key; renderThemeChips(); SFX.click(); });
+    chip.addEventListener("click", () => {
+      state.selectedTheme = t.key;
+      renderThemeChips();
+      SFX.click();
+
+      // Auto-ocultar el aviso de peda si se cambia de tema
+      const existingNotice = document.getElementById("pedaNotice");
+      if (existingNotice) {
+        existingNotice.style.display = state.selectedTheme === "peda" ? "block" : "none";
+      }
+
+      // Si el tema seleccionado ya no es "peda", y el tab activo era peda, cambiamos a "play" visualmente
+      if (state.selectedTheme !== "peda" && menuPedaBtn?.classList.contains("active")) {
+        setActiveMenuTab("play");
+      }
+      // Y viceversa
+      if (state.selectedTheme === "peda" && !menuPedaBtn?.classList.contains("active")) {
+        setActiveMenuTab("peda");
+      }
+    });
     themeChips.appendChild(chip);
   }
   if (!visible.some(t => t.key === state.selectedTheme)) {
@@ -1885,6 +1978,7 @@ toggleAdvancedBtn.addEventListener("click", () => {
 
 menuHomeBtn.addEventListener("click", () => showMainView("home"));
 menuPlayBtn.addEventListener("click", () => showMainView("play"));
+if (menuPedaBtn) menuPedaBtn.addEventListener("click", () => showMainView("peda"));
 menuHelpBtn.addEventListener("click", () => showMainView("help"));
 if (menuStatsBtn) menuStatsBtn.addEventListener("click", () => showMainView("stats"));
 menuStartBtn.addEventListener("click", () => showMainView("play"));
