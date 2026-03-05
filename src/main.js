@@ -48,6 +48,10 @@ try {
   }
 
   function animate() {
+    requestAnimationFrame(animate);
+    // Pause animation if in active game (preserves battery)
+    if (document.querySelector(".app.in-game")) return;
+
     ctx.clearRect(0, 0, width, height);
     for (const p of particles) {
       p.x += p.speedX; p.y += p.speedY; p.pulse += p.pulseSpeed;
@@ -1409,12 +1413,21 @@ function startNextRound() {
         </div>
       </div>
       <p class="sorteo-sub">Da la primera pista de esta ronda</p>
-      <button class="btn-primary" style="margin-top: 10px; width: 100%" onclick="this.parentElement.parentElement.remove(); SFX.click(); startTimer();">
+      <button id="startGameAfterSorteoBtn" class="btn-primary" style="margin-top: 10px; width: 100%">
         ¡A jugar!
       </button>
     </div>
   `;
   document.body.appendChild(overlay);
+
+  const startLocalBtn = overlay.querySelector("#startGameAfterSorteoBtn");
+  if (startLocalBtn) {
+    startLocalBtn.addEventListener("click", () => {
+      overlay.remove();
+      SFX.click();
+      startTimer();
+    });
+  }
   SFX.fanfare();
 
   // Re-show "back to debate" button for next round
@@ -1805,6 +1818,9 @@ function resetRound() {
   if (roundHistoryLog) roundHistoryLog.classList.add("hidden");
   if (roundHistoryList) roundHistoryList.innerHTML = "";
   if (newRoundBtn) { newRoundBtn.disabled = false; newRoundBtn.classList.remove("hidden"); }
+  // Remove eliminated badge if exists (sibling of voteList)
+  const existingBadge = document.querySelector(".eliminated-badge");
+  if (existingBadge) existingBadge.remove();
   if (backHomeBtn) { backHomeBtn.textContent = "\ud83c\udfe0 Volver al inicio"; backHomeBtn.classList.remove("new-game-btn"); }
   // Re-enable config inputs
   playersInput.disabled = false;
