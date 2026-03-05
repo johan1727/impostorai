@@ -15,6 +15,9 @@
   <meta name="language" content="Spanish" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.soyimpostor.me/" />
+  <link rel="alternate" hreflang="es" href="https://www.soyimpostor.me/" />
+  <link rel="alternate" hreflang="es-MX" href="https://www.soyimpostor.me/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.soyimpostor.me/" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -98,6 +101,20 @@
           "@type": "Answer",
           "text": "El juego soporta de 3 a 16 jugadores en el mismo dispositivo. Ustedes eligen cuántos impostores prefieren en la partida."
         }
+      },{
+        "@type": "Question",
+        "name": "¿Es gratis el juego Impostor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, es totalmente gratis. No requiere registro, ni pagos, ni instalaciones pesadas. Solo entras a la página web y empiezan a jugar."
+        }
+      },{
+        "@type": "Question",
+        "name": "¿Es como Among Us pero en persona?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tiene un aire similar de deducción social y descubrir al infiltrado, pero Impostor es un party game de asociación de palabras. Se juega pasando un solo celular por turnos entre todos los amigos."
+        }
       }]
     }
     </script>
@@ -126,15 +143,9 @@
       </div>
     </header>
 
-    <nav class="nav-bar nav-5" aria-label="Menú principal">
-      <button id="menuHomeBtn" class="nav-tab active" type="button">
-        <span class="nav-icon">🏠</span> Inicio
-      </button>
-      <button id="menuPlayBtn" class="nav-tab" type="button">
+    <nav class="nav-bar nav-3" aria-label="Menú principal">
+      <button id="menuPlayBtn" class="nav-tab active" type="button">
         <span class="nav-icon">🎮</span> Jugar
-      </button>
-      <button id="menuPedaBtn" class="nav-tab" type="button">
-        <span class="nav-icon">🍻</span> Peda
       </button>
       <button id="menuStatsBtn" class="nav-tab" type="button">
         <span class="nav-icon">📊</span> Stats
@@ -161,52 +172,170 @@
     </div>
 
     <section id="menuSection" class="home-screen">
-      <div class="play-hero">
-        <div class="play-hero-icon">🕵️</div>
-        <div class="play-hero-text">
-          <h2>Juego de palabras secretas</h2>
-          <p>Pasa el celular, revela tu rol y descubre al impostor.</p>
+      <div class="play-hero"
+        style="margin-top: 10vh; margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center;">
+        <div class="play-hero-icon" style="font-size: 4rem; filter: drop-shadow(0 4px 12px rgba(255,123,84,0.3));">🕵️
         </div>
-        <button id="menuStartBtn" class="play-btn" type="button">
-          ▶ Nueva partida
+        <div class="play-hero-text" style="text-align: center; margin-bottom: 2rem;">
+          <h2
+            style="font-size: 2rem; font-weight: 900; background: linear-gradient(135deg, #fff, #ffb088); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">
+            IMPOSTOR</h2>
+          <p style="color: var(--text2); font-size: 1.1rem;">¿Quién es el impostor?</p>
+        </div>
+        <button id="menuStartBtn" class="play-btn-large" type="button"
+          style="width: 100%; max-width: 320px; padding: 16px; border-radius: 16px; font-size: 1.25rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent2)); border: none; color: white; box-shadow: 0 8px 24px rgba(255,123,84,0.3); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; transition: transform 0.2s">
+          <span>▶ Crear partida local</span>
+          <span style="font-size: 0.8rem; font-weight: 500; opacity: 0.9;">Pasar el celular entre jugadores</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- NEW SCREEN: ELEGIR CATEGORÍA -->
+    <section id="categorySection" class="category-screen hidden">
+      <div class="screen-header" style="margin-bottom: 1.5rem;">
+        <button id="backFromCategoryBtn" type="button" class="link-btn"
+          style="color: var(--accent); padding: 0; display: inline-flex; align-items: center; gap: 4px;">←
+          Volver</button>
+        <h2 style="font-size: 1.6rem; color: var(--text); margin: 0.5rem 0 0.2rem 0; text-align: left;">Elegir Categoría
+        </h2>
+        <p style="color: var(--text2); margin: 0; font-size: 1rem; text-align: left;">¿Con qué palabras quieres jugar?
+        </p>
+      </div>
+
+      <!-- Option for custom packs at the top -->
+      <button id="btnCreateCustomPackHeader" type="button" class="custom-pack-header-btn"
+        style="width: 100%; background: var(--green); color: white; border: none; border-radius: 16px; padding: 16px; margin-bottom: 1.5rem; font-weight: 700; font-size: 1.1rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 16px rgba(0,230,118,0.2);">
+        <span style="display: flex; align-items: center; gap: 8px;">✏️ Palabras de los jugadores</span>
+        <span style="font-size: 0.85rem; font-weight: 500; opacity: 0.9; margin-top: 4px;">Cada jugador escribe una
+          palabra secreta</span>
+      </button>
+
+      <p style="text-align: center; color: var(--text3); font-size: 0.9rem; margin-bottom: 1rem;">o elegí una categoría
+      </p>
+
+      <div id="categoryGrid" class="category-grid"
+        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2rem;">
+        <!-- Categories injected by JS -->
+      </div>
+    </section>
+
+    <section id="controlsSection" class="card controls hidden" style="padding: 1.5rem 1rem;">
+      <div class="screen-header" style="margin-bottom: 1.5rem;">
+        <button id="backFromSetupBtn" type="button" class="link-btn"
+          style="color: var(--accent); padding: 0; display: inline-flex; align-items: center; gap: 4px;">←
+          Volver</button>
+        <h2 style="font-size: 1.6rem; color: var(--text); margin: 0.5rem 0 0.2rem 0; text-align: left;">Agregar
+          Jugadores</h2>
+        <p style="color: var(--text2); margin: 0; font-size: 1rem; text-align: left;">Partida local</p>
+      </div>
+
+      <div id="selectedCategoryChip"
+        style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 12px 16px; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+        <span style="color: var(--text2); font-size: 0.95rem;">Categoría: <strong id="selectedCategoryName"
+            style="color: var(--text); margin-left: 4px;">🎯 Aleatorio</strong></span>
+        <button id="changeCategoryBtn" class="link-btn"
+          style="color: var(--accent); padding: 0; font-size: 0.9rem;">Cambiar</button>
+      </div>
+
+      <div class="impostor-counter"
+        style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 12px 16px; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 1.2rem;">🕵️</span>
+          <strong style="font-size: 1rem;">Impostores</strong>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <button id="minusImpostorBtn" type="button"
+            style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 1.2rem; display: grid; place-items: center; cursor: pointer;">-</button>
+          <span id="impostorCountDisplay"
+            style="font-size: 1.2rem; font-weight: 700; width: 20px; text-align: center;">1</span>
+          <button id="plusImpostorBtn" type="button"
+            style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 1.2rem; display: grid; place-items: center; cursor: pointer;">+</button>
+        </div>
+      </div>
+
+      <!-- Hide the old setup inputs but keep them for logic -->
+      <div id="legacyInputsContainer" class="hidden">
+        <input id="players" type="number" min="3" max="24" value="6" />
+        <input id="impostors" type="number" min="1" max="3" value="1" />
+      </div>
+
+      <div class="player-names-section">
+        <label
+          style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--text2);">Jugadores
+          (Mín 3):</label>
+        <div id="playerNamesContainer" class="player-names"
+          style="display: flex !important; flex-direction: column; gap: 8px;"></div>
+        <button id="addPlayerRowBtn" type="button" class="btn-outline"
+          style="width: 100%; margin-top: 12px; padding: 12px; border: 1px dashed var(--border); border-radius: 8px; background: transparent; color: var(--text2); display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <span>+ Agregar un jugador</span>
         </button>
       </div>
 
-      <div class="feature-grid">
-        <div class="feature-card">
-          <span class="feature-icon">🎲</span>
-          <strong>1000+</strong>
-          <span>Palabras</span>
+      <button id="toggleAdvancedBtn" type="button" class="link-btn">⚙ Opciones avanzadas (Impostores, Temas
+        +18...)</button>
+
+      <div id="advancedOptions" class="advanced-options hidden">
+        <div class="grid" style="margin-bottom: 1rem;">
+          <label>
+            Fantasmas
+            <input id="whites" type="number" min="0" max="2" value="0" />
+            <span class="help-text">Sin información</span>
+          </label>
         </div>
-        <div class="feature-card">
-          <span class="feature-icon">📱</span>
-          <strong>Local</strong>
-          <span>1 solo celular</span>
-        </div>
-        <div class="feature-card">
-          <span class="feature-icon">🎭</span>
-          <strong>13</strong>
-          <span>Temas</span>
-        </div>
-        <div class="feature-card">
-          <span class="feature-icon">🔒</span>
-          <strong>Privado</strong>
-          <span>Sin registro</span>
+
+        <h3 class="subsection-title">Filtros de palabras</h3>
+        <label class="check-line">
+          <input id="adultThemesToggle" type="checkbox" />
+          <span>Incluir tema +18 🔥 (Modo Peda)</span>
+        </label>
+        <label class="check-line" style="margin-bottom: 1rem;">
+          <input id="spanishOnlyToggle" type="checkbox" />
+          <span>Solo español <span class="help-text" style="display:inline; margin-left:4px;">(Filtra palabras en
+              inglés)</span></span>
+        </label>
+
+        <div class="custom-packs-section">
+          <button id="toggleCustomPacksBtn" type="button" class="link-btn">📦 Packs personalizados</button>
+          <div id="customPacksPanel" class="custom-packs-panel hidden">
+            <div id="customPacksList" class="custom-packs-list"></div>
+            <div class="custom-pack-form">
+              <input id="customPackName" type="text" placeholder="Nombre del pack" maxlength="20" />
+              <textarea id="customPackPairs"
+                placeholder="Un par por línea: palabra1, palabra2&#10;pizza, hamburguesa&#10;gato, perro"
+                rows="4"></textarea>
+              <button id="addCustomPackBtn" type="button" class="secondary">➕ Crear pack</button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="quick-how">
-        <h3>⚡ Rápido: ¿cómo se juega?</h3>
-        <ol>
-          <li><strong>Configura</strong> jugadores, impostores y tema.</li>
-          <li><strong>Reparte</strong> roles pasando el cel por turnos.</li>
-          <li><strong>Debate y vota</strong> al sospechoso cada ronda.</li>
-          <li><strong>Gana</strong> descubriendo al impostor antes de que sea tarde.</li>
+      <button id="startGameBtn" class="play-btn-large" type="button"
+        style="width: 100%; padding: 16px; border-radius: 12px; font-size: 1.15rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent2)); border: none; color: white; margin-top: 2rem; box-shadow: 0 8px 24px rgba(255,123,84,0.3); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        ▶ Comenzar Juego (<span id="btnPlayersCount">6</span>)
+      </button>
+
+      <div id="validationError" class="help-text"
+        style="color: var(--red); display: none; margin-top: 12px; text-align: center; font-weight: 600;"></div>
+    </section>
+
+    <section id="helpSection" class="card hidden" style="padding: 1.5rem 1rem;">
+      <h2 class="section-title"
+        style="font-size: 1.6rem; color: var(--accent); margin-bottom: 1.5rem; text-align: left;">📚 Reglas y Ayuda</h2>
+
+      <div
+        style="background: var(--surface); padding: 1.25rem; border-radius: var(--r-sm); border: 1px solid var(--border); margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 0.75rem; color: var(--accent); font-size: 1.1rem;">⚡ Rápido: ¿cómo se juega?</h3>
+        <ol style="margin: 0; padding-left: 1.25rem; color: var(--text2); line-height: 1.6;">
+          <li style="margin-bottom: 0.5rem;"><strong>Eligen Categoría:</strong> Animales, comida, películas...</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Se reparten los roles:</strong> Pasen el celular por turnos para
+            ver qué rol y qué palabra les tocó.</li>
+          <li style="margin-bottom: 0.5rem;"><strong>Debate:</strong> Digan una pista sobre la palabra. El impostor
+            intentará camuflarse.</li>
+          <li style="margin-bottom: 0;"><strong>Voten:</strong> Adivinen quién es el impostor. ¡Gana el que engaña o los
+            que descubren!</li>
         </ol>
-        <button id="menuHowToBtn" class="link-btn" type="button">Ver reglas completas →</button>
       </div>
 
-      <!-- SEO FREQUENTLY ASKED QUESTIONS -->
       <article class="faq-section" style="margin-top:2rem;text-align:left;">
         <h2 style="font-size:1.4rem;color:var(--text);margin-bottom:1rem;text-align:center;">Preguntas Frecuentes</h2>
         <details class="faq-item">
@@ -231,93 +360,6 @@
             número de impostores y si quieres incluir "Fantasmas" (actores ciegos sin palabra).</p>
         </details>
       </article>
-    </section>
-
-    <section id="controlsSection" class="card controls hidden">
-      <h2 class="section-title">⚙ Configuración</h2>
-      <p class="random-note">🌀 El impostor y fantasma se reparten aleatoriamente en cada ronda.</p>
-
-      <div class="grid">
-        <label>
-          Jugadores (3-24)
-          <input id="players" type="number" min="3" max="24" value="6" />
-        </label>
-
-        <label>
-          Impostores
-          <input id="impostors" type="number" min="1" max="3" value="1" />
-        </label>
-      </div>
-
-      <div class="player-names-section">
-        <button id="toggleNamesBtn" type="button" class="link-btn">✏️ Personalizar nombres</button>
-        <div id="playerNamesContainer" class="player-names hidden"></div>
-      </div>
-
-      <button id="toggleAdvancedBtn" type="button" class="link-btn">⚙ Opciones avanzadas</button>
-
-      <div id="advancedOptions" class="advanced-options hidden">
-        <label>
-          Fantasma (sin palabra)
-          <input id="whites" type="number" min="0" max="2" value="0" />
-          <span class="help-text">Modo avanzado: jugador sin información que debe improvisar.</span>
-        </label>
-      </div>
-
-      <h3 class="subsection-title">Tema</h3>
-      <div id="themeChips" class="theme-chips" role="radiogroup" aria-label="Tema de la ronda"></div>
-      <label class="check-line">
-        <input id="adultThemesToggle" type="checkbox" />
-        <span>Incluir tema +18 🔥</span>
-      </label>
-      <label class="check-line">
-        <input id="spanishOnlyToggle" type="checkbox" />
-        <span>Solo español <span class="help-text" style="display:inline; margin-left:4px;">(Filtra palabras en
-            inglés)</span></span>
-      </label>
-
-      <div class="custom-packs-section">
-        <button id="toggleCustomPacksBtn" type="button" class="link-btn">📦 Packs personalizados</button>
-        <div id="customPacksPanel" class="custom-packs-panel hidden">
-          <div id="customPacksList" class="custom-packs-list"></div>
-          <div class="custom-pack-form">
-            <input id="customPackName" type="text" placeholder="Nombre del pack" maxlength="20" />
-            <textarea id="customPackPairs"
-              placeholder="Un par por línea: palabra1, palabra2&#10;pizza, hamburguesa&#10;gato, perro"
-              rows="4"></textarea>
-            <button id="addCustomPackBtn" type="button" class="secondary">➕ Crear pack</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button id="startBtn" class="primary-action">
-          <span>🎮 Empezar partida</span>
-        </button>
-        <button id="resetBtn" class="secondary">Reiniciar</button>
-      </div>
-
-      <div id="statusBox" class="status-box hidden" role="status" aria-live="polite">
-        <span id="statusIcon" class="status-icon"></span>
-        <p id="status" class="status"></p>
-      </div>
-    </section>
-
-    <section id="helpSection" class="card hidden">
-      <h2 class="section-title">❓ Cómo se juega</h2>
-      <ol class="help-list">
-        <li><strong>Configura:</strong> Elige jugadores, impostores y tema.</li>
-        <li><strong>Reparte:</strong> Pasa el celular a cada jugador. Desliza para ver tu rol en privado.</li>
-        <li><strong>Pista:</strong> Cada jugador da una pista de UNA palabra sobre lo que le tocó, SIN decirla
-          directamente.</li>
-        <li><strong>Debate:</strong> Escuchen las pistas. ¿Alguien parece confundido, demasiado vago o fuera de
-          contexto?</li>
-        <li><strong>Voten:</strong> Elijan al sospechoso y elimínenlo.</li>
-        <li><strong>¿Acertaron?</strong> Si era el impostor, ¡bien hecho! Si no, el juego continúa con una nueva ronda
-          de debate.</li>
-        <li><strong>Fin de partida:</strong> Los civiles ganan si descubren a todos los impostores. El impostor gana si
-          logra igualar o superar en número a los civiles.</li>
-      </ol>
       <div class="help-roles">
         <h3 class="subsection-title">Roles</h3>
         <div class="help-role"><span class="badge civil">Civil</span> Conoce la palabra secreta. Da pistas claras sin
@@ -484,6 +526,10 @@
             </button>
           </div>
           <div id="finalResult" class="final-result hidden"></div>
+          <button id="shareResultBtn" class="primary-action share-btn hidden" type="button"
+            style="margin-top: 1rem; width: 100%;">
+            📤 Comparte este resultado con tus amigos
+          </button>
         </div>
 
         <!-- ROUND HISTORY LOG -->
@@ -510,7 +556,6 @@
 
     <footer class="app-footer">
       <span>Impostor v0.1.0</span>
-      <button id="shareResultBtn" class="secondary share-btn hidden" type="button">📤 Compartir resultado</button>
       <span class="footer-dot">·</span>
       <span>Party game local</span>
     </footer>

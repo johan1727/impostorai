@@ -49,8 +49,8 @@ try {
 
   function animate() {
     requestAnimationFrame(animate);
-    // Pause animation if in active game (preserves battery)
-    if (document.querySelector(".app.in-game")) return;
+    // Pause rendering if in active game to preserve battery, without expensive DOM queries
+    if (state.gameActive) return;
 
     ctx.clearRect(0, 0, width, height);
     for (const p of particles) {
@@ -319,20 +319,7 @@ const spanishOnlyToggle = document.getElementById("spanishOnlyToggle");
 const statusBox = document.getElementById("statusBox");
 const statusEl = document.getElementById("status");
 const menuSection = document.getElementById("menuSection");
-const categorySection = document.getElementById("categorySection");
-const categoryGrid = document.getElementById("categoryGrid");
-const backFromCategoryBtn = document.getElementById("backFromCategoryBtn");
-const btnCreateCustomPackHeader = document.getElementById("btnCreateCustomPackHeader");
 const controlsSection = document.getElementById("controlsSection");
-const backFromSetupBtn = document.getElementById("backFromSetupBtn");
-const selectedCategoryName = document.getElementById("selectedCategoryName");
-const changeCategoryBtn = document.getElementById("changeCategoryBtn");
-const minusImpostorBtn = document.getElementById("minusImpostorBtn");
-const plusImpostorBtn = document.getElementById("plusImpostorBtn");
-const impostorCountDisplay = document.getElementById("impostorCountDisplay");
-const startGameBtn = document.getElementById("startGameBtn");
-const btnPlayersCount = document.getElementById("btnPlayersCount");
-const validationError = document.getElementById("validationError");
 const helpSection = document.getElementById("helpSection");
 const statsSection = document.getElementById("statsSection");
 const menuHomeBtn = document.getElementById("menuHomeBtn");
@@ -645,11 +632,11 @@ function renderStats() {
     </div>
     <button id="clearStatsBtn" type="button" class="link-btn" style="margin-top:8px;color:var(--red)">🗑️ Borrar historial</button>`;
   document.getElementById("clearStatsBtn")?.addEventListener("click", () => {
-    if (confirm("¿Borrar todo el historial?")) {
+    showConfirmModal("¿Borrar todo el historial?", () => {
       saveStats({ gamesPlayed: 0, rounds: [] });
       renderStats();
       showToast("Historial borrado");
-    }
+    });
   });
 }
 
@@ -661,9 +648,9 @@ function saveCustomPacks(p) { try { localStorage.setItem(CUSTOM_PACKS_KEY, JSON.
 function deleteCustomPack(i) {
   const p = loadCustomPacks(); p.splice(i, 1); saveCustomPacks(p); refreshCustomThemes();
 }
-const DEFAULT_THEMES_COUNT = 14;
 function refreshCustomThemes() {
-  while (themes.length > DEFAULT_THEMES_COUNT) themes.pop();
+  const defaultThemesCount = 14; // Aleatorio + 11 categorías + adulto + peda
+  while (themes.length > defaultThemesCount) themes.pop();
   for (const k of Object.keys(localWords)) { if (k.startsWith("custom_")) delete localWords[k]; }
   const packs = loadCustomPacks();
   for (let i = 0; i < packs.length; i++) {
@@ -1204,19 +1191,21 @@ function goNextPlayer() {
           </div>
         </div>
         <p class="sorteo-sub">Da la primera pista</p>
-        <button id="startGameOverlayBtn" class="btn-primary" style="margin-top: 10px; width: 100%">
+        <button id="startGameAfterSorteoBtn1" class="btn-primary" style="margin-top: 10px; width: 100%">
           ¡A jugar!
         </button>
       </div>
     `;
     document.body.appendChild(overlay);
 
-    // Bug 2 fix: add event listener instead of inline onclick
-    document.getElementById("startGameOverlayBtn").addEventListener("click", function () {
-      overlay.remove();
-      SFX.click();
-      startTimer();
-    });
+    const startLocalBtn = overlay.querySelector("#startGameAfterSorteoBtn1");
+    if (startLocalBtn) {
+      startLocalBtn.addEventListener("click", () => {
+        overlay.remove();
+        SFX.click();
+        startTimer();
+      });
+    }
 
     SFX.fanfare();
 
@@ -1673,15 +1662,13 @@ function updateDealProgress() {
 }
 
 function setActiveMenuTab(tab) {
-  for (const [btn, key] of [[menuHomeBtn, "home"], [menuPlayBtn, "play"], [menuStatsBtn, "stats"], [menuHelpBtn, "help"], [menuPedaBtn, "peda"]]) {
+  for (const [btn, key] of [[menuPlayBtn, "play"], [menuStatsBtn, "stats"], [menuHelpBtn, "help"]]) {
     if (btn) btn.classList.toggle("active", tab === key);
   }
 }
 
 function showMainView(view) {
-  menuSection.classList.toggle("hidden", view !== "home");
-  categorySection.classList.toggle("hidden", view !== "categories");
-  controlsSection.classList.toggle("hidden", view !== "play");
+  controlsSection.classList.toggle("hidden", view !== "play" && view !== "peda");
   helpSection.classList.toggle("hidden", view !== "help");
   if (statsSection) statsSection.classList.toggle("hidden", view !== "stats");
 
@@ -1698,75 +1685,21 @@ function renderPlayerNameInputs() {
   for (let i = 1; i <= count; i += 1) {
     const wrapper = document.createElement("div");
     wrapper.className = "player-name-input";
-    wrapper.style.display = "flex";
-    wrapper.style.gap = "8px";
-    wrapper.style.alignItems = "center";
-    wrapper.style.marginBottom = "8px";
-
     const num = document.createElement("span");
     num.className = "pn-number";
     num.textContent = i;
-
     const input = document.createElement("input");
     input.type = "text"; input.maxLength = 16;
     input.placeholder = `Jugador ${i}`;
     input.value = state.playerNames[i - 1] || "";
-    input.style.flex = "1";
     input.addEventListener("input", () => {
       state.playerNames[i - 1] = input.value.trim();
       saveNames();
     });
-
-    const delBtn = document.createElement("button");
-    delBtn.type = "button";
-    delBtn.innerHTML = "✕";
-    delBtn.style.background = "var(--surface)";
-    delBtn.style.border = "1px solid var(--border)";
-    delBtn.style.borderRadius = "8px";
-    delBtn.style.color = "var(--red)";
-    delBtn.style.cursor = "pointer";
-    delBtn.style.width = "42px";
-    delBtn.style.height = "42px";
-    delBtn.style.flexShrink = "0";
-
-    delBtn.addEventListener("click", () => {
-      if (count > 3) {
-        state.playerNames.splice(i - 1, 1);
-        saveNames();
-        playersInput.value = count - 1;
-        playersInput.dispatchEvent(new Event('input'));
-        renderPlayerNameInputs();
-        if (SFX) SFX.click();
-      } else {
-        showToast("Mínimo 3 jugadores", "error");
-      }
-    });
-
     wrapper.appendChild(num);
     wrapper.appendChild(input);
-    wrapper.appendChild(delBtn);
     playerNamesContainer.appendChild(wrapper);
   }
-}
-
-// Logic for Add Player Row Button
-const addPlayerRowBtn = document.getElementById("addPlayerRowBtn");
-if (addPlayerRowBtn) {
-  addPlayerRowBtn.addEventListener("click", () => {
-    let current = Number(playersInput.value) || 6;
-    if (current < 24) {
-      playersInput.value = current + 1;
-      playersInput.dispatchEvent(new Event('input'));
-      renderPlayerNameInputs();
-      if (SFX) SFX.click();
-
-      // Auto focus newest input
-      const inputs = playerNamesContainer.querySelectorAll("input");
-      if (inputs.length > 0) inputs[inputs.length - 1].focus();
-    } else {
-      showToast("Máximo 24 jugadores", "error");
-    }
-  });
 }
 
 // ============= SORTEO ANIMATION =============
@@ -1801,54 +1734,40 @@ function playSorteoAnimation(roles) {
 
 // ============= THEME CHIPS =============
 function renderThemeChips() {
-  if (!categoryGrid) return;
-  categoryGrid.innerHTML = "";
+  themeChips.innerHTML = "";
   const visible = themes.filter(t => !t.adult || state.includeAdultTheme);
-
-  // Icon and color mapping for categories
-  const categoryStyles = {
-    aleatorio: { color: "#ff7b54", icon: "🎲" },
-    comida: { color: "#00e676", icon: "🍔" },
-    lugares: { color: "#e040fb", icon: "📍" },
-    objetos: { color: "#4dabf7", icon: "🔧" },
-    tecnologia: { color: "#26c6da", icon: "💻" },
-    deportes: { color: "#ffd600", icon: "⚽" },
-    animales: { color: "#ff9100", icon: "🐱" },
-    profesiones: { color: "#7c4dff", icon: "💼" },
-    peliculas: { color: "#ff6b81", icon: "🎬" },
-    musica: { color: "#ab47bc", icon: "🎵" },
-    historia: { color: "#8d6e63", icon: "📜" },
-    naturaleza: { color: "#66bb6a", icon: "🌿" },
-    adulto: { color: "#ff4757", icon: "🔥" },
-    peda: { color: "#ff4757", icon: "🍻" },
-    default: { color: "#c8b8d8", icon: "📦" }
-  };
-
   for (const t of visible) {
-    const style = categoryStyles[t.key] || categoryStyles.default;
-    const card = document.createElement("button");
-    card.type = "button";
-    card.className = "category-card";
-    card.style.background = `linear-gradient(135deg, ${style.color}, var(--bg))`;
-    card.innerHTML = `
-      <div class="category-card-icon">${style.icon}</div>
-      <div class="category-card-label">${escapeHtml(t.label.replace(/🔥|🍻|📦|/g, '').trim())}</div>
-    `;
-
-    card.addEventListener("click", () => {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = `theme-chip${t.adult ? " adult" : ""}${t.key === state.selectedTheme ? " active" : ""}`;
+    chip.textContent = t.label;
+    chip.setAttribute("role", "radio");
+    chip.setAttribute("aria-checked", String(t.key === state.selectedTheme));
+    chip.addEventListener("click", () => {
       state.selectedTheme = t.key;
+      renderThemeChips();
       SFX.click();
 
-      // Update Setup screen
-      if (selectedCategoryName) selectedCategoryName.textContent = `${style.icon} ${t.label.replace(/🔥|🍻|📦|/g, '').trim()}`;
+      // Auto-ocultar el aviso de peda si se cambia de tema
+      const existingNotice = document.getElementById("pedaNotice");
+      if (existingNotice) {
+        existingNotice.style.display = state.selectedTheme === "peda" ? "block" : "none";
+      }
 
-      showMainView("play");
+      // Si el tema seleccionado ya no es "peda", y el tab activo era peda, cambiamos a "play" visualmente
+      if (state.selectedTheme !== "peda" && menuPedaBtn?.classList?.contains("active")) {
+        setActiveMenuTab("play");
+      }
+      // Y viceversa
+      if (state.selectedTheme === "peda" && (!menuPedaBtn || !menuPedaBtn.classList.contains("active"))) {
+        setActiveMenuTab("peda");
+      }
     });
-    categoryGrid.appendChild(card);
+    themeChips.appendChild(chip);
   }
-
   if (!visible.some(t => t.key === state.selectedTheme)) {
     state.selectedTheme = "aleatorio";
+    renderThemeChips();
   }
 }
 
@@ -1914,96 +1833,37 @@ async function toggleFullscreen() {
 }
 
 // ============= EVENT LISTENERS =============
-// Nav buttons for categories and setup
-if (backFromCategoryBtn) backFromCategoryBtn.addEventListener("click", () => showMainView("home"));
-if (backFromSetupBtn) backFromSetupBtn.addEventListener("click", () => showMainView("categories"));
-if (changeCategoryBtn) changeCategoryBtn.addEventListener("click", () => showMainView("categories"));
-if (btnCreateCustomPackHeader) btnCreateCustomPackHeader.addEventListener("click", () => {
-  if (customPacksPanel) customPacksPanel.classList.toggle("hidden");
-  renderCustomPacksList();
+startBtn.addEventListener("click", async () => {
+  try {
+    startBtn.disabled = true;
+    state.round = await createRound();
+    state.revealIndex = 0;
+    state.roundNumber += 1;
+    state.gameActive = true;
+    // Lock config inputs once persistent game starts
+    if (state.persistentRoles) {
+      playersInput.disabled = true;
+      impostorsInput.disabled = true;
+      whitesInput.disabled = true;
+    }
+    // Hide "Nueva ronda" during active persistent game
+    if (newRoundBtn && state.persistentRoles) newRoundBtn.classList.add("hidden");
+    if (roundNumberEl) roundNumberEl.textContent = state.roundNumber;
+    finalResult.classList.add("hidden");
+    await playSorteoAnimation(state.round.roles);
+    enterGameMode();
+    dealSection.classList.remove("hidden");
+    roundSection.classList.add("hidden");
+    gameProgressBar.style.width = "0%";
+    showHandoffScreen();
+    showToast("\u00a1Ronda creada! A jugar");
+  } catch (error) {
+    console.error(error);
+    showToast(error.message || "No se pudo crear la ronda.", "error");
+  } finally {
+    startBtn.disabled = false;
+  }
 });
-
-// Impostor +/- logic
-if (minusImpostorBtn) {
-  minusImpostorBtn.addEventListener("click", () => {
-    let current = Number(impostorsInput.value) || 1;
-    if (current > 1) {
-      current--;
-      impostorsInput.value = current;
-      if (impostorCountDisplay) impostorCountDisplay.textContent = current;
-      SFX.click();
-    }
-  });
-}
-if (plusImpostorBtn) {
-  plusImpostorBtn.addEventListener("click", () => {
-    let current = Number(impostorsInput.value) || 1;
-    if (current < 5) { // allow more impostors if they want
-      current++;
-      impostorsInput.value = current;
-      if (impostorCountDisplay) impostorCountDisplay.textContent = current;
-      SFX.click();
-    }
-  });
-}
-
-// Sync player count
-playersInput.addEventListener("input", () => {
-  if (btnPlayersCount) btnPlayersCount.textContent = playersInput.value;
-});
-
-const legacyStartBtn = document.getElementById("startBtn");
-if (legacyStartBtn) {
-  // Overwrite the legacy startBtn in case it gets clicked, 
-  // but we mostly use the new startGameBtn now.
-}
-
-if (startGameBtn) {
-  startGameBtn.addEventListener("click", async () => {
-    try {
-      if (validationError) validationError.style.display = "none";
-
-      const pCount = Number(playersInput.value) || 6;
-      const iCount = Number(impostorsInput.value) || 1;
-      const wCount = Number(whitesInput.value) || 0;
-
-      if (pCount < 3) throw new Error("Mínimo 3 jugadores.");
-      if (iCount + wCount >= pCount) throw new Error("Demasiados roles especiales. Aumenta los jugadores.");
-
-      startGameBtn.disabled = true;
-      state.round = await createRound();
-      state.revealIndex = 0;
-      state.roundNumber += 1;
-      state.gameActive = true;
-
-      if (state.persistentRoles) {
-        playersInput.disabled = true;
-        impostorsInput.disabled = true;
-        whitesInput.disabled = true;
-      }
-      if (newRoundBtn && state.persistentRoles) newRoundBtn.classList.add("hidden");
-      if (roundNumberEl) roundNumberEl.textContent = state.roundNumber;
-      finalResult.classList.add("hidden");
-      await playSorteoAnimation(state.round.roles);
-      enterGameMode();
-      dealSection.classList.remove("hidden");
-      roundSection.classList.add("hidden");
-      gameProgressBar.style.width = "0%";
-      showHandoffScreen();
-      showToast("¡Ronda creada! A jugar");
-    } catch (error) {
-      console.error(error);
-      if (validationError) {
-        validationError.textContent = error.message || "Error al crear la ronda";
-        validationError.style.display = "block";
-      } else {
-        showToast(error.message || "No se pudo crear la ronda.", "error");
-      }
-    } finally {
-      startGameBtn.disabled = false;
-    }
-  });
-}
 
 readyBtn.addEventListener("click", showSwipeScreen);
 nextBtn.addEventListener("click", goNextPlayer);
@@ -2023,7 +1883,7 @@ window.addEventListener("pointerup", e => {
 window.addEventListener("pointercancel", () => { if (state.swipeDragging) resetOverlayPosition(); });
 
 revealAllBtn.addEventListener("click", revealFinal);
-if (resetBtn) resetBtn.addEventListener("click", resetRound);
+resetBtn.addEventListener("click", resetRound);
 
 goToVoteBtn.addEventListener("click", () => {
   stopTimer();
@@ -2123,19 +1983,17 @@ toggleAdvancedBtn.addEventListener("click", () => {
 if (menuHomeBtn) menuHomeBtn.addEventListener("click", () => showMainView("home"));
 if (menuPlayBtn) menuPlayBtn.addEventListener("click", () => showMainView("play"));
 if (menuPedaBtn) menuPedaBtn.addEventListener("click", () => showMainView("peda"));
-menuHelpBtn.addEventListener("click", () => showMainView("help"));
+if (menuHelpBtn) menuHelpBtn.addEventListener("click", () => showMainView("help"));
 if (menuStatsBtn) menuStatsBtn.addEventListener("click", () => showMainView("stats"));
-menuStartBtn.addEventListener("click", () => showMainView("categories"));
+if (menuStartBtn) menuStartBtn.addEventListener("click", () => showMainView("play"));
 if (menuHowToBtn) menuHowToBtn.addEventListener("click", () => showMainView("help"));
 
-if (toggleNamesBtn) {
-  toggleNamesBtn.addEventListener("click", () => {
-    state.showNames = !state.showNames;
-    playerNamesContainer.classList.toggle("hidden", !state.showNames);
-    toggleNamesBtn.textContent = state.showNames ? "\u2715 Ocultar nombres" : "\u270f\ufe0f Personalizar nombres";
-    if (state.showNames) renderPlayerNameInputs();
-  });
-}
+toggleNamesBtn.addEventListener("click", () => {
+  state.showNames = !state.showNames;
+  playerNamesContainer.classList.toggle("hidden", !state.showNames);
+  toggleNamesBtn.textContent = state.showNames ? "\u2715 Ocultar nombres" : "\u270f\ufe0f Personalizar nombres";
+  if (state.showNames) renderPlayerNameInputs();
+});
 
 playersInput.addEventListener("change", () => { if (state.showNames) renderPlayerNameInputs(); });
 
@@ -2162,10 +2020,5 @@ applyVisualTheme(localStorage.getItem("impostorTheme") || "dark");
 renderThemeChips();
 refreshCustomThemes();
 setSwipeSensitivity("suave");
-
-// Pre-render player names since we now show them by default
-state.showNames = true;
 renderPlayerNameInputs();
-
-// Start on home view
-showMainView("home");
+resetRound();
