@@ -272,63 +272,63 @@ const localWords = {
     ["funar", "cancelar"], ["Traka", "¡Zaz!"], ["PEC (por el culx)", "¡Y la queso!"],
     ["tirar beef", "tirar hate"], ["tryhardear", "esforzarse demás"], ["chulo", "galán"],
     ["sacar la sopa", "contar el chisme"], ["tener feria", "tener billete"], ["nadaqueveriento", "random"]
-    ],
+  ],
   memes: [
-      ["rickroll", "trollface"], ["doge", "cheems"], ["bait", "clickbait"], ["POV", "storytime"],
-      ["meme del gato", "meme del perro"], ["stonks", "not stonks"], ["based", "cringe"], ["XD", "LOL"],
-      ["La Rosa de Guadalupe", "Laura en América"], ["Juan Gabriel", "Luis Miguel"],
-      ["mucho texto", "TL;DR"], ["chad", "virgin"], ["FBI open up", "a ver déjame ver"],
-      ["No era penal", "Sí era penal"], ["El América", "Las Chivas"], ["es neta", "no manches"],
-      ["modo Chihuahua", "modo Golden"], ["eres un NPC", "eres un GOD"], ["prro", "wey"],
-      ["panik", "kalm"], ["L", "W"], ["bromance", "friendzone"]
-    ],
-    redes: [
-      ["Instagram", "TikTok"], ["X (Twitter)", "Threads"], ["YouTube", "Twitch"], ["WhatsApp", "Telegram"],
-      ["reel", "short"], ["hashtag", "trending"], ["influencer", "creador"], ["viral", "flop"],
-      ["live", "stream"], ["DM", "mención"], ["follow", "unfollow"], ["like", "dislike"],
-      ["share", "repost"], ["story", "publicación"], ["carrete", "feed"], ["filtro", "sin filtro"],
-      ["verificado", "fake"], ["bot", "troll"], ["hater", "fan"], ["cancelar", "funar"],
-      ["suscriptor", "seguidor"], ["algoritmo", "for you page"], ["engagement", "alcance"], ["collab", "ft."]
-    ],
-    videojuegos: [
-      ["Fortnite", "PUBG"], ["Minecraft", "Roblox"], ["PlayStation", "Xbox"], ["Nintendo", "Steam"],
-      ["noob", "pro"], ["speedrun", "gameplay"], ["skin", "emote"], ["lag", "ping"],
-      ["camper", "rusher"], ["nerf", "buff"], ["boss final", "jefe secreto"], ["NPC", "jugador"],
-      ["sandbox", "battle royale"], ["GTA", "Need for Speed"], ["FIFA", "NBA 2K"], ["eSports", "torneo"],
-      ["headshot", "clutch"], ["rage quit", "GG"], ["respawn", "permadeath"], ["mod", "DLC"],
-      ["PvP", "PvE"], ["multiplayer", "singleplayer"], ["arcade", "consola"], ["retro", "next-gen"]
-    ],
-    regiones: [
-      ["CDMX", "Guadalajara"], ["Monterrey", "Tijuana"], ["Oaxaca", "Chiapas"], ["Cancún", "Los Cabos"],
-      ["Veracruz", "Tabasco"], ["Puebla", "Querétaro"], ["Mérida", "Campeche"], ["San Luis Potosí", "Aguascalientes"],
-      ["Sonora", "Sinaloa"], ["Chihuahua", "Durango"], ["Guanajuato", "Michoacán"], ["Jalisco", "Nayarit"],
-      ["Tamaulipas", "Nuevo León"], ["Zacatecas", "Coahuila"], ["Hidalgo", "Tlaxcala"], ["Morelos", "Guerrero"],
-      ["chilango", "foráneo"], ["norteño", "sureño"], ["costeño", "serrano"], ["tapatío", "regio"],
-      ["chamaco", "escuincle"], ["jarocho", "yucateco"], ["azteca", "maya"], ["mariachi", "banda"]
-    ],
-    peda: [
-      // Alcohol & Bebidas MX
-      ["Tequila", "Mezcal"], ["Cerveza", "Caguama"], ["Vodka", "Ron"], ["Shot", "Fondo"],
-      ["Azulito", "Pitufo"], ["Licuachela", "Michelada"], ["Kittychela", "Rotochela"], ["Caguamón", "Cartón"],
-      ["Margarita", "Paloma"], ["Hielo", "Vaso"], ["Barman", "Mesero"], ["Aguas locas", "Tonayán"],
-      // Estados de ebriedad y antro
-      ["Borracho", "Crudo"], ["Cantina", "Antro"], ["Mala copa", "Impertinente"], ["Pedísimo", "Hasta las chanclas"],
-      ["Precopeo", "Calentando motores"], ["Cadenero", "Sacaborrachos"], ["Brindis", "Salud"], ["Descorchar", "Destapar"],
-      ["After", "Conecte"], ["Vomitar", "Cruzarse"], ["Cruda moral", "Arrepentimiento"], ["Borrachera", "Peda"],
-      // Juegos y Fiestas
-      ["Yo nunca nunca", "Verdad o Reto"], ["Botella", "Ruleta"], ["Castigo", "Prenda"], ["Shot de castigo", "Trago de cortesía"],
-      ["Beso de tres", "Trío"], ["Faje", "Arrimón"], ["Perreo", "Bellakeo"], ["DJ", "Bocina"],
-      ["Karaoke", "Micrófono"], ["Perreo intenso", "Hasta el suelo"], ["Botana", "Cacahuates"], ["Bailar", "Cantar"],
-      ["Jarana", "Reventón"], ["Cover", "Entrada"],
-      // Salseo, Romance y Slang Moderno
-      ["Ex", "Cucaracho"], ["Tóxico", "Celoso"], ["Cuernos", "Infidelidad"], ["Friendzone", "Casi algo"],
-      ["Amigos con derechos", "Quedantes"], ["Nudes", "Pack"], ["OnlyFans", "Sugar Daddy"], ["Motel", "Auto"],
-      ["Chupetón", "Marca"], ["Ligue", "Crush"], ["Declaración", "Batear"], ["Beso", "Agarrón"],
-      ["Mensaje de ebrio", "Llamada a las 3 AM"], ["Visto", "Ghostear"], ["Tinder", "Bumble"],
-      ["Sugarmommy", "MILF"], ["Rapidín", "Mañanero"], ["Atrevido", "Lanzado"], ["Desnudo", "Encuerado"],
-      ["Infiel", "Amante"], ["Ahuevo", "A poco"], ["Chido", "Padre"], ["Carnal", "Compa"],
-      ["Chafa", "Regacho"], ["Cámara", "Sale"], ["Wey", "Güey"], ["Neta", "¿En serio?"]
-    ]
+    ["rickroll", "trollface"], ["doge", "cheems"], ["bait", "clickbait"], ["POV", "storytime"],
+    ["meme del gato", "meme del perro"], ["stonks", "not stonks"], ["based", "cringe"], ["XD", "LOL"],
+    ["La Rosa de Guadalupe", "Laura en América"], ["Juan Gabriel", "Luis Miguel"],
+    ["mucho texto", "TL;DR"], ["chad", "virgin"], ["FBI open up", "a ver déjame ver"],
+    ["No era penal", "Sí era penal"], ["El América", "Las Chivas"], ["es neta", "no manches"],
+    ["modo Chihuahua", "modo Golden"], ["eres un NPC", "eres un GOD"], ["prro", "wey"],
+    ["panik", "kalm"], ["L", "W"], ["bromance", "friendzone"]
+  ],
+  redes: [
+    ["Instagram", "TikTok"], ["X (Twitter)", "Threads"], ["YouTube", "Twitch"], ["WhatsApp", "Telegram"],
+    ["reel", "short"], ["hashtag", "trending"], ["influencer", "creador"], ["viral", "flop"],
+    ["live", "stream"], ["DM", "mención"], ["follow", "unfollow"], ["like", "dislike"],
+    ["share", "repost"], ["story", "publicación"], ["carrete", "feed"], ["filtro", "sin filtro"],
+    ["verificado", "fake"], ["bot", "troll"], ["hater", "fan"], ["cancelar", "funar"],
+    ["suscriptor", "seguidor"], ["algoritmo", "for you page"], ["engagement", "alcance"], ["collab", "ft."]
+  ],
+  videojuegos: [
+    ["Fortnite", "PUBG"], ["Minecraft", "Roblox"], ["PlayStation", "Xbox"], ["Nintendo", "Steam"],
+    ["noob", "pro"], ["speedrun", "gameplay"], ["skin", "emote"], ["lag", "ping"],
+    ["camper", "rusher"], ["nerf", "buff"], ["boss final", "jefe secreto"], ["NPC", "jugador"],
+    ["sandbox", "battle royale"], ["GTA", "Need for Speed"], ["FIFA", "NBA 2K"], ["eSports", "torneo"],
+    ["headshot", "clutch"], ["rage quit", "GG"], ["respawn", "permadeath"], ["mod", "DLC"],
+    ["PvP", "PvE"], ["multiplayer", "singleplayer"], ["arcade", "consola"], ["retro", "next-gen"]
+  ],
+  regiones: [
+    ["CDMX", "Guadalajara"], ["Monterrey", "Tijuana"], ["Oaxaca", "Chiapas"], ["Cancún", "Los Cabos"],
+    ["Veracruz", "Tabasco"], ["Puebla", "Querétaro"], ["Mérida", "Campeche"], ["San Luis Potosí", "Aguascalientes"],
+    ["Sonora", "Sinaloa"], ["Chihuahua", "Durango"], ["Guanajuato", "Michoacán"], ["Jalisco", "Nayarit"],
+    ["Tamaulipas", "Nuevo León"], ["Zacatecas", "Coahuila"], ["Hidalgo", "Tlaxcala"], ["Morelos", "Guerrero"],
+    ["chilango", "foráneo"], ["norteño", "sureño"], ["costeño", "serrano"], ["tapatío", "regio"],
+    ["chamaco", "escuincle"], ["jarocho", "yucateco"], ["azteca", "maya"], ["mariachi", "banda"]
+  ],
+  peda: [
+    // Alcohol & Bebidas MX
+    ["Tequila", "Mezcal"], ["Cerveza", "Caguama"], ["Vodka", "Ron"], ["Shot", "Fondo"],
+    ["Azulito", "Pitufo"], ["Licuachela", "Michelada"], ["Kittychela", "Rotochela"], ["Caguamón", "Cartón"],
+    ["Margarita", "Paloma"], ["Hielo", "Vaso"], ["Barman", "Mesero"], ["Aguas locas", "Tonayán"],
+    // Estados de ebriedad y antro
+    ["Borracho", "Crudo"], ["Cantina", "Antro"], ["Mala copa", "Impertinente"], ["Pedísimo", "Hasta las chanclas"],
+    ["Precopeo", "Calentando motores"], ["Cadenero", "Sacaborrachos"], ["Brindis", "Salud"], ["Descorchar", "Destapar"],
+    ["After", "Conecte"], ["Vomitar", "Cruzarse"], ["Cruda moral", "Arrepentimiento"], ["Borrachera", "Peda"],
+    // Juegos y Fiestas
+    ["Yo nunca nunca", "Verdad o Reto"], ["Botella", "Ruleta"], ["Castigo", "Prenda"], ["Shot de castigo", "Trago de cortesía"],
+    ["Beso de tres", "Trío"], ["Faje", "Arrimón"], ["Perreo", "Bellakeo"], ["DJ", "Bocina"],
+    ["Karaoke", "Micrófono"], ["Perreo intenso", "Hasta el suelo"], ["Botana", "Cacahuates"], ["Bailar", "Cantar"],
+    ["Jarana", "Reventón"], ["Cover", "Entrada"],
+    // Salseo, Romance y Slang Moderno
+    ["Ex", "Cucaracho"], ["Tóxico", "Celoso"], ["Cuernos", "Infidelidad"], ["Friendzone", "Casi algo"],
+    ["Amigos con derechos", "Quedantes"], ["Nudes", "Pack"], ["OnlyFans", "Sugar Daddy"], ["Motel", "Auto"],
+    ["Chupetón", "Marca"], ["Ligue", "Crush"], ["Declaración", "Batear"], ["Beso", "Agarrón"],
+    ["Mensaje de ebrio", "Llamada a las 3 AM"], ["Visto", "Ghostear"], ["Tinder", "Bumble"],
+    ["Sugarmommy", "MILF"], ["Rapidín", "Mañanero"], ["Atrevido", "Lanzado"], ["Desnudo", "Encuerado"],
+    ["Infiel", "Amante"], ["Ahuevo", "A poco"], ["Chido", "Padre"], ["Carnal", "Compa"],
+    ["Chafa", "Regacho"], ["Cámara", "Sale"], ["Neta", "¿En serio?"]
+  ]
 };
 // After localWords close, before themes
 
@@ -1113,10 +1113,13 @@ function renderRoleCard() {
   const roleName = item.role === "agente fantasma" ? "Fantasma" : item.role;
   const roleClass = item.role === "impostor" ? "role-name impostor-role" : "role-name";
   const wordClass = item.role === "impostor" ? "role-word impostor-role-word" : "role-word";
+  const inlineTitleStyle = item.role === "civil" ? "color: #29b6f6; opacity: 0.9;" : "opacity: 0.9;";
+  const inlineWordStyle = item.role === "civil" ? "color: #29b6f6; font-size: 2.2rem!important; margin: 16px 0!important; font-weight: 900!important; line-height: 1.1;" : "font-size: 2.2rem!important; margin: 16px 0!important; font-weight: 900!important; line-height: 1.1;";
+
   roleCard.innerHTML = `
     <span class="role-emoji" style="border-radius:50%;background:var(--surface);width:80px;height:80px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;box-shadow:0 4px 12px rgba(0,0,0,0.15)">${getRoleEmoji(item.role)}</span>
-    <h3 class="${roleClass}" style="opacity:0.9">Eres: ${escapeHtml(roleName)}</h3>
-    <p class="${wordClass}" style="font-size:2.2rem!important;margin:16px 0!important;font-weight:900!important;line-height:1.1">${escapeHtml(item.word)}</p>
+    <h3 class="${roleClass}" style="${inlineTitleStyle}">Eres: ${escapeHtml(roleName)}</h3>
+    <p class="${wordClass}" style="${inlineWordStyle}">${escapeHtml(item.word)}</p>
     <p class="role-tip" style="background:rgba(0,0,0,0.2);padding:12px;border-radius:8px;margin-top:16px;border:1px solid rgba(255,255,255,0.05)">${escapeHtml(item.tip)}</p>
   `;
 }
@@ -1778,24 +1781,57 @@ function showMainView(view) {
 }
 
 function renderPlayerNameInputs() {
-  const count = Number(playersInput.value) || 6;
+  const count = state.playerNames.length;
+  // Sync the hidden inputs value to prevent mismatch in other logic
+  if (playersInput) playersInput.value = count;
+  if (btnPlayersCount) btnPlayersCount.textContent = count;
+
   playerNamesContainer.innerHTML = "";
   for (let i = 1; i <= count; i += 1) {
     const wrapper = document.createElement("div");
     wrapper.className = "player-name-input";
+    wrapper.style.display = "flex";
+    wrapper.style.alignItems = "center";
+    wrapper.style.gap = "8px";
+
     const num = document.createElement("span");
     num.className = "pn-number";
     num.textContent = i;
+
     const input = document.createElement("input");
-    input.type = "text"; input.maxLength = 16;
+    input.type = "text";
+    input.maxLength = 16;
     input.placeholder = `Jugador ${i}`;
     input.value = state.playerNames[i - 1] || "";
+    input.style.flex = "1";
     input.addEventListener("input", () => {
       state.playerNames[i - 1] = input.value.trim();
       saveNames();
     });
+
     wrapper.appendChild(num);
     wrapper.appendChild(input);
+
+    // Add delete button if more than 3 players
+    if (count > 3) {
+      const delBtn = document.createElement("button");
+      delBtn.type = "button";
+      delBtn.textContent = "🗑️";
+      delBtn.style.background = "transparent";
+      delBtn.style.border = "none";
+      delBtn.style.fontSize = "1.2rem";
+      delBtn.style.cursor = "pointer";
+      delBtn.style.padding = "4px 8px";
+      delBtn.style.opacity = "0.7";
+      delBtn.addEventListener("click", () => {
+        state.playerNames.splice(i - 1, 1);
+        renderPlayerNameInputs();
+        updateUISettings();
+        if (typeof SFX !== "undefined" && SFX.click) SFX.click();
+      });
+      wrapper.appendChild(delBtn);
+    }
+
     playerNamesContainer.appendChild(wrapper);
   }
 }
