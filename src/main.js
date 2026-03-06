@@ -1779,44 +1779,8 @@ function playSorteoAnimation(roles) {
   });
 }
 
-// ============= THEME CHIPS =============
-function renderThemeChips() {
-  themeChips.innerHTML = "";
-  const visible = themes; // Always show +18 and Peda in the grid
-  for (const t of visible) {
-    const chip = document.createElement("button");
-    chip.type = "button";
-    chip.className = `theme-chip${t.adult ? " adult" : ""}${t.key === state.selectedTheme ? " active" : ""}`;
-    chip.textContent = t.label;
-    chip.setAttribute("role", "radio");
-    chip.setAttribute("aria-checked", String(t.key === state.selectedTheme));
-    chip.addEventListener("click", () => {
-      state.selectedTheme = t.key;
-      renderThemeChips();
-      SFX.click();
+// (renderThemeChips moved to before INIT section, uses categoryGrid)
 
-      // Auto-ocultar el aviso de peda si se cambia de tema
-      const existingNotice = document.getElementById("pedaNotice");
-      if (existingNotice) {
-        existingNotice.style.display = state.selectedTheme === "peda" ? "block" : "none";
-      }
-
-      // Si el tema seleccionado ya no es "peda", y el tab activo era peda, cambiamos a "play" visualmente
-      if (state.selectedTheme !== "peda" && menuPedaBtn?.classList.contains("active")) {
-        setActiveMenuTab("play");
-      }
-      // Y viceversa
-      if (state.selectedTheme === "peda" && !menuPedaBtn?.classList.contains("active")) {
-        setActiveMenuTab("peda");
-      }
-    });
-    themeChips.appendChild(chip);
-  }
-  if (!visible.some(t => t.key === state.selectedTheme)) {
-    state.selectedTheme = "aleatorio";
-    renderThemeChips();
-  }
-}
 
 // ============= RESET =============
 function resetRound() {
