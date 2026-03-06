@@ -1,5 +1,6 @@
 ﻿import { inject } from "@vercel/analytics";
 import { injectSpeedInsights } from "@vercel/speed-insights";
+import html2canvas from "html2canvas";
 
 try {
   inject();
@@ -2239,3 +2240,76 @@ refreshCustomThemes();
 setSwipeSensitivity("suave");
 renderPlayerNameInputs();
 resetRound();
+
+// ============= SHARE RESULT =============
+if (shareResultBtn) {
+  shareResultBtn.addEventListener("click", async () => {
+    try {
+      const resultEl = document.getElementById("finalResult");
+      if (!resultEl) return;
+
+      const originalText = shareResultBtn.innerHTML;
+      shareResultBtn.innerHTML = "⏳ Generando imagen...";
+      shareResultBtn.disabled = true;
+
+      // We momentarily add a background color so it doesn't render transparent
+      const oldBg = resultEl.style.background;
+      const oldPadding = resultEl.style.padding;
+      const oldBorderRadius = resultEl.style.borderRadius;
+
+      resultEl.style.background = "var(--bg)";
+      resultEl.style.padding = "20px";
+      resultEl.style.borderRadius = "16px";
+
+      const canvas = await html2canvas(resultEl, {
+        backgroundColor: "#16162a", // Match dark theme
+        scale: 2
+      });
+
+      resultEl.style.background = oldBg;
+      resultEl.style.padding = oldPadding;
+      resultEl.style.borderRadius = oldBorderRadius;
+
+      canvas.toBlob(async (blob) => {
+        shareResultBtn.innerHTML = originalText;
+        shareResultBtn.disabled = false;
+
+        if (!blob) {
+          if (typeof showToast === "function") showToast("Error al generar la imagen.", "error");
+          return;
+        }
+
+        const file = new File([blob], "impostor.png", { type: "image/png" });
+        const shareData = {
+          title: "Resultado de Impostor",
+          text: "¡Mira cómo quedó la ronda de Impostor! 🍻 Juega gratis con tus amigos en soyimpostor.me",
+          files: [file]
+        };
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share(shareData);
+            if (typeof showToast === "function") showToast("Compartido 🚀");
+          } catch (err) {
+            if (err.name !== "AbortError" && typeof showToast === "function") {
+              console.error(err);
+            }
+          }
+        } else {
+          // Fallback download if Web Share API is not supported
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "impostor-resultado.png";
+          a.click();
+          URL.revokeObjectURL(url);
+          if (typeof showToast === "function") showToast("Imagen descargada en tu celular 📱");
+        }
+      }, "image/png");
+    } catch (e) {
+      console.error(e);
+      shareResultBtn.innerHTML = "📤 Comparte este resultado";
+      shareResultBtn.disabled = false;
+    }
+  });
+}
