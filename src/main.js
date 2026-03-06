@@ -79,7 +79,7 @@ try {
         }
       }
     }
-    requestAnimationFrame(animate);
+    // (single rAF at top of animate is enough)
   }
   window.addEventListener("resize", resize);
   init(); animate();
@@ -317,6 +317,12 @@ const selectedCategoryName = document.getElementById("selectedCategoryName");
 const changeCategoryBtn = document.getElementById("changeCategoryBtn");
 const btnCreateCustomPackHeader = document.getElementById("btnCreateCustomPackHeader");
 const startGameBtn = document.getElementById("startGameBtn");
+const backFromSetupBtn = document.getElementById("backFromSetupBtn");
+const addPlayerRowBtn = document.getElementById("addPlayerRowBtn");
+const minusImpostorBtn = document.getElementById("minusImpostorBtn");
+const plusImpostorBtn = document.getElementById("plusImpostorBtn");
+const impostorCountDisplay = document.getElementById("impostorCountDisplay");
+const btnPlayersCount = document.getElementById("btnPlayersCount");
 const impostorsInput = document.getElementById("impostors");
 const whitesInput = document.getElementById("whites");
 const toggleAdvancedBtn = document.getElementById("toggleAdvancedBtn");
@@ -324,8 +330,9 @@ const advancedOptions = document.getElementById("advancedOptions");
 const themeChips = document.getElementById("themeChips");
 const adultThemesToggle = document.getElementById("adultThemesToggle");
 const spanishOnlyToggle = document.getElementById("spanishOnlyToggle");
-const statusBox = document.getElementById("statusBox");
-const statusEl = document.getElementById("status");
+// statusBox/statusEl don't exist in the new HTML — use safe dummies
+const statusBox = { classList: { add() { }, remove() { } } };
+const statusEl = { set textContent(_) { } };
 const menuSection = document.getElementById("menuSection");
 const controlsSection = document.getElementById("controlsSection");
 const helpSection = document.getElementById("helpSection");
@@ -349,7 +356,7 @@ const dealCounter = document.getElementById("dealCounter");
 const newRoundBtn = document.getElementById("newRoundBtn");
 const backHomeBtn = document.getElementById("backHomeBtn");
 const appEl = document.querySelector(".app");
-const startBtn = document.getElementById("startBtn");
+const startBtn = startGameBtn; // Map to the real HTML id="startGameBtn"
 const resetBtn = document.getElementById("resetBtn");
 const fullscreenBtn = document.getElementById("fullscreenBtn");
 const soundToggleBtn = document.getElementById("soundToggleBtn");
@@ -1358,7 +1365,7 @@ function selectPlayerToEliminate(selectedRole, selectedCard) {
           nextBtn.type = "button";
           nextBtn.className = "btn-primary next-round-btn";
           nextBtn.innerHTML = "➡\ufe0f Siguiente ronda";
-          nextBtn.addEventListener("click", () => startNextRound());
+          if (nextBtn) nextBtn.addEventListener("click", () => startNextRound());
           const card = voteResult.querySelector(".vote-reveal-card");
           if (card) card.appendChild(nextBtn);
         }, 1200);
@@ -1681,9 +1688,10 @@ function setActiveMenuTab(tab) {
 
 function showMainView(view) {
   exitGameMode();
-  menuSection.classList.toggle("hidden", view !== "home");
+  if (menuSection) if (menuSection) menuSection.classList.toggle("hidden", view !== "home");
   if (categorySection) categorySection.classList.toggle("hidden", view !== "categories");
-  controlsSection.classList.toggle("hidden", view !== "play" && view !== "peda");
+  if (controlsSection) if (categorySection) categorySection.classList.toggle("hidden", view !== "categories");
+  if (controlsSection) controlsSection.classList.toggle("hidden", view !== "play" && view !== "peda");
   helpSection.classList.toggle("hidden", view !== "help");
   if (statsSection) statsSection.classList.toggle("hidden", view !== "stats");
 
@@ -1871,8 +1879,44 @@ async function toggleFullscreen() {
   }
 }
 
+
+function updateUISettings() {
+  const impVal = impostorsInput ? impostorsInput.value : "1";
+  if (impostorCountDisplay) impostorCountDisplay.textContent = impVal;
+  if (btnPlayersCount) btnPlayersCount.textContent = state.playerNames.length;
+}
+
+if (minusImpostorBtn) minusImpostorBtn.addEventListener("click", () => {
+  if (!impostorsInput) return;
+  const v = Math.max(1, parseInt(impostorsInput.value) - 1);
+  impostorsInput.value = v;
+  updateUISettings();
+  SFX.click();
+});
+
+if (plusImpostorBtn) plusImpostorBtn.addEventListener("click", () => {
+  if (!impostorsInput) return;
+  const v = Math.min(5, parseInt(impostorsInput.value) + 1);
+  impostorsInput.value = v;
+  updateUISettings();
+  SFX.click();
+});
+
+if (addPlayerRowBtn) addPlayerRowBtn.addEventListener("click", () => {
+  state.playerNames.push("");
+  renderPlayerNameInputs();
+  updateUISettings();
+  SFX.click();
+});
+
+if (backFromCategoryBtn) backFromCategoryBtn.addEventListener("click", () => showMainView("home"));
+if (backFromSetupBtn) backFromSetupBtn.addEventListener("click", () => showMainView("categories"));
+if (changeCategoryBtn) changeCategoryBtn.addEventListener("click", () => showMainView("categories"));
+
+// (menuStartBtn and menuPlayBtn listeners are set below in the EVENT LISTENERS section)
+
 // ============= EVENT LISTENERS =============
-if (startGameBtn) startGameBtn.addEventListener("click", () => { if(startBtn) startBtn.click(); });
+// startBtn is already mapped to startGameBtn in DOM refs, so no extra listener needed
 startBtn.addEventListener("click", async () => {
   try {
     startBtn.disabled = true;
@@ -1905,9 +1949,9 @@ startBtn.addEventListener("click", async () => {
   }
 });
 
-readyBtn.addEventListener("click", showSwipeScreen);
-nextBtn.addEventListener("click", goNextPlayer);
-coverBtn.addEventListener("click", coverRoleAgain);
+if (readyBtn) readyBtn.addEventListener("click", showSwipeScreen);
+if (nextBtn) nextBtn.addEventListener("click", goNextPlayer);
+if (coverBtn) coverBtn.addEventListener("click", coverRoleAgain);
 
 revealOverlay.addEventListener("pointerdown", e => onSwipeStart(e.clientX, e.clientY, e.pointerId));
 window.addEventListener("pointermove", e => {
@@ -1922,7 +1966,7 @@ window.addEventListener("pointerup", e => {
 });
 window.addEventListener("pointercancel", () => { if (state.swipeDragging) resetOverlayPosition(); });
 
-revealAllBtn.addEventListener("click", revealFinal);
+if (revealAllBtn) revealAllBtn.addEventListener("click", revealFinal);
 if (resetBtn) resetBtn.addEventListener("click", resetRound);
 
 goToVoteBtn.addEventListener("click", () => {
@@ -1937,7 +1981,7 @@ backToDebateBtn.addEventListener("click", () => {
   SFX.click();
 });
 
-quitGameBtn.addEventListener("click", () => {
+if (quitGameBtn) quitGameBtn.addEventListener("click", () => {
   if (state.gameActive) {
     showConfirmModal("¿Seguro que quieres salir? Se perderá el progreso de la partida.", () => resetRound());
   } else {
@@ -1945,7 +1989,7 @@ quitGameBtn.addEventListener("click", () => {
   }
 });
 
-newRoundBtn.addEventListener("click", () => {
+if (newRoundBtn) newRoundBtn.addEventListener("click", () => {
   if (state.gameOver) return;
   // In persistent mode, use seamless transition (no re-deal) — only after a vote
   if (state.persistentRoles && state.votedPlayer !== null) {
@@ -1976,17 +2020,17 @@ newRoundBtn.addEventListener("click", () => {
   showMainView("play");
 });
 
-backHomeBtn.addEventListener("click", () => {
+if (backHomeBtn) backHomeBtn.addEventListener("click", () => {
   if (state.gameActive) {
     showConfirmModal("¿Volver al inicio? Se perderá la partida actual.", () => resetRound());
   } else {
     resetRound();
   }
 });
-startTimerBtn.addEventListener("click", startTimer);
-pauseTimerBtn.addEventListener("click", pauseTimer);
-resetTimerBtn.addEventListener("click", resetTimer);
-fullscreenBtn.addEventListener("click", toggleFullscreen);
+if (startTimerBtn) startTimerBtn.addEventListener("click", startTimer);
+if (pauseTimerBtn) pauseTimerBtn.addEventListener("click", pauseTimer);
+if (resetTimerBtn) resetTimerBtn.addEventListener("click", resetTimer);
+if (fullscreenBtn) fullscreenBtn.addEventListener("click", toggleFullscreen);
 
 if (soundToggleBtn) {
   soundToggleBtn.addEventListener("click", () => {
@@ -2023,7 +2067,7 @@ toggleAdvancedBtn.addEventListener("click", () => {
 if (menuHomeBtn) menuHomeBtn.addEventListener("click", () => showMainView("home"));
 if (menuPlayBtn) menuPlayBtn.addEventListener("click", () => showMainView("categories"));
 if (menuPedaBtn) menuPedaBtn.addEventListener("click", () => showMainView("peda"));
-menuHelpBtn.addEventListener("click", () => showMainView("help"));
+if (menuHelpBtn) menuHelpBtn.addEventListener("click", () => showMainView("help"));
 if (menuStatsBtn) menuStatsBtn.addEventListener("click", () => showMainView("stats"));
 if (menuStartBtn) menuStartBtn.addEventListener("click", () => showMainView("categories"));
 if (menuHowToBtn) menuHowToBtn.addEventListener("click", () => showMainView("help"));
