@@ -2102,6 +2102,73 @@ if (addCustomPackBtn) addCustomPackBtn.addEventListener("click", addCustomPackFr
 if (backFromCategoryBtn) backFromCategoryBtn.addEventListener("click", () => showMainView("home"));
 if (changeCategoryBtn) changeCategoryBtn.addEventListener("click", () => showMainView("categories"));
 
+// ============= CATEGORY RENDERING =============
+function renderThemeChips() {
+  if (!categoryGrid) return;
+  categoryGrid.innerHTML = "";
+
+  const categoryStyles = {
+    aleatorio: { color: "#ff7b54", icon: "\u{1F3B2}" },
+    comida: { color: "#00e676", icon: "\u{1F354}" },
+    lugares: { color: "#e040fb", icon: "\u{1F4CD}" },
+    objetos: { color: "#4dabf7", icon: "\u{1F527}" },
+    tecnologia: { color: "#26c6da", icon: "\u{1F4BB}" },
+    deportes: { color: "#ffd600", icon: "\u26BD" },
+    animales: { color: "#ff9100", icon: "\u{1F431}" },
+    profesiones: { color: "#7c4dff", icon: "\u{1F4BC}" },
+    peliculas: { color: "#ff6b81", icon: "\u{1F3AC}" },
+    musica: { color: "#ab47bc", icon: "\u{1F3B5}" },
+    historia: { color: "#8d6e63", icon: "\u{1F4DC}" },
+    naturaleza: { color: "#66bb6a", icon: "\u{1F33F}" },
+    adulto: { color: "#ff4757", icon: "\u{1F51E}" },
+    peda: { color: "#feca57", icon: "\u{1F37B}" },
+    default: { color: "#c8b8d8", icon: "\u2728" }
+  };
+
+  for (const t of themes) {
+    const style = categoryStyles[t.key] || categoryStyles.default;
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "category-card";
+    card.style.background = `linear-gradient(135deg, ${style.color}, var(--bg))`;
+    card.style.border = "1px solid rgba(255,255,255,0.08)";
+    card.style.borderRadius = "16px";
+    card.style.padding = "20px 12px";
+    card.style.display = "flex";
+    card.style.flexDirection = "column";
+    card.style.alignItems = "center";
+    card.style.justifyContent = "center";
+    card.style.gap = "8px";
+    card.style.cursor = "pointer";
+    card.style.transition = "transform 0.15s, box-shadow 0.15s";
+    card.style.color = "white";
+    card.style.fontWeight = "700";
+    card.style.boxShadow = "0 4px 12px rgba(0,0,0,0.2)";
+
+    const cleanLabel = t.label.replace(/[\u{1F525}\u{1F37B}\u{1F51E}\u{1F4E6}]/gu, "").trim();
+    card.innerHTML = `
+      <div style="font-size:2.2rem;line-height:1">${style.icon}</div>
+      <div style="font-size:0.85rem">${escapeHtml(cleanLabel)}</div>
+    `;
+
+    card.addEventListener("mouseenter", () => { card.style.transform = "translateY(-3px)"; card.style.boxShadow = "0 8px 20px rgba(0,0,0,0.3)"; });
+    card.addEventListener("mouseleave", () => { card.style.transform = ""; card.style.boxShadow = "0 4px 12px rgba(0,0,0,0.2)"; });
+
+    card.addEventListener("click", () => {
+      state.selectedTheme = t.key;
+      if (t.adult) {
+        state.includeAdultTheme = true;
+        if (adultThemesToggle) adultThemesToggle.checked = true;
+      }
+      SFX.click();
+      if (selectedCategoryName) selectedCategoryName.textContent = `${style.icon} ${cleanLabel}`;
+      showMainView("play");
+    });
+
+    categoryGrid.appendChild(card);
+  }
+}
+
 // ============= INIT =============
 applyVisualTheme(localStorage.getItem("impostorTheme") || "dark");
 renderThemeChips();
