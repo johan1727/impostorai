@@ -1591,7 +1591,8 @@ function showGameOver(result) {
           <div class="game-over-stat"><span class="game-over-stat-value">${result.rounds}</span><span class="game-over-stat-label">Rondas</span></div>
           <div class="game-over-stat"><span class="game-over-stat-value">${result.eliminated}</span><span class="game-over-stat-label">Eliminados</span></div>
           <div class="game-over-stat"><span class="game-over-stat-value">${result.totalPlayers}</span><span class="game-over-stat-label">Jugadores</span></div>
-        </div>`;
+        </div>
+        <button id="shareGameOverBtn" class="primary-action share-btn" type="button" style="margin-top: 1rem; width: 100%;">📤 Comparte este resultado con tus amigos</button>`;
     } else {
       SFX.alarm();
       gameOverContent.innerHTML = `
@@ -1602,8 +1603,17 @@ function showGameOver(result) {
           <div class="game-over-stat"><span class="game-over-stat-value">${result.rounds}</span><span class="game-over-stat-label">Rondas</span></div>
           <div class="game-over-stat"><span class="game-over-stat-value">${result.eliminated}</span><span class="game-over-stat-label">Eliminados</span></div>
           <div class="game-over-stat"><span class="game-over-stat-value">${result.totalPlayers}</span><span class="game-over-stat-label">Jugadores</span></div>
-        </div>`;
+        </div>
+        <button id="shareGameOverBtn" class="primary-action share-btn" type="button" style="margin-top: 1rem; width: 100%;">📤 Comparte este resultado con tus amigos</button>`;
     }
+
+    // Bind share button
+    setTimeout(() => {
+      const btn = document.getElementById("shareGameOverBtn");
+      if (btn && typeof handleShareResult === "function") {
+        btn.addEventListener("click", () => handleShareResult(gameOverContent, btn));
+      }
+    }, 50);
   }
 
   // Disable "Nueva ronda" when game is over, show "Nueva partida" instead
@@ -2242,74 +2252,82 @@ renderPlayerNameInputs();
 resetRound();
 
 // ============= SHARE RESULT =============
-if (shareResultBtn) {
-  shareResultBtn.addEventListener("click", async () => {
-    try {
-      const resultEl = document.getElementById("finalResult");
-      if (!resultEl) return;
+async function handleShareResult(resultEl, btnEl) {
+  try {
+    if (!resultEl) return;
 
-      const originalText = shareResultBtn.innerHTML;
-      shareResultBtn.innerHTML = "⏳ Generando imagen...";
-      shareResultBtn.disabled = true;
+    // Optional: Hide the button itself temporarily if it's inside the container being captured
+    const originalDisplay = btnEl.style.display;
+    btnEl.style.display = "none";
 
-      // We momentarily add a background color so it doesn't render transparent
-      const oldBg = resultEl.style.background;
-      const oldPadding = resultEl.style.padding;
-      const oldBorderRadius = resultEl.style.borderRadius;
+    const originalText = btnEl.innerHTML;
 
-      resultEl.style.background = "var(--bg)";
-      resultEl.style.padding = "20px";
-      resultEl.style.borderRadius = "16px";
+    // We momentarily add a background color so it doesn't render transparent
+    const oldBg = resultEl.style.background;
+    const oldPadding = resultEl.style.padding;
+    const oldBorderRadius = resultEl.style.borderRadius;
 
-      const canvas = await html2canvas(resultEl, {
-        backgroundColor: "#16162a", // Match dark theme
-        scale: 2
-      });
+    resultEl.style.background = "var(--bg)";
+    resultEl.style.padding = "20px";
+    resultEl.style.borderRadius = "16px";
 
-      resultEl.style.background = oldBg;
-      resultEl.style.padding = oldPadding;
-      resultEl.style.borderRadius = oldBorderRadius;
+    const canvas = await html2canvas(resultEl, {
+      backgroundColor: "#16162a", // Match dark theme
+      scale: 2
+    });
 
-      canvas.toBlob(async (blob) => {
-        shareResultBtn.innerHTML = originalText;
-        shareResultBtn.disabled = false;
+    resultEl.style.background = oldBg;
+    resultEl.style.padding = oldPadding;
+    resultEl.style.borderRadius = oldBorderRadius;
 
-        if (!blob) {
-          if (typeof showToast === "function") showToast("Error al generar la imagen.", "error");
-          return;
-        }
+    btnEl.style.display = originalDisplay;
+    btnEl.innerHTML = "⏳ Generando imagen...";
+    btnEl.disabled = true;
 
-        const file = new File([blob], "impostor.png", { type: "image/png" });
-        const shareData = {
-          title: "Resultado de Impostor",
-          text: "¡Mira cómo quedó la ronda de Impostor! 🍻 Juega gratis con tus amigos en soyimpostor.me",
-          files: [file]
-        };
+    canvas.toBlob(async (blob) => {
+      btnEl.innerHTML = originalText;
+      btnEl.disabled = false;
 
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          try {
-            await navigator.share(shareData);
-            if (typeof showToast === "function") showToast("Compartido 🚀");
-          } catch (err) {
-            if (err.name !== "AbortError" && typeof showToast === "function") {
-              console.error(err);
-            }
+      if (!blob) {
+        if (typeof showToast === "function") showToast("Error al generar la imagen.", "error");
+        return;
+      }
+
+      const file = new File([blob], "impostor.png", { type: "image/png" });
+      const shareData = {
+        title: "Resultado de Impostor",
+        text: "¡Mira cómo quedó la partida de Impostor! 🍻 Juega gratis con tus amigos en soyimpostor.me",
+        files: [file]
+      };
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share(shareData);
+          if (typeof showToast === "function") showToast("Compartido 🚀");
+        } catch (err) {
+          if (err.name !== "AbortError" && typeof showToast === "function") {
+            console.error(err);
           }
-        } else {
-          // Fallback download if Web Share API is not supported
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = "impostor-resultado.png";
-          a.click();
-          URL.revokeObjectURL(url);
-          if (typeof showToast === "function") showToast("Imagen descargada en tu celular 📱");
         }
-      }, "image/png");
-    } catch (e) {
-      console.error(e);
-      shareResultBtn.innerHTML = "📤 Comparte este resultado";
-      shareResultBtn.disabled = false;
-    }
-  });
+      } else {
+        // Fallback download if Web Share API is not supported
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "impostor-resultado.png";
+        a.click();
+        URL.revokeObjectURL(url);
+        if (typeof showToast === "function") showToast("Imagen descargada en tu celular 📱");
+      }
+    }, "image/png");
+  } catch (e) {
+    console.error(e);
+    btnEl.innerHTML = "📤 Comparte este resultado";
+    btnEl.disabled = false;
+    btnEl.style.display = "";
+  }
+}
+
+if (shareResultBtn) {
+  shareResultBtn.addEventListener("click", () => handleShareResult(document.getElementById("finalResult"), shareResultBtn));
 }
