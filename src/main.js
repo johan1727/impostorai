@@ -1,4 +1,4 @@
-﻿import { inject } from "@vercel/analytics";
+import { inject } from "@vercel/analytics";
 import { injectSpeedInsights } from "@vercel/speed-insights";
 
 try {
@@ -87,185 +87,185 @@ try {
 // ============= WORD POOLS (~500 pares = 1000+ palabras MX) =============
 const localWords = {
   aleatorio: [
-    ["volcán", "montaña"], ["wifi", "bluetooth"], ["mango", "papaya"], ["biblioteca", "museo"],
-    ["satélite", "cohete"], ["espejo", "ventana"], ["almohada", "cojín"], ["semáforo", "señal"],
-    ["anillo", "pulsera"], ["helado", "paleta"], ["mochila", "maleta"], ["lápiz", "pluma"],
+    ["volc�n", "monta�a"], ["wifi", "bluetooth"], ["mango", "papaya"], ["biblioteca", "museo"],
+    ["sat�lite", "cohete"], ["espejo", "ventana"], ["almohada", "coj�n"], ["sem�foro", "se�al"],
+    ["anillo", "pulsera"], ["helado", "paleta"], ["mochila", "maleta"], ["l�piz", "pluma"],
     ["tijeras", "cuchillo"], ["planeta", "estrella"], ["tapete", "alfombra"], ["bicicleta", "patineta"],
-    ["martillo", "desarmador"], ["cámara", "telescopio"], ["pila", "cargador"], ["cereza", "fresa"],
-    ["diamante", "rubí"], ["casco", "sombrero"], ["dado", "moneda"], ["cortina", "persiana"],
+    ["martillo", "desarmador"], ["c�mara", "telescopio"], ["pila", "cargador"], ["cereza", "fresa"],
+    ["diamante", "rub�"], ["casco", "sombrero"], ["dado", "moneda"], ["cortina", "persiana"],
     ["chicle", "caramelo"], ["atardecer", "amanecer"], ["cable", "enchufe"], ["llave", "grifo"],
-    ["plátano", "manzana"], ["torta", "sándwich"], ["carro", "camioneta"], ["cobija", "sábana"],
-    ["calcetín", "zapato"], ["cuchara", "tenedor"], ["banqueta", "calle"], ["nube", "niebla"]
+    ["pl�tano", "manzana"], ["torta", "s�ndwich"], ["carro", "camioneta"], ["cobija", "s�bana"],
+    ["calcet�n", "zapato"], ["cuchara", "tenedor"], ["banqueta", "calle"], ["nube", "niebla"]
   ],
   comida: [
-    ["taco", "burrito"], ["torta", "pambazo"], ["café", "chocolate"], ["sushi", "ramen"],
+    ["taco", "burrito"], ["torta", "pambazo"], ["caf�", "chocolate"], ["sushi", "ramen"],
     ["hamburguesa", "hot dog"], ["pozole", "menudo"], ["empanada", "gordita"], ["concha", "dona"],
     ["ceviche", "aguachile"], ["brownie", "galleta"], ["waffle", "hot cake"], ["helado", "nieve"],
-    ["nachos", "quesadilla"], ["mole", "pipián"], ["salmón", "atún"], ["ensalada", "caldo"],
-    ["flan", "gelatina"], ["churros", "buñuelos"], ["guacamole", "hummus"], ["salsa verde", "salsa roja"],
-    ["papas fritas", "chicharrón"], ["pasta", "fideos"], ["pan", "tortilla"], ["queso", "mantequilla"],
-    ["pastel", "pay"], ["tocino", "jamón"], ["arroz", "frijoles"], ["tamal", "elote"],
+    ["nachos", "quesadilla"], ["mole", "pipi�n"], ["salm�n", "at�n"], ["ensalada", "caldo"],
+    ["flan", "gelatina"], ["churros", "bu�uelos"], ["guacamole", "hummus"], ["salsa verde", "salsa roja"],
+    ["papas fritas", "chicharr�n"], ["pasta", "fideos"], ["pan", "tortilla"], ["queso", "mantequilla"],
+    ["pastel", "pay"], ["tocino", "jam�n"], ["arroz", "frijoles"], ["tamal", "elote"],
     ["chilaquiles", "enchiladas"], ["michelada", "clamato"], ["esquite", "palomitas"], ["chile relleno", "chile en nogada"],
-    ["birria", "barbacoa"], ["tlayuda", "huarache"], ["agua de horchata", "agua de jamaica"], ["camote", "jícama"]
+    ["birria", "barbacoa"], ["tlayuda", "huarache"], ["agua de horchata", "agua de jamaica"], ["camote", "j�cama"]
   ],
   lugares: [
-    ["aeropuerto", "terminal"], ["hospital", "clínica"], ["playa", "isla"], ["escuela", "universidad"],
-    ["cine", "teatro"], ["parque", "jardín"], ["estadio", "arena"], ["castillo", "palacio"],
-    ["súper", "tiendita"], ["restaurante", "fonda"], ["iglesia", "catedral"], ["banco", "oficina"],
-    ["estación", "parada"], ["zoológico", "acuario"], ["montaña", "cerro"], ["río", "lago"],
-    ["cueva", "túnel"], ["faro", "torre"], ["panteón", "cripta"], ["rancho", "hacienda"],
-    ["lobby", "recepción"], ["balcón", "terraza"], ["metro", "metrobús"], ["desierto", "selva"],
-    ["volcán", "cráter"], ["cascada", "manantial"], ["puente", "muelle"], ["frontera", "aduana"],
-    ["mercado", "tianguis"], ["cantina", "bar"], ["plaza", "zócalo"], ["gasolinera", "taller"],
-    ["oxxo", "farmacia"], ["taquería", "puesto"], ["cenote", "balneario"], ["antro", "salón de fiestas"]
+    ["aeropuerto", "terminal"], ["hospital", "cl�nica"], ["playa", "isla"], ["escuela", "universidad"],
+    ["cine", "teatro"], ["parque", "jard�n"], ["estadio", "arena"], ["castillo", "palacio"],
+    ["s�per", "tiendita"], ["restaurante", "fonda"], ["iglesia", "catedral"], ["banco", "oficina"],
+    ["estaci�n", "parada"], ["zool�gico", "acuario"], ["monta�a", "cerro"], ["r�o", "lago"],
+    ["cueva", "t�nel"], ["faro", "torre"], ["pante�n", "cripta"], ["rancho", "hacienda"],
+    ["lobby", "recepci�n"], ["balc�n", "terraza"], ["metro", "metrob�s"], ["desierto", "selva"],
+    ["volc�n", "cr�ter"], ["cascada", "manantial"], ["puente", "muelle"], ["frontera", "aduana"],
+    ["mercado", "tianguis"], ["cantina", "bar"], ["plaza", "z�calo"], ["gasolinera", "taller"],
+    ["oxxo", "farmacia"], ["taquer�a", "puesto"], ["cenote", "balneario"], ["antro", "sal�n de fiestas"]
   ],
   objetos: [
-    ["teclado", "mouse"], ["paraguas", "impermeable"], ["linterna", "vela"], ["reloj", "cronómetro"],
-    ["espada", "escudo"], ["llave", "candado"], ["lentes", "lupa"], ["brújula", "mapa"],
+    ["teclado", "mouse"], ["paraguas", "impermeable"], ["linterna", "vela"], ["reloj", "cron�metro"],
+    ["espada", "escudo"], ["llave", "candado"], ["lentes", "lupa"], ["br�jula", "mapa"],
     ["guitarra", "ukulele"], ["silla", "banco"], ["cuchara", "tenedor"], ["pincel", "brocha"],
     ["aguja", "alfiler"], ["cadena", "cuerda"], ["antena", "radar"], ["campana", "silbato"],
     ["corona", "tiara"], ["dado", "ficha"], ["escalera", "rampa"], ["guante", "manopla"],
-    ["imán", "brújula"], ["maceta", "jarrón"], ["lámpara", "foco"], ["mapa", "globo terráqueo"],
-    ["pañuelo", "toalla"], ["escoba", "trapeador"], ["botella", "jarra"], ["sobre", "carpeta"],
-    ["control remoto", "pilas"], ["cinturón", "tirantes"], ["encendedor", "cerillos"], ["cartera", "monedero"],
-    ["manguera", "regadera"], ["engrapadora", "clips"], ["cinta adhesiva", "pegamento"], ["chamarra", "suéter"]
+    ["im�n", "br�jula"], ["maceta", "jarr�n"], ["l�mpara", "foco"], ["mapa", "globo terr�queo"],
+    ["pa�uelo", "toalla"], ["escoba", "trapeador"], ["botella", "jarra"], ["sobre", "carpeta"],
+    ["control remoto", "pilas"], ["cintur�n", "tirantes"], ["encendedor", "cerillos"], ["cartera", "monedero"],
+    ["manguera", "regadera"], ["engrapadora", "clips"], ["cinta adhesiva", "pegamento"], ["chamarra", "su�ter"]
   ],
   tecnologia: [
-    ["nube", "servidor"], ["robot", "dron"], ["python", "javascript"], ["contraseña", "pin"],
-    ["pixel", "resolución"], ["wifi", "datos móviles"], ["app", "programa"], ["USB", "HDMI"],
-    ["laptop", "tablet"], ["RAM", "disco duro"], ["GPS", "brújula"], ["firewall", "antivirus"],
+    ["nube", "servidor"], ["robot", "dron"], ["python", "javascript"], ["contrase�a", "pin"],
+    ["pixel", "resoluci�n"], ["wifi", "datos m�viles"], ["app", "programa"], ["USB", "HDMI"],
+    ["laptop", "tablet"], ["RAM", "disco duro"], ["GPS", "br�jula"], ["firewall", "antivirus"],
     ["podcast", "blog"], ["streaming", "descarga"], ["emoji", "sticker"], ["VPN", "proxy"],
-    ["cookie", "caché"], ["router", "módem"], ["backup", "respaldo"], ["código QR", "código de barras"],
+    ["cookie", "cach�"], ["router", "m�dem"], ["backup", "respaldo"], ["c�digo QR", "c�digo de barras"],
     ["realidad virtual", "realidad aumentada"], ["inteligencia artificial", "machine learning"],
     ["front-end", "back-end"], ["Linux", "Windows"], ["modo oscuro", "modo claro"],
-    ["bluetooth", "NFC"], ["algoritmo", "función"], ["base de datos", "hoja de cálculo"],
-    ["captura de pantalla", "grabación"], ["meme", "gif"], ["TikTok", "YouTube"], ["spam", "phishing"],
-    ["hashtag", "trending"], ["notificación", "alerta"], ["nube", "drive"], ["lag", "ping"]
+    ["bluetooth", "NFC"], ["algoritmo", "funci�n"], ["base de datos", "hoja de c�lculo"],
+    ["captura de pantalla", "grabaci�n"], ["meme", "gif"], ["TikTok", "YouTube"], ["spam", "phishing"],
+    ["hashtag", "trending"], ["notificaci�n", "alerta"], ["nube", "drive"], ["lag", "ping"]
   ],
   deportes: [
-    ["futbol", "rugby"], ["natación", "waterpolo"], ["tenis", "bádminton"], ["boxeo", "karate"],
-    ["basquetbol", "voleibol"], ["golf", "cricket"], ["surf", "windsurf"], ["esquí", "snowboard"],
-    ["atletismo", "maratón"], ["ciclismo", "motocross"], ["escalada", "rappel"], ["esgrima", "kendo"],
-    ["hockey", "lacrosse"], ["judo", "taekwondo"], ["patinaje", "skateboard"], ["charrería", "equitación"],
-    ["béisbol", "softbol"], ["ajedrez", "damas"], ["ping pong", "squash"], ["triatlón", "pentatlón"],
+    ["futbol", "rugby"], ["nataci�n", "waterpolo"], ["tenis", "b�dminton"], ["boxeo", "karate"],
+    ["basquetbol", "voleibol"], ["golf", "cricket"], ["surf", "windsurf"], ["esqu�", "snowboard"],
+    ["atletismo", "marat�n"], ["ciclismo", "motocross"], ["escalada", "rappel"], ["esgrima", "kendo"],
+    ["hockey", "lacrosse"], ["judo", "taekwondo"], ["patinaje", "skateboard"], ["charrer�a", "equitaci�n"],
+    ["b�isbol", "softbol"], ["ajedrez", "damas"], ["ping pong", "squash"], ["triatl�n", "pentatl�n"],
     ["tiro con arco", "tiro"], ["lucha libre", "sumo"], ["remo", "kayak"], ["parkour", "calistenia"],
     ["buceo", "snorkel"], ["boliche", "billar"], ["CrossFit", "yoga"], ["boxeo", "MMA"],
-    ["frontón", "raquetbol"], ["clavados", "nado sincronizado"], ["fútbol americano", "flag football"],
+    ["front�n", "raquetbol"], ["clavados", "nado sincronizado"], ["f�tbol americano", "flag football"],
     ["corrida", "jaripeo"], ["penal", "tiro libre"], ["cascarita", "reta"], ["gol", "touchdown"], ["porra", "barra"]
   ],
   animales: [
-    ["gato", "león"], ["águila", "halcón"], ["delfín", "tiburón"], ["abeja", "avispa"],
+    ["gato", "le�n"], ["�guila", "halc�n"], ["delf�n", "tibur�n"], ["abeja", "avispa"],
     ["perro", "lobo"], ["caballo", "cebra"], ["oso", "panda"], ["serpiente", "lagartija"],
     ["conejo", "liebre"], ["loro", "guacamaya"], ["rana", "sapo"], ["hormiga", "termita"],
-    ["vaca", "búfalo"], ["pingüino", "foca"], ["murciélago", "búho"], ["mariposa", "polilla"],
-    ["camaleón", "iguana"], ["cuervo", "paloma"], ["pulpo", "calamar"], ["tortuga", "cocodrilo"],
-    ["zorro", "coyote"], ["ballena", "orca"], ["medusa", "anémona"], ["cangrejo", "langosta"],
-    ["gorila", "chimpancé"], ["jirafa", "avestruz"], ["pavo real", "flamenco"], ["rata", "hámster"],
-    ["tlacuache", "mapache"], ["ajolote", "salamandra"], ["colibrí", "golondrina"], ["armadillo", "puercoespín"],
-    ["chapulín", "grillo"], ["guajolote", "gallina"], ["xoloitzcuintle", "chihuahua"], ["quetzal", "tucán"]
+    ["vaca", "b�falo"], ["ping�ino", "foca"], ["murci�lago", "b�ho"], ["mariposa", "polilla"],
+    ["camale�n", "iguana"], ["cuervo", "paloma"], ["pulpo", "calamar"], ["tortuga", "cocodrilo"],
+    ["zorro", "coyote"], ["ballena", "orca"], ["medusa", "an�mona"], ["cangrejo", "langosta"],
+    ["gorila", "chimpanc�"], ["jirafa", "avestruz"], ["pavo real", "flamenco"], ["rata", "h�mster"],
+    ["tlacuache", "mapache"], ["ajolote", "salamandra"], ["colibr�", "golondrina"], ["armadillo", "puercoesp�n"],
+    ["chapul�n", "grillo"], ["guajolote", "gallina"], ["xoloitzcuintle", "chihuahua"], ["quetzal", "tuc�n"]
   ],
   profesiones: [
     ["doctor", "enfermero"], ["abogado", "juez"], ["chef", "pastelero"], ["piloto", "astronauta"],
-    ["bombero", "policía"], ["profe", "tutor"], ["arquitecto", "ingeniero"], ["periodista", "editor"],
-    ["músico", "cantante"], ["fotógrafo", "camarógrafo"], ["diseñador", "ilustrador"], ["veterinario", "biólogo"],
-    ["electricista", "plomero"], ["psicólogo", "psiquiatra"], ["programador", "hacker"], ["detective", "espía"],
-    ["carpintero", "albañil"], ["dentista", "ortodoncista"], ["farmacéutico", "químico"], ["actor", "comediante"],
-    ["escultor", "pintor"], ["soldado", "marinero"], ["mecánico", "técnico"], ["narrador", "escritor"],
-    ["cirujano", "anestesiólogo"], ["mesero", "bartender"], ["cartero", "mensajero"], ["jardinero", "agricultor"],
+    ["bombero", "polic�a"], ["profe", "tutor"], ["arquitecto", "ingeniero"], ["periodista", "editor"],
+    ["m�sico", "cantante"], ["fot�grafo", "camar�grafo"], ["dise�ador", "ilustrador"], ["veterinario", "bi�logo"],
+    ["electricista", "plomero"], ["psic�logo", "psiquiatra"], ["programador", "hacker"], ["detective", "esp�a"],
+    ["carpintero", "alba�il"], ["dentista", "ortodoncista"], ["farmac�utico", "qu�mico"], ["actor", "comediante"],
+    ["escultor", "pintor"], ["soldado", "marinero"], ["mec�nico", "t�cnico"], ["narrador", "escritor"],
+    ["cirujano", "anestesi�logo"], ["mesero", "bartender"], ["cartero", "mensajero"], ["jardinero", "agricultor"],
     ["influencer", "youtuber"], ["locutor", "conductor de TV"], ["chofer", "taxista"], ["estilista", "barbero"],
-    ["taquero", "panadero"], ["herrero", "soldador"], ["partera", "doula"], ["chamán", "curandero"]
+    ["taquero", "panadero"], ["herrero", "soldador"], ["partera", "doula"], ["cham�n", "curandero"]
   ],
   peliculas: [
     ["terror", "suspenso"], ["comedia", "parodia"], ["Marvel", "DC"], ["Pixar", "DreamWorks"],
-    ["ciencia ficción", "fantasía"], ["drama", "romance"], ["acción", "aventura"], ["anime", "caricatura"],
+    ["ciencia ficci�n", "fantas�a"], ["drama", "romance"], ["acci�n", "aventura"], ["anime", "caricatura"],
     ["documental", "biopic"], ["western", "noir"], ["zombie", "vampiro"], ["precuela", "secuela"],
     ["director", "productor"], ["actor", "doble"], ["guion", "storyboard"], ["taquilla", "streaming"],
-    ["palomitas", "nachos"], ["subtítulos", "doblaje"], ["tráiler", "teaser"], ["IMAX", "3D"],
-    ["Óscar", "Golden Globe"], ["remake", "reboot"], ["Star Wars", "Star Trek"],
-    ["Harry Potter", "Señor de los Anillos"], ["Batman", "Superman"], ["Avengers", "Justice League"],
-    ["Netflix", "Disney Plus"], ["thriller", "misterio"], ["villano", "héroe"], ["saga", "trilogía"],
-    ["serie", "telenovela"], ["trama", "spoiler"], ["cámara lenta", "time lapse"], ["CGI", "efectos prácticos"]
+    ["palomitas", "nachos"], ["subt�tulos", "doblaje"], ["tr�iler", "teaser"], ["IMAX", "3D"],
+    ["�scar", "Golden Globe"], ["remake", "reboot"], ["Star Wars", "Star Trek"],
+    ["Harry Potter", "Se�or de los Anillos"], ["Batman", "Superman"], ["Avengers", "Justice League"],
+    ["Netflix", "Disney Plus"], ["thriller", "misterio"], ["villano", "h�roe"], ["saga", "trilog�a"],
+    ["serie", "telenovela"], ["trama", "spoiler"], ["c�mara lenta", "time lapse"], ["CGI", "efectos pr�cticos"]
   ],
   musica: [
-    ["guitarra", "bajo"], ["reggaetón", "trap"], ["piano", "órgano"], ["rock", "punk"],
-    ["rap", "hip hop"], ["salsa", "cumbia"], ["violín", "viola"], ["jazz", "blues"],
-    ["electrónica", "techno"], ["ópera", "musical"], ["batería", "percusión"], ["flauta", "clarinete"],
-    ["arpa", "cítara"], ["acordeón", "bandoneón"], ["disco", "funk"], ["metal", "grunge"],
-    ["mariachi", "norteña"], ["reggae", "ska"], ["K-pop", "J-pop"], ["coro", "a cappella"],
-    ["DJ", "productor"], ["vinilo", "casete"], ["concierto", "festival"], ["single", "álbum"],
+    ["guitarra", "bajo"], ["reggaet�n", "trap"], ["piano", "�rgano"], ["rock", "punk"],
+    ["rap", "hip hop"], ["salsa", "cumbia"], ["viol�n", "viola"], ["jazz", "blues"],
+    ["electr�nica", "techno"], ["�pera", "musical"], ["bater�a", "percusi�n"], ["flauta", "clarinete"],
+    ["arpa", "c�tara"], ["acorde�n", "bandone�n"], ["disco", "funk"], ["metal", "grunge"],
+    ["mariachi", "norte�a"], ["reggae", "ska"], ["K-pop", "J-pop"], ["coro", "a cappella"],
+    ["DJ", "productor"], ["vinilo", "casete"], ["concierto", "festival"], ["single", "�lbum"],
     ["estribillo", "verso"], ["balada", "bolero"], ["pop", "indie"], ["country", "folk"],
-    ["corrido", "banda"], ["son jarocho", "huapango"], ["ranchera", "sierreña"], ["perreo", "dembow"],
-    ["chilena", "son cubano"], ["vals", "danzón"], ["karaoke", "dueto"], ["mashup", "remix"]
+    ["corrido", "banda"], ["son jarocho", "huapango"], ["ranchera", "sierre�a"], ["perreo", "dembow"],
+    ["chilena", "son cubano"], ["vals", "danz�n"], ["karaoke", "dueto"], ["mashup", "remix"]
   ],
   historia: [
-    ["Egipto", "Roma"], ["revolución", "independencia"], ["medieval", "renacimiento"], ["samurái", "ninja"],
-    ["vikingo", "pirata"], ["colonia", "imperio"], ["faraón", "emperador"], ["gladiador", "espartano"],
-    ["cruzada", "conquista"], ["monarquía", "república"], ["feudo", "castillo"], ["pergamino", "papiro"],
-    ["caballero", "templario"], ["azteca", "maya"], ["inca", "olmeca"], ["muralla china", "pirámide"],
-    ["espada", "catapulta"], ["bronce", "hierro"], ["Napoleón", "Julio César"], ["democracia", "dictadura"],
-    ["prehistoria", "antigüedad"], ["guerra fría", "guerra mundial"], ["esclavitud", "abolición"],
-    ["invención", "descubrimiento"], ["filosofía", "mitología"], ["Cleopatra", "Nefertiti"],
-    ["tratado", "alianza"], ["armadura", "escudo"], ["Zapata", "Villa"], ["águila", "serpiente"],
-    ["Tenochtitlan", "Tlatelolco"], ["códice", "jeroglífico"], ["Moctezuma", "Cuauhtémoc"],
+    ["Egipto", "Roma"], ["revoluci�n", "independencia"], ["medieval", "renacimiento"], ["samur�i", "ninja"],
+    ["vikingo", "pirata"], ["colonia", "imperio"], ["fara�n", "emperador"], ["gladiador", "espartano"],
+    ["cruzada", "conquista"], ["monarqu�a", "rep�blica"], ["feudo", "castillo"], ["pergamino", "papiro"],
+    ["caballero", "templario"], ["azteca", "maya"], ["inca", "olmeca"], ["muralla china", "pir�mide"],
+    ["espada", "catapulta"], ["bronce", "hierro"], ["Napole�n", "Julio C�sar"], ["democracia", "dictadura"],
+    ["prehistoria", "antig�edad"], ["guerra fr�a", "guerra mundial"], ["esclavitud", "abolici�n"],
+    ["invenci�n", "descubrimiento"], ["filosof�a", "mitolog�a"], ["Cleopatra", "Nefertiti"],
+    ["tratado", "alianza"], ["armadura", "escudo"], ["Zapata", "Villa"], ["�guila", "serpiente"],
+    ["Tenochtitlan", "Tlatelolco"], ["c�dice", "jerogl�fico"], ["Moctezuma", "Cuauht�moc"],
     ["virrey", "caudillo"], ["hacienda", "encomienda"], ["grito de Dolores", "Plan de Iguala"]
   ],
   naturaleza: [
-    ["volcán", "géiser"], ["tsunami", "huracán"], ["bosque", "selva"], ["río", "cascada"],
-    ["aurora boreal", "arcoíris"], ["terremoto", "avalancha"], ["coral", "alga"], ["montaña", "acantilado"],
-    ["desierto", "tundra"], ["manglar", "pantano"], ["rayo", "trueno"], ["tornado", "tifón"],
+    ["volc�n", "g�iser"], ["tsunami", "hurac�n"], ["bosque", "selva"], ["r�o", "cascada"],
+    ["aurora boreal", "arco�ris"], ["terremoto", "avalancha"], ["coral", "alga"], ["monta�a", "acantilado"],
+    ["desierto", "tundra"], ["manglar", "pantano"], ["rayo", "trueno"], ["tornado", "tif�n"],
     ["glaciar", "iceberg"], ["cueva", "gruta"], ["estalagmita", "estalactita"], ["oasis", "manantial"],
-    ["luna", "sol"], ["cometa", "asteroide"], ["fósil", "ámbar"], ["cristal", "mineral"],
-    ["arena", "grava"], ["musgo", "liquen"], ["miel", "cera"], ["polen", "néctar"],
-    ["raíz", "tronco"], ["hoja", "pétalo"], ["semilla", "brote"], ["marea", "corriente"],
+    ["luna", "sol"], ["cometa", "asteroide"], ["f�sil", "�mbar"], ["cristal", "mineral"],
+    ["arena", "grava"], ["musgo", "liquen"], ["miel", "cera"], ["polen", "n�ctar"],
+    ["ra�z", "tronco"], ["hoja", "p�talo"], ["semilla", "brote"], ["marea", "corriente"],
     ["cenote", "lago"], ["nopal", "maguey"], ["ceiba", "ahuehuete"], ["jaguar", "puma"],
-    ["chapulín", "escarabajo"], ["obsidiana", "jade"], ["cempasúchil", "nochebuena"], ["milpa", "chinampa"]
+    ["chapul�n", "escarabajo"], ["obsidiana", "jade"], ["cempas�chil", "nochebuena"], ["milpa", "chinampa"]
   ],
   adulto: [
-    // — Apps y ligue digital —
+    // � Apps y ligue digital �
     ["Tinder", "Bumble"], ["ghostear", "clavar el visto"], ["friendzone", "situationship"],
     ["catfish", "perfil falso"], ["sexting", "nudes"], ["stalkear", "espiar"], ["match", "swipe"],
     ["sugar daddy", "sugar mommy"], ["sugar baby", "mantenido"], ["OnlyFans", "Patreon"],
-    // — Ligue y faje —
+    // � Ligue y faje �
     ["ligue", "faje"], ["tirar rollo", "chamuyar"], ["crush", "pretendiente"],
     ["amigos con derechos", "quedantes"], ["free", "one night stand"], ["acostar", "enrollarse"],
-    ["calentón", "manoseo"], ["besarse", "fajarse"], ["ligar", "seducir"], ["coqueteo", "cotorreo"],
-    // — Peda y fiesta —
-    ["cruda", "resaca"], ["peda", "reventón"], ["chela", "shot"], ["mezcal", "tequila"],
-    ["jarra", "caguama"], ["precopeo", "after"], ["pedote", "hasta atrás"],
+    ["calent�n", "manoseo"], ["besarse", "fajarse"], ["ligar", "seducir"], ["coqueteo", "cotorreo"],
+    // � Peda y fiesta �
+    ["cruda", "resaca"], ["peda", "revent�n"], ["chela", "shot"], ["mezcal", "tequila"],
+    ["jarra", "caguama"], ["precopeo", "after"], ["pedote", "hasta atr�s"],
     ["vomitar", "cruzado"], ["juego de shots", "verdad o reto"],
-    // — Antro y perreo —
-    ["antro", "table"], ["perrear", "sandunguear"], ["reggaetón", "dembow"],
+    // � Antro y perreo �
+    ["antro", "table"], ["perrear", "sandunguear"], ["reggaet�n", "dembow"],
     ["stripper", "pole dance"], ["VIP", "mesa de botellas"], ["cadenero", "bouncer"],
     ["hora feliz", "barra libre"], ["darketo", "emo"],
-    // — Relaciones y drama —
-    ["tóxico", "posesivo"], ["celos", "inseguridad"], ["ex", "rebote"], ["cuernos", "engaño"],
-    ["tusa", "despecho"], ["novio", "amante"], ["relación abierta", "poliamor"],
-    ["drama", "escándalo"], ["red flag", "bandera roja"],
-    // — Cuerpo y atracción —
-    ["mamado", "trabado"], ["nalgón", "culón"], ["chichis", "bubis"],
+    // � Relaciones y drama �
+    ["t�xico", "posesivo"], ["celos", "inseguridad"], ["ex", "rebote"], ["cuernos", "enga�o"],
+    ["tusa", "despecho"], ["novio", "amante"], ["relaci�n abierta", "poliamor"],
+    ["drama", "esc�ndalo"], ["red flag", "bandera roja"],
+    // � Cuerpo y atracci�n �
+    ["mamado", "trabado"], ["nalg�n", "cul�n"], ["chichis", "bubis"],
     ["cachondo", "caliente"], ["piropo", "acoso"], ["encuerado", "desnudo"],
     ["pompis", "retaguardia"], ["abdomen", "cuadritos"],
-    // — Picante y tabú —
-    ["pecado", "prohibido"], ["morbo", "antojo"], ["fetiche", "fantasía"],
-    ["lujuria", "pasión"], ["travesura", "aventura"], ["vibrador", "juguete"],
+    // � Picante y tab� �
+    ["pecado", "prohibido"], ["morbo", "antojo"], ["fetiche", "fantas�a"],
+    ["lujuria", "pasi�n"], ["travesura", "aventura"], ["vibrador", "juguete"],
     ["rol", "disfraz"], ["voyeur", "exhibicionista"], ["sumiso", "dominante"],
-    // — Albures y doble sentido MX —
+    // � Albures y doble sentido MX �
     ["chile", "picante"], ["albur", "doble sentido"], ["fierro", "macizo"],
     ["panocha", "papaya"], ["elote", "mazorca"], ["chorizo", "salchicha"],
-    // — Vergüenzas y desmadre —
-    ["oso", "vergüenza"], ["desmadre", "locura"], ["pack", "candente"],
-    ["chisme", "secreto"], ["calentura", "maña"], ["desinhibido", "lanzado"],
+    // � Verg�enzas y desmadre �
+    ["oso", "verg�enza"], ["desmadre", "locura"], ["pack", "candente"],
+    ["chisme", "secreto"], ["calentura", "ma�a"], ["desinhibido", "lanzado"],
     ["resbalosa", "atrevida"], ["infidelidad", "desliz"],
-    // — Agregados recientes (+18 MX) —
-    ["rapidín", "mañanero"], ["motel", "hotel de paso"], ["tanga", "hilo dental"],
-    ["cruda moral", "arrepentimiento"], ["beso de tres", "trío"],
-    ["arrimón", "faje en público"], ["condón", "preservativo"],
-    ["orgía", "fiesta swinger"], ["consolador", "vibrador"], ["juguete sexual", "lubricante"],
-    // — Más explícitos / argot (+18 MX) —
-    ["cariñosas", "prostis"], ["chaqueta", "puñeta"], ["mamada", "chupada"],
+    // � Agregados recientes (+18 MX) �
+    ["rapid�n", "ma�anero"], ["motel", "hotel de paso"], ["tanga", "hilo dental"],
+    ["cruda moral", "arrepentimiento"], ["beso de tres", "tr�o"],
+    ["arrim�n", "faje en p�blico"], ["cond�n", "preservativo"],
+    ["org�a", "fiesta swinger"], ["consolador", "vibrador"], ["juguete sexual", "lubricante"],
+    // � M�s expl�citos / argot (+18 MX) �
+    ["cari�osas", "prostis"], ["chaqueta", "pu�eta"], ["mamada", "chupada"],
     ["perrito", "de chivito"], ["el chiquito", "el nudo de globo"],
-    ["venirse", "terminar"], ["coger", "tirar"], ["erección", "palo"],
-    ["orgasmo", "clímax"], ["putero", "congal"], ["chupetón", "marca"],
+    ["venirse", "terminar"], ["coger", "tirar"], ["erecci�n", "palo"],
+    ["orgasmo", "cl�max"], ["putero", "congal"], ["chupet�n", "marca"],
     ["madurita", "milf"], ["nalgada", "cachetada"], ["bajar por los chescos", "comer pancho"],
     ["BDSM", "sado"]
   ],
@@ -274,18 +274,18 @@ const localWords = {
     ["Tequila", "Mezcal"], ["Cerveza", "Caguama"], ["Vodka", "Ron"], ["Shot", "Fondo"],
     ["Borracho", "Crudo"], ["Cantina", "Antro"], ["Cocktail", "Michelada"], ["Azulito", "Gomichela"],
     ["Precopeo", "After"], ["Cadenero", "Bouncer"], ["Brindis", "Salud"], ["Descorchar", "Destapar"],
-    ["Margarita", "Paloma"], ["Hielo", "Vaso"], ["Barman", "Mesero"], ["Six pack", "Cartón"],
+    ["Margarita", "Paloma"], ["Hielo", "Vaso"], ["Barman", "Mesero"], ["Six pack", "Cart�n"],
     // Juegos y Fiestas
-    ["Yo nunca nunca", "Verdad o Reto"], ["Botella", "Ruleta"], ["Castigo", "Prenda"], ["Shot de castigo", "Trago de cortesía"],
-    ["Beso de tres", "Trío"], ["Faje", "Arrimón"], ["Perreo", "Reguetón"], ["DJ", "Bocina"],
-    ["Karaoke", "Micrófono"], ["Piñata", "Pastel"], ["Botana", "Cacahuates"], ["Bailar", "Cantar"],
-    ["Vomitar", "Mala copa"], ["Cruda moral", "Arrepentimiento"], ["Borrachera", "Peda"], ["Jarana", "Reventón"],
+    ["Yo nunca nunca", "Verdad o Reto"], ["Botella", "Ruleta"], ["Castigo", "Prenda"], ["Shot de castigo", "Trago de cortes�a"],
+    ["Beso de tres", "Tr�o"], ["Faje", "Arrim�n"], ["Perreo", "Reguet�n"], ["DJ", "Bocina"],
+    ["Karaoke", "Micr�fono"], ["Pi�ata", "Pastel"], ["Botana", "Cacahuates"], ["Bailar", "Cantar"],
+    ["Vomitar", "Mala copa"], ["Cruda moral", "Arrepentimiento"], ["Borrachera", "Peda"], ["Jarana", "Revent�n"],
     // Salseo y Romance Picante
-    ["Ex", "Casio"], ["Tóxico", "Celoso"], ["Cuernos", "Infidelidad"], ["Friendzone", "Situationship"],
+    ["Ex", "Casio"], ["T�xico", "Celoso"], ["Cuernos", "Infidelidad"], ["Friendzone", "Situationship"],
     ["Amigos con derechos", "Quedantes"], ["Nudes", "Pack"], ["OnlyFans", "Sugar Daddy"], ["Motel", "Auto"],
-    ["Chupetón", "Mordida"], ["Ligue", "Crush"], ["Declaración", "Batear"], ["Beso", "Agarrón"],
+    ["Chupet�n", "Mordida"], ["Ligue", "Crush"], ["Declaraci�n", "Batear"], ["Beso", "Agarr�n"],
     ["Mensaje de ebrio", "Llamada a las 3 AM"], ["Visto", "Ghostear"], ["Tinder", "Cita a ciegas"],
-    ["Sugarmommy", "MILF"], ["Rapidín", "Mañanero"], ["Atrevido", "Lanzado"], ["Desnudo", "Encuerado"],
+    ["Sugarmommy", "MILF"], ["Rapid�n", "Ma�anero"], ["Atrevido", "Lanzado"], ["Desnudo", "Encuerado"],
     ["Infiel", "Amante"]
   ]
 };
@@ -295,16 +295,16 @@ const themes = [
   { key: "comida", label: "Comida" },
   { key: "lugares", label: "Lugares" },
   { key: "objetos", label: "Objetos" },
-  { key: "tecnologia", label: "Tecnología" },
+  { key: "tecnologia", label: "Tecnolog�a" },
   { key: "deportes", label: "Deportes" },
   { key: "animales", label: "Animales" },
   { key: "profesiones", label: "Profesiones" },
-  { key: "peliculas", label: "Películas" },
-  { key: "musica", label: "Música" },
+  { key: "peliculas", label: "Pel�culas" },
+  { key: "musica", label: "M�sica" },
   { key: "historia", label: "Historia" },
   { key: "naturaleza", label: "Naturaleza" },
-  { key: "adulto", label: "+18 🔥", adult: true },
-  { key: "peda", label: "🍻 Peda", adult: true }
+  { key: "adulto", label: "+18 ??", adult: true },
+  { key: "peda", label: "?? Peda", adult: true }
 ];
 
 // ============= DOM REFS =============
@@ -538,10 +538,10 @@ function showToast(msg, type = "success") {
   const old = c.querySelector(".toast");
   if (old) old.remove();
   if (_toastTimer) clearTimeout(_toastTimer);
-  const icons = { error: "❌", loading: "⏳", success: "✅" };
+  const icons = { error: "?", loading: "?", success: "?" };
   const t = document.createElement("div");
   t.className = `toast toast-${type}`;
-  t.innerHTML = `<span>${icons[type] || "✅"}</span><span>${escapeHtml(msg)}</span>`;
+  t.innerHTML = `<span>${icons[type] || "?"}</span><span>${escapeHtml(msg)}</span>`;
   c.appendChild(t);
   requestAnimationFrame(() => t.classList.add("toast-show"));
   if (type !== "loading") {
@@ -620,7 +620,7 @@ function renderStats() {
   if (!el) return;
   const s = loadStats();
   if (s.gamesPlayed === 0) {
-    el.innerHTML = '<p class="help-text" style="text-align:center;padding:20px">🎮 Aún no hay partidas. ¡Juega tu primera ronda!</p>';
+    el.innerHTML = '<p class="help-text" style="text-align:center;padding:20px">?? A�n no hay partidas. �Juega tu primera ronda!</p>';
     return;
   }
   const tc = {};
@@ -635,7 +635,7 @@ function renderStats() {
       <div class="stat-card"><span class="stat-value">${avg}</span><span class="stat-label">Jugadores prom.</span></div>
       <div class="stat-card"><span class="stat-value">${escapeHtml(topLabel)}</span><span class="stat-label">Tema favorito</span></div>
     </div>
-    <h3 class="subsection-title" style="margin-top:12px">Últimas partidas</h3>
+    <h3 class="subsection-title" style="margin-top:12px">�ltimas partidas</h3>
     <div class="stats-history">${recent.map(r => `
       <div class="stats-row">
         <span>${escapeHtml(themes.find(t => t.key === r.theme)?.label || r.theme)}</span>
@@ -643,13 +643,13 @@ function renderStats() {
         <span>${r.playerCount} jug.</span>
       </div>`).join("")}
     </div>
-    <button id="clearStatsBtn" type="button" class="link-btn" style="margin-top:8px;color:var(--red)">🗑️ Borrar historial</button>`;
+    <button id="clearStatsBtn" type="button" class="link-btn" style="margin-top:8px;color:var(--red)">??? Borrar historial</button>`;
   document.getElementById("clearStatsBtn")?.addEventListener("click", () => {
-    if (confirm("¿Borrar todo el historial?")) {
+    showConfirmModal("�Borrar todo el historial?", () => {
       saveStats({ gamesPlayed: 0, rounds: [] });
       renderStats();
       showToast("Historial borrado");
-    }
+    });
   });
 }
 
@@ -669,7 +669,7 @@ function refreshCustomThemes() {
   for (let i = 0; i < packs.length; i++) {
     const key = `custom_${i}`;
     localWords[key] = packs[i].pairs;
-    themes.push({ key, label: `📦 ${packs[i].name}`, custom: true });
+    themes.push({ key, label: `?? ${packs[i].name}`, custom: true });
   }
   renderThemeChips();
   renderCustomPacksList();
@@ -679,7 +679,7 @@ function renderCustomPacksList() {
   if (!el) return;
   const packs = loadCustomPacks();
   if (!packs.length) { el.innerHTML = '<p class="help-text">No hay packs personalizados.</p>'; return; }
-  el.innerHTML = packs.map((p, i) => `<div class="custom-pack-item"><span>📦 ${escapeHtml(p.name)} (${p.pairs.length} pares)</span><button type="button" class="custom-pack-del" data-idx="${i}">✕</button></div>`).join("");
+  el.innerHTML = packs.map((p, i) => `<div class="custom-pack-item"><span>?? ${escapeHtml(p.name)} (${p.pairs.length} pares)</span><button type="button" class="custom-pack-del" data-idx="${i}">?</button></div>`).join("");
   el.querySelectorAll(".custom-pack-del").forEach(b => b.addEventListener("click", () => {
     deleteCustomPack(Number(b.dataset.idx));
     showToast("Pack eliminado");
@@ -714,7 +714,7 @@ async function shareResult() {
   const tl = themes.find(t => t.key === state.round.theme)?.label || state.round.theme;
   const allRoles = state.round.allRoles || state.round.roles;
   const imps = allRoles.filter(r => r.role === "impostor").map(r => r.name).join(", ");
-  const text = `🕵️‍♂️ IMPOSTOR — Resultado\n━━━━━━━━━━━━━━\n📝 Tema: ${tl}\n👥 Jugadores: ${allRoles.length}\n🎭 Impostor: ${imps}\n🔑 Civiles: ${state.round.secretWord}\n🔀 Señuelo: ${state.round.decoyWord}\n━━━━━━━━━━━━━━`;
+  const text = `?????? IMPOSTOR � Resultado\n??????????????\n?? Tema: ${tl}\n?? Jugadores: ${allRoles.length}\n?? Impostor: ${imps}\n?? Civiles: ${state.round.secretWord}\n?? Se�uelo: ${state.round.decoyWord}\n??????????????`;
   if (navigator.share) {
     try { await navigator.share({ title: "Impostor", text }); } catch { }
   } else {
@@ -798,7 +798,7 @@ function showIOSInstallHint() {
     if (isIOSSafari()) {
       iosText.innerHTML = 'Toca <strong>Compartir</strong> <span class="ios-share-icon">\u{1F4E4}</span> y luego <strong>"Agregar a pantalla de inicio"</strong>.';
     } else {
-      iosText.innerHTML = 'Abre en <strong>Safari</strong> para instalar: toca <span class="ios-share-icon">\u{1F4E4}</span> → <strong>"Agregar a pantalla de inicio"</strong>.';
+      iosText.innerHTML = 'Abre en <strong>Safari</strong> para instalar: toca <span class="ios-share-icon">\u{1F4E4}</span> ? <strong>"Agregar a pantalla de inicio"</strong>.';
     }
   }
 
@@ -851,9 +851,6 @@ function formatTime(totalSeconds) {
 }
 
 function setStatus(text, type = "success") {
-  statusBox.classList.remove("hidden", "error", "loading", "success");
-  statusBox.classList.add(type === "error" ? "error" : type === "loading" ? "loading" : "success");
-  statusEl.textContent = text;
   showToast(text, type);
 }
 
@@ -1014,7 +1011,7 @@ async function createRound() {
   if (state.persistentRoles) {
     const allRoles = state.persistentRoles;
     const roles = allRoles.filter(r => !state.eliminatedPlayers.includes(r.player));
-    if (roles.length < 3) throw new Error("No quedan suficientes jugadores activos (mínimo 3).");
+    if (roles.length < 3) throw new Error("No quedan suficientes jugadores activos (m�nimo 3).");
     return {
       createdAt: new Date().toISOString(),
       theme: state.persistentTheme,
@@ -1048,13 +1045,19 @@ async function createRound() {
 
 // ============= DEAL / REVEAL FLOW =============
 function getRoleEmoji(role) {
-  return role === "impostor" ? "\ud83d\udd75\ufe0f" : role === "agente fantasma" ? "\ud83d\udc7b" : "\ud83d\udc64";
+  return role === "impostor" ? "???" : role === "agente fantasma" ? "??" : "??";
 }
 
 function showCurrentPlayerPrompt() {
   const cur = state.revealIndex + 1;
   const tot = state.round.roles.length;
-  dealHint.textContent = `Pasa el celular a ${state.round.roles[state.revealIndex].name} (${cur} de ${tot}).`;
+  const pName = escapeHtml(state.round.roles[state.revealIndex].name);
+  dealHint.innerHTML = `
+    <div style="font-size: 2.5rem; margin-bottom: 8px;">??</div>
+    <div style="font-size: 1.1rem; color: var(--text2); margin-bottom: 4px;">Pasa el celular a</div>
+    <h2 style="font-size: 2.2rem; margin: 0; color: var(--accent); line-height: 1.1;">${pName}</h2>
+    <div style="font-size: 0.95rem; color: var(--text2); margin-top: 12px; font-weight: 600;">Jugador ${cur} de ${tot}</div>
+  `;
   updateDealProgress();
 }
 
@@ -1064,10 +1067,10 @@ function renderRoleCard() {
   const roleClass = item.role === "impostor" ? "role-name impostor-role" : "role-name";
   const wordClass = item.role === "impostor" ? "role-word impostor-role-word" : "role-word";
   roleCard.innerHTML = `
-    <span class="role-emoji">${getRoleEmoji(item.role)}</span>
-    <h3 class="${roleClass}">${escapeHtml(item.name)} \u00b7 ${escapeHtml(roleName)}</h3>
-    <p class="${wordClass}">${escapeHtml(item.word)}</p>
-    <p class="role-tip">${escapeHtml(item.tip)}</p>
+    <span class="role-emoji" style="border-radius: 50%; background: var(--surface); width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">${getRoleEmoji(item.role)}</span>
+    <h3 class="${roleClass}" style="opacity: 0.9;">Eres: ${escapeHtml(roleName)}</h3>
+    <p class="${wordClass}" style="font-size: 2.2rem !important; margin: 16px 0 !important; font-weight: 900 !important; line-height: 1.1;">${escapeHtml(item.word)}</p>
+    <p class="role-tip" style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; margin-top: 16px; border: 1px solid rgba(255,255,255,0.05);">${escapeHtml(item.tip)}</p>
   `;
 }
 
@@ -1083,7 +1086,7 @@ function showHandoffScreen() {
 }
 
 function showSwipeScreen() {
-  // Don't render role yet — defer until swipe to prevent DOM inspection leak
+  // Don't render role yet � defer until swipe to prevent DOM inspection leak
   roleCard.innerHTML = '<p style="opacity:.35;font-size:.95rem">Desliza para ver tu rol</p>';
   handoffScreen.classList.add("hidden");
   swipeScreen.classList.remove("hidden");
@@ -1196,8 +1199,8 @@ function goNextPlayer() {
     overlay.className = "sorteo-overlay";
     overlay.innerHTML = `
       <div class="sorteo-content">
-        <div class="sorteo-icon">🎲</div>
-        <h2 class="sorteo-title">¡Empieza a hablar!</h2>
+        <div class="sorteo-icon">??</div>
+        <h2 class="sorteo-title">�Empieza a hablar!</h2>
         <div class="sorteo-cards">
           <div class="sorteo-card sorted" style="width: auto; padding: 10px 20px; font-size: 1.2rem; color: #fff;">
             ${escapeHtml(starter.name)}
@@ -1205,7 +1208,7 @@ function goNextPlayer() {
         </div>
         <p class="sorteo-sub">Da la primera pista</p>
         <button id="startGameOverlayBtn" class="btn-primary" style="margin-top: 10px; width: 100%">
-          ¡A jugar!
+          �A jugar!
         </button>
       </div>
     `;
@@ -1239,7 +1242,7 @@ function updateAliveStatus() {
   aliveStatus.innerHTML = `<span>\ud83d\udc65 <strong>${alive}</strong> jugadores vivos</span><span>\u274c <strong>${eliminated}</strong> eliminado${eliminated > 1 ? "s" : ""}</span>`;
 }
 
-// ============= VOTING (card-based — tap to eliminate) =============
+// ============= VOTING (card-based � tap to eliminate) =============
 function buildVoteUI() {
   if (!state.round) return;
   voteList.innerHTML = "";
@@ -1294,7 +1297,7 @@ function buildVoteUI() {
 
 function selectPlayerToEliminate(selectedRole, selectedCard) {
   if (!state.round) return;
-  showConfirmModal(`¿Eliminar a ${selectedRole.name}? Esta acción es definitiva.`, () => {
+  showConfirmModal(`�Eliminar a ${selectedRole.name}? Esta acci�n es definitiva.`, () => {
     state.votedPlayer = selectedRole.player;
     state.voteTally[selectedRole.player] = 1;
     state.eliminatedPlayers.push(selectedRole.player);
@@ -1329,20 +1332,20 @@ function selectPlayerToEliminate(selectedRole, selectedCard) {
 
         const subtitle = remainingImps > 0
           ? `Quedan ${remainingImps} impostores ocultos... \ud83d\udd75\ufe0f`
-          : "Los civiles ganan 🏆";
+          : "Los civiles ganan ??";
         // Only reveal words when ALL impostors are caught (no remaining)
         const wordsHtml = remainingImps === 0
           ? `<div class="vote-reveal-words">
-              <span class="vote-word-civil">🟢 Civiles: <strong>${escapeHtml(state.round.secretWord)}</strong></span>
-              <span class="vote-word-imp">🔴 Impostor: <strong>${escapeHtml(state.round.decoyWord)}</strong></span>
+              <span class="vote-word-civil">?? Civiles: <strong>${escapeHtml(state.round.secretWord)}</strong></span>
+              <span class="vote-word-imp">?? Impostor: <strong>${escapeHtml(state.round.decoyWord)}</strong></span>
             </div>`
           : `<div class="vote-reveal-words vote-words-hidden">
-              <span>🔒 Las palabras se revelarán al atrapar a todos los impostores</span>
+              <span>?? Las palabras se revelar�n al atrapar a todos los impostores</span>
             </div>`;
         voteResult.innerHTML = `
           <div class="vote-reveal-card vote-reveal-success">
-            <div class="vote-reveal-emoji">🎉</div>
-            <h3>¡Correcto!</h3>
+            <div class="vote-reveal-emoji">??</div>
+            <h3>�Correcto!</h3>
             <p><strong>${escapeHtml(selectedRole.name)}</strong> ERA impostor</p>
             ${wordsHtml}
             <p class="vote-reveal-subtitle">${subtitle}</p>
@@ -1352,7 +1355,7 @@ function selectPlayerToEliminate(selectedRole, selectedCard) {
         voteResult.innerHTML = `
           <div class="vote-reveal-card vote-reveal-fail">
             <div class="vote-reveal-emoji">\ud83d\ude31</div>
-            <h3>¡Incorrecto!</h3>
+            <h3>�Incorrecto!</h3>
             <p><strong>${escapeHtml(selectedRole.name)}</strong> NO era el impostor</p>
             <p class="vote-reveal-subtitle">El impostor sigue libre... \ud83d\udd75\ufe0f</p>
           </div>`;
@@ -1363,12 +1366,12 @@ function selectPlayerToEliminate(selectedRole, selectedCard) {
       if (gameOverResult) {
         setTimeout(() => showGameOver(gameOverResult), 1800);
       } else {
-        // Game continues — add "Siguiente ronda" button after a brief pause
+        // Game continues � add "Siguiente ronda" button after a brief pause
         setTimeout(() => {
           const nextBtn = document.createElement("button");
           nextBtn.type = "button";
           nextBtn.className = "btn-primary next-round-btn";
-          nextBtn.innerHTML = "➡\ufe0f Siguiente ronda";
+          nextBtn.innerHTML = "?\ufe0f Siguiente ronda";
           nextBtn.addEventListener("click", () => startNextRound());
           const card = voteResult.querySelector(".vote-reveal-card");
           if (card) card.appendChild(nextBtn);
@@ -1426,8 +1429,8 @@ function startNextRound() {
   overlay.className = "sorteo-overlay";
   overlay.innerHTML = `
     <div class="sorteo-content">
-      <div class="sorteo-icon">🎲</div>
-      <h2 class="sorteo-title">¡Empieza a hablar!</h2>
+      <div class="sorteo-icon">??</div>
+      <h2 class="sorteo-title">�Empieza a hablar!</h2>
       <div class="sorteo-cards">
         <div class="sorteo-card sorted" style="width: auto; padding: 10px 20px; font-size: 1.2rem; color: #fff;">
           ${escapeHtml(starter.name)}
@@ -1435,7 +1438,7 @@ function startNextRound() {
       </div>
       <p class="sorteo-sub">Da la primera pista de esta ronda</p>
       <button id="startGameAfterSorteoBtn" class="btn-primary" style="margin-top: 10px; width: 100%">
-        ¡A jugar!
+        �A jugar!
       </button>
     </div>
   `;
@@ -1577,7 +1580,7 @@ function revealFinal() {
   if (!state.round) return;
   if (!finalResult.classList.contains("hidden")) return;
 
-  showConfirmModal("¿Seguro? Esto revelará quién es el impostor a todos.", () => {
+  showConfirmModal("�Seguro? Esto revelar� qui�n es el impostor a todos.", () => {
     const themeLabel = themes.find(t => t.key === state.round.theme)?.label || state.round.theme;
     const votedP = state.votedPlayer;
     const votedRole = votedP !== null ? state.round.roles.find(r => r.player === votedP) : null;
@@ -1587,15 +1590,15 @@ function revealFinal() {
     if (votedP !== null) {
       if (civilsWin) {
         if (state.round.theme === "peda") {
-          banner = `<div class="winner-banner winner-civils">🎉 ¡Atraparon al Impostor! <br><small>🔥 <b>Castigo:</b> El impostor (${escapeHtml(votedRole?.name)}) toma fondo o cumple un reto.</small></div>`;
+          banner = `<div class="winner-banner winner-civils">?? �Atraparon al Impostor! <br><small>??? Impostores: ${impStr}</small><br><small>?? <b>Castigo:</b> El impostor toma fondo o cumple un reto.</small></div>`;
         } else {
-          banner = `<div class="winner-banner winner-civils">🎉 ¡Los civiles ganaron! Descubrieron al impostor.</div>`;
+          banner = `<div class="winner-banner winner-civils">?? �Los civiles ganaron! <br><small>??? Impostores: ${impStr}</small></div>`;
         }
       } else {
         if (state.round.theme === "peda") {
-          banner = `<div class="winner-banner winner-impostor">🕵️ ¡El impostor se salvó! <br><small>🍻 <b>Castigo:</b> ¡TODOS LOS CIVILES TOMAN!</small></div>`;
+          banner = `<div class="winner-banner winner-impostor">??? �El impostor se salv�! <br><small>??? Impostores: ${impStr}</small><br><small>?? <b>Castigo:</b> �TODOS LOS CIVILES TOMAN!</small></div>`;
         } else {
-          banner = `<div class="winner-banner winner-impostor">🕵️ ¡El impostor sobrevivió! Los civiles fallaron.</div>`;
+          banner = `<div class="winner-banner winner-impostor">??? �El impostor ( ${impStr} ) sobrevivi�! Los civiles fallaron.</div>`;
         }
       }
     }
@@ -1608,14 +1611,14 @@ function revealFinal() {
 
       let statusText = "";
       if (wasVoted) {
-        statusText = "🗳️ Eliminado";
+        statusText = "??? Eliminado";
         if (item.role === "civil" && state.round.theme === "peda") {
-          statusText += ` <span style="color:var(--orange);font-size:0.9em;display:block">🥃 Toma 1 trago</span>`;
+          statusText += ` <span style="color:var(--orange);font-size:0.9em;display:block">?? Toma 1 trago</span>`;
         }
       } else if (wasEliminated) {
-        statusText = "❌ Eliminado antes";
+        statusText = "? Eliminado antes";
         if (item.role === "civil" && state.round.theme === "peda") {
-          statusText += ` <span style="color:var(--orange);font-size:0.9em;display:block">🥃 Toma 1 trago</span>`;
+          statusText += ` <span style="color:var(--orange);font-size:0.9em;display:block">?? Toma 1 trago</span>`;
         }
       }
 
@@ -1651,6 +1654,10 @@ function enterGameMode() {
   appEl.classList.add("in-game");
   gameScreen.classList.remove("hidden");
   setGamePhase("reparto");
+
+  // Hide top navigation bar
+  const topNav = document.querySelector(".app-header");
+  if (topNav) topNav.style.display = "none";
 }
 
 function exitGameMode() {
@@ -1658,6 +1665,10 @@ function exitGameMode() {
   gameScreen.classList.add("hidden");
   dealSection.classList.add("hidden");
   roundSection.classList.add("hidden");
+
+  // Restore top navigation bar
+  const topNav = document.querySelector(".app-header");
+  if (topNav) topNav.style.display = "";
 }
 
 function setGamePhase(phase) {
@@ -1679,6 +1690,8 @@ function setActiveMenuTab(tab) {
 }
 
 function showMainView(view) {
+  exitGameMode(); // Always exit active game if user forces navigation
+
   menuSection.classList.toggle("hidden", view !== "home");
   categorySection.classList.toggle("hidden", view !== "categories");
   controlsSection.classList.toggle("hidden", view !== "play");
@@ -1719,7 +1732,7 @@ function renderPlayerNameInputs() {
 
     const delBtn = document.createElement("button");
     delBtn.type = "button";
-    delBtn.innerHTML = "✕";
+    delBtn.innerHTML = "?";
     delBtn.style.background = "var(--surface)";
     delBtn.style.border = "1px solid var(--border)";
     delBtn.style.borderRadius = "8px";
@@ -1738,7 +1751,7 @@ function renderPlayerNameInputs() {
         renderPlayerNameInputs();
         if (SFX) SFX.click();
       } else {
-        showToast("Mínimo 3 jugadores", "error");
+        showToast("M�nimo 3 jugadores", "error");
       }
     });
 
@@ -1764,7 +1777,7 @@ if (addPlayerRowBtn) {
       const inputs = playerNamesContainer.querySelectorAll("input");
       if (inputs.length > 0) inputs[inputs.length - 1].focus();
     } else {
-      showToast("Máximo 24 jugadores", "error");
+      showToast("M�ximo 24 jugadores", "error");
     }
   });
 }
@@ -1803,25 +1816,25 @@ function playSorteoAnimation(roles) {
 function renderThemeChips() {
   if (!categoryGrid) return;
   categoryGrid.innerHTML = "";
-  const visible = themes.filter(t => !t.adult || state.includeAdultTheme);
+  const visible = themes;
 
   // Icon and color mapping for categories
   const categoryStyles = {
-    aleatorio: { color: "#ff7b54", icon: "🎲" },
-    comida: { color: "#00e676", icon: "🍔" },
-    lugares: { color: "#e040fb", icon: "📍" },
-    objetos: { color: "#4dabf7", icon: "🔧" },
-    tecnologia: { color: "#26c6da", icon: "💻" },
-    deportes: { color: "#ffd600", icon: "⚽" },
-    animales: { color: "#ff9100", icon: "🐱" },
-    profesiones: { color: "#7c4dff", icon: "💼" },
-    peliculas: { color: "#ff6b81", icon: "🎬" },
-    musica: { color: "#ab47bc", icon: "🎵" },
-    historia: { color: "#8d6e63", icon: "📜" },
-    naturaleza: { color: "#66bb6a", icon: "🌿" },
-    adulto: { color: "#ff4757", icon: "🔥" },
-    peda: { color: "#ff4757", icon: "🍻" },
-    default: { color: "#c8b8d8", icon: "📦" }
+    aleatorio: { color: "#ff7b54", icon: "??" },
+    comida: { color: "#00e676", icon: "??" },
+    lugares: { color: "#e040fb", icon: "??" },
+    objetos: { color: "#4dabf7", icon: "??" },
+    tecnologia: { color: "#26c6da", icon: "??" },
+    deportes: { color: "#ffd600", icon: "?" },
+    animales: { color: "#ff9100", icon: "??" },
+    profesiones: { color: "#7c4dff", icon: "??" },
+    peliculas: { color: "#ff6b81", icon: "??" },
+    musica: { color: "#ab47bc", icon: "??" },
+    historia: { color: "#8d6e63", icon: "??" },
+    naturaleza: { color: "#66bb6a", icon: "??" },
+    adulto: { color: "#ff4757", icon: "??" },
+    peda: { color: "#feca57", icon: "??" },
+    default: { color: "#c8b8d8", icon: "??" }
   };
 
   for (const t of visible) {
@@ -1967,7 +1980,7 @@ if (startGameBtn) {
       const iCount = Number(impostorsInput.value) || 1;
       const wCount = Number(whitesInput.value) || 0;
 
-      if (pCount < 3) throw new Error("Mínimo 3 jugadores.");
+      if (pCount < 3) throw new Error("M�nimo 3 jugadores.");
       if (iCount + wCount >= pCount) throw new Error("Demasiados roles especiales. Aumenta los jugadores.");
 
       startGameBtn.disabled = true;
@@ -1990,7 +2003,7 @@ if (startGameBtn) {
       roundSection.classList.add("hidden");
       gameProgressBar.style.width = "0%";
       showHandoffScreen();
-      showToast("¡Ronda creada! A jugar");
+      showToast("�Ronda creada! A jugar");
     } catch (error) {
       console.error(error);
       if (validationError) {
@@ -2039,7 +2052,7 @@ backToDebateBtn.addEventListener("click", () => {
 
 quitGameBtn.addEventListener("click", () => {
   if (state.gameActive) {
-    showConfirmModal("¿Seguro que quieres salir? Se perderá el progreso de la partida.", () => resetRound());
+    showConfirmModal("�Seguro que quieres salir? Se perder� el progreso de la partida.", () => resetRound());
   } else {
     resetRound();
   }
@@ -2047,7 +2060,7 @@ quitGameBtn.addEventListener("click", () => {
 
 newRoundBtn.addEventListener("click", () => {
   if (state.gameOver) return;
-  // In persistent mode, use seamless transition (no re-deal) — only after a vote
+  // In persistent mode, use seamless transition (no re-deal) � only after a vote
   if (state.persistentRoles && state.votedPlayer !== null) {
     startNextRound();
     return;
@@ -2078,7 +2091,7 @@ newRoundBtn.addEventListener("click", () => {
 
 backHomeBtn.addEventListener("click", () => {
   if (state.gameActive) {
-    showConfirmModal("¿Volver al inicio? Se perderá la partida actual.", () => resetRound());
+    showConfirmModal("�Volver al inicio? Se perder� la partida actual.", () => resetRound());
   } else {
     resetRound();
   }
