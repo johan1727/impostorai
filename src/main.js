@@ -272,31 +272,65 @@ const localWords = {
     ["funar", "cancelar"], ["Traka", "¡Zaz!"], ["PEC (por el culx)", "¡Y la queso!"],
     ["tirar beef", "tirar hate"], ["tryhardear", "esforzarse demás"], ["chulo", "galán"],
     ["sacar la sopa", "contar el chisme"], ["tener feria", "tener billete"], ["nadaqueveriento", "random"]
-  ],
-  peda: [
-    // Alcohol & Bebidas MX
-    ["Tequila", "Mezcal"], ["Cerveza", "Caguama"], ["Vodka", "Ron"], ["Shot", "Fondo"],
-    ["Azulito", "Pitufo"], ["Licuachela", "Michelada"], ["Kittychela", "Rotochela"], ["Caguamón", "Cartón"],
-    ["Margarita", "Paloma"], ["Hielo", "Vaso"], ["Barman", "Mesero"], ["Aguas locas", "Tonayán"],
-    // Estados de ebriedad y antro
-    ["Borracho", "Crudo"], ["Cantina", "Antro"], ["Mala copa", "Impertinente"], ["Pedísimo", "Hasta las chanclas"],
-    ["Precopeo", "Calentando motores"], ["Cadenero", "Sacaborrachos"], ["Brindis", "Salud"], ["Descorchar", "Destapar"],
-    ["After", "Conecte"], ["Vomitar", "Cruzarse"], ["Cruda moral", "Arrepentimiento"], ["Borrachera", "Peda"],
-    // Juegos y Fiestas
-    ["Yo nunca nunca", "Verdad o Reto"], ["Botella", "Ruleta"], ["Castigo", "Prenda"], ["Shot de castigo", "Trago de cortesía"],
-    ["Beso de tres", "Trío"], ["Faje", "Arrimón"], ["Perreo", "Bellakeo"], ["DJ", "Bocina"],
-    ["Karaoke", "Micrófono"], ["Perreo intenso", "Hasta el suelo"], ["Botana", "Cacahuates"], ["Bailar", "Cantar"],
-    ["Jarana", "Reventón"], ["Cover", "Entrada"],
-    // Salseo, Romance y Slang Moderno
-    ["Ex", "Cucaracho"], ["Tóxico", "Celoso"], ["Cuernos", "Infidelidad"], ["Friendzone", "Casi algo"],
-    ["Amigos con derechos", "Quedantes"], ["Nudes", "Pack"], ["OnlyFans", "Sugar Daddy"], ["Motel", "Auto"],
-    ["Chupetón", "Marca"], ["Ligue", "Crush"], ["Declaración", "Batear"], ["Beso", "Agarrón"],
-    ["Mensaje de ebrio", "Llamada a las 3 AM"], ["Visto", "Ghostear"], ["Tinder", "Bumble"],
-    ["Sugarmommy", "MILF"], ["Rapidín", "Mañanero"], ["Atrevido", "Lanzado"], ["Desnudo", "Encuerado"],
-    ["Infiel", "Amante"], ["Ahuevo", "A poco"], ["Chido", "Padre"], ["Carnal", "Compa"],
-    ["Chafa", "Regacho"], ["Cámara", "Sale"], ["Wey", "Güey"], ["Neta", "¿En serio?"]
-  ]
+    ],
+  memes: [
+      ["rickroll", "trollface"], ["doge", "cheems"], ["bait", "clickbait"], ["POV", "storytime"],
+      ["meme del gato", "meme del perro"], ["stonks", "not stonks"], ["based", "cringe"], ["XD", "LOL"],
+      ["La Rosa de Guadalupe", "Laura en América"], ["Juan Gabriel", "Luis Miguel"],
+      ["mucho texto", "TL;DR"], ["chad", "virgin"], ["FBI open up", "a ver déjame ver"],
+      ["No era penal", "Sí era penal"], ["El América", "Las Chivas"], ["es neta", "no manches"],
+      ["modo Chihuahua", "modo Golden"], ["eres un NPC", "eres un GOD"], ["prro", "wey"],
+      ["panik", "kalm"], ["L", "W"], ["bromance", "friendzone"]
+    ],
+    redes: [
+      ["Instagram", "TikTok"], ["X (Twitter)", "Threads"], ["YouTube", "Twitch"], ["WhatsApp", "Telegram"],
+      ["reel", "short"], ["hashtag", "trending"], ["influencer", "creador"], ["viral", "flop"],
+      ["live", "stream"], ["DM", "mención"], ["follow", "unfollow"], ["like", "dislike"],
+      ["share", "repost"], ["story", "publicación"], ["carrete", "feed"], ["filtro", "sin filtro"],
+      ["verificado", "fake"], ["bot", "troll"], ["hater", "fan"], ["cancelar", "funar"],
+      ["suscriptor", "seguidor"], ["algoritmo", "for you page"], ["engagement", "alcance"], ["collab", "ft."]
+    ],
+    videojuegos: [
+      ["Fortnite", "PUBG"], ["Minecraft", "Roblox"], ["PlayStation", "Xbox"], ["Nintendo", "Steam"],
+      ["noob", "pro"], ["speedrun", "gameplay"], ["skin", "emote"], ["lag", "ping"],
+      ["camper", "rusher"], ["nerf", "buff"], ["boss final", "jefe secreto"], ["NPC", "jugador"],
+      ["sandbox", "battle royale"], ["GTA", "Need for Speed"], ["FIFA", "NBA 2K"], ["eSports", "torneo"],
+      ["headshot", "clutch"], ["rage quit", "GG"], ["respawn", "permadeath"], ["mod", "DLC"],
+      ["PvP", "PvE"], ["multiplayer", "singleplayer"], ["arcade", "consola"], ["retro", "next-gen"]
+    ],
+    regiones: [
+      ["CDMX", "Guadalajara"], ["Monterrey", "Tijuana"], ["Oaxaca", "Chiapas"], ["Cancún", "Los Cabos"],
+      ["Veracruz", "Tabasco"], ["Puebla", "Querétaro"], ["Mérida", "Campeche"], ["San Luis Potosí", "Aguascalientes"],
+      ["Sonora", "Sinaloa"], ["Chihuahua", "Durango"], ["Guanajuato", "Michoacán"], ["Jalisco", "Nayarit"],
+      ["Tamaulipas", "Nuevo León"], ["Zacatecas", "Coahuila"], ["Hidalgo", "Tlaxcala"], ["Morelos", "Guerrero"],
+      ["chilango", "foráneo"], ["norteño", "sureño"], ["costeño", "serrano"], ["tapatío", "regio"],
+      ["chamaco", "escuincle"], ["jarocho", "yucateco"], ["azteca", "maya"], ["mariachi", "banda"]
+    ],
+    peda: [
+      // Alcohol & Bebidas MX
+      ["Tequila", "Mezcal"], ["Cerveza", "Caguama"], ["Vodka", "Ron"], ["Shot", "Fondo"],
+      ["Azulito", "Pitufo"], ["Licuachela", "Michelada"], ["Kittychela", "Rotochela"], ["Caguamón", "Cartón"],
+      ["Margarita", "Paloma"], ["Hielo", "Vaso"], ["Barman", "Mesero"], ["Aguas locas", "Tonayán"],
+      // Estados de ebriedad y antro
+      ["Borracho", "Crudo"], ["Cantina", "Antro"], ["Mala copa", "Impertinente"], ["Pedísimo", "Hasta las chanclas"],
+      ["Precopeo", "Calentando motores"], ["Cadenero", "Sacaborrachos"], ["Brindis", "Salud"], ["Descorchar", "Destapar"],
+      ["After", "Conecte"], ["Vomitar", "Cruzarse"], ["Cruda moral", "Arrepentimiento"], ["Borrachera", "Peda"],
+      // Juegos y Fiestas
+      ["Yo nunca nunca", "Verdad o Reto"], ["Botella", "Ruleta"], ["Castigo", "Prenda"], ["Shot de castigo", "Trago de cortesía"],
+      ["Beso de tres", "Trío"], ["Faje", "Arrimón"], ["Perreo", "Bellakeo"], ["DJ", "Bocina"],
+      ["Karaoke", "Micrófono"], ["Perreo intenso", "Hasta el suelo"], ["Botana", "Cacahuates"], ["Bailar", "Cantar"],
+      ["Jarana", "Reventón"], ["Cover", "Entrada"],
+      // Salseo, Romance y Slang Moderno
+      ["Ex", "Cucaracho"], ["Tóxico", "Celoso"], ["Cuernos", "Infidelidad"], ["Friendzone", "Casi algo"],
+      ["Amigos con derechos", "Quedantes"], ["Nudes", "Pack"], ["OnlyFans", "Sugar Daddy"], ["Motel", "Auto"],
+      ["Chupetón", "Marca"], ["Ligue", "Crush"], ["Declaración", "Batear"], ["Beso", "Agarrón"],
+      ["Mensaje de ebrio", "Llamada a las 3 AM"], ["Visto", "Ghostear"], ["Tinder", "Bumble"],
+      ["Sugarmommy", "MILF"], ["Rapidín", "Mañanero"], ["Atrevido", "Lanzado"], ["Desnudo", "Encuerado"],
+      ["Infiel", "Amante"], ["Ahuevo", "A poco"], ["Chido", "Padre"], ["Carnal", "Compa"],
+      ["Chafa", "Regacho"], ["Cámara", "Sale"], ["Wey", "Güey"], ["Neta", "¿En serio?"]
+    ]
 };
+// After localWords close, before themes
 
 const themes = [
   { key: "aleatorio", label: "Aleatorio" },
@@ -311,9 +345,14 @@ const themes = [
   { key: "musica", label: "Música" },
   { key: "historia", label: "Historia" },
   { key: "naturaleza", label: "Naturaleza" },
-  { key: "adulto", label: "+18 🔥", adult: true },
-  { key: "peda", label: "🍻 Peda", adult: true }
+  { key: "memes", label: "Memes" },
+  { key: "redes", label: "Redes Sociales" },
+  { key: "videojuegos", label: "Videojuegos" },
+  { key: "regiones", label: "Regiones MX" },
+  { key: "adulto", label: "+18", adult: true },
+  { key: "peda", label: "Peda", adult: true }
 ];
+const BUILTIN_THEME_COUNT = themes.length;
 
 // ============= DOM REFS =============
 const playersInput = document.getElementById("players");
@@ -671,7 +710,7 @@ function deleteCustomPack(i) {
   const p = loadCustomPacks(); p.splice(i, 1); saveCustomPacks(p); refreshCustomThemes();
 }
 function refreshCustomThemes() {
-  while (themes.length > 13) themes.pop();
+  while (themes.length > BUILTIN_THEME_COUNT) themes.pop();
   for (const k of Object.keys(localWords)) { if (k.startsWith("custom_")) delete localWords[k]; }
   const packs = loadCustomPacks();
   for (let i = 0; i < packs.length; i++) {
@@ -2094,6 +2133,10 @@ function renderThemeChips() {
     musica: { color: "#ab47bc", icon: "\u{1F3B5}", name: "Música" },
     historia: { color: "#8d6e63", icon: "\u{1F4DC}", name: "Historia" },
     naturaleza: { color: "#66bb6a", icon: "\u{1F33F}", name: "Naturaleza" },
+    memes: { color: "#ffab40", icon: "\u{1F923}", name: "Memes" },
+    redes: { color: "#29b6f6", icon: "\u{1F4F1}", name: "Redes" },
+    videojuegos: { color: "#7e57c2", icon: "\u{1F3AE}", name: "Videojuegos" },
+    regiones: { color: "#ef5350", icon: "\u{1F1F2}\u{1F1FD}", name: "Regiones MX" },
     adulto: { color: "#ff4757", icon: "\u{1F51E}", name: "+18" },
     peda: { color: "#feca57", icon: "\u{1F37B}", name: "Peda" },
     default: { color: "#c8b8d8", icon: "\u2728", name: "Personalizado" }
