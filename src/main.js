@@ -107,7 +107,8 @@ const localWords = {
     ["papas fritas", "chicharrón"], ["pasta", "fideos"], ["pan", "tortilla"], ["queso", "mantequilla"],
     ["pastel", "pay"], ["tocino", "jamón"], ["arroz", "frijoles"], ["tamal", "elote"],
     ["chilaquiles", "enchiladas"], ["michelada", "clamato"], ["esquite", "palomitas"], ["chile relleno", "chile en nogada"],
-    ["birria", "barbacoa"], ["tlayuda", "huarache"], ["agua de horchata", "agua de jamaica"], ["camote", "jícama"]
+    ["birria", "barbacoa"], ["tlayuda", "huarache"], ["agua de horchata", "agua de jamaica"], ["camote", "jícama"],
+    ["chilaquiles verdes", "chilaquiles rojos"], ["consomé", "caldo de pollo"], ["sopes", "tlacoyos"], ["quesabirria", "tacos al pastor"]
   ],
   lugares: [
     ["aeropuerto", "terminal"], ["hospital", "clínica"], ["playa", "isla"], ["escuela", "universidad"],
@@ -141,7 +142,8 @@ const localWords = {
     ["front-end", "back-end"], ["Linux", "Windows"], ["modo oscuro", "modo claro"],
     ["bluetooth", "NFC"], ["algoritmo", "función"], ["base de datos", "hoja de cálculo"],
     ["captura de pantalla", "grabación"], ["meme", "gif"], ["TikTok", "YouTube"], ["spam", "phishing"],
-    ["hashtag", "trending"], ["notificación", "alerta"], ["nube", "drive"], ["lag", "ping"]
+    ["hashtag", "trending"], ["notificación", "alerta"], ["nube", "drive"], ["lag", "ping"],
+    ["ChatGPT", "Gemini"], ["dron", "robot"], ["criptomoneda", "NFT"], ["influencer", "streamer"], ["ciberseguridad", "código fuente"]
   ],
   deportes: [
     ["futbol", "rugby"], ["natación", "waterpolo"], ["tenis", "bádminton"], ["boxeo", "karate"],
@@ -152,7 +154,8 @@ const localWords = {
     ["tiro con arco", "tiro"], ["lucha libre", "sumo"], ["remo", "kayak"], ["parkour", "calistenia"],
     ["buceo", "snorkel"], ["boliche", "billar"], ["CrossFit", "yoga"], ["boxeo", "MMA"],
     ["frontón", "raquetbol"], ["clavados", "nado sincronizado"], ["fútbol americano", "flag football"],
-    ["corrida", "jaripeo"], ["penal", "tiro libre"], ["cascarita", "reta"], ["gol", "touchdown"], ["porra", "barra"]
+    ["corrida", "jaripeo"], ["penal", "tiro libre"], ["cascarita", "reta"], ["gol", "touchdown"], ["porra", "barra"],
+    ["Fórmula 1", "NASCAR"], ["esports", "gaming"], ["Lucha Libre AAA", "WWE"], ["Copa del Mundo", "Juegos Olímpicos"]
   ],
   animales: [
     ["gato", "león"], ["águila", "halcón"], ["delfín", "tiburón"], ["abeja", "avispa"],
@@ -174,7 +177,8 @@ const localWords = {
     ["escultor", "pintor"], ["soldado", "marinero"], ["mecánico", "técnico"], ["narrador", "escritor"],
     ["cirujano", "anestesiólogo"], ["mesero", "bartender"], ["cartero", "mensajero"], ["jardinero", "agricultor"],
     ["influencer", "youtuber"], ["locutor", "conductor de TV"], ["chofer", "taxista"], ["estilista", "barbero"],
-    ["taquero", "panadero"], ["herrero", "soldador"], ["partera", "doula"], ["chamán", "curandero"]
+    ["taquero", "panadero"], ["herrero", "soldador"], ["partera", "doula"], ["chamán", "curandero"],
+    ["creador de contenido", "tiktoker"], ["community manager", "editor de video"], ["coach de vida", "terapeuta"]
   ],
   peliculas: [
     ["terror", "suspenso"], ["comedia", "parodia"], ["Marvel", "DC"], ["Pixar", "DreamWorks"],
@@ -263,7 +267,11 @@ const localWords = {
     ["perrito", "de chivito"], ["el chiquito", "el nudo de globo"],
     ["venirse", "terminar"], ["coger", "tirar"], ["erección", "palo"],
     ["orgasmo", "clímax"], ["putero", "congal"], ["chupetón", "marca"],
-    ["madurita", "milf"], ["nalgada", "cachetada"], ["BDSM", "sado"]
+    ["madurita", "milf"], ["nalgada", "cachetada"], ["BDSM", "sado"],
+    // — Viral/TikTok/Trendy MX (Extra 2024) —
+    ["funar", "cancelar"], ["Traka", "¡Zaz!"], ["PEC (por el culx)", "¡Y la queso!"],
+    ["tirar beef", "tirar hate"], ["tryhardear", "esforzarse demás"], ["chulo", "galán"],
+    ["sacar la sopa", "contar el chisme"], ["tener feria", "tener billete"], ["nadaqueveriento", "random"]
   ],
   peda: [
     // Alcohol & Bebidas MX
@@ -279,13 +287,14 @@ const localWords = {
     ["Beso de tres", "Trío"], ["Faje", "Arrimón"], ["Perreo", "Bellakeo"], ["DJ", "Bocina"],
     ["Karaoke", "Micrófono"], ["Perreo intenso", "Hasta el suelo"], ["Botana", "Cacahuates"], ["Bailar", "Cantar"],
     ["Jarana", "Reventón"], ["Cover", "Entrada"],
-    // Salseo y Romance Picante
+    // Salseo, Romance y Slang Moderno
     ["Ex", "Cucaracho"], ["Tóxico", "Celoso"], ["Cuernos", "Infidelidad"], ["Friendzone", "Casi algo"],
     ["Amigos con derechos", "Quedantes"], ["Nudes", "Pack"], ["OnlyFans", "Sugar Daddy"], ["Motel", "Auto"],
     ["Chupetón", "Marca"], ["Ligue", "Crush"], ["Declaración", "Batear"], ["Beso", "Agarrón"],
     ["Mensaje de ebrio", "Llamada a las 3 AM"], ["Visto", "Ghostear"], ["Tinder", "Bumble"],
     ["Sugarmommy", "MILF"], ["Rapidín", "Mañanero"], ["Atrevido", "Lanzado"], ["Desnudo", "Encuerado"],
-    ["Infiel", "Amante"]
+    ["Infiel", "Amante"], ["Ahuevo", "A poco"], ["Chido", "Padre"], ["Carnal", "Compa"],
+    ["Chafa", "Regacho"], ["Cámara", "Sale"], ["Wey", "Güey"], ["Neta", "¿En serio?"]
   ]
 };
 
@@ -2066,30 +2075,28 @@ if (toggleCustomPacksBtn && customPacksPanel) {
 }
 if (addCustomPackBtn) addCustomPackBtn.addEventListener("click", addCustomPackFromForm);
 
-if (backFromCategoryBtn) backFromCategoryBtn.addEventListener("click", () => showMainView("home"));
-if (changeCategoryBtn) changeCategoryBtn.addEventListener("click", () => showMainView("categories"));
-
+// (Listeners movidos a la sección principal superior)
 // ============= CATEGORY RENDERING =============
 function renderThemeChips() {
   if (!categoryGrid) return;
   categoryGrid.innerHTML = "";
 
   const categoryStyles = {
-    aleatorio: { color: "#ff7b54", icon: "\u{1F3B2}" },
-    comida: { color: "#00e676", icon: "\u{1F354}" },
-    lugares: { color: "#e040fb", icon: "\u{1F4CD}" },
-    objetos: { color: "#4dabf7", icon: "\u{1F527}" },
-    tecnologia: { color: "#26c6da", icon: "\u{1F4BB}" },
-    deportes: { color: "#ffd600", icon: "\u26BD" },
-    animales: { color: "#ff9100", icon: "\u{1F431}" },
-    profesiones: { color: "#7c4dff", icon: "\u{1F4BC}" },
-    peliculas: { color: "#ff6b81", icon: "\u{1F3AC}" },
-    musica: { color: "#ab47bc", icon: "\u{1F3B5}" },
-    historia: { color: "#8d6e63", icon: "\u{1F4DC}" },
-    naturaleza: { color: "#66bb6a", icon: "\u{1F33F}" },
-    adulto: { color: "#ff4757", icon: "\u{1F51E}" },
-    peda: { color: "#feca57", icon: "\u{1F37B}" },
-    default: { color: "#c8b8d8", icon: "\u2728" }
+    aleatorio: { color: "#ff7b54", icon: "\u{1F3B2}", name: "Aleatorio" },
+    comida: { color: "#00e676", icon: "\u{1F354}", name: "Comida" },
+    lugares: { color: "#e040fb", icon: "\u{1F4CD}", name: "Lugares" },
+    objetos: { color: "#4dabf7", icon: "\u{1F527}", name: "Objetos" },
+    tecnologia: { color: "#26c6da", icon: "\u{1F4BB}", name: "Tecnología" },
+    deportes: { color: "#ffd600", icon: "\u26BD", name: "Deportes" },
+    animales: { color: "#ff9100", icon: "\u{1F431}", name: "Animales" },
+    profesiones: { color: "#7c4dff", icon: "\u{1F4BC}", name: "Profesiones" },
+    peliculas: { color: "#ff6b81", icon: "\u{1F3AC}", name: "Películas" },
+    musica: { color: "#ab47bc", icon: "\u{1F3B5}", name: "Música" },
+    historia: { color: "#8d6e63", icon: "\u{1F4DC}", name: "Historia" },
+    naturaleza: { color: "#66bb6a", icon: "\u{1F33F}", name: "Naturaleza" },
+    adulto: { color: "#ff4757", icon: "\u{1F51E}", name: "+18" },
+    peda: { color: "#feca57", icon: "\u{1F37B}", name: "Peda" },
+    default: { color: "#c8b8d8", icon: "\u2728", name: "Personalizado" }
   };
 
   for (const t of themes) {
@@ -2112,8 +2119,8 @@ function renderThemeChips() {
     card.style.fontWeight = "700";
     card.style.boxShadow = "0 4px 12px rgba(0,0,0,0.2)";
 
-    // Safe replace instead of unstable /gu union regex which fails silently on some node/browser environments
-    let cleanLabel = t.label.replace("🔥", "").replace("🍻", "").replace("🔞", "").replace("📦", "").trim();
+    // Safe assignment using the predefined name object map. Custom packs remove the '📦' icon.
+    let cleanLabel = t.custom ? t.label.replace("📦", "").trim() : style.name;
     card.innerHTML = `
       <div style="font-size:2.2rem;line-height:1">${style.icon}</div>
       <div style="font-size:0.85rem">${escapeHtml(cleanLabel)}</div>
