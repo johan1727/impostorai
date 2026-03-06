@@ -1208,12 +1208,17 @@ function goNextPlayer() {
           </div>
         </div>
         <p class="sorteo-sub">Da la primera pista</p>
-        <button class="btn-primary" style="margin-top: 10px; width: 100%" onclick="this.parentElement.parentElement.remove(); SFX.click(); startTimer();">
+        <button id="startAfterDealBtn" class="btn-primary" style="margin-top: 10px; width: 100%">
           ¡A jugar!
         </button>
       </div>
     `;
     document.body.appendChild(overlay);
+    overlay.querySelector("#startAfterDealBtn").addEventListener("click", () => {
+      overlay.remove();
+      SFX.click();
+      startTimer();
+    });
     SFX.fanfare();
 
     return;
