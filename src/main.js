@@ -310,6 +310,13 @@ const themes = [
 
 // ============= DOM REFS =============
 const playersInput = document.getElementById("players");
+const categorySection = document.getElementById("categorySection");
+const categoryGrid = document.getElementById("categoryGrid");
+const backFromCategoryBtn = document.getElementById("backFromCategoryBtn");
+const selectedCategoryName = document.getElementById("selectedCategoryName");
+const changeCategoryBtn = document.getElementById("changeCategoryBtn");
+const btnCreateCustomPackHeader = document.getElementById("btnCreateCustomPackHeader");
+const startGameBtn = document.getElementById("startGameBtn");
 const impostorsInput = document.getElementById("impostors");
 const whitesInput = document.getElementById("whites");
 const toggleAdvancedBtn = document.getElementById("toggleAdvancedBtn");
@@ -1675,6 +1682,7 @@ function setActiveMenuTab(tab) {
 function showMainView(view) {
   exitGameMode();
   menuSection.classList.toggle("hidden", view !== "home");
+  if (categorySection) categorySection.classList.toggle("hidden", view !== "categories");
   controlsSection.classList.toggle("hidden", view !== "play" && view !== "peda");
   helpSection.classList.toggle("hidden", view !== "help");
   if (statsSection) statsSection.classList.toggle("hidden", view !== "stats");
@@ -1864,6 +1872,7 @@ async function toggleFullscreen() {
 }
 
 // ============= EVENT LISTENERS =============
+if (startGameBtn) startGameBtn.addEventListener("click", () => { if(startBtn) startBtn.click(); });
 startBtn.addEventListener("click", async () => {
   try {
     startBtn.disabled = true;
@@ -2012,11 +2021,11 @@ toggleAdvancedBtn.addEventListener("click", () => {
 });
 
 if (menuHomeBtn) menuHomeBtn.addEventListener("click", () => showMainView("home"));
-if (menuPlayBtn) menuPlayBtn.addEventListener("click", () => showMainView("play"));
+if (menuPlayBtn) menuPlayBtn.addEventListener("click", () => showMainView("categories"));
 if (menuPedaBtn) menuPedaBtn.addEventListener("click", () => showMainView("peda"));
 menuHelpBtn.addEventListener("click", () => showMainView("help"));
 if (menuStatsBtn) menuStatsBtn.addEventListener("click", () => showMainView("stats"));
-menuStartBtn.addEventListener("click", () => showMainView("play"));
+if (menuStartBtn) menuStartBtn.addEventListener("click", () => showMainView("categories"));
 if (menuHowToBtn) menuHowToBtn.addEventListener("click", () => showMainView("help"));
 
 if (toggleNamesBtn) toggleNamesBtn.addEventListener("click", () => {
@@ -2028,7 +2037,7 @@ if (toggleNamesBtn) toggleNamesBtn.addEventListener("click", () => {
 
 playersInput.addEventListener("change", () => { if (state.showNames) renderPlayerNameInputs(); });
 
-adultThemesToggle.addEventListener("change", () => {
+if (adultThemesToggle) adultThemesToggle.addEventListener("change", () => {
   state.includeAdultTheme = adultThemesToggle.checked;
   if (!state.includeAdultTheme && state.selectedTheme === "adulto") state.selectedTheme = "aleatorio";
   renderThemeChips();
@@ -2045,6 +2054,9 @@ if (toggleCustomPacksBtn && customPacksPanel) {
   });
 }
 if (addCustomPackBtn) addCustomPackBtn.addEventListener("click", addCustomPackFromForm);
+
+if (backFromCategoryBtn) backFromCategoryBtn.addEventListener("click", () => showMainView("home"));
+if (changeCategoryBtn) changeCategoryBtn.addEventListener("click", () => showMainView("categories"));
 
 // ============= INIT =============
 applyVisualTheme(localStorage.getItem("impostorTheme") || "dark");
