@@ -223,25 +223,21 @@ const localWords = {
   ],
   adulto: [
     // — Apps y ligue digital —
-    ["Tinder", "Bumble"], ["ghostear", "clavar el visto"], ["friendzone", "situationship"],
+    ["Tinder", "Bumble"], ["ghostear", "clavar el visto"], ["friendzone", "casi algo"],
     ["catfish", "perfil falso"], ["sexting", "nudes"], ["stalkear", "espiar"], ["match", "swipe"],
-    ["sugar daddy", "sugar mommy"], ["sugar baby", "mantenido"], ["OnlyFans", "Patreon"],
+    ["sugar daddy", "patrocinador"], ["sugar baby", "mantenido"], ["OnlyFans", "contenido exclusivo"],
+    // — Jerga moderna jovenes (2024 MX) —
+    ["slay", "devorar"], ["cringe", "oso"], ["de chill", "de compas"], ["NPC", "básico"],
+    ["glow up", "tuneada"], ["red flag", "tóxico"], ["green flag", "sano"], ["fuckboy", "cucaracho"],
+    ["simp", "arrastrado"], ["situationship", "quedantes"], ["delulu", "alucin"], ["aesthetic", "coquette"],
     // — Ligue y faje —
     ["ligue", "faje"], ["tirar rollo", "chamuyar"], ["crush", "pretendiente"],
-    ["amigos con derechos", "quedantes"], ["free", "one night stand"], ["acostar", "enrollarse"],
+    ["amigos con derechos", "amigovios"], ["free", "one night stand"], ["acostar", "enrollarse"],
     ["calentón", "manoseo"], ["besarse", "fajarse"], ["ligar", "seducir"], ["coqueteo", "cotorreo"],
-    // — Peda y fiesta —
-    ["cruda", "resaca"], ["peda", "reventón"], ["chela", "shot"], ["mezcal", "tequila"],
-    ["jarra", "caguama"], ["precopeo", "after"], ["pedote", "hasta atrás"],
-    ["vomitar", "cruzado"], ["juego de shots", "verdad o reto"],
-    // — Antro y perreo —
-    ["antro", "table"], ["perrear", "sandunguear"], ["reggaetón", "dembow"],
-    ["stripper", "pole dance"], ["VIP", "mesa de botellas"], ["cadenero", "bouncer"],
-    ["hora feliz", "barra libre"], ["darketo", "emo"],
     // — Relaciones y drama —
-    ["tóxico", "posesivo"], ["celos", "inseguridad"], ["ex", "rebote"], ["cuernos", "engaño"],
+    ["celos", "inseguridad"], ["ex", "rebote"], ["cuernos", "engaño"],
     ["tusa", "despecho"], ["novio", "amante"], ["relación abierta", "poliamor"],
-    ["drama", "escándalo"], ["red flag", "bandera roja"],
+    ["drama", "escándalo"],
     // — Cuerpo y atracción —
     ["mamado", "trabado"], ["nalgón", "culón"], ["chichis", "bubis"],
     ["cachondo", "caliente"], ["piropo", "acoso"], ["encuerado", "desnudo"],
@@ -254,38 +250,40 @@ const localWords = {
     ["chile", "picante"], ["albur", "doble sentido"], ["fierro", "macizo"],
     ["panocha", "papaya"], ["elote", "mazorca"], ["chorizo", "salchicha"],
     // — Vergüenzas y desmadre —
-    ["oso", "vergüenza"], ["desmadre", "locura"], ["pack", "candente"],
+    ["desmadre", "locura"], ["pack", "candente"],
     ["chisme", "secreto"], ["calentura", "maña"], ["desinhibido", "lanzado"],
     ["resbalosa", "atrevida"], ["infidelidad", "desliz"],
     // — Agregados recientes (+18 MX) —
     ["rapidín", "mañanero"], ["motel", "hotel de paso"], ["tanga", "hilo dental"],
     ["cruda moral", "arrepentimiento"], ["beso de tres", "trío"],
     ["arrimón", "faje en público"], ["condón", "preservativo"],
-    ["orgía", "fiesta swinger"], ["consolador", "vibrador"], ["juguete sexual", "lubricante"],
+    ["orgía", "fiesta swinger"], ["consolador", "juguete sexual"],
     // — Más explícitos / argot (+18 MX) —
     ["cariñosas", "prostis"], ["chaqueta", "puñeta"], ["mamada", "chupada"],
     ["perrito", "de chivito"], ["el chiquito", "el nudo de globo"],
     ["venirse", "terminar"], ["coger", "tirar"], ["erección", "palo"],
     ["orgasmo", "clímax"], ["putero", "congal"], ["chupetón", "marca"],
-    ["madurita", "milf"], ["nalgada", "cachetada"], ["bajar por los chescos", "comer pancho"],
-    ["BDSM", "sado"]
+    ["madurita", "milf"], ["nalgada", "cachetada"], ["BDSM", "sado"]
   ],
   peda: [
-    // Alcohol & Antro
+    // Alcohol & Bebidas MX
     ["Tequila", "Mezcal"], ["Cerveza", "Caguama"], ["Vodka", "Ron"], ["Shot", "Fondo"],
-    ["Borracho", "Crudo"], ["Cantina", "Antro"], ["Cocktail", "Michelada"], ["Azulito", "Gomichela"],
-    ["Precopeo", "After"], ["Cadenero", "Bouncer"], ["Brindis", "Salud"], ["Descorchar", "Destapar"],
-    ["Margarita", "Paloma"], ["Hielo", "Vaso"], ["Barman", "Mesero"], ["Six pack", "Cartón"],
+    ["Azulito", "Pitufo"], ["Licuachela", "Michelada"], ["Kittychela", "Rotochela"], ["Caguamón", "Cartón"],
+    ["Margarita", "Paloma"], ["Hielo", "Vaso"], ["Barman", "Mesero"], ["Aguas locas", "Tonayán"],
+    // Estados de ebriedad y antro
+    ["Borracho", "Crudo"], ["Cantina", "Antro"], ["Mala copa", "Impertinente"], ["Pedísimo", "Hasta las chanclas"],
+    ["Precopeo", "Calentando motores"], ["Cadenero", "Sacaborrachos"], ["Brindis", "Salud"], ["Descorchar", "Destapar"],
+    ["After", "Conecte"], ["Vomitar", "Cruzarse"], ["Cruda moral", "Arrepentimiento"], ["Borrachera", "Peda"],
     // Juegos y Fiestas
     ["Yo nunca nunca", "Verdad o Reto"], ["Botella", "Ruleta"], ["Castigo", "Prenda"], ["Shot de castigo", "Trago de cortesía"],
-    ["Beso de tres", "Trío"], ["Faje", "Arrimón"], ["Perreo", "Reguetón"], ["DJ", "Bocina"],
-    ["Karaoke", "Micrófono"], ["Piñata", "Pastel"], ["Botana", "Cacahuates"], ["Bailar", "Cantar"],
-    ["Vomitar", "Mala copa"], ["Cruda moral", "Arrepentimiento"], ["Borrachera", "Peda"], ["Jarana", "Reventón"],
+    ["Beso de tres", "Trío"], ["Faje", "Arrimón"], ["Perreo", "Bellakeo"], ["DJ", "Bocina"],
+    ["Karaoke", "Micrófono"], ["Perreo intenso", "Hasta el suelo"], ["Botana", "Cacahuates"], ["Bailar", "Cantar"],
+    ["Jarana", "Reventón"], ["Cover", "Entrada"],
     // Salseo y Romance Picante
-    ["Ex", "Casio"], ["Tóxico", "Celoso"], ["Cuernos", "Infidelidad"], ["Friendzone", "Situationship"],
+    ["Ex", "Cucaracho"], ["Tóxico", "Celoso"], ["Cuernos", "Infidelidad"], ["Friendzone", "Casi algo"],
     ["Amigos con derechos", "Quedantes"], ["Nudes", "Pack"], ["OnlyFans", "Sugar Daddy"], ["Motel", "Auto"],
-    ["Chupetón", "Mordida"], ["Ligue", "Crush"], ["Declaración", "Batear"], ["Beso", "Agarrón"],
-    ["Mensaje de ebrio", "Llamada a las 3 AM"], ["Visto", "Ghostear"], ["Tinder", "Cita a ciegas"],
+    ["Chupetón", "Marca"], ["Ligue", "Crush"], ["Declaración", "Batear"], ["Beso", "Agarrón"],
+    ["Mensaje de ebrio", "Llamada a las 3 AM"], ["Visto", "Ghostear"], ["Tinder", "Bumble"],
     ["Sugarmommy", "MILF"], ["Rapidín", "Mañanero"], ["Atrevido", "Lanzado"], ["Desnudo", "Encuerado"],
     ["Infiel", "Amante"]
   ]
@@ -2114,7 +2112,8 @@ function renderThemeChips() {
     card.style.fontWeight = "700";
     card.style.boxShadow = "0 4px 12px rgba(0,0,0,0.2)";
 
-    const cleanLabel = t.label.replace(/[\u{1F525}\u{1F37B}\u{1F51E}\u{1F4E6}]/gu, "").trim();
+    // Safe replace instead of unstable /gu union regex which fails silently on some node/browser environments
+    let cleanLabel = t.label.replace("🔥", "").replace("🍻", "").replace("🔞", "").replace("📦", "").trim();
     card.innerHTML = `
       <div style="font-size:2.2rem;line-height:1">${style.icon}</div>
       <div style="font-size:0.85rem">${escapeHtml(cleanLabel)}</div>
