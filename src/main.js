@@ -1113,8 +1113,17 @@ function renderRoleCard() {
   const roleName = item.role === "agente fantasma" ? "Fantasma" : item.role;
   const roleClass = item.role === "impostor" ? "role-name impostor-role" : "role-name";
   const wordClass = item.role === "impostor" ? "role-word impostor-role-word" : "role-word";
-  const inlineTitleStyle = item.role === "civil" ? "color: #29b6f6; opacity: 0.9;" : "opacity: 0.9;";
-  const inlineWordStyle = item.role === "civil" ? "color: #29b6f6; font-size: 2.2rem!important; margin: 16px 0!important; font-weight: 900!important; line-height: 1.1;" : "font-size: 2.2rem!important; margin: 16px 0!important; font-weight: 900!important; line-height: 1.1;";
+
+  let inlineTitleStyle = "opacity: 0.9;";
+  let inlineWordStyle = "font-size: 2.2rem!important; margin: 16px 0!important; font-weight: 900!important; line-height: 1.1;";
+
+  if (item.role === "civil") {
+    inlineTitleStyle = "color: #29b6f6; opacity: 0.9;";
+    inlineWordStyle = "color: #29b6f6; font-size: 2.2rem!important; margin: 16px 0!important; font-weight: 900!important; line-height: 1.1;";
+  } else if (item.role === "impostor") {
+    inlineTitleStyle = "color: #ff4757; opacity: 0.9;";
+    inlineWordStyle = "color: #ff4757; font-size: 2.2rem!important; margin: 16px 0!important; font-weight: 900!important; line-height: 1.1;";
+  }
 
   roleCard.innerHTML = `
     <span class="role-emoji" style="border-radius:50%;background:var(--surface);width:80px;height:80px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;box-shadow:0 4px 12px rgba(0,0,0,0.15)">${getRoleEmoji(item.role)}</span>
