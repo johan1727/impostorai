@@ -226,54 +226,50 @@ const localWords = {
     ["cenote", "lago"], ["nopal", "maguey"], ["ceiba", "ahuehuete"], ["jaguar", "puma"],
     ["chapulín", "escarabajo"], ["obsidiana", "jade"], ["cempasúchil", "nochebuena"], ["milpa", "chinampa"]
   ],
-  adulto: [
-    // — Apps y ligue digital —
-    ["Tinder", "Bumble"], ["ghostear", "clavar el visto"], ["friendzone", "casi algo"],
-    ["catfish", "perfil falso"], ["sexting", "nudes"], ["stalkear", "espiar"], ["match", "swipe"],
-    ["sugar daddy", "patrocinador"], ["sugar baby", "mantenido"], ["OnlyFans", "contenido exclusivo"],
-    // — Jerga moderna jovenes (2024 MX) —
-    ["slay", "devorar"], ["cringe", "oso"], ["de chill", "de compas"], ["NPC", "básico"],
-    ["glow up", "tuneada"], ["red flag", "tóxico"], ["green flag", "sano"], ["fuckboy", "cucaracho"],
-    ["simp", "arrastrado"], ["situationship", "quedantes"], ["delulu", "alucin"], ["aesthetic", "coquette"],
-    // — Ligue y faje —
-    ["ligue", "faje"], ["tirar rollo", "chamuyar"], ["crush", "pretendiente"],
-    ["amigos con derechos", "amigovios"], ["free", "one night stand"], ["acostar", "enrollarse"],
-    ["calentón", "manoseo"], ["besarse", "fajarse"], ["ligar", "seducir"], ["coqueteo", "cotorreo"],
-    // — Relaciones y drama —
-    ["celos", "inseguridad"], ["ex", "rebote"], ["cuernos", "engaño"],
-    ["tusa", "despecho"], ["novio", "amante"], ["relación abierta", "poliamor"],
-    ["drama", "escándalo"],
-    // — Cuerpo y atracción —
-    ["mamado", "trabado"], ["nalgón", "culón"], ["chichis", "bubis"],
-    ["cachondo", "caliente"], ["piropo", "acoso"], ["encuerado", "desnudo"],
-    ["pompis", "retaguardia"], ["abdomen", "cuadritos"],
-    // — Picante y tabú —
-    ["pecado", "prohibido"], ["morbo", "antojo"], ["fetiche", "fantasía"],
-    ["lujuria", "pasión"], ["travesura", "aventura"], ["vibrador", "juguete"],
-    ["rol", "disfraz"], ["voyeur", "exhibicionista"], ["sumiso", "dominante"],
-    // — Albures y doble sentido MX —
-    ["chile", "picante"], ["albur", "doble sentido"], ["fierro", "macizo"],
-    ["panocha", "papaya"], ["elote", "mazorca"], ["chorizo", "salchicha"],
-    // — Vergüenzas y desmadre —
-    ["desmadre", "locura"], ["pack", "candente"],
-    ["chisme", "secreto"], ["calentura", "maña"], ["desinhibido", "lanzado"],
-    ["resbalosa", "atrevida"], ["infidelidad", "desliz"],
-    // — Agregados recientes (+18 MX) —
-    ["rapidín", "mañanero"], ["motel", "hotel de paso"], ["tanga", "hilo dental"],
-    ["cruda moral", "arrepentimiento"], ["beso de tres", "trío"],
-    ["arrimón", "faje en público"], ["condón", "preservativo"],
-    ["orgía", "fiesta swinger"], ["consolador", "juguete sexual"],
-    // — Más explícitos / argot (+18 MX) —
-    ["cariñosas", "prostis"], ["chaqueta", "puñeta"], ["mamada", "chupada"],
-    ["perrito", "de chivito"], ["el chiquito", "el nudo de globo"],
-    ["venirse", "terminar"], ["coger", "tirar"], ["erección", "palo"],
-    ["orgasmo", "clímax"], ["putero", "congal"], ["chupetón", "marca"],
-    ["madurita", "milf"], ["nalgada", "cachetada"], ["BDSM", "sado"],
-    // — Viral/TikTok/Trendy MX (Extra 2024) —
-    ["funar", "cancelar"], ["Traka", "¡Zaz!"], ["PEC (por el culx)", "¡Y la queso!"],
-    ["tirar beef", "tirar hate"], ["tryhardear", "esforzarse demás"], ["chulo", "galán"],
-    ["sacar la sopa", "contar el chisme"], ["tener feria", "tener billete"], ["nadaqueveriento", "random"]
-  ],
+  adulto: {
+    "Apps y Ligue": [
+      ["Tinder", "Bumble"], ["ghostear", "clavar el visto"], ["friendzone", "casi algo"],
+      ["catfish", "perfil falso"], ["sexting", "nudes"], ["stalkear", "espiar"], ["match", "swipe"],
+      ["sugar daddy", "patrocinador"], ["sugar baby", "mantenido"], ["OnlyFans", "contenido exclusivo"]
+    ],
+    "Jerga Joven": [
+      ["slay", "devorar"], ["cringe", "oso"], ["de chill", "de compas"], ["NPC", "básico"],
+      ["glow up", "tuneada"], ["red flag", "tóxico"], ["green flag", "sano"], ["fuckboy", "cucaracho"],
+      ["simp", "arrastrado"], ["situationship", "quedantes"], ["delulu", "alucin"], ["aesthetic", "coquette"],
+      ["funar", "cancelar"], ["Traka", "¡Zaz!"], ["PEC (por el culx)", "¡Y la queso!"],
+      ["tirar beef", "tirar hate"], ["tryhardear", "esforzarse demás"], ["chulo", "galán"],
+      ["sacar la sopa", "contar el chisme"], ["tener feria", "tener billete"], ["nadaqueveriento", "random"]
+    ],
+    "Relaciones y Drama": [
+      ["ligue", "faje"], ["tirar rollo", "chamuyar"], ["crush", "pretendiente"],
+      ["amigos con derechos", "amigovios"], ["free", "one night stand"], ["acostar", "enrollarse"],
+      ["calentón", "manoseo"], ["besarse", "fajarse"], ["ligar", "seducir"], ["coqueteo", "cotorreo"],
+      ["celos", "inseguridad"], ["ex", "rebote"], ["cuernos", "engaño"],
+      ["tusa", "despecho"], ["novio", "amante"], ["relación abierta", "poliamor"],
+      ["drama", "escándalo"], ["desmadre", "locura"], ["chisme", "secreto"], ["infidelidad", "desliz"]
+    ],
+    "Cuerpo y Tabú": [
+      ["mamado", "trabado"], ["nalgón", "culón"], ["chichis", "bubis"],
+      ["cachondo", "caliente"], ["piropo", "acoso"], ["encuerado", "desnudo"],
+      ["pompis", "retaguardia"], ["abdomen", "cuadritos"],
+      ["pecado", "prohibido"], ["morbo", "antojo"], ["fetiche", "fantasía"],
+      ["lujuria", "pasión"], ["travesura", "aventura"], ["vibrador", "juguete"],
+      ["rol", "disfraz"], ["voyeur", "exhibicionista"], ["sumiso", "dominante"],
+      ["pack", "candente"], ["calentura", "maña"], ["desinhibido", "lanzado"], ["resbalosa", "atrevida"]
+    ],
+    "Explícito (+18 MX)": [
+      ["chile", "picante"], ["albur", "doble sentido"], ["fierro", "macizo"],
+      ["panocha", "papaya"], ["elote", "mazorca"], ["chorizo", "salchicha"],
+      ["rapidín", "mañanero"], ["motel", "hotel de paso"], ["tanga", "hilo dental"],
+      ["beso de tres", "trío"], ["arrimón", "faje en público"], ["condón", "preservativo"],
+      ["orgía", "fiesta swinger"], ["consolador", "juguete sexual"],
+      ["cariñosas", "prostis"], ["chaqueta", "puñeta"], ["mamada", "chupada"],
+      ["perrito", "de chivito"], ["el chiquito", "el nudo de globo"],
+      ["venirse", "terminar"], ["coger", "tirar"], ["erección", "palo"],
+      ["orgasmo", "clímax"], ["putero", "congal"], ["chupetón", "marca"],
+      ["madurita", "milf"], ["nalgada", "cachetada"], ["BDSM", "sado"]
+    ]
+  },
   memes: [
     ["rickroll", "trollface"], ["doge", "cheems"], ["bait", "clickbait"], ["POV", "storytime"],
     ["meme del gato", "meme del perro"], ["stonks", "not stonks"], ["based", "cringe"], ["XD", "LOL"],
@@ -307,29 +303,28 @@ const localWords = {
     ["chilango", "foráneo"], ["norteño", "sureño"], ["costeño", "serrano"], ["tapatío", "regio"],
     ["chamaco", "escuincle"], ["jarocho", "yucateco"], ["azteca", "maya"], ["mariachi", "banda"]
   ],
-  peda: [
-    // Alcohol & Bebidas MX
-    ["Tequila", "Mezcal"], ["Cerveza", "Caguama"], ["Vodka", "Ron"], ["Shot", "Fondo"],
-    ["Azulito", "Pitufo"], ["Licuachela", "Michelada"], ["Kittychela", "Rotochela"], ["Caguamón", "Cartón"],
-    ["Margarita", "Paloma"], ["Hielo", "Vaso"], ["Barman", "Mesero"], ["Aguas locas", "Tonayán"],
-    // Estados de ebriedad y antro
-    ["Borracho", "Crudo"], ["Cantina", "Antro"], ["Mala copa", "Impertinente"], ["Pedísimo", "Hasta las chanclas"],
-    ["Precopeo", "Calentando motores"], ["Cadenero", "Sacaborrachos"], ["Brindis", "Salud"], ["Descorchar", "Destapar"],
-    ["After", "Conecte"], ["Vomitar", "Cruzarse"], ["Cruda moral", "Arrepentimiento"], ["Borrachera", "Peda"],
-    // Juegos y Fiestas
-    ["Yo nunca nunca", "Verdad o Reto"], ["Botella", "Ruleta"], ["Castigo", "Prenda"], ["Shot de castigo", "Trago de cortesía"],
-    ["Beso de tres", "Trío"], ["Faje", "Arrimón"], ["Perreo", "Bellakeo"], ["DJ", "Bocina"],
-    ["Karaoke", "Micrófono"], ["Perreo intenso", "Hasta el suelo"], ["Botana", "Cacahuates"], ["Bailar", "Cantar"],
-    ["Jarana", "Reventón"], ["Cover", "Entrada"],
-    // Salseo, Romance y Slang Moderno
-    ["Ex", "Cucaracho"], ["Tóxico", "Celoso"], ["Cuernos", "Infidelidad"], ["Friendzone", "Casi algo"],
-    ["Amigos con derechos", "Quedantes"], ["Nudes", "Pack"], ["OnlyFans", "Sugar Daddy"], ["Motel", "Auto"],
-    ["Chupetón", "Marca"], ["Ligue", "Crush"], ["Declaración", "Batear"], ["Beso", "Agarrón"],
-    ["Mensaje de ebrio", "Llamada a las 3 AM"], ["Visto", "Ghostear"], ["Tinder", "Bumble"],
-    ["Sugarmommy", "MILF"], ["Rapidín", "Mañanero"], ["Atrevido", "Lanzado"], ["Desnudo", "Encuerado"],
-    ["Infiel", "Amante"], ["Ahuevo", "A poco"], ["Chido", "Padre"], ["Carnal", "Compa"],
-    ["Chafa", "Regacho"], ["Cámara", "Sale"], ["Neta", "¿En serio?"]
-  ]
+  peda: {
+    "Alcohol y Bebidas": [
+      ["Tequila", "Mezcal"], ["Cerveza", "Caguama"], ["Vodka", "Ron"], ["Shot", "Fondo"],
+      ["Azulito", "Pitufo"], ["Licuachela", "Michelada"], ["Kittychela", "Rotochela"], ["Caguamón", "Cartón"],
+      ["Margarita", "Paloma"], ["Hielo", "Vaso"], ["Barman", "Mesero"], ["Aguas locas", "Tonayán"],
+      ["Chelada", "Clara"], ["Whisky", "Brandy"], ["Caballito", "Jarro"],
+      ["Vino tinto", "Vino blanco"], ["Pulque", "Tepache"], ["Piña colada", "Cuba libre"]
+    ],
+    "Estado de Ebriedad": [
+      ["Borracho", "Crudo"], ["Cantina", "Antro"], ["Mala copa", "Impertinente"], ["Pedísimo", "Hasta las chanclas"],
+      ["Precopeo", "Calentando motores"], ["Cadenero", "Sacaborrachos"], ["Brindis", "Salud"], ["Descorchar", "Destapar"],
+      ["After", "Conecte"], ["Vomitar", "Cruzarse"], ["Cruda", "Resaca"], ["Borrachera", "Peda"],
+      ["Barra libre", "Dos por uno"], ["Last call", "Hora feliz"], ["Boteo", "Cooperacha"]
+    ],
+    "Juegos de Fiesta": [
+      ["Yo nunca nunca", "Verdad o Reto"], ["Botella", "Ruleta"], ["Castigo", "Prenda"], ["Shot de castigo", "Trago de cortesía"],
+      ["Bailar", "Cantar"], ["DJ", "Bocina"], ["Karaoke", "Micrófono"],
+      ["Perreo", "Bellakeo"], ["Perreo intenso", "Hasta el suelo"], ["Baile lento", "Bailar cumbia"],
+      ["Botana", "Cacahuates"], ["Jarana", "Reventón"], ["Cover", "Entrada"],
+      ["Fiesta de XV", "Boda"], ["Cruz", "Jarra"], ["Pisto", "Chupe"], ["Limón", "Sal"]
+    ]
+  }
 };
 // After localWords close, before themes
 
@@ -403,7 +398,7 @@ const dealCounter = document.getElementById("dealCounter");
 const newRoundBtn = document.getElementById("newRoundBtn");
 const backHomeBtn = document.getElementById("backHomeBtn");
 const appEl = document.querySelector(".app");
-const startBtn = startGameBtn; // Map to the real HTML id="startGameBtn"
+const startBtn = document.getElementById("startGameBtn"); // Guard against ReferenceError
 const resetBtn = document.getElementById("resetBtn");
 const fullscreenBtn = document.getElementById("fullscreenBtn");
 const soundToggleBtn = document.getElementById("soundToggleBtn");
@@ -452,16 +447,40 @@ const NAMES_KEY = "impostorNamesV1";
 const STATS_KEY = "impostorStatsV1";
 const CUSTOM_PACKS_KEY = "impostorCustomPacksV1";
 
+const CONFIG_KEY = "impostorConfigV1";
+
+function loadSavedConfig() {
+  try { return JSON.parse(localStorage.getItem(CONFIG_KEY)) || {}; } catch { return {}; }
+}
+function saveConfig() {
+  if (state.gameActive || state.round) return; // Don't over-save during active games, mostly for config
+  try {
+    const cfg = {
+      playerCount: state.playerNames.length > 0 ? Math.max(3, state.playerNames.length) : state.playerCount,
+      impostorCount: state.impostorCount,
+      whiteCount: state.whiteCount,
+      includeAdultTheme: state.includeAdultTheme,
+      timerMinutes: state.timerTotalSeconds / 60,
+      swipeSensitivity: state.swipeSensitivity,
+      selectedTheme: state.selectedTheme,
+      disabledSubcategories: state.disabledSubcategories
+    };
+    localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
+  } catch { }
+}
+
+const savedCfg = loadSavedConfig();
+
 const state = {
   round: null,
   revealIndex: 0,
   roleIsVisible: false,
-  selectedTheme: "aleatorio",
-  includeAdultTheme: false,
+  selectedTheme: savedCfg.selectedTheme || "aleatorio",
+  includeAdultTheme: savedCfg.includeAdultTheme || false,
   spanishOnly: false,
   showAdvanced: false,
-  timerSeconds: 120,
-  timerTotalSeconds: 120,
+  timerSeconds: (savedCfg.timerMinutes || 2) * 60,
+  timerTotalSeconds: (savedCfg.timerMinutes || 2) * 60,
   timerHandle: null,
   swipeStartY: 0,
   swipeStartX: 0,
@@ -470,8 +489,11 @@ const state = {
   swipeAxisLocked: false,
   swipeVerticalGesture: false,
   swipeOffset: 0,
-  swipeSensitivity: "suave",
+  swipeSensitivity: savedCfg.swipeSensitivity || "suave",
   playerNames: loadSavedNames(),
+  playerCount: savedCfg.playerCount || 6,
+  impostorCount: savedCfg.impostorCount || 1,
+  whiteCount: savedCfg.whiteCount || 0,
   showNames: false,
   voteTally: {},
   votedPlayer: null,
@@ -484,7 +506,8 @@ const state = {
   persistentDecoyWord: "",
   persistentTheme: "",
   roundHistory: [],
-  gameOver: false
+  gameOver: false,
+  disabledSubcategories: savedCfg.disabledSubcategories || []
 };
 
 function loadSavedNames() {
@@ -694,11 +717,11 @@ function renderStats() {
     </div>
     <button id="clearStatsBtn" type="button" class="link-btn" style="margin-top:8px;color:var(--red)">🗑️ Borrar historial</button>`;
   document.getElementById("clearStatsBtn")?.addEventListener("click", () => {
-    if (confirm("¿Borrar todo el historial?")) {
+    showConfirmModal("¿Borrar todo el historial?", () => {
       saveStats({ gamesPlayed: 0, rounds: [] });
       renderStats();
       showToast("Historial borrado");
-    }
+    });
   });
 }
 
@@ -998,14 +1021,30 @@ const ENGLISH_WORDS = new Set([
 ]);
 
 function getThemePool(themeKey, includeAdult) {
-  let initialPool;
+  let initialPool = [];
+
+  function extractPairs(themeValue, currentThemeKey) {
+    if (Array.isArray(themeValue)) return themeValue;
+    // Object format (Subcategories)
+    const pairs = [];
+    for (const [subName, subPairs] of Object.entries(themeValue)) {
+      if (!state.disabledSubcategories.includes(`${currentThemeKey}:${subName}`)) {
+        pairs.push(...subPairs);
+      }
+    }
+    return pairs;
+  }
+
   if (themeKey === "aleatorio") {
-    // Include all themed pools PLUS the general aleatorio pairs
-    initialPool = Object.keys(localWords).filter(k => !k.startsWith("custom_") && (includeAdult || k !== "adulto")).flatMap(k => localWords[k]);
+    initialPool = Object.keys(localWords)
+      .filter(k => !k.startsWith("custom_") && (includeAdult || k !== "adulto"))
+      .flatMap(k => extractPairs(localWords[k], k));
   } else if (themeKey === "adulto" && !includeAdult) {
-    initialPool = Object.keys(localWords).filter(k => !k.startsWith("custom_") && k !== "adulto").flatMap(k => localWords[k]);
+    initialPool = Object.keys(localWords)
+      .filter(k => !k.startsWith("custom_") && k !== "adulto")
+      .flatMap(k => extractPairs(localWords[k], k));
   } else {
-    initialPool = localWords[themeKey] ?? localWords.aleatorio;
+    initialPool = extractPairs(localWords[themeKey] ?? localWords.aleatorio, themeKey);
   }
 
   if (state.spanishOnly) {
@@ -1762,11 +1801,10 @@ function setActiveMenuTab(tab) {
 
 function showMainView(view) {
   exitGameMode();
-  if (menuSection) if (menuSection) menuSection.classList.toggle("hidden", view !== "home");
+  if (menuSection) menuSection.classList.toggle("hidden", view !== "home");
   if (categorySection) categorySection.classList.toggle("hidden", view !== "categories");
-  if (controlsSection) if (categorySection) categorySection.classList.toggle("hidden", view !== "categories");
   if (controlsSection) controlsSection.classList.toggle("hidden", view !== "play" && view !== "peda");
-  helpSection.classList.toggle("hidden", view !== "help");
+  if (helpSection) helpSection.classList.toggle("hidden", view !== "help");
   if (statsSection) statsSection.classList.toggle("hidden", view !== "stats");
 
   // Si entra al modo peda, auto-seleccionar ese tema y mostrar la misma pantalla de play
@@ -2235,19 +2273,131 @@ function renderThemeChips() {
         if (adultThemesToggle) adultThemesToggle.checked = true;
       }
       SFX.click();
-      if (selectedCategoryName) selectedCategoryName.textContent = `${style.icon} ${cleanLabel}`;
+      if (typeof selectedCategoryName !== 'undefined' && selectedCategoryName) selectedCategoryName.textContent = `${style.icon} ${cleanLabel}`;
       showMainView("play");
+      renderSubcategories();
+      saveConfig();
     });
 
     categoryGrid.appendChild(card);
   }
 }
 
+// ============= SUBCATEGORY RENDERING =============
+function renderSubcategories() {
+  const container = document.getElementById("subcategoriesContainer");
+  const list = document.getElementById("subcategoriesList");
+  if (!container || !list) return;
+
+  const currentTheme = state.selectedTheme;
+  const wordData = localWords[currentTheme];
+
+  if (!wordData || Array.isArray(wordData)) {
+    // Theme is a flat array, no subcategories
+    container.classList.add("hidden");
+    return;
+  }
+
+  // Generate subcategories UI
+  container.classList.remove("hidden");
+  list.innerHTML = "";
+
+  const subcats = Object.keys(wordData);
+  subcats.forEach(sub => {
+    const fullKey = `${currentTheme}:${sub}`;
+    const isDisabled = state.disabledSubcategories.includes(fullKey);
+
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = `btn-primary ${isDisabled ? "" : "active-subcat"}`;
+    // Inline styling to differentiate selected vs unselected
+    chip.style.padding = "6px 12px";
+    chip.style.fontSize = "0.85rem";
+    chip.style.borderRadius = "20px";
+    chip.style.border = isDisabled ? "1px solid var(--border)" : "1px solid var(--accent)";
+    chip.style.background = isDisabled ? "var(--bg)" : "var(--accent)";
+    chip.style.color = isDisabled ? "var(--text2)" : "#fff";
+
+    chip.innerHTML = `${isDisabled ? "❌" : "✅"} ${escapeHtml(sub)}`;
+
+    chip.addEventListener("click", () => {
+      SFX.click();
+      if (isDisabled) {
+        state.disabledSubcategories = state.disabledSubcategories.filter(k => k !== fullKey);
+      } else {
+        // Prevent disabling the LAST category
+        const activeCount = subcats.filter(k => !state.disabledSubcategories.includes(`${currentTheme}:${k}`)).length;
+        if (activeCount <= 1) {
+          showToast("Debes dejar al menos una subcategoría activa", "error");
+          return;
+        }
+        state.disabledSubcategories.push(fullKey);
+      }
+      saveConfig();
+      renderSubcategories();
+    });
+
+    list.appendChild(chip);
+  });
+}
+
+const toggleAllSubcatsBtn = document.getElementById("toggleAllSubcatsBtn");
+if (toggleAllSubcatsBtn) {
+  toggleAllSubcatsBtn.addEventListener("click", () => {
+    const currentTheme = state.selectedTheme;
+    const wordData = localWords[currentTheme];
+    if (!wordData || Array.isArray(wordData)) return;
+
+    let anyActive = false;
+    const subcats = Object.keys(wordData);
+    for (const sub of subcats) {
+      if (!state.disabledSubcategories.includes(`${currentTheme}:${sub}`)) {
+        anyActive = true;
+        break;
+      }
+    }
+
+    SFX.click();
+    if (anyActive) {
+      // Toggle all off EXCEPT the first one
+      state.disabledSubcategories = state.disabledSubcategories.filter(k => !k.startsWith(`${currentTheme}:`));
+      for (let i = 1; i < subcats.length; i++) {
+        state.disabledSubcategories.push(`${currentTheme}:${subcats[i]}`);
+      }
+      toggleAllSubcatsBtn.textContent = "Marcar todas";
+    } else {
+      // Toggle all on
+      state.disabledSubcategories = state.disabledSubcategories.filter(k => !k.startsWith(`${currentTheme}:`));
+      toggleAllSubcatsBtn.textContent = "Desmarcar todas";
+    }
+    saveConfig();
+    renderSubcategories();
+  });
+}
+
 // ============= INIT =============
 applyVisualTheme(localStorage.getItem("impostorTheme") || "dark");
+
+// Pre-fill inputs from saved config
+if (playersInput) {
+  playersInput.value = state.playerCount;
+  playersInput.addEventListener("change", (e) => { state.playerCount = Number(e.target.value); saveConfig(); });
+}
+if (impostorsInput) {
+  impostorsInput.value = state.impostorCount;
+  impostorsInput.addEventListener("change", (e) => { state.impostorCount = Number(e.target.value); saveConfig(); });
+}
+if (whitesInput) {
+  whitesInput.value = state.whiteCount;
+  whitesInput.addEventListener("change", (e) => { state.whiteCount = Number(e.target.value); saveConfig(); });
+}
+if (adultThemesToggle) {
+  adultThemesToggle.checked = state.includeAdultTheme;
+}
+
 renderThemeChips();
 refreshCustomThemes();
-setSwipeSensitivity("suave");
+setSwipeSensitivity(state.swipeSensitivity);
 renderPlayerNameInputs();
 resetRound();
 
