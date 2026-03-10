@@ -1801,6 +1801,11 @@ function setActiveMenuTab(tab) {
 
 function showMainView(view) {
   exitGameMode();
+
+  // Toggle SEO layer visibility
+  const seoLayer = document.getElementById("seoContentLayer");
+  if (seoLayer) seoLayer.style.display = view === "home" ? "block" : "none";
+
   if (menuSection) menuSection.classList.toggle("hidden", view !== "home");
   if (categorySection) categorySection.classList.toggle("hidden", view !== "categories");
   if (controlsSection) controlsSection.classList.toggle("hidden", view !== "play" && view !== "peda");
@@ -2030,6 +2035,16 @@ startBtn.addEventListener("click", async () => {
   try {
     startBtn.disabled = true;
     state.round = await createRound();
+
+    // GA4 Tracking (Measurement ID setup in index.html)
+    if (typeof gtag === "function") {
+      gtag("event", "game_start", {
+        theme: state.round.theme,
+        players: state.round.roles.length,
+        impostors: state.round.roles.filter(r => r.role === "impostor").length
+      });
+    }
+
     state.revealIndex = 0;
     state.roundNumber += 1;
     state.gameActive = true;

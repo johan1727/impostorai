@@ -22,6 +22,11 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap"
+    as="style" />
+  <link rel="preload" href="/src/style.css" as="style" />
+
+  <meta name="google-site-verification" content="-Awrv9r_FwgkKtXU5cWoI8uBKio31Om2UPbTJ8lDO_Q" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:site_name" content="Impostor Party Game" />
@@ -62,11 +67,6 @@
       "genre": "Party Game, Social Deduction",
       "operatingSystem": "All",
       "inLanguage": "es",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "ratingCount": "1250"
-      },
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -123,11 +123,45 @@
         }
       }]
     }
-    </script>
+  </script>
+
+  <!-- Google tag (gtag.js) - Placeholder for GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QX2LK1FZEG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-QX2LK1FZEG');
+  </script>
+
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 
 <body>
+  <noscript>
+    <style>
+      .app {
+        display: none !important;
+      }
+
+      .noscript-content {
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        color: white;
+        font-family: sans-serif;
+      }
+    </style>
+    <div class="noscript-content">
+      <h1>Impostor | El Mejor Juego de Fiestas y Pedas</h1>
+      <p>Impostor es un party game de deducción social para jugar con amigos en persona. Reúne a tu grupo, elige una de
+        nuestras divertidas categorías (como Modo Peda o +18) y descubre quién es el impostor.</p>
+      <h2>¿Cómo funciona?</h2>
+      <p>Es muy sencillo. Se necesita un solo celular para todos. Por turnos, cada jugador recibe una palabra secreta,
+        excepto el impostor. Todos dan una pista y luego deben votar para adivinar quién mintió.</p>
+      <p>⚠️ <strong>Por favor, activa JavaScript para poder jugar a esta aplicación web.</strong></p>
+    </div>
+  </noscript>
   <a href="#menuSection" class="skip-link">Saltar al contenido</a>
   <div class="bg-orbs" aria-hidden="true">
     <div class="orb orb-1"></div>
@@ -184,7 +218,7 @@
         </div>
         <div class="play-hero-text" style="text-align: center; margin-bottom: 2rem;">
           <h2
-            style="font-size: 2rem; font-weight: 900; background: linear-gradient(135deg, #fff, #ffb088); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">
+            style="font-size: 2rem; font-weight: 900; background: linear-gradient(135deg, #fff, #ffb088); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">
             IMPOSTOR</h2>
           <p style="color: var(--text2); font-size: 1.1rem;">¿Quién es el impostor?</p>
         </div>
@@ -194,6 +228,37 @@
           <span style="font-size: 0.8rem; font-weight: 500; opacity: 0.9;">Pasar el celular entre jugadores</span>
         </button>
       </div>
+
+      <!-- SEO Static Content Layer (Visible for crawlers, hidden securely when playing) -->
+      <article id="seoContentLayer" class="seo-content-layer">
+        <div class="seo-container">
+          <h2>El Party Game para tus reuniones y pedas 🍻</h2>
+          <p>¿No sabes qué jugar con tus amigos? <strong>Impostor</strong> es el mejor juego de deducción social para
+            celular donde no necesitas internet. Solo necesitas un teléfono para todo el grupo.</p>
+
+          <div class="seo-features">
+            <div class="seo-feature">
+              <h3>🔥 Modo Peda (+18)</h3>
+              <p>Palabras picantes y reglas de tomar integradas. Ideal para romper el hielo.</p>
+            </div>
+            <div class="seo-feature">
+              <h3>📱 100% Offline</h3>
+              <p>Funciona en el bosque, en la playa o donde no llegue el Wi-Fi.</p>
+            </div>
+            <div class="seo-feature">
+              <h3>👫 Hasta 24 jugadores</h3>
+              <p>Desde grupos pequeños hasta fiestas enormes. Tú eliges cuántos impostores hay.</p>
+            </div>
+          </div>
+
+          <h3>¿Cómo se juega al impostor en persona?</h3>
+          <p>A diferencia de juegos de mesa complicados, en Impostor todos los jugadores "civiles" reciben la misma
+            palabra secreta (ej. <em>Tequila</em>). Sin embargo, a los impostores les tocará una palabra distinta pero
+            similar (ej. <em>Mezcal</em>).</p>
+          <p>Por turnos, cada jugador dice en voz alta una pista relacionada con su palabra secreta. ¡Al final de la
+            ronda, todos debaten y votan para atrapar al impostor antes de que engañe a todos!</p>
+        </div>
+      </article>
     </section>
 
     <!-- NEW SCREEN: ELEGIR CATEGORÍA -->
