@@ -97,7 +97,8 @@ const localWords = {
     ["diamante", "rubí"], ["casco", "sombrero"], ["dado", "moneda"], ["cortina", "persiana"],
     ["chicle", "caramelo"], ["atardecer", "amanecer"], ["cable", "enchufe"], ["llave", "grifo"],
     ["plátano", "manzana"], ["torta", "sándwich"], ["carro", "camioneta"], ["cobija", "sábana"],
-    ["calcetín", "zapato"], ["cuchara", "tenedor"], ["banqueta", "calle"], ["nube", "niebla"]
+    ["calcetín", "zapato"], ["cuchara", "tenedor"], ["banqueta", "calle"], ["nube", "niebla"],
+    ["sofá", "sillón"], ["escoba", "trapeador"], ["cubeta", "bandeja"], ["jabón", "shampoo"]
   ],
   comida: [
     ["taco", "burrito"], ["torta", "pambazo"], ["café", "chocolate"], ["sushi", "ramen"],
@@ -109,7 +110,8 @@ const localWords = {
     ["pastel", "pay"], ["tocino", "jamón"], ["arroz", "frijoles"], ["tamal", "elote"],
     ["chilaquiles", "enchiladas"], ["michelada", "clamato"], ["esquite", "palomitas"], ["chile relleno", "chile en nogada"],
     ["birria", "barbacoa"], ["tlayuda", "huarache"], ["agua de horchata", "agua de jamaica"], ["camote", "jícama"],
-    ["chilaquiles verdes", "chilaquiles rojos"], ["consomé", "caldo de pollo"], ["sopes", "tlacoyos"], ["quesabirria", "tacos al pastor"]
+    ["consomé", "caldo de pollo"], ["sopes", "tlacoyos"], ["quesabirria", "tacos al pastor"],
+    ["churro", "crepa"], ["pizza", "lasaña"], ["mariscos", "pescado frito"], ["sopa de fideo", "sopa de lentejas"]
   ],
   lugares: [
     ["aeropuerto", "terminal"], ["hospital", "clínica"], ["playa", "isla"], ["escuela", "universidad"],
@@ -120,7 +122,8 @@ const localWords = {
     ["lobby", "recepción"], ["balcón", "terraza"], ["metro", "metrobús"], ["desierto", "selva"],
     ["volcán", "cráter"], ["cascada", "manantial"], ["puente", "muelle"], ["frontera", "aduana"],
     ["mercado", "tianguis"], ["cantina", "bar"], ["plaza", "zócalo"], ["gasolinera", "taller"],
-    ["oxxo", "farmacia"], ["taquería", "puesto"], ["cenote", "balneario"], ["antro", "salón de fiestas"]
+    ["oxxo", "farmacia"], ["taquería", "puesto"], ["cenote", "balneario"], ["antro", "salón de fiestas"],
+    ["gimnasio", "deportivo"], ["museo", "galería"], ["biblioteca", "librería"], ["estacionamiento", "parquímetro"]
   ],
   objetos: [
     ["teclado", "mouse"], ["paraguas", "impermeable"], ["linterna", "vela"], ["reloj", "cronómetro"],
@@ -128,10 +131,11 @@ const localWords = {
     ["guitarra", "ukulele"], ["silla", "banco"], ["cuchara", "tenedor"], ["pincel", "brocha"],
     ["aguja", "alfiler"], ["cadena", "cuerda"], ["antena", "radar"], ["campana", "silbato"],
     ["corona", "tiara"], ["dado", "ficha"], ["escalera", "rampa"], ["guante", "manopla"],
-    ["imán", "brújula"], ["maceta", "jarrón"], ["lámpara", "foco"], ["mapa", "globo terráqueo"],
+    ["imán", "brújula"], ["maceta", "jarrón"], ["lámpara", "foco"], ["globo terráqueo", "mapa"],
     ["pañuelo", "toalla"], ["escoba", "trapeador"], ["botella", "jarra"], ["sobre", "carpeta"],
     ["control remoto", "pilas"], ["cinturón", "tirantes"], ["encendedor", "cerillos"], ["cartera", "monedero"],
-    ["manguera", "regadera"], ["engrapadora", "clips"], ["cinta adhesiva", "pegamento"], ["chamarra", "suéter"]
+    ["manguera", "regadera"], ["engrapadora", "clips"], ["cinta adhesiva", "pegamento"], ["chamarra", "suéter"],
+    ["plancha", "secadora"], ["peine", "cepillo"], ["auriculares", "bocina"], ["perfume", "desodorante"]
   ],
   tecnologia: [
     ["nube", "servidor"], ["robot", "dron"], ["python", "javascript"], ["contraseña", "pin"],
@@ -143,8 +147,9 @@ const localWords = {
     ["front-end", "back-end"], ["Linux", "Windows"], ["modo oscuro", "modo claro"],
     ["bluetooth", "NFC"], ["algoritmo", "función"], ["base de datos", "hoja de cálculo"],
     ["captura de pantalla", "grabación"], ["meme", "gif"], ["TikTok", "YouTube"], ["spam", "phishing"],
-    ["hashtag", "trending"], ["notificación", "alerta"], ["nube", "drive"], ["lag", "ping"],
-    ["ChatGPT", "Gemini"], ["dron", "robot"], ["criptomoneda", "NFT"], ["influencer", "streamer"], ["ciberseguridad", "código fuente"]
+    ["hashtag", "trending"], ["notificación", "alerta"], ["lag", "ping"],
+    ["ChatGPT", "Gemini"], ["criptomoneda", "NFT"], ["influencer", "streamer"], ["ciberseguridad", "código fuente"],
+    ["smartwatch", "banda deportiva"], ["pantalla táctil", "teclado físico"], ["cargador inalámbrico", "power bank"]
   ],
   deportes: [
     ["futbol", "rugby"], ["natación", "waterpolo"], ["tenis", "bádminton"], ["boxeo", "karate"],
@@ -156,7 +161,8 @@ const localWords = {
     ["buceo", "snorkel"], ["boliche", "billar"], ["CrossFit", "yoga"], ["boxeo", "MMA"],
     ["frontón", "raquetbol"], ["clavados", "nado sincronizado"], ["fútbol americano", "flag football"],
     ["corrida", "jaripeo"], ["penal", "tiro libre"], ["cascarita", "reta"], ["gol", "touchdown"], ["porra", "barra"],
-    ["Fórmula 1", "NASCAR"], ["esports", "gaming"], ["Lucha Libre AAA", "WWE"], ["Copa del Mundo", "Juegos Olímpicos"]
+    ["Fórmula 1", "NASCAR"], ["esports", "gaming"], ["Lucha Libre AAA", "WWE"], ["Copa del Mundo", "Juegos Olímpicos"],
+    ["gimnasia", "ballet"], ["polo", "críquet"], ["alpinismo", "senderismo"]
   ],
   animales: [
     ["gato", "león"], ["águila", "halcón"], ["delfín", "tiburón"], ["abeja", "avispa"],
@@ -167,7 +173,8 @@ const localWords = {
     ["zorro", "coyote"], ["ballena", "orca"], ["medusa", "anémona"], ["cangrejo", "langosta"],
     ["gorila", "chimpancé"], ["jirafa", "avestruz"], ["pavo real", "flamenco"], ["rata", "hámster"],
     ["tlacuache", "mapache"], ["ajolote", "salamandra"], ["colibrí", "golondrina"], ["armadillo", "puercoespín"],
-    ["chapulín", "grillo"], ["guajolote", "gallina"], ["xoloitzcuintle", "chihuahua"], ["quetzal", "tucán"]
+    ["chapulín", "grillo"], ["guajolote", "gallina"], ["xoloitzcuintle", "chihuahua"], ["quetzal", "tucán"],
+    ["koala", "canguro"], ["perezoso", "mono"], ["escorpión", "alacrán"], ["ciervo", "venado"]
   ],
   profesiones: [
     ["doctor", "enfermero"], ["abogado", "juez"], ["chef", "pastelero"], ["piloto", "astronauta"],
@@ -179,7 +186,8 @@ const localWords = {
     ["cirujano", "anestesiólogo"], ["mesero", "bartender"], ["cartero", "mensajero"], ["jardinero", "agricultor"],
     ["influencer", "youtuber"], ["locutor", "conductor de TV"], ["chofer", "taxista"], ["estilista", "barbero"],
     ["taquero", "panadero"], ["herrero", "soldador"], ["partera", "doula"], ["chamán", "curandero"],
-    ["creador de contenido", "tiktoker"], ["community manager", "editor de video"], ["coach de vida", "terapeuta"]
+    ["creador de contenido", "tiktoker"], ["community manager", "editor de video"], ["coach de vida", "terapeuta"],
+    ["cerrajero", "relojero"], ["pintor de brocha gorda", "yesero"]
   ],
   peliculas: [
     ["terror", "suspenso"], ["comedia", "parodia"], ["Marvel", "DC"], ["Pixar", "DreamWorks"],
@@ -190,7 +198,8 @@ const localWords = {
     ["Óscar", "Golden Globe"], ["remake", "reboot"], ["Star Wars", "Star Trek"],
     ["Harry Potter", "Señor de los Anillos"], ["Batman", "Superman"], ["Avengers", "Justice League"],
     ["Netflix", "Disney Plus"], ["thriller", "misterio"], ["villano", "héroe"], ["saga", "trilogía"],
-    ["serie", "telenovela"], ["trama", "spoiler"], ["cámara lenta", "time lapse"], ["CGI", "efectos prácticos"]
+    ["serie", "telenovela"], ["trama", "spoiler"], ["cámara lenta", "time lapse"], ["CGI", "efectos prácticos"],
+    ["blockbuster", "cine de arte"], ["clacketazo", "corte"], ["efectos de sonido", "banda sonora"]
   ],
   musica: [
     ["guitarra", "bajo"], ["reggaetón", "trap"], ["piano", "órgano"], ["rock", "punk"],
@@ -201,7 +210,8 @@ const localWords = {
     ["DJ", "productor"], ["vinilo", "casete"], ["concierto", "festival"], ["single", "álbum"],
     ["estribillo", "verso"], ["balada", "bolero"], ["pop", "indie"], ["country", "folk"],
     ["corrido", "banda"], ["son jarocho", "huapango"], ["ranchera", "sierreña"], ["perreo", "dembow"],
-    ["chilena", "son cubano"], ["vals", "danzón"], ["karaoke", "dueto"], ["mashup", "remix"]
+    ["chilena", "son cubano"], ["vals", "danzón"], ["karaoke", "dueto"], ["mashup", "remix"],
+    ["Spotify", "Apple Music"], ["mp3", "wav"], ["solista", "grupo vocal"]
   ],
   historia: [
     ["Egipto", "Roma"], ["revolución", "independencia"], ["medieval", "renacimiento"], ["samurái", "ninja"],
@@ -213,7 +223,8 @@ const localWords = {
     ["invención", "descubrimiento"], ["filosofía", "mitología"], ["Cleopatra", "Nefertiti"],
     ["tratado", "alianza"], ["armadura", "escudo"], ["Zapata", "Villa"], ["águila", "serpiente"],
     ["Tenochtitlan", "Tlatelolco"], ["códice", "jeroglífico"], ["Moctezuma", "Cuauhtémoc"],
-    ["virrey", "caudillo"], ["hacienda", "encomienda"], ["grito de Dolores", "Plan de Iguala"]
+    ["virrey", "caudillo"], ["hacienda", "encomienda"], ["grito de Dolores", "Plan de Iguala"],
+    ["Revolución Francesa", "Guerra Civil"], ["Revolución Industrial", "Ilustración"]
   ],
   naturaleza: [
     ["volcán", "géiser"], ["tsunami", "huracán"], ["bosque", "selva"], ["río", "cascada"],
@@ -224,13 +235,32 @@ const localWords = {
     ["arena", "grava"], ["musgo", "liquen"], ["miel", "cera"], ["polen", "néctar"],
     ["raíz", "tronco"], ["hoja", "pétalo"], ["semilla", "brote"], ["marea", "corriente"],
     ["cenote", "lago"], ["nopal", "maguey"], ["ceiba", "ahuehuete"], ["jaguar", "puma"],
-    ["chapulín", "escarabajo"], ["obsidiana", "jade"], ["cempasúchil", "nochebuena"], ["milpa", "chinampa"]
+    ["chapulín", "escarabajo"], ["obsidiana", "jade"], ["cempasúchil", "nochebuena"], ["milpa", "chinampa"],
+    ["eclipse", "luna llena"], ["rocío", "escarcha"], ["niebla", "neblina"], ["hongo", "seta"]
+  ],
+  sofi: [
+    ["K-Pop", "J-Pop"], ["BTS", "Blackpink"], ["Anime", "Manga"], ["Soju", "Sake"],
+    ["K-Drama", "Dorama"], ["Ramen", "Sushi"], ["Kimchi", "Tteokbokki"], ["Otaku", "K-poper"],
+    ["Cosplay", "Disfraz"], ["Seúl", "Tokio"], ["Idol", "Actor de doblaje"], ["Oppas", "Waifus"],
+    ["Genshin Impact", "Honkai"], ["Sanrio", "Hello Kitty"], ["Boba tea", "Matcha"], ["Naruto", "Dragon Ball"],
+    ["Stray Kids", "TWICE"], ["Aesthetic", "Kawaii"], ["Webtoon", "Manhwa"], ["Mochi", "Pocky"],
+    ["V-Tuber", "Streamer"], ["Seventeen", "EXO"], ["Red Velvet", "Aespa"], ["Ghibli", "Disney"],
+    ["K-beauty", "Skincare"], ["Samgyeopsal", "Barbacoa coreana"], ["Tamagotchi", "Nintendo"], ["Shonen", "Shojo"],
+    ["KakaoTalk", "Line"], ["Mukbang", "ASMR"], ["Fancam", "Live"], ["Lightstick", "Lámpara"],
+    ["Photocard", "Polaroid"], ["Comeback", "Debut"], ["Bias", "Crush"], ["Maknae", "Líder"],
+    ["Sasaeng", "Paparazzi"], ["Hanbok", "Kimono"], ["Taekwondo", "Karate"], ["Bulgogi", "Bibimbap"],
+    ["Soju de durazno", "Soju original"], ["Corazón coreano", "Besito"], ["Gacha", "Lootbox"], ["Yaoi", "Yuri"],
+    ["Donghua", "Anime chino"], ["Manhua", "Cómic chino"], ["Oricon", "Billboard"], ["Pompompurin", "Kuromi"],
+    ["Cinnamoroll", "My Melody"], ["Doraemon", "Shin-chan"]
   ],
   adulto: {
     "Apps y Ligue": [
       ["Tinder", "Bumble"], ["ghostear", "clavar el visto"], ["friendzone", "casi algo"],
       ["catfish", "perfil falso"], ["sexting", "nudes"], ["stalkear", "espiar"], ["match", "swipe"],
-      ["sugar daddy", "patrocinador"], ["sugar baby", "mantenido"], ["OnlyFans", "contenido exclusivo"]
+      ["sugar daddy", "patrocinador"], ["sugar baby", "mantenido"], ["OnlyFans", "contenido exclusivo"],
+      ["Grindr", "Badoo"], ["Hinge", "OkCupid"], ["bloquear", "eliminar"], ["mutuales", "mejores amigos"],
+      ["mandar DM", "reaccionar a historia"], ["super like", "corazón"], ["bio", "descripción"], ["fotos de gym", "fotos de viaje"],
+      ["verificada", "cuenta candado"], ["unfollow", "dejar de seguir"], ["voyerista", "espectador"], ["dickpic", "foto no solicitada"]
     ],
     "Jerga Joven": [
       ["slay", "devorar"], ["cringe", "oso"], ["de chill", "de compas"], ["NPC", "básico"],
@@ -238,7 +268,11 @@ const localWords = {
       ["simp", "arrastrado"], ["situationship", "quedantes"], ["delulu", "alucin"], ["aesthetic", "coquette"],
       ["funar", "cancelar"], ["Traka", "¡Zaz!"], ["PEC (por el culx)", "¡Y la queso!"],
       ["tirar beef", "tirar hate"], ["tryhardear", "esforzarse demás"], ["chulo", "galán"],
-      ["sacar la sopa", "contar el chisme"], ["tener feria", "tener billete"], ["nadaqueveriento", "random"]
+      ["sacar la sopa", "contar el chisme"], ["tener feria", "tener billete"], ["nadaqueveriento", "random"],
+      ["basado", "chad"], ["fife", "pambolero"], ["inventada", "exagerada"], ["potaxie", "fifi"],
+      ["servir", "darla toda"], ["ataque", "crisis"], ["soportar", "aguantar"], ["y la que soporte", "ni modo"],
+      ["wey", "morro"], ["compa", "carnal"], ["chamba", "jale"], ["la neta", "la verdad"],
+      ["fachero", "chido"], ["boomer", "ruco"], ["zennial", "millennial"], ["mood", "vibra"]
     ],
     "Relaciones y Drama": [
       ["ligue", "faje"], ["tirar rollo", "chamuyar"], ["crush", "pretendiente"],
@@ -246,7 +280,10 @@ const localWords = {
       ["calentón", "manoseo"], ["besarse", "fajarse"], ["ligar", "seducir"], ["coqueteo", "cotorreo"],
       ["celos", "inseguridad"], ["ex", "rebote"], ["cuernos", "engaño"],
       ["tusa", "despecho"], ["novio", "amante"], ["relación abierta", "poliamor"],
-      ["drama", "escándalo"], ["desmadre", "locura"], ["chisme", "secreto"], ["infidelidad", "desliz"]
+      ["drama", "escándalo"], ["desmadre", "locura"], ["chisme", "secreto"], ["infidelidad", "desliz"],
+      ["tóxica", "psycho"], ["hacer escena", "berrinche"], ["revisar el celular", "pedir contraseña"], ["dar el avión", "ignorar"],
+      ["rogón", "insistente"], ["terapia de pareja", "darse un tiempo"], ["terminar", "cortar"], ["volver con el ex", "recaída"],
+      ["sugar mommy", "golfa"], ["interesada", "cazafortunas"], ["vengativa", "rencorosa"], ["llorar por él", "bloquearlo"]
     ],
     "Cuerpo y Tabú": [
       ["mamado", "trabado"], ["nalgón", "culón"], ["chichis", "bubis"],
@@ -255,7 +292,9 @@ const localWords = {
       ["pecado", "prohibido"], ["morbo", "antojo"], ["fetiche", "fantasía"],
       ["lujuria", "pasión"], ["travesura", "aventura"], ["vibrador", "juguete"],
       ["rol", "disfraz"], ["voyeur", "exhibicionista"], ["sumiso", "dominante"],
-      ["pack", "candente"], ["calentura", "maña"], ["desinhibido", "lanzado"], ["resbalosa", "atrevida"]
+      ["pack", "candente"], ["calentura", "maña"], ["desinhibido", "lanzado"], ["resbalosa", "atrevida"],
+      ["sugar", "colágeno"], ["MILF", "DILF"], ["chaparrita", "alta"], ["curvy", "flaquita"],
+      ["bóxer", "tanga"], ["lencería", "disfraz de enfermera"], ["piernuda", "caderona"], ["tatuajes", "piercings"]
     ],
     "Explícito (+18 MX)": [
       ["chile", "picante"], ["albur", "doble sentido"], ["fierro", "macizo"],
@@ -267,7 +306,10 @@ const localWords = {
       ["perrito", "de chivito"], ["el chiquito", "el nudo de globo"],
       ["venirse", "terminar"], ["coger", "tirar"], ["erección", "palo"],
       ["orgasmo", "clímax"], ["putero", "congal"], ["chupetón", "marca"],
-      ["madurita", "milf"], ["nalgada", "cachetada"], ["BDSM", "sado"]
+      ["madurita", "milf"], ["nalgada", "cachetada"], ["BDSM", "sado"],
+      ["sentones", "brincos"], ["tijeras", "tortilleras"], ["agacharse", "ponerse en 4"], ["escupir", "tragar"],
+      [" lubricante", "saliva"], ["anal", "oral"], ["69", "posición"], ["gemidos", "gritos"],
+      ["squirting", "mojada"], ["correrse", "chorrear"], ["dedo", "mano"], ["venirse en la cara", "facial"]
     ]
   },
   memes: [
@@ -303,28 +345,26 @@ const localWords = {
     ["chilango", "foráneo"], ["norteño", "sureño"], ["costeño", "serrano"], ["tapatío", "regio"],
     ["chamaco", "escuincle"], ["jarocho", "yucateco"], ["azteca", "maya"], ["mariachi", "banda"]
   ],
-  peda: {
-    "Alcohol y Bebidas": [
-      ["Tequila", "Mezcal"], ["Cerveza", "Caguama"], ["Vodka", "Ron"], ["Shot", "Fondo"],
-      ["Azulito", "Pitufo"], ["Licuachela", "Michelada"], ["Kittychela", "Rotochela"], ["Caguamón", "Cartón"],
-      ["Margarita", "Paloma"], ["Hielo", "Vaso"], ["Barman", "Mesero"], ["Aguas locas", "Tonayán"],
-      ["Chelada", "Clara"], ["Whisky", "Brandy"], ["Caballito", "Jarro"],
-      ["Vino tinto", "Vino blanco"], ["Pulque", "Tepache"], ["Piña colada", "Cuba libre"]
-    ],
-    "Estado de Ebriedad": [
-      ["Borracho", "Crudo"], ["Cantina", "Antro"], ["Mala copa", "Impertinente"], ["Pedísimo", "Hasta las chanclas"],
-      ["Precopeo", "Calentando motores"], ["Cadenero", "Sacaborrachos"], ["Brindis", "Salud"], ["Descorchar", "Destapar"],
-      ["After", "Conecte"], ["Vomitar", "Cruzarse"], ["Cruda", "Resaca"], ["Borrachera", "Peda"],
-      ["Barra libre", "Dos por uno"], ["Last call", "Hora feliz"], ["Boteo", "Cooperacha"]
-    ],
-    "Juegos de Fiesta": [
-      ["Yo nunca nunca", "Verdad o Reto"], ["Botella", "Ruleta"], ["Castigo", "Prenda"], ["Shot de castigo", "Trago de cortesía"],
-      ["Bailar", "Cantar"], ["DJ", "Bocina"], ["Karaoke", "Micrófono"],
-      ["Perreo", "Bellakeo"], ["Perreo intenso", "Hasta el suelo"], ["Baile lento", "Bailar cumbia"],
-      ["Botana", "Cacahuates"], ["Jarana", "Reventón"], ["Cover", "Entrada"],
-      ["Fiesta de XV", "Boda"], ["Cruz", "Jarra"], ["Pisto", "Chupe"], ["Limón", "Sal"]
-    ]
-  }
+  peda: [
+    ["Tequila", "Mezcal"], ["Cerveza", "Caguama"], ["Vodka", "Ron"], ["Shot", "Fondo"],
+    ["Azulito", "Pitufo"], ["Licuachela", "Michelada"], ["Kittychela", "Rotochela"], ["Caguamón", "Cartón"],
+    ["Margarita", "Paloma"], ["Hielo", "Vaso"], ["Barman", "Mesero"], ["Aguas locas", "Tonayán"],
+    ["Chelada", "Clara"], ["Whisky", "Brandy"], ["Caballito", "Jarro"],
+    ["Vino tinto", "Vino blanco"], ["Pulque", "Tepache"], ["Piña colada", "Cuba libre"],
+    ["Borracho", "Crudo"], ["Cantina", "Antro"], ["Mala copa", "Impertinente"], ["Pedísimo", "Hasta las chanclas"],
+    ["Precopeo", "Calentando motores"], ["Cadenero", "Sacaborrachos"], ["Brindis", "Salud"], ["Descorchar", "Destapar"],
+    ["After", "Conecte"], ["Vomitar", "Cruzarse"], ["Cruda", "Resaca"], ["Borrachera", "Peda"],
+    ["Barra libre", "Dos por uno"], ["Last call", "Hora feliz"], ["Boteo", "Cooperacha"],
+    ["Yo nunca nunca", "Verdad o Reto"], ["Botella", "Ruleta"], ["Castigo", "Prenda"], ["Shot de castigo", "Trago de cortesía"],
+    ["Bailar", "Cantar"], ["DJ", "Bocina"], ["Karaoke", "Micrófono"],
+    ["Perreo", "Bellakeo"], ["Perreo intenso", "Hasta el suelo"], ["Baile lento", "Bailar cumbia"],
+    ["Botana", "Cacahuates"], ["Jarana", "Reventón"], ["Cover", "Entrada"],
+    ["Fiesta de XV", "Boda"], ["Cruz", "Jarra"], ["Pisto", "Chupe"], ["Limón", "Sal"],
+    ["Six de chelas", "Doce de chelas"], ["Tecate", "Corona"], ["Victoria", "Indio"], ["Bacardí", "Smirnoff"],
+    ["Mojito", "Caipirinha"], ["Buchanans", "Red Label"], ["Jägermeister", "Perla Negra"], ["Boost", "Red Bull"],
+    ["Gomarindo", "Chamoy"], ["Cantarito", "Cazuela"], ["Botellas", "Buchones"], ["Racer", "Yate"],
+    ["VIP", "Zona general"], ["Baño lleno", "Miar en la calle"], ["Malilla", "Bajón"], ["Tacos de pastor", "Dogos"]
+  ]
 };
 // After localWords close, before themes
 
@@ -341,6 +381,7 @@ const themes = [
   { key: "musica", label: "Música" },
   { key: "historia", label: "Historia" },
   { key: "naturaleza", label: "Naturaleza" },
+  { key: "sofi", label: "Sofi" },
   { key: "memes", label: "Memes" },
   { key: "redes", label: "Redes Sociales" },
   { key: "videojuegos", label: "Videojuegos" },
@@ -2242,6 +2283,7 @@ function renderThemeChips() {
     musica: { color: "#ab47bc", icon: "\u{1F3B5}", name: "Música" },
     historia: { color: "#8d6e63", icon: "\u{1F4DC}", name: "Historia" },
     naturaleza: { color: "#66bb6a", icon: "\u{1F33F}", name: "Naturaleza" },
+    sofi: { color: "#ffb6c1", icon: "\u{1F338}", name: "Sofi" },
     memes: { color: "#ffab40", icon: "\u{1F923}", name: "Memes" },
     redes: { color: "#29b6f6", icon: "\u{1F4F1}", name: "Redes" },
     videojuegos: { color: "#7e57c2", icon: "\u{1F3AE}", name: "Videojuegos" },
@@ -2398,6 +2440,63 @@ if (playersInput) {
   playersInput.value = state.playerCount;
   playersInput.addEventListener("change", (e) => { state.playerCount = Number(e.target.value); saveConfig(); });
 }
+
+// ============= UPDATE SYSTEM =============
+const APP_VERSION = "1.1.0"; // Increment this version to trigger a new popup
+
+const UPDATE_NOTES = {
+  "1.1.0": {
+    title: '¡Nueva Actualización! 🌸',
+    html: `
+      <div style="text-align: left; font-size: 0.95rem; line-height: 1.5; padding: 0 10px;">
+        <h3 style="color: #ffb6c1; margin: 0 0 5px; font-size: 1.15rem; display: flex; align-items: center; gap: 6px;">
+          <span>🌸</span> Categoría: Sofi
+        </h3>
+        <p style="color: var(--text2); margin-top: 0; margin-bottom: 18px;">
+          Resuelve los debates más otakus y kpoperos. Incluye temas de K-Pop, Anime, y dramas asiáticos.
+        </p>
+        
+        <h3 style="color: #4dabf7; margin: 0 0 5px; font-size: 1.15rem; display: flex; align-items: center; gap: 6px;">
+          <span>✨</span> Más Palabras
+        </h3>
+        <p style="color: var(--text2); margin-top: 0; margin-bottom: 5px;">
+          Mejoramos <b>todas las categorías</b> actuales y añadimos docenas de palabras nuevas para mucha más variedad.
+        </p>
+      </div>
+    `,
+    confirmText: '¡A jugar!'
+  }
+};
+
+function showNewContentAlert() {
+  const ALREADY_SEEN_KEY = "impostor_seen_version";
+  const lastSeen = localStorage.getItem(ALREADY_SEEN_KEY);
+
+  if (lastSeen !== APP_VERSION && UPDATE_NOTES[APP_VERSION]) {
+    setTimeout(() => {
+      if (typeof Swal !== "undefined") {
+        const update = UPDATE_NOTES[APP_VERSION];
+        Swal.fire({
+          title: update.title,
+          html: update.html,
+          confirmButtonText: update.confirmText,
+          background: 'transparent',
+          customClass: {
+            title: 'swal-title-custom',
+            popup: 'swal-popup-custom',
+            confirmButton: 'swal-btn-custom'
+          }
+        }).then(() => {
+          localStorage.setItem(ALREADY_SEEN_KEY, APP_VERSION);
+        });
+      }
+    }, 1000);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  showNewContentAlert();
+});
 if (impostorsInput) {
   impostorsInput.value = state.impostorCount;
   impostorsInput.addEventListener("change", (e) => { state.impostorCount = Number(e.target.value); saveConfig(); });

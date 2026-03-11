@@ -3209,3 +3209,37 @@ button {
   background: rgba(0, 0, 0, 0.02);
   border-color: rgba(0, 0, 0, 0.05);
 }
+
+/* ============= SWEETALERT CUSTOM STYLES ============= */
+div.swal-popup-custom {
+  background: var(--surface-glass) !important;
+  backdrop-filter: blur(24px) saturate(1.5) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.5) !important;
+  border: 1px solid var(--border-bright) !important;
+  border-radius: var(--r) !important;
+  color: var(--text) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), var(--shadow-glow) !important;
+  padding: 1.5em !important;
+}
+
+h2.swal-title-custom {
+  color: #fff !important;
+  font-weight: 800 !important;
+  font-size: 1.4rem !important;
+  margin-bottom: 15px !important;
+}
+
+button.swal-btn-custom {
+  background: linear-gradient(135deg, #ff7b54, #e040fb) !important;
+  border: 0 !important;
+  border-radius: var(--r-sm) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.5px !important;
+  padding: 12px 28px !important;
+  box-shadow: 0 6px 20px rgba(255, 123, 84, 0.3) !important;
+  color: white !important;
+}
+
+div.swal2-html-container {
+  margin: 0 !important;
+}
