@@ -443,7 +443,6 @@ const startBtn = document.getElementById("startGameBtn"); // Guard against Refer
 const resetBtn = document.getElementById("resetBtn");
 const fullscreenBtn = document.getElementById("fullscreenBtn");
 const soundToggleBtn = document.getElementById("soundToggleBtn");
-const themeToggleBtn = document.getElementById("themeToggleBtn");
 const shareResultBtn = document.getElementById("shareResultBtn");
 const toggleCustomPacksBtn = document.getElementById("toggleCustomPacksBtn");
 const customPacksPanel = document.getElementById("customPacksPanel");
@@ -838,10 +837,6 @@ async function shareResult() {
 // ============= VISUAL THEME =============
 function applyVisualTheme(t) {
   document.documentElement.setAttribute("data-theme", t);
-  if (themeToggleBtn) {
-    themeToggleBtn.textContent = t === "light" ? "\ud83c\udf19" : "\u2600\ufe0f";
-    themeToggleBtn.setAttribute("aria-label", t === "light" ? "Modo oscuro" : "Modo claro");
-  }
 }
 function toggleVisualTheme() {
   const curr = document.documentElement.getAttribute("data-theme") || "dark";
@@ -1171,6 +1166,103 @@ async function createRound() {
   return { createdAt: new Date().toISOString(), theme, ...pack, roles, allRoles };
 }
 
+function clearRoundPresentation() {
+  finalResult.classList.add("hidden");
+  voteList.innerHTML = "";
+  voteResult.classList.add("hidden");
+  voteResult.textContent = "";
+  if (shareResultBtn) shareResultBtn.classList.add("hidden");
+  if (gameOverPanel) gameOverPanel.classList.add("hidden");
+  if (roundHistoryLog) roundHistoryLog.classList.add("hidden");
+  if (roundHistoryList) roundHistoryList.innerHTML = "";
+  if (newRoundBtn) {
+    newRoundBtn.disabled = false;
+    newRoundBtn.classList.remove("hidden");
+  }
+  const badge = document.querySelector(".eliminated-badge");
+  if (badge) badge.remove();
+  if (backHomeBtn) {
+    backHomeBtn.textContent = "🏠 Volver al inicio";
+    backHomeBtn.classList.remove("new-game-btn");
+  }
+  timerDisplay.classList.remove("timer-urgent", "timer-finished");
+  setRoundStatus("");
+  setRoundPhase("debate");
+  renderTimer();
+}
+
+function resetRoundState({ preserveConfig = false } = {}) {
+  stopTimer();
+  state.round = null;
+  state.revealIndex = 0;
+  state.roleIsVisible = false;
+  state.timerSeconds = state.timerTotalSeconds;
+  state.voteTally = {};
+  state.votedPlayer = null;
+  state.roundNumber = 0;
+  state.roundPhase = "debate";
+  state.eliminatedPlayers = [];
+  state.gameActive = false;
+  state.persistentRoles = null;
+  state.persistentSecretWord = "";
+  state.persistentDecoyWord = "";
+  state.persistentTheme = "";
+  state.roundHistory = [];
+  state.gameOver = false;
+  exitGameMode();
+  clearRoundPresentation();
+  if (!preserveConfig) {
+    playersInput.disabled = false;
+    impostorsInput.disabled = false;
+    whitesInput.disabled = false;
+    showMainView("home");
+  }
+}
+
+async function launchConfiguredGame() {
+  try {
+    startBtn.disabled = true;
+    state.round = await createRound();
+
+    if (typeof gtag === "function") {
+      gtag("event", "game_start", {
+        theme: state.round.theme,
+        players: state.round.roles.length,
+        impostors: state.round.roles.filter(r => r.role === "impostor").length
+      });
+    }
+
+    state.revealIndex = 0;
+    state.roundNumber += 1;
+    state.gameActive = true;
+    if (state.persistentRoles) {
+      playersInput.disabled = true;
+      impostorsInput.disabled = true;
+      whitesInput.disabled = true;
+    }
+    if (newRoundBtn && state.persistentRoles) newRoundBtn.classList.add("hidden");
+    if (roundNumberEl) roundNumberEl.textContent = state.roundNumber;
+    finalResult.classList.add("hidden");
+    await playSorteoAnimation(state.round.roles);
+    enterGameMode();
+    dealSection.classList.remove("hidden");
+    roundSection.classList.add("hidden");
+    gameProgressBar.style.width = "0%";
+    showHandoffScreen();
+    showToast("¡Ronda creada! A jugar");
+  } catch (error) {
+    console.error(error);
+    showToast(error.message || "No se pudo crear la ronda.", "error");
+  } finally {
+    startBtn.disabled = false;
+  }
+}
+
+async function replayWithSameSetup() {
+  resetRoundState({ preserveConfig: true });
+  await launchConfiguredGame();
+}
+
 // ============= DEAL / REVEAL FLOW =============
 function getRoleEmoji(role) {
   return role === "impostor" ? "\ud83d\udd75\ufe0f" : role === "agente fantasma" ? "\ud83d\udc7b" : "\ud83d\udc64";
@@ -1272,7 +1364,7 @@ function coverRoleAgain() {
 function getSwipeThreshold() {
   const h = swipeTrack.getBoundingClientRect().height;
   const base = Math.max(120, Math.min(220, Math.floor(h * 0.42)));
-  const mult = state.swipeSensitivity === "estricto" ? 1.2 : state.swipeSensitivity === "normal" ? 1 : 0.78;
+  const mult = 0.9;
   return Math.round(base * mult);
 }
 
@@ -1338,7 +1430,7 @@ function goNextPlayer() {
     const overlay = document.createElement("div");
     overlay.className = "sorteo-overlay";
     overlay.innerHTML = `
-      <div class="sorteo-content">
+      <div class="sorteo-content round-starter-modal">
         <div class="sorteo-icon">🎲</div>
         <h2 class="sorteo-title">¡Empieza a hablar!</h2>
         <div class="sorteo-cards">
@@ -1347,7 +1439,7 @@ function goNextPlayer() {
           </div>
         </div>
         <p class="sorteo-sub">Da la primera pista</p>
-        <button id="startAfterDealBtn" class="btn-primary" style="margin-top: 10px; width: 100%">
+        <button id="startAfterDealBtn" class="btn-primary round-starter-btn" style="margin-top: 10px; width: 100%">
           ¡A jugar!
         </button>
       </div>
@@ -1672,7 +1764,10 @@ function showGameOver(result) {
           <div class="game-over-stat"><span class="game-over-stat-value">${result.eliminated}</span><span class="game-over-stat-label">Eliminados</span></div>
           <div class="game-over-stat"><span class="game-over-stat-value">${result.totalPlayers}</span><span class="game-over-stat-label">Jugadores</span></div>
         </div>
-        <button id="shareGameOverBtn" class="primary-action share-btn" type="button" style="margin-top: 1rem; width: 100%;">📤 Comparte este resultado con tus amigos</button>`;
+        <div class="game-over-actions">
+          <button id="replayGameBtn" class="primary-action replay-game-btn" type="button">🔄 Volver a jugar</button>
+          <button id="shareGameOverBtn" class="secondary share-btn game-over-share-btn" type="button">📤 Compartir resultado</button>
+        </div>`;
     } else {
       SFX.alarm();
       gameOverContent.innerHTML = `
@@ -1684,12 +1779,17 @@ function showGameOver(result) {
           <div class="game-over-stat"><span class="game-over-stat-value">${result.eliminated}</span><span class="game-over-stat-label">Eliminados</span></div>
           <div class="game-over-stat"><span class="game-over-stat-value">${result.totalPlayers}</span><span class="game-over-stat-label">Jugadores</span></div>
         </div>
-        <button id="shareGameOverBtn" class="primary-action share-btn" type="button" style="margin-top: 1rem; width: 100%;">📤 Comparte este resultado con tus amigos</button>`;
+        <div class="game-over-actions">
+          <button id="replayGameBtn" class="primary-action replay-game-btn" type="button">🔄 Volver a jugar</button>
+          <button id="shareGameOverBtn" class="secondary share-btn game-over-share-btn" type="button">📤 Compartir resultado</button>
+        </div>`;
     }
 
     // Bind share button
     setTimeout(() => {
+      const replayBtn = document.getElementById("replayGameBtn");
       const btn = document.getElementById("shareGameOverBtn");
+      if (replayBtn) replayBtn.addEventListener("click", replayWithSameSetup);
       if (btn && typeof handleShareResult === "function") {
         btn.addEventListener("click", () => handleShareResult(gameOverContent, btn));
       }
@@ -1975,49 +2075,7 @@ function playSorteoAnimation(roles) {
 
 // ============= RESET =============
 function resetRound() {
-  stopTimer();
-  state.round = null;
-  state.revealIndex = 0;
-  state.roleIsVisible = false;
-  state.timerSeconds = state.timerTotalSeconds;
-  state.voteTally = {};
-  state.votedPlayer = null;
-  state.roundNumber = 0;
-  state.roundPhase = "debate";
-  state.eliminatedPlayers = [];
-  state.gameActive = false;
-  state.persistentRoles = null;
-  state.persistentSecretWord = "";
-  state.persistentDecoyWord = "";
-  state.persistentTheme = "";
-  state.roundHistory = [];
-  state.gameOver = false;
-  exitGameMode();
-  finalResult.classList.add("hidden");
-  // Clean up eliminated badge (lives as sibling of voteList)
-  const oldBadge = document.querySelector(".eliminated-badge");
-  if (oldBadge) oldBadge.remove();
-  voteList.innerHTML = "";
-  voteResult.classList.add("hidden");
-  voteResult.textContent = "";
-  if (shareResultBtn) shareResultBtn.classList.add("hidden");
-  if (gameOverPanel) gameOverPanel.classList.add("hidden");
-  if (roundHistoryLog) roundHistoryLog.classList.add("hidden");
-  if (roundHistoryList) roundHistoryList.innerHTML = "";
-  if (newRoundBtn) { newRoundBtn.disabled = false; newRoundBtn.classList.remove("hidden"); }
-  // Remove eliminated badge if exists (sibling of voteList)
-  const existingBadge = document.querySelector(".eliminated-badge");
-  if (existingBadge) existingBadge.remove();
-  if (backHomeBtn) { backHomeBtn.textContent = "\ud83c\udfe0 Volver al inicio"; backHomeBtn.classList.remove("new-game-btn"); }
-  // Re-enable config inputs
-  playersInput.disabled = false;
-  impostorsInput.disabled = false;
-  whitesInput.disabled = false;
-  timerDisplay.classList.remove("timer-urgent", "timer-finished");
-  setRoundStatus("");
-  setRoundPhase("debate");
-  renderTimer();
-  showMainView("home");
+  resetRoundState();
 }
 
 async function toggleFullscreen() {
@@ -2072,47 +2130,7 @@ if (changeCategoryBtn) changeCategoryBtn.addEventListener("click", () => showMai
 
 // ============= EVENT LISTENERS =============
 // startBtn is already mapped to startGameBtn in DOM refs, so no extra listener needed
-startBtn.addEventListener("click", async () => {
-  try {
-    startBtn.disabled = true;
-    state.round = await createRound();
-
-    // GA4 Tracking (Measurement ID setup in index.html)
-    if (typeof gtag === "function") {
-      gtag("event", "game_start", {
-        theme: state.round.theme,
-        players: state.round.roles.length,
-        impostors: state.round.roles.filter(r => r.role === "impostor").length
-      });
-    }
-
-    state.revealIndex = 0;
-    state.roundNumber += 1;
-    state.gameActive = true;
-    // Lock config inputs once persistent game starts
-    if (state.persistentRoles) {
-      playersInput.disabled = true;
-      impostorsInput.disabled = true;
-      whitesInput.disabled = true;
-    }
-    // Hide "Nueva ronda" during active persistent game
-    if (newRoundBtn && state.persistentRoles) newRoundBtn.classList.add("hidden");
-    if (roundNumberEl) roundNumberEl.textContent = state.roundNumber;
-    finalResult.classList.add("hidden");
-    await playSorteoAnimation(state.round.roles);
-    enterGameMode();
-    dealSection.classList.remove("hidden");
-    roundSection.classList.add("hidden");
-    gameProgressBar.style.width = "0%";
-    showHandoffScreen();
-    showToast("\u00a1Ronda creada! A jugar");
-  } catch (error) {
-    console.error(error);
-    showToast(error.message || "No se pudo crear la ronda.", "error");
-  } finally {
-    startBtn.disabled = false;
-  }
-});
+startBtn.addEventListener("click", launchConfiguredGame);
 
 if (readyBtn) readyBtn.addEventListener("click", showSwipeScreen);
 if (nextBtn) nextBtn.addEventListener("click", goNextPlayer);
@@ -2206,7 +2224,6 @@ if (soundToggleBtn) {
   soundToggleBtn.textContent = SFX.enabled ? "\ud83d\udd0a" : "\ud83d\udd07";
 }
 
-if (themeToggleBtn) themeToggleBtn.addEventListener("click", toggleVisualTheme);
 if (shareResultBtn) shareResultBtn.addEventListener("click", shareResult);
 
 for (const b of timerPresetButtons) {
@@ -2252,9 +2269,7 @@ if (adultThemesToggle) adultThemesToggle.addEventListener("change", () => {
   renderThemeChips();
 });
 
-for (const b of swipeLevelButtons) {
-  b.addEventListener("click", () => setSwipeSensitivity(b.dataset.swipeLevel || "normal"));
-}
+setSwipeSensitivity("normal");
 
 if (toggleCustomPacksBtn && customPacksPanel) {
   toggleCustomPacksBtn.addEventListener("click", () => {
@@ -2442,7 +2457,7 @@ if (playersInput) {
 }
 
 // ============= UPDATE SYSTEM =============
-const APP_VERSION = "1.1.0"; // Increment this version to trigger a new popup
+const APP_VERSION = "1.1.0";
 
 const UPDATE_NOTES = {
   "1.1.0": {
@@ -2468,35 +2483,7 @@ const UPDATE_NOTES = {
   }
 };
 
-function showNewContentAlert() {
-  const ALREADY_SEEN_KEY = "impostor_seen_version";
-  const lastSeen = localStorage.getItem(ALREADY_SEEN_KEY);
-
-  if (lastSeen !== APP_VERSION && UPDATE_NOTES[APP_VERSION]) {
-    setTimeout(() => {
-      if (typeof Swal !== "undefined") {
-        const update = UPDATE_NOTES[APP_VERSION];
-        Swal.fire({
-          title: update.title,
-          html: update.html,
-          confirmButtonText: update.confirmText,
-          background: 'transparent',
-          customClass: {
-            title: 'swal-title-custom',
-            popup: 'swal-popup-custom',
-            confirmButton: 'swal-btn-custom'
-          }
-        }).then(() => {
-          localStorage.setItem(ALREADY_SEEN_KEY, APP_VERSION);
-        });
-      }
-    }, 1000);
-  }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  showNewContentAlert();
-});
+function showNewContentAlert() { }
 if (impostorsInput) {
   impostorsInput.value = state.impostorCount;
   impostorsInput.addEventListener("change", (e) => { state.impostorCount = Number(e.target.value); saveConfig(); });
