@@ -1071,13 +1071,19 @@ function getThemePool(themeKey, includeAdult) {
     return pairs;
   }
 
+  function getAvailableThemeKeys(useAdultThemes) {
+    return themes
+      .filter(t => t.key !== "aleatorio")
+      .filter(t => useAdultThemes || !t.adult)
+      .map(t => t.key)
+      .filter(key => localWords[key]);
+  }
+
   if (themeKey === "aleatorio") {
-    initialPool = Object.keys(localWords)
-      .filter(k => !k.startsWith("custom_") && (includeAdult || k !== "adulto"))
+    initialPool = getAvailableThemeKeys(includeAdult)
       .flatMap(k => extractPairs(localWords[k], k));
   } else if (themeKey === "adulto" && !includeAdult) {
-    initialPool = Object.keys(localWords)
-      .filter(k => !k.startsWith("custom_") && k !== "adulto")
+    initialPool = getAvailableThemeKeys(false)
       .flatMap(k => extractPairs(localWords[k], k));
   } else {
     initialPool = extractPairs(localWords[themeKey] ?? localWords.aleatorio, themeKey);
