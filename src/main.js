@@ -130,7 +130,12 @@ const localWords = {
     ["gazpacho moreliano", "bio-bio"], ["tostadas de tinga", "tostadas de pata"],
     ["atole de guayaba", "champurrado"], ["elotes preparados", "esquites con chile"],
     ["tacos de suadero", "tacos de longaniza"], ["enchiladas potosinas", "enchiladas mineras"],
-    ["caldo de oso", "menudo norteño"]
+    ["caldo de oso", "menudo norteño"], ["molletes", "croque monsieur"], ["bísquet", "cuernito"],
+    ["ensalada césar", "ensalada griega"], ["calzone", "empanada argentina"], ["yakimeshi", "arroz frito"],
+    ["boneless", "alitas"], ["tequeños", "deditos de queso"], ["croissant", "pan brioche"],
+    ["marquesita", "crepa"], ["fresas con crema", "duraznos en almíbar"], ["chocoflan", "tres leches"],
+    ["caldo tlalpeño", "sopa azteca"], ["milanesa", "pollo empanizado"], ["machaca", "arrachera"],
+    ["coctel de camarón", "vuelve a la vida"], ["botana", "antojito"], ["antojitos mexicanos", "comida corrida"]
   ],
   lugares: [
     ["aeropuerto", "terminal"], ["hospital", "clínica"], ["playa", "isla"], ["escuela", "universidad"],
@@ -192,7 +197,12 @@ const localWords = {
     ["videollamada", "mensaje de voz"], ["sticker pack", "gif animado"], ["estado de WhatsApp", "historia de Instagram"],
     ["selfie", "foto de grupo"], ["filtro de belleza", "sin filtro"], ["dark mode", "modo noche"],
     ["cuenta premium", "cuenta gratis"], ["unboxing", "review"], ["tutorial", "guía rápida"],
-    ["phishing", "fraude electrónico"], ["CURP en línea", "e.firma"]
+    ["phishing", "fraude electrónico"], ["CURP en línea", "e.firma"], ["airdrop", "bluetooth"],
+    ["smart home", "casa automatizada"], ["domótica", "automatización"], ["captcha", "verificación"],
+    ["token", "código temporal"], ["wallet digital", "billetera física"], ["deepfake", "foto editada"],
+    ["chatbot", "asistente virtual"], ["prompt", "instrucción"], ["nube compartida", "USB"],
+    ["pantalla OLED", "pantalla LCD"], ["teclado mecánico", "teclado de membrana"], ["monitor ultrawide", "monitor curvo"],
+    ["reels", "shorts"], ["viralizar", "posicionar"], ["stream deck", "mezcladora"], ["geolocalización", "ubicación manual"]
   ],
   deportes: [
     ["futbol", "rugby"], ["natación", "waterpolo"], ["tenis", "bádminton"], ["boxeo", "karate"],
@@ -444,6 +454,27 @@ const localWords = {
       ["sentones", "brincos"], ["tijeras", "tortilleras"], ["agacharse", "ponerse en 4"], ["escupir", "tragar"],
       [" lubricante", "saliva"], ["anal", "oral"], ["69", "posición"], ["gemidos", "gritos"],
       ["squirting", "mojada"], ["correrse", "chorrear"], ["dedo", "mano"], ["venirse en la cara", "facial"]
+    ],
+    "Fiesta y Excesos": [
+      ["peda", "borrachera"], ["cruda", "resaca"], ["desmadre", "escándalo"],
+      ["cigarro", "vape"], ["porro", "mota"], ["after", "pre"], ["antro", "bar"],
+      ["table dance", "strip club"], ["chelas", "cubetas"], ["caguama", "caguamita"],
+      ["VIP", "general"], ["perreo", "reggaetón"], ["ligar", "levante"], ["manoseo", "agarrón"],
+      ["beso borracho", "beso de verdad"], ["amnesia de peda", "blackout"], ["cruda moral", "cruda física"],
+      ["despedida de soltera", "despedida de soltero"], ["hotel", "motel de paso"], ["coche", "asiento trasero"],
+      ["botella gratis", "cubeta promo"], ["mesa reservada", "mesa improvisada"], ["DJ invitado", "playlist del compa"],
+      ["amigo borracho", "amigo cuidador"], ["beso en el antro", "beso en la peda casera"]
+    ],
+    "Chisme y Traición": [
+      ["chisme", "chismecito"], ["chisme caliente", "chisme jugoso"], ["hablar a espaldas", "hablar en la cara"],
+      ["falso amigo", "enemigo declarado"], ["traición", "infidelidad"], ["puñalada trapera", "sabotaje"],
+      ["chisme de oficina", "chisme de WhatsApp"], ["indirecta", "subtuit"], ["cancelado", "funado"],
+      ["captura de pantalla", "audio filtrado"], ["foto comprometedora", "video íntimo"], ["venganza", "justicia"],
+      ["rival", "enemiga"], ["envidia", "doble cara"], ["metiche", "chismoso"],
+      ["bloqueo sutil", "bloqueo dramático"], ["eliminado del grupo", "expulsado del grupo"],
+      ["ex mejor amiga", "nueva mejor amiga"], ["amiga del ex", "enemiga del ex"], ["corazoncito rojo", "reacción triste"],
+      ["visto en grupo", "ignorado en privado"], ["secreto de amigas", "secreto ventilado"], ["quemar en historias", "quemar en persona"],
+      ["filtrar conversación", "borrar mensajes"], ["pantallazo", "evidencia"]
     ]
   },
   memes: [
@@ -466,7 +497,12 @@ const localWords = {
     ["fresa vs naco", "fifí vs prole"], ["ya llegó el que andaba mal", "ya llegó el que se tardó"],
     ["el compa que no paga", "el compa que siempre paga"], ["sí es penal", "no era penal"],
     ["el que grita en el cine", "el que come recio"], ["modo nerd", "modo vividor"],
-    ["meme del pollito", "meme del gato negro"], ["cuando hay pozole en casa", "cuando hay caldo de pollo"]
+    ["meme del pollito", "meme del gato negro"], ["cuando hay pozole en casa", "cuando hay caldo de pollo"],
+    ["gato con tenis", "perrito musculoso"], ["cuando depositan", "cuando cobran"], ["lunes otra vez", "viernes por fin"],
+    ["yo bien fresco", "yo todo tieso"], ["modo avión emocional", "modo intenso"], ["la jefa", "el admin del grupo"],
+    ["ya siéntese señora", "ya duérmase señora"], ["meme de piolín", "frase motivacional cursed"],
+    ["se viene cosita", "se canceló la cosita"], ["godín en quincena", "godín sin quincena"], ["yo merengues", "tú merengues"],
+    ["qué bendición", "qué maldición"], ["perdón por ser así", "ni perdón ni olvido"]
   ],
   redes: [
     ["Instagram", "TikTok"], ["X (Twitter)", "Threads"], ["YouTube", "Twitch"], ["WhatsApp", "Telegram"],
@@ -483,7 +519,11 @@ const localWords = {
     ["estado de visto", "respuesta tardía"], ["story que caduca", "post fijo"], ["número oculto", "spam de llamadas"],
     ["reacción en vivo", "reacción editada"], ["robo de contenido", "contenido original"],
     ["notificación de cumpleaños", "notificación del banco"], ["primer TikTok", "TikTok viral"],
-    ["comentario de odio", "comentario de apoyo"], ["community notes", "etiqueta de spam"]
+    ["comentario de odio", "comentario de apoyo"], ["community notes", "etiqueta de spam"],
+    ["close friends", "lista pública"], ["mensaje anclado", "mensaje borrado"], ["foto temporal", "foto de perfil"],
+    ["streak", "racha"], ["trend", "challenge"], ["audio viral", "audio original"], ["dueto", "stitch"],
+    ["cuenta privada", "cuenta pública"], ["baneado", "shadowban"], ["nota de Instagram", "estado de WhatsApp"],
+    ["spam de promos", "spam de links"], ["reacción con fueguito", "reacción con corazoncito"]
   ],
   videojuegos: [
     ["Fortnite", "PUBG"], ["Minecraft", "Roblox"], ["PlayStation", "Xbox"], ["Nintendo", "Steam"],
@@ -501,7 +541,65 @@ const localWords = {
     ["modo historia", "modo multijugador"], ["cheater", "jugador legítimo"],
     ["liga amateur", "liga profesional"], ["torneo de FIFA en el antro", "torneo de Mortal Kombat"],
     ["gacha luck", "gacha mala suerte"], ["pase de batalla", "pase gratuito"],
-    ["jugador de móvil", "jugador de consola"], ["noche de gaming", "maratón de juego"]
+    ["jugador de móvil", "jugador de consola"], ["noche de gaming", "maratón de juego"],
+    ["Mario Kart", "Crash Team Racing"], ["Elden Ring", "Dark Souls"], ["Zelda", "Pokémon"], ["Halo", "Gears of War"],
+    ["gacha", "loot box"], ["easter egg", "secreto"], ["DLC", "expansión"], ["juego indie", "triple A"],
+    ["drop legendario", "drop común"], ["farmear", "grindear"], ["teamear", "traicionar"], ["AFK", "desconectado"],
+    ["teabag", "humillación"], ["speedrunner", "casual"], ["crossplay", "pantalla dividida"], ["ranked", "casual"]
+  ],
+  transporte: [
+    ["metro", "metrobús"], ["camión", "combi"], ["taxi", "Uber"], ["avión", "helicóptero"],
+    ["barco", "ferry"], ["moto", "bicicleta"], ["tren", "suburbano"], ["patrulla", "ambulancia"],
+    ["RTP", "pesero"], ["tren maya", "tren suburbano"], ["bicitaxi", "mototaxi"], ["vocho", "tsuru"],
+    ["caseta", "peaje"], ["transbordo", "correspondencia"], ["tarjeta de movilidad", "boleto"],
+    ["ciclovía", "carril confinado"], ["glorieta", "retorno"], ["estacionamiento", "parquímetro"],
+    ["carga pesada", "carga ligera"], ["aduana", "revisión"], ["vuelo nacional", "vuelo internacional"],
+    ["terminal", "andén"], ["cabina", "cockpit"], ["chofer", "copiloto"], ["volante", "manubrio"]
+  ],
+  mitologia: [
+    ["dragón", "fénix"], ["unicornio", "pegaso"], ["elfo", "hada"], ["vampiro", "hombre lobo"],
+    ["zombi", "momia"], ["fantasma", "espectro"], ["bruja", "hechicero"], ["ogro", "troll"],
+    ["Quetzalcóatl", "Kukulkán"], ["Huitzilopochtli", "Tezcatlipoca"], ["nahual", "brujo"], ["chupacabras", "alux"],
+    ["duende", "chaneque"], ["llorona", "Xtabay"], ["mago", "brujo"], ["espada mágica", "varita"],
+    ["poción", "elixir"], ["maldición", "hechizo"], ["castillo embrujado", "mansión vieja"], ["tesoro", "reliquia"],
+    ["portal", "puerta mágica"], ["grimorio", "libro de hechizos"], ["runas", "jeroglíficos"], ["basilisco", "sierpe"],
+    ["oráculo", "profecía"]
+  ],
+  bebidas: [
+    ["cerveza", "chela"], ["tequila", "mezcal"], ["vodka", "ron"], ["whisky", "bourbon"],
+    ["vino tinto", "vino blanco"], ["margarita", "paloma"], ["michelada", "chelada"], ["mojito", "caipiriña"],
+    ["gintonic", "tom collins"], ["caguama", "caguamita"], ["tarro", "latón"], ["corona", "modelo"],
+    ["tecate", "indio"], ["victoria", "pacifico"], ["caballito", "shot"], ["copa", "vaso"],
+    ["pulque", "tejuino"], ["aguardiente", "piquete"], ["cantina", "bar"], ["cantarito", "caguamero"],
+    ["brindis", "salud"], ["resaca", "cruda"], ["agua mineral", "refresco"], ["café de olla", "americano"],
+    ["chocolate caliente", "atole"]
+  ],
+  moda: [
+    ["tenis", "zapatos"], ["chamarra", "suéter"], ["playera", "camiseta"], ["jeans", "pants"],
+    ["falda", "vestido"], ["corbata", "moño"], ["sombrero", "gorra"], ["bufanda", "chalina"],
+    ["reloj", "pulsera"], ["aretes", "collar"], ["lentes de sol", "lentes normales"], ["mochila", "bolsa"],
+    ["cinturón", "tirantes"], ["tacones", "flats"], ["oversize", "ajustado"], ["vintage", "retro"],
+    ["streetwear", "formal"], ["y2k", "aesthetic"], ["marca de lujo", "marca económica"], ["imitación", "auténtico"],
+    ["outfit", "look"], ["tendencia", "clásico"], ["nike", "adidas"], ["zara", "bershka"],
+    ["paca", "boutique"]
+  ],
+  salud: [
+    ["gym", "crossfit"], ["yoga", "pilates"], ["dieta", "régimen"], ["proteína", "creatina"],
+    ["suplemento", "vitamina"], ["acupuntura", "masaje"], ["terapia", "consulta"], ["ansiedad", "estrés"],
+    ["insomnio", "jet lag"], ["migrana", "dolor de cabeza"], ["alergia", "intolerancia"], ["médico general", "especialista"],
+    ["hospital", "clínica"], ["urgencias", "hospitalización"], ["receta", "diagnóstico"], ["análisis", "estudios"],
+    ["rayos X", "resonancia"], ["vacuna", "inyección"], ["pastilla", "cápsula"], ["seguro social", "hospital privado"],
+    ["remedio casero", "fármaco"], ["curandero", "médico"], ["huesero", "quiropráctico"], ["sobador", "terapeuta"],
+    ["bienestar", "condición física"]
+  ],
+  educacion: [
+    ["primaria", "secundaria"], ["prepa", "bachillerato"], ["universidad", "instituto"], ["licenciatura", "ingeniería"],
+    ["maestría", "doctorado"], ["escuela pública", "escuela privada"], ["SEP", "UNAM"], ["conalep", "cetis"],
+    ["examen", "prueba"], ["tarea", "proyecto"], ["exposición", "reporte"], ["tesis", "tesina"],
+    ["titulación", "cédula"], ["en línea", "presencial"], ["clase virtual", "clase híbrida"], ["tutor", "asesor"],
+    ["biblioteca", "sala de lectura"], ["uniforme", "ropa casual"], ["cuaderno", "libreta"], ["lápiz", "pluma"],
+    ["calculadora", "app"], ["resumen", "mapa mental"], ["parcial", "final"], ["beca", "crédito educativo"],
+    ["regularización", "extraordinario"]
   ],
   regiones: [
     ["CDMX", "Guadalajara"], ["Monterrey", "Tijuana"], ["Oaxaca", "Chiapas"], ["Cancún", "Los Cabos"],
@@ -560,6 +658,7 @@ const themes = [
   { key: "comida", label: "Comida" },
   { key: "lugares", label: "Lugares" },
   { key: "objetos", label: "Objetos" },
+  { key: "transporte", label: "Transporte" },
   { key: "tecnologia", label: "Tecnología" },
   { key: "deportes", label: "Deportes" },
   { key: "animales", label: "Animales" },
@@ -567,7 +666,12 @@ const themes = [
   { key: "peliculas", label: "Películas" },
   { key: "musica", label: "Música" },
   { key: "historia", label: "Historia" },
+  { key: "mitologia", label: "Mitología" },
   { key: "naturaleza", label: "Naturaleza" },
+  { key: "bebidas", label: "Bebidas" },
+  { key: "moda", label: "Moda" },
+  { key: "salud", label: "Salud" },
+  { key: "educacion", label: "Educación" },
   { key: "sofi", label: "Sofi" },
   { key: "memes", label: "Memes" },
   { key: "redes", label: "Redes Sociales" },
@@ -1240,7 +1344,10 @@ const ENGLISH_WORDS = new Set([
   "ska", "k-pop", "j-pop", "dj", "single", "pop", "indie", "country", "folk", "remix", "mashup",
   "tinder", "bumble", "ghostear", "friendzone", "situationship", "catfish", "sexting", "nudes", "stalkear",
   "match", "swipe", "sugar daddy", "sugar mommy", "sugar baby", "onlyfans", "patreon", "crush", "free",
-  "one night stand", "after", "shot", "stripper", "pole dance", "vip", "red flag", "voyeur", "pack", "bdsm", "milf"
+  "one night stand", "after", "shot", "stripper", "pole dance", "vip", "red flag", "voyeur", "pack", "bdsm", "milf",
+  "airdrop", "smart home", "captcha", "token", "wallet digital", "deepfake", "chatbot", "prompt", "reels", "shorts",
+  "close friends", "streak", "trend", "challenge", "dueto", "stitch", "shadowban", "crossplay", "ranked", "casual",
+  "speedrunner", "loot box", "streetwear", "y2k", "aesthetic", "oversize", "crossfit", "bourbon", "tom collins", "cockpit"
 ]);
 
 function getThemePool(themeKey, includeAdult) {
@@ -2483,6 +2590,7 @@ function renderThemeChips() {
     comida: { color: "#00e676", icon: "\u{1F354}", name: "Comida" },
     lugares: { color: "#e040fb", icon: "\u{1F4CD}", name: "Lugares" },
     objetos: { color: "#4dabf7", icon: "\u{1F527}", name: "Objetos" },
+    transporte: { color: "#26a69a", icon: "\u{1F68C}", name: "Transporte" },
     tecnologia: { color: "#26c6da", icon: "\u{1F4BB}", name: "Tecnología" },
     deportes: { color: "#ffd600", icon: "\u26BD", name: "Deportes" },
     animales: { color: "#ff9100", icon: "\u{1F431}", name: "Animales" },
@@ -2490,7 +2598,12 @@ function renderThemeChips() {
     peliculas: { color: "#ff6b81", icon: "\u{1F3AC}", name: "Películas" },
     musica: { color: "#ab47bc", icon: "\u{1F3B5}", name: "Música" },
     historia: { color: "#8d6e63", icon: "\u{1F4DC}", name: "Historia" },
+    mitologia: { color: "#8e24aa", icon: "\u{1F409}", name: "Mitología" },
     naturaleza: { color: "#66bb6a", icon: "\u{1F33F}", name: "Naturaleza" },
+    bebidas: { color: "#ffca28", icon: "\u{1F379}", name: "Bebidas" },
+    moda: { color: "#ec407a", icon: "\u{1F457}", name: "Moda" },
+    salud: { color: "#ef5350", icon: "\u{1FA7A}", name: "Salud" },
+    educacion: { color: "#5c6bc0", icon: "\u{1F393}", name: "Educación" },
     sofi: { color: "#ffb6c1", icon: "\u{1F338}", name: "Sofi" },
     memes: { color: "#ffab40", icon: "\u{1F923}", name: "Memes" },
     redes: { color: "#29b6f6", icon: "\u{1F4F1}", name: "Redes" },
