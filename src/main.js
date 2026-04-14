@@ -86,7 +86,7 @@ try {
   init(); animate();
 })();
 
-// ============= WORD POOLS (~500 pares = 1000+ palabras MX) =============
+// ============= WORD POOLS (~1200+ pares = 2400+ palabras MX) =============
 const localWords = {
   aleatorio: [
     ["volcán", "montaña"], ["wifi", "bluetooth"], ["mango", "papaya"], ["biblioteca", "museo"],
@@ -98,7 +98,14 @@ const localWords = {
     ["chicle", "caramelo"], ["atardecer", "amanecer"], ["cable", "enchufe"], ["llave", "grifo"],
     ["plátano", "manzana"], ["torta", "sándwich"], ["carro", "camioneta"], ["cobija", "sábana"],
     ["calcetín", "zapato"], ["cuchara", "tenedor"], ["banqueta", "calle"], ["nube", "niebla"],
-    ["sofá", "sillón"], ["escoba", "trapeador"], ["cubeta", "bandeja"], ["jabón", "shampoo"]
+    ["sofá", "sillón"], ["escoba", "trapeador"], ["cubeta", "bandeja"], ["jabón", "shampoo"],
+    ["paleta de hielo", "nieve de limón"], ["microbús", "combi"], ["molcajete", "metate"],
+    ["petate", "estera"], ["morral", "costal"], ["mecate", "lazo"], ["tepetate", "adobe"],
+    ["huarache", "chancla"], ["cotorra", "chismosa"], ["piloncillo", "azúcar morena"],
+    ["comal", "sartén"], ["cazuela", "olla"], ["jícara", "guaje"], ["amate", "papel"],
+    ["vochito", "tsuru"], ["troca", "camioneta"], ["fayuca", "contrabando"], ["tianguis", "bazar"],
+    ["palenque", "jaripeo"], ["pozol", "atole"], ["tejate", "champurrado"], ["nixte", "nixtamal"],
+    ["metrobús", "trolebús"], ["mototaxi", "bicitaxi"], ["pulquería", "mezcalería"], ["tlapalería", "ferretería"]
   ],
   comida: [
     ["taco", "burrito"], ["torta", "pambazo"], ["café", "chocolate"], ["sushi", "ramen"],
@@ -111,7 +118,19 @@ const localWords = {
     ["chilaquiles", "enchiladas"], ["michelada", "clamato"], ["esquite", "palomitas"], ["chile relleno", "chile en nogada"],
     ["birria", "barbacoa"], ["tlayuda", "huarache"], ["agua de horchata", "agua de jamaica"], ["camote", "jícama"],
     ["consomé", "caldo de pollo"], ["sopes", "tlacoyos"], ["quesabirria", "tacos al pastor"],
-    ["churro", "crepa"], ["pizza", "lasaña"], ["mariscos", "pescado frito"], ["sopa de fideo", "sopa de lentejas"]
+    ["churro", "crepa"], ["pizza", "lasaña"], ["mariscos", "pescado frito"], ["sopa de fideo", "sopa de lentejas"],
+    ["cochinita pibil", "poc chuc"], ["chiles en nogada", "rellena"], ["caldo de res", "caldo tlalpeño"],
+    ["enchiladas verdes", "enchiladas suizas"], ["tacos de canasta", "tacos de guisado"],
+    ["picadillo", "tinga"], ["nopales asados", "verdolagas"], ["flautas", "taquitos dorados"],
+    ["memela", "totopo"], ["tepache", "agua de tamarindo"], ["tejuino", "tascalate"],
+    ["chalupa", "panuchos"], ["torta ahogada", "torta de chilaquil"], ["morisqueta", "enfrijoladas"],
+    ["tamales oaxaqueños", "tamales de rajas"], ["caldo de camarón", "caldo de pollo"],
+    ["chiles chipotles", "chiles guajillos"], ["mole negro", "mole coloradito"],
+    ["pambazos", "volcanes"], ["sincronizadas", "vampiros"], ["pepitas", "cacahuates japoneses"],
+    ["gazpacho moreliano", "bio-bio"], ["tostadas de tinga", "tostadas de pata"],
+    ["atole de guayaba", "champurrado"], ["elotes preparados", "esquites con chile"],
+    ["tacos de suadero", "tacos de longaniza"], ["enchiladas potosinas", "enchiladas mineras"],
+    ["caldo de oso", "menudo norteño"]
   ],
   lugares: [
     ["aeropuerto", "terminal"], ["hospital", "clínica"], ["playa", "isla"], ["escuela", "universidad"],
@@ -123,7 +142,18 @@ const localWords = {
     ["volcán", "cráter"], ["cascada", "manantial"], ["puente", "muelle"], ["frontera", "aduana"],
     ["mercado", "tianguis"], ["cantina", "bar"], ["plaza", "zócalo"], ["gasolinera", "taller"],
     ["oxxo", "farmacia"], ["taquería", "puesto"], ["cenote", "balneario"], ["antro", "salón de fiestas"],
-    ["gimnasio", "deportivo"], ["museo", "galería"], ["biblioteca", "librería"], ["estacionamiento", "parquímetro"]
+    ["gimnasio", "deportivo"], ["museo", "galería"], ["biblioteca", "librería"], ["estacionamiento", "parquímetro"],
+    ["vecindad", "condominio"], ["tepito", "la merced"], ["xochimilco", "trajinera"], ["chapultepec", "alameda"],
+    ["tlatelolco", "tlalpan"], ["coyoacán", "san ángel"], ["santa fe", "polanco"], ["tepito", "doctores"],
+    ["zócalo capitalino", "plancha"], ["palacio nacional", "palacio de bellas artes"],
+    ["pirámide de teotihuacan", "pirámide de chichén itzá"], ["tulum", "palenque"],
+    ["monte albán", "mitla"], ["guanajuato capital", "san miguel de allende"],
+    ["puerto vallarta", "manzanillo"], ["huatulco", "puerto escondido"],
+    ["barrancas del cobre", "cascadas de agua azul"], ["hierve el agua", "grutas de cacahuamilpa"],
+    ["mercado de jamaica", "mercado de sonora"], ["la lagunilla", "el chopo"],
+    ["parque hundido", "parque lincoln"], ["zona rosa", "condesa"], ["roma norte", "narvarte"],
+    ["iztapalapa", "ecatepec"], ["neza", "chimalhuacán"], ["tlajomulco", "zapopan"],
+    ["regiomontano", "monstruo del norte"]
   ],
   objetos: [
     ["teclado", "mouse"], ["paraguas", "impermeable"], ["linterna", "vela"], ["reloj", "cronómetro"],
@@ -135,7 +165,13 @@ const localWords = {
     ["pañuelo", "toalla"], ["escoba", "trapeador"], ["botella", "jarra"], ["sobre", "carpeta"],
     ["control remoto", "pilas"], ["cinturón", "tirantes"], ["encendedor", "cerillos"], ["cartera", "monedero"],
     ["manguera", "regadera"], ["engrapadora", "clips"], ["cinta adhesiva", "pegamento"], ["chamarra", "suéter"],
-    ["plancha", "secadora"], ["peine", "cepillo"], ["auriculares", "bocina"], ["perfume", "desodorante"]
+    ["plancha", "secadora"], ["peine", "cepillo"], ["auriculares", "bocina"], ["perfume", "desodorante"],
+    ["bolsa de mandado", "red de mercado"], ["paliacate", "pañoleta"], ["metlapil", "molcajete"],
+    ["tapaojos", "antifaz"], ["termo", "cantimplora"], ["veladora", "cirio"], ["morral bordado", "bolsa de yute"],
+    ["paraguas plegable", "chubasquero"], ["petaca", "maletín"], ["servilleta de tela", "manteles"],
+    ["coladera", "tapón"], ["cubrebocas", "tapabocas"], ["garrafón", "cántaro"],
+    ["escuadra", "cartabón"], ["nivel de burbuja", "plomada"], ["guantes de latex", "guantes de carnaza"],
+    ["pinza de ropa", "gancho"], ["piedra de rio", "adoquín"]
   ],
   tecnologia: [
     ["nube", "servidor"], ["robot", "dron"], ["python", "javascript"], ["contraseña", "pin"],
@@ -149,7 +185,14 @@ const localWords = {
     ["captura de pantalla", "grabación"], ["meme", "gif"], ["TikTok", "YouTube"], ["spam", "phishing"],
     ["hashtag", "trending"], ["notificación", "alerta"], ["lag", "ping"],
     ["ChatGPT", "Gemini"], ["criptomoneda", "NFT"], ["influencer", "streamer"], ["ciberseguridad", "código fuente"],
-    ["smartwatch", "banda deportiva"], ["pantalla táctil", "teclado físico"], ["cargador inalámbrico", "power bank"]
+    ["smartwatch", "banda deportiva"], ["pantalla táctil", "teclado físico"], ["cargador inalámbrico", "power bank"],
+    ["red social", "plataforma digital"], ["perfil falso", "bot"], ["correo basura", "notificación molesta"],
+    ["actualización", "parche"], ["modo avión", "modo silencio"], ["pantalla partida", "multitarea"],
+    ["contraseña segura", "doble factor"], ["nube privada", "servidor local"], ["app de delivery", "app del banco"],
+    ["videollamada", "mensaje de voz"], ["sticker pack", "gif animado"], ["estado de WhatsApp", "historia de Instagram"],
+    ["selfie", "foto de grupo"], ["filtro de belleza", "sin filtro"], ["dark mode", "modo noche"],
+    ["cuenta premium", "cuenta gratis"], ["unboxing", "review"], ["tutorial", "guía rápida"],
+    ["phishing", "fraude electrónico"], ["CURP en línea", "e.firma"]
   ],
   deportes: [
     ["futbol", "rugby"], ["natación", "waterpolo"], ["tenis", "bádminton"], ["boxeo", "karate"],
@@ -162,7 +205,15 @@ const localWords = {
     ["frontón", "raquetbol"], ["clavados", "nado sincronizado"], ["fútbol americano", "flag football"],
     ["corrida", "jaripeo"], ["penal", "tiro libre"], ["cascarita", "reta"], ["gol", "touchdown"], ["porra", "barra"],
     ["Fórmula 1", "NASCAR"], ["esports", "gaming"], ["Lucha Libre AAA", "WWE"], ["Copa del Mundo", "Juegos Olímpicos"],
-    ["gimnasia", "ballet"], ["polo", "críquet"], ["alpinismo", "senderismo"]
+    ["gimnasia", "ballet"], ["polo", "críquet"], ["alpinismo", "senderismo"],
+    ["Checo Pérez", "Memo Ochoa"], ["el Canelo", "el Choclo"], ["Hugo Sánchez", "Cuauhtémoc Blanco"],
+    ["Chivas", "América"], ["Cruz Azul", "Pumas"], ["Tigres", "Rayados"], ["Toluca", "Santos"],
+    ["estadio Azteca", "estadio BBVA"], ["Liga MX", "Liga de Expansión"], ["Selección Nacional", "Sub-20"],
+    ["voleibol de playa", "natación artística"], ["pelota mixteca", "ulama"],
+    ["maratón de CDMX", "carrera de montaña"], ["campeón", "subcampeón"],
+    ["entrenador", "auxiliar técnico"], ["árbitro", "VAR"], ["tiempo extra", "penales"],
+    ["torneo Apertura", "torneo Clausura"], ["guarura del club", "porra brava"],
+    ["fichaje", "préstamo"], ["goleador", "portero"], ["cancha sintética", "cancha de tierra"]
   ],
   animales: [
     ["gato", "león"], ["águila", "halcón"], ["delfín", "tiburón"], ["abeja", "avispa"],
@@ -174,7 +225,13 @@ const localWords = {
     ["gorila", "chimpancé"], ["jirafa", "avestruz"], ["pavo real", "flamenco"], ["rata", "hámster"],
     ["tlacuache", "mapache"], ["ajolote", "salamandra"], ["colibrí", "golondrina"], ["armadillo", "puercoespín"],
     ["chapulín", "grillo"], ["guajolote", "gallina"], ["xoloitzcuintle", "chihuahua"], ["quetzal", "tucán"],
-    ["koala", "canguro"], ["perezoso", "mono"], ["escorpión", "alacrán"], ["ciervo", "venado"]
+    ["koala", "canguro"], ["perezoso", "mono"], ["escorpión", "alacrán"], ["ciervo", "venado"],
+    ["jaguar", "puma"], ["tapir", "pecarí"], ["manatí", "delfín rosado"], ["vaquita marina", "totoaba"],
+    ["mono aullador", "mono araña"], ["ocelote", "margay"], ["águila real", "cóndor"],
+    ["víbora de cascabel", "coralillo"], ["boa", "nauyaca"], ["teporingo", "conejo de los volcanes"],
+    ["axolotl", "cecilia"], ["perrito de la pradera", "tusa"], ["zanate", "tordo"],
+    ["perico", "cotorra"], ["chachalaca", "faisán"], ["tejón", "coatí"],
+    ["coyote", "lobo gris mexicano"], ["berrendo", "venado cola blanca"]
   ],
   profesiones: [
     ["doctor", "enfermero"], ["abogado", "juez"], ["chef", "pastelero"], ["piloto", "astronauta"],
@@ -187,7 +244,13 @@ const localWords = {
     ["influencer", "youtuber"], ["locutor", "conductor de TV"], ["chofer", "taxista"], ["estilista", "barbero"],
     ["taquero", "panadero"], ["herrero", "soldador"], ["partera", "doula"], ["chamán", "curandero"],
     ["creador de contenido", "tiktoker"], ["community manager", "editor de video"], ["coach de vida", "terapeuta"],
-    ["cerrajero", "relojero"], ["pintor de brocha gorda", "yesero"]
+    ["cerrajero", "relojero"], ["pintor de brocha gorda", "yesero"],
+    ["tortillera", "taquera"], ["voceador", "papelero"], ["bolero", "lustrador"],
+    ["merolico", "marchante"], ["tepachero", "agüero"], ["pollero", "coyote"],
+    ["rezandero", "sacristán"], ["curandera", "huesero"], ["sobador", "quiropráctico"],
+    ["ambulante", "tianguista"], ["fontanero", "plomero"], ["maestro de obra", "contratista"],
+    ["notario", "escribano"], ["síndico", "delegado"], ["diputado", "senador"],
+    ["coyote del SAT", "contador"], ["repartidor", "mensajero en moto"], ["velador", "guardia de seguridad"]
   ],
   peliculas: [
     ["terror", "suspenso"], ["comedia", "parodia"], ["Marvel", "DC"], ["Pixar", "DreamWorks"],
@@ -199,7 +262,18 @@ const localWords = {
     ["Harry Potter", "Señor de los Anillos"], ["Batman", "Superman"], ["Avengers", "Justice League"],
     ["Netflix", "Disney Plus"], ["thriller", "misterio"], ["villano", "héroe"], ["saga", "trilogía"],
     ["serie", "telenovela"], ["trama", "spoiler"], ["cámara lenta", "time lapse"], ["CGI", "efectos prácticos"],
-    ["blockbuster", "cine de arte"], ["clacketazo", "corte"], ["efectos de sonido", "banda sonora"]
+    ["blockbuster", "cine de arte"], ["clacketazo", "corte"], ["efectos de sonido", "banda sonora"],
+    ["Roma", "Y tu mamá también"], ["Amores Perros", "El laberinto del fauno"], ["Coco", "Encanto"],
+    ["Guillermo del Toro", "Alfonso Cuarón"], ["Alejandro González Iñárritu", "Carlos Reygadas"],
+    ["telenovela Televisa", "telenovela TV Azteca"], ["la Rosa de Guadalupe", "Como dice el dicho"],
+    ["Rebelde", "Clase 406"], ["El Chavo del 8", "El Chapulín Colorado"],
+    ["Cantinflas", "Tin Tan"], ["María Félix", "Dolores del Río"], ["Pedro Infante", "Jorge Negrete"],
+    ["Luis Buñuel", "Emilio Fernández"], ["Salma Hayek", "Gael García Bernal"],
+    ["Frida", "Kahlo biopic"], ["Club de Cuervos", "Luis Miguel la serie"],
+    ["Narcos México", "El señor de los cielos"], ["Ingobernable", "División Palermo"],
+    ["Nosotros los Nobles", "No manches Frida"], ["A la mala", "Hazlo como hombre"],
+    ["doblaje latino", "doblaje neutro"], ["Cartoon Network", "Canal 5"],
+    ["Cinépolis", "Cinemex"], ["cinema4D", "Pixar Inside Out"]
   ],
   musica: [
     ["guitarra", "bajo"], ["reggaetón", "trap"], ["piano", "órgano"], ["rock", "punk"],
@@ -211,7 +285,15 @@ const localWords = {
     ["estribillo", "verso"], ["balada", "bolero"], ["pop", "indie"], ["country", "folk"],
     ["corrido", "banda"], ["son jarocho", "huapango"], ["ranchera", "sierreña"], ["perreo", "dembow"],
     ["chilena", "son cubano"], ["vals", "danzón"], ["karaoke", "dueto"], ["mashup", "remix"],
-    ["Spotify", "Apple Music"], ["mp3", "wav"], ["solista", "grupo vocal"]
+    ["Spotify", "Apple Music"], ["mp3", "wav"], ["solista", "grupo vocal"],
+    ["corrido tumbado", "corrido bélico"], ["sierreño", "grupero"], ["banda sinaloense", "tambora"],
+    ["música de carnaval", "música de feria"], ["cumbia villera", "cumbia norteña"],
+    ["Luis Miguel", "Juan Gabriel"], ["Alejandro Fernández", "Vicente Fernández"],
+    ["Café Tacvba", "Molotov"], ["Maná", "Los Fabulosos Cadillacs"], ["Natalia Lafourcade", "Carla Morrison"],
+    ["Peso Pluma", "Nodal"], ["Paquita la del Barrio", "Ana Gabriel"], ["Los Panchos", "Los Dandys"],
+    ["La Sonora Santanera", "Grupo Límite"], ["Bronco", "Los Bukis"],
+    ["Tropicana", "Beat 100.3"], ["OCESA", "CIE"], ["palenque norteño", "tocada en rancho"],
+    ["trova yucateca", "son istmeño"], ["jarabe tapatío", "danza azteca"]
   ],
   historia: [
     ["Egipto", "Roma"], ["revolución", "independencia"], ["medieval", "renacimiento"], ["samurái", "ninja"],
@@ -224,7 +306,17 @@ const localWords = {
     ["tratado", "alianza"], ["armadura", "escudo"], ["Zapata", "Villa"], ["águila", "serpiente"],
     ["Tenochtitlan", "Tlatelolco"], ["códice", "jeroglífico"], ["Moctezuma", "Cuauhtémoc"],
     ["virrey", "caudillo"], ["hacienda", "encomienda"], ["grito de Dolores", "Plan de Iguala"],
-    ["Revolución Francesa", "Guerra Civil"], ["Revolución Industrial", "Ilustración"]
+    ["Revolución Francesa", "Guerra Civil"], ["Revolución Industrial", "Ilustración"],
+    ["Hernán Cortés", "Pedro de Alvarado"], ["Malinche", "Jerónimo de Aguilar"],
+    ["Benito Juárez", "Porfirio Díaz"], ["Miguel Hidalgo", "José María Morelos"],
+    ["Josefa Ortiz de Domínguez", "Leona Vicario"], ["Vicente Guerrero", "Agustín de Iturbide"],
+    ["Plan de Ayala", "Plan de San Luis"], ["cristero", "zapatista"],
+    ["Imperio Azteca", "Triple Alianza"], ["Tlatoani", "Cihuacóatl"],
+    ["sacrificio humano", "ofrenda"], ["Quetzalcóatl", "Tláloc"], ["Huitzilopochtli", "Coatlicue"],
+    ["piedra del sol", "calendario azteca"], ["juego de pelota", "tlachtli"],
+    ["calpulli", "altepetl"], ["pochteca", "tlatoani"], ["conquista de México", "caída de Tenochtitlan"],
+    ["tlaxcalteca", "cholulteca"], ["obsidiana", "pedernal"], ["Tepexpan", "hombre de Tepexpan"],
+    ["cultura olmeca", "cultura teotihuacana"], ["Tula", "Teotihuacan"]
   ],
   naturaleza: [
     ["volcán", "géiser"], ["tsunami", "huracán"], ["bosque", "selva"], ["río", "cascada"],
@@ -236,7 +328,13 @@ const localWords = {
     ["raíz", "tronco"], ["hoja", "pétalo"], ["semilla", "brote"], ["marea", "corriente"],
     ["cenote", "lago"], ["nopal", "maguey"], ["ceiba", "ahuehuete"], ["jaguar", "puma"],
     ["chapulín", "escarabajo"], ["obsidiana", "jade"], ["cempasúchil", "nochebuena"], ["milpa", "chinampa"],
-    ["eclipse", "luna llena"], ["rocío", "escarcha"], ["niebla", "neblina"], ["hongo", "seta"]
+    ["eclipse", "luna llena"], ["rocío", "escarcha"], ["niebla", "neblina"], ["hongo", "seta"],
+    ["barranca", "cañada"], ["petate de hoja", "palma real"], ["pochote", "parota"],
+    ["selva lacandona", "bosque mesófilo"], ["sargaso", "sargazo"], ["manglares de Sian Ka'an", "arrecife mesoamericano"],
+    ["copal", "ocote"], ["tepezcohuite", "árbol del tule"], ["nanche", "zapote"],
+    ["chaya", "quelite"], ["epazote", "hierba santa"], ["tlachicotón", "maguey pulquero"],
+    ["lluvia de estrellas", "eclipse total"], ["temblor", "sismo"], ["aguacate", "guayaba"],
+    ["biznaga", "cholla"], ["pitahaya", "xoconostle"], ["tuna", "nopal"]
   ],
   sofi: [
     ["K-Pop", "J-Pop"], ["BTS", "Blackpink"], ["Anime", "Manga"], ["Soju", "Sake"],
@@ -251,7 +349,15 @@ const localWords = {
     ["Sasaeng", "Paparazzi"], ["Hanbok", "Kimono"], ["Taekwondo", "Karate"], ["Bulgogi", "Bibimbap"],
     ["Soju de durazno", "Soju original"], ["Corazón coreano", "Besito"], ["Gacha", "Lootbox"], ["Yaoi", "Yuri"],
     ["Donghua", "Anime chino"], ["Manhua", "Cómic chino"], ["Oricon", "Billboard"], ["Pompompurin", "Kuromi"],
-    ["Cinnamoroll", "My Melody"], ["Doraemon", "Shin-chan"]
+    ["Cinnamoroll", "My Melody"], ["Doraemon", "Shin-chan"],
+    ["One Piece", "Bleach"], ["Attack on Titan", "Demon Slayer"], ["Jujutsu Kaisen", "My Hero Academia"],
+    ["Sailor Moon", "Cardcaptor Sakura"], ["Death Note", "Fullmetal Alchemist"], ["Hunter x Hunter", "Yu Yu Hakusho"],
+    ["Isekai", "Shounen"], ["filler", "canon"], ["opening", "ending"], ["figura de anime", "funko pop"],
+    ["TXT", "NewJeans"], ["LE SSERAFIM", "IVE"], ["Enhypen", "Monsta X"], ["Twice comeback", "BTS tour"],
+    ["stan Twitter", "fan page"], ["merch oficial", "bootleg"], ["lightstick ver 1", "lightstick ver 2"],
+    ["bias wrecker", "ult bias"], ["Jimin", "Jungkook"], ["Lisa", "Jennie"],
+    ["subbed", "dubbed"], ["raw scan", "traducción fan"], ["scanlation", "fansub"],
+    ["figurita nendoroid", "figura scale"], ["kigurumi", "onesie kawaii"]
   ],
   adulto: {
     "Apps y Ligue": [
@@ -260,7 +366,16 @@ const localWords = {
       ["sugar daddy", "patrocinador"], ["sugar baby", "mantenido"], ["OnlyFans", "contenido exclusivo"],
       ["Grindr", "Badoo"], ["Hinge", "OkCupid"], ["bloquear", "eliminar"], ["mutuales", "mejores amigos"],
       ["mandar DM", "reaccionar a historia"], ["super like", "corazón"], ["bio", "descripción"], ["fotos de gym", "fotos de viaje"],
-      ["verificada", "cuenta candado"], ["unfollow", "dejar de seguir"], ["voyerista", "espectador"], ["dickpic", "foto no solicitada"]
+      ["verificada", "cuenta candado"], ["unfollow", "dejar de seguir"], ["voyerista", "espectador"], ["dickpic", "foto no solicitada"],
+      ["perfil de Tinder", "perfil de Instagram"], ["cita a ciegas", "cita de apps"], ["primer mensaje", "primer match"],
+      ["ligoteo", "conquista"], ["corazón de Instagram", "like de Tinder"], ["stalkear el ex", "bloquear al ex"],
+      ["conocerse en línea", "conocerse en la vida real"], ["relación por redes", "relación a distancia"],
+      ["crush de Twitter", "crush de trabajo"], ["coqueteo por memes", "coqueteo por audios"],
+      ["ex que te reanima", "ex que te bloquea"], ["notificación de Tinder", "notificación de WhatsApp"],
+      ["primer amoroso", "último mensaje sin responder"], ["ghosteo lento", "ghosteo abrupto"],
+      ["foto de perfil buena", "foto de perfil trampa"], ["cita en café", "cita en el OXXO"],
+      ["Hinge en México", "Bumble en México"], ["descripción de bio", "foto de bio"],
+      ["primer video llamada", "primera cita física"], ["reaccionar a story", "mandar DM"]
     ],
     "Jerga Joven": [
       ["slay", "devorar"], ["cringe", "oso"], ["de chill", "de compas"], ["NPC", "básico"],
@@ -272,7 +387,13 @@ const localWords = {
       ["basado", "chad"], ["fife", "pambolero"], ["inventada", "exagerada"], ["potaxie", "fifi"],
       ["servir", "darla toda"], ["ataque", "crisis"], ["soportar", "aguantar"], ["y la que soporte", "ni modo"],
       ["wey", "morro"], ["compa", "carnal"], ["chamba", "jale"], ["la neta", "la verdad"],
-      ["fachero", "chido"], ["boomer", "ruco"], ["zennial", "millennial"], ["mood", "vibra"]
+      ["fachero", "chido"], ["boomer", "ruco"], ["zennial", "millennial"], ["mood", "vibra"],
+      ["mamey", "chido"], ["alivianado", "cuate"], ["jalado", "loco"], ["está cañón", "está grueso"],
+      ["ni pex", "no hay pedo"], ["qué choro", "qué rollo"], ["hacer el paro", "echar la mano"],
+      ["de volada", "de un jalón"], ["está de pelos", "está cagado"], ["hacer desmadre", "armar la fiesta"],
+      ["está pilas", "está abusado"], ["pacheco", "grifo"], ["en chinga", "a webo"],
+      ["no manches", "no me digas"], ["qué oso", "qué vergüenza"], ["pura paja", "pura neta"],
+      ["mano", "bróder"], ["se echó un clavado", "se aventó"], ["es un show", "es un desmadre"]
     ],
     "Relaciones y Drama": [
       ["ligue", "faje"], ["tirar rollo", "chamuyar"], ["crush", "pretendiente"],
@@ -283,7 +404,14 @@ const localWords = {
       ["drama", "escándalo"], ["desmadre", "locura"], ["chisme", "secreto"], ["infidelidad", "desliz"],
       ["tóxica", "psycho"], ["hacer escena", "berrinche"], ["revisar el celular", "pedir contraseña"], ["dar el avión", "ignorar"],
       ["rogón", "insistente"], ["terapia de pareja", "darse un tiempo"], ["terminar", "cortar"], ["volver con el ex", "recaída"],
-      ["sugar mommy", "golfa"], ["interesada", "cazafortunas"], ["vengativa", "rencorosa"], ["llorar por él", "bloquearlo"]
+      ["sugar mommy", "golfa"], ["interesada", "cazafortunas"], ["vengativa", "rencorosa"], ["llorar por él", "bloquearlo"],
+      ["escena en público", "escena en privado"], ["dar el avión", "clavar el visto"],
+      ["declararse", "tirar indirectas"], ["novio oficial", "quedante"],
+      ["pareja tóxica", "pareja sana"], ["controlar al otro", "darle su espacio"],
+      ["celos de WhatsApp", "celos de Instagram"], ["preguntarle a los amigos", "checar el teléfono"],
+      ["irse de viaje con la ex", "irse de viaje en bola"], ["recordar aniversario", "olvidar aniversario"],
+      ["detalles baratos", "detalles caros"], ["pelea de pareja", "reconciliación"],
+      ["amigovios", "forever alone"], ["quedantes", "novios de verdad"]
     ],
     "Cuerpo y Tabú": [
       ["mamado", "trabado"], ["nalgón", "culón"], ["chichis", "bubis"],
@@ -294,7 +422,13 @@ const localWords = {
       ["rol", "disfraz"], ["voyeur", "exhibicionista"], ["sumiso", "dominante"],
       ["pack", "candente"], ["calentura", "maña"], ["desinhibido", "lanzado"], ["resbalosa", "atrevida"],
       ["sugar", "colágeno"], ["MILF", "DILF"], ["chaparrita", "alta"], ["curvy", "flaquita"],
-      ["bóxer", "tanga"], ["lencería", "disfraz de enfermera"], ["piernuda", "caderona"], ["tatuajes", "piercings"]
+      ["bóxer", "tanga"], ["lencería", "disfraz de enfermera"], ["piernuda", "caderona"], ["tatuajes", "piercings"],
+      ["buena figura", "cuerpazo"], ["operada", "natural"], ["faja", "cinturilla"], ["bienestar", "gym"],
+      ["rutina de skincare", "crema de la abuela"], ["depilada", "sin depilar"], ["labios carnosos", "labios delgados"],
+      ["ojos almendrados", "ojos rasgados"], ["caderona", "cinturita"], ["piernas largas", "piernas cortas"],
+      ["cabello teñido", "cabello natural"], ["barba bien arreglada", "barba descuidada"],
+      ["cuerpo de influencer", "cuerpo de persona real"], ["abdomen marcado", "pancita"],
+      ["espalda amplia", "hombros angostos"]
     ],
     "Explícito (+18 MX)": [
       ["chile", "picante"], ["albur", "doble sentido"], ["fierro", "macizo"],
@@ -319,7 +453,20 @@ const localWords = {
     ["mucho texto", "TL;DR"], ["chad", "virgin"], ["FBI open up", "a ver déjame ver"],
     ["No era penal", "Sí era penal"], ["El América", "Las Chivas"], ["es neta", "no manches"],
     ["modo Chihuahua", "modo Golden"], ["eres un NPC", "eres un GOD"], ["prro", "wey"],
-    ["panik", "kalm"], ["L", "W"], ["bromance", "friendzone"]
+    ["panik", "kalm"], ["L", "W"], ["bromance", "friendzone"],
+    ["el de la rosa", "el de la catrina"], ["Chabelo nunca muere", "Chabelo RIP"],
+    ["no te comas el coco", "ya cómetelo"], ["modo zombie lunes", "modo bestia viernes"],
+    ["el del penal de Ramos", "el del penal de Chicharito"], ["clasico América vs Chivas", "clasico Pumas vs Cruz Azul"],
+    ["señora de Monterrey", "señora de CDMX"], ["wey del norte", "wey del sur"],
+    ["suegra de WhatsApp", "mamá del grupo de WhatsApp"], ["el de los 100 pesos", "el del flete"],
+    ["el de la cruda moral", "el de la cruda física"], ["meme de Eugenio Derbez", "meme de Chespirito"],
+    ["spiderman señalándose", "El Chavo señalando"], ["¿y eso con qué se come?", "¿eso viene en la torta?"],
+    ["cuando el profe pone tarea el viernes", "cuando el jefe pide reportes el viernes"],
+    ["modo cuate", "modo conocido"], ["chilango en el metro", "chilango en el Uber"],
+    ["fresa vs naco", "fifí vs prole"], ["ya llegó el que andaba mal", "ya llegó el que se tardó"],
+    ["el compa que no paga", "el compa que siempre paga"], ["sí es penal", "no era penal"],
+    ["el que grita en el cine", "el que come recio"], ["modo nerd", "modo vividor"],
+    ["meme del pollito", "meme del gato negro"], ["cuando hay pozole en casa", "cuando hay caldo de pollo"]
   ],
   redes: [
     ["Instagram", "TikTok"], ["X (Twitter)", "Threads"], ["YouTube", "Twitch"], ["WhatsApp", "Telegram"],
@@ -327,7 +474,16 @@ const localWords = {
     ["live", "stream"], ["DM", "mención"], ["follow", "unfollow"], ["like", "dislike"],
     ["share", "repost"], ["story", "publicación"], ["carrete", "feed"], ["filtro", "sin filtro"],
     ["verificado", "fake"], ["bot", "troll"], ["hater", "fan"], ["cancelar", "funar"],
-    ["suscriptor", "seguidor"], ["algoritmo", "for you page"], ["engagement", "alcance"], ["collab", "ft."]
+    ["suscriptor", "seguidor"], ["algoritmo", "for you page"], ["engagement", "alcance"], ["collab", "ft."],
+    ["Luisito Comunica", "Werevertumorro"], ["YosStop", "Badabun"], ["El Escorpión Dorado", "Sofía Castro"],
+    ["Yordi Rosado", "Adela Micha"], ["Cossío", "Lele Pons México"], ["Fofo Márquez", "Naim Darrechi"],
+    ["streamer mexicano", "youtuber mexicano"], ["trending en México", "trending en España"],
+    ["TikTok de moda", "meme de semana"], ["captura de pantalla comprometedora", "funeo masivo"],
+    ["cuenta de chismes", "cuenta de memes"], ["grupo de WhatsApp familiar", "grupo de amigos"],
+    ["estado de visto", "respuesta tardía"], ["story que caduca", "post fijo"], ["número oculto", "spam de llamadas"],
+    ["reacción en vivo", "reacción editada"], ["robo de contenido", "contenido original"],
+    ["notificación de cumpleaños", "notificación del banco"], ["primer TikTok", "TikTok viral"],
+    ["comentario de odio", "comentario de apoyo"], ["community notes", "etiqueta de spam"]
   ],
   videojuegos: [
     ["Fortnite", "PUBG"], ["Minecraft", "Roblox"], ["PlayStation", "Xbox"], ["Nintendo", "Steam"],
@@ -335,7 +491,17 @@ const localWords = {
     ["camper", "rusher"], ["nerf", "buff"], ["boss final", "jefe secreto"], ["NPC", "jugador"],
     ["sandbox", "battle royale"], ["GTA", "Need for Speed"], ["FIFA", "NBA 2K"], ["eSports", "torneo"],
     ["headshot", "clutch"], ["rage quit", "GG"], ["respawn", "permadeath"], ["mod", "DLC"],
-    ["PvP", "PvE"], ["multiplayer", "singleplayer"], ["arcade", "consola"], ["retro", "next-gen"]
+    ["PvP", "PvE"], ["multiplayer", "singleplayer"], ["arcade", "consola"], ["retro", "next-gen"],
+    ["TheGrefg", "Ibai"], ["Rubius", "ElRubius México"], ["Winpy Jireh", "Rix"], ["AuronPlay en español", "AuronPlay subtitulado"],
+    ["Free Fire", "Call of Duty Mobile"], ["Clash Royale", "Clash of Clans"],
+    ["Among Us", "Fall Guys"], ["League of Legends", "Dota 2"],
+    ["El Chapuzas", "El que siempre gana"], ["cuenta smurfea", "cuenta main"],
+    ["servidor latinoamericano", "servidor norteamericano"], ["ping de 300", "ping de 10"],
+    ["cibercafé", "gaming house"], ["teclado mecánico", "teclado de membrana"],
+    ["modo historia", "modo multijugador"], ["cheater", "jugador legítimo"],
+    ["liga amateur", "liga profesional"], ["torneo de FIFA en el antro", "torneo de Mortal Kombat"],
+    ["gacha luck", "gacha mala suerte"], ["pase de batalla", "pase gratuito"],
+    ["jugador de móvil", "jugador de consola"], ["noche de gaming", "maratón de juego"]
   ],
   regiones: [
     ["CDMX", "Guadalajara"], ["Monterrey", "Tijuana"], ["Oaxaca", "Chiapas"], ["Cancún", "Los Cabos"],
@@ -343,7 +509,17 @@ const localWords = {
     ["Sonora", "Sinaloa"], ["Chihuahua", "Durango"], ["Guanajuato", "Michoacán"], ["Jalisco", "Nayarit"],
     ["Tamaulipas", "Nuevo León"], ["Zacatecas", "Coahuila"], ["Hidalgo", "Tlaxcala"], ["Morelos", "Guerrero"],
     ["chilango", "foráneo"], ["norteño", "sureño"], ["costeño", "serrano"], ["tapatío", "regio"],
-    ["chamaco", "escuincle"], ["jarocho", "yucateco"], ["azteca", "maya"], ["mariachi", "banda"]
+    ["chamaco", "escuincle"], ["jarocho", "yucateco"], ["azteca", "maya"], ["mariachi", "banda"],
+    ["acento norteño", "acento chilango"], ["acento costeño", "acento oaxaqueño"],
+    ["güey", "wey"], ["órale", "ándale"], ["chido", "padre"], ["qué onda", "qué pasó"],
+    ["cuate", "mano"], ["chamba norteña", "chamba capitalina"], ["rancho", "colonia"],
+    ["pozole guerrerense", "pozole tapatío"], ["mole oaxaqueño", "mole poblano"],
+    ["cochinita yucateca", "carnitas michoacanas"], ["tlayuda oaxaqueña", "gordita norteña"],
+    ["taco de birria jalisciense", "taco de suadero chilango"], ["mezcal oaxaqueño", "tequila jaliscience"],
+    ["cenote yucateco", "playa veracruzana"], ["playa guerrerense", "playa sinaloense"],
+    ["norteño de rancho", "chilango de delegación"], ["tijuanense", "fronterizo"],
+    ["defeño", "capitalino"], ["provinciano", "de rancho"], ["regiovisión", "Canal 2"],
+    ["Chivas de Guadalajara", "Rayados de Monterrey"]
   ],
   peda: [
     ["Tequila", "Mezcal"], ["Cerveza", "Caguama"], ["Vodka", "Ron"], ["Shot", "Fondo"],
@@ -363,7 +539,18 @@ const localWords = {
     ["Six de chelas", "Doce de chelas"], ["Tecate", "Corona"], ["Victoria", "Indio"], ["Bacardí", "Smirnoff"],
     ["Mojito", "Caipirinha"], ["Buchanans", "Red Label"], ["Jägermeister", "Perla Negra"], ["Boost", "Red Bull"],
     ["Gomarindo", "Chamoy"], ["Cantarito", "Cazuela"], ["Botellas", "Buchones"], ["Racer", "Yate"],
-    ["VIP", "Zona general"], ["Baño lleno", "Miar en la calle"], ["Malilla", "Bajón"], ["Tacos de pastor", "Dogos"]
+    ["VIP", "Zona general"], ["Baño lleno", "Miar en la calle"], ["Malilla", "Bajón"], ["Tacos de pastor", "Dogos"],
+    ["Tonayán", "Aguardiente"], ["Xtabentún", "Mezcal artesanal"], ["Charanda", "Ron de caña"],
+    ["Sotol", "Bacanora"], ["Raicilla", "Comiteco"], ["Rompope", "Licor de café"],
+    ["Cerveza artesanal", "Cerveza de caguama"], ["michelada de clamato", "michelada de chamoy"],
+    ["chela preparada", "chela de barril"], ["shot de tequila", "shot de mezcal"],
+    ["peda de graduación", "peda de quince"], ["peda familiar en el rancho", "peda en el rooftop"],
+    ["irse de after", "quedarse a dormir"], ["caer de peda", "llegar de sorpresa"],
+    ["cruda moral", "cruda física"], ["borracho feliz", "borracho triste"],
+    ["el que se duerme primero", "el que aguanta más"], ["el que paga la primera", "el que se esconde al pagar"],
+    ["anfitrión de la peda", "invitado sin avisar"], ["botana de chicharrón", "botana de papas"],
+    ["copa de más", "copa de menos"], ["brindis emotivo", "brindis de compromiso"],
+    ["acabarse el hielo", "acabarse los vasos"], ["ir por más chelas", "no traer dinero"]
   ]
 };
 // After localWords close, before themes
